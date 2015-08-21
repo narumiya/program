@@ -171,7 +171,6 @@ int Servo::setPara(int id,int mode,float value){
 
 int Servo::setId(const int id,const int mode){
 	char msg[4]={0x00};
-	char data=0;
 
 	msg[0]=0xE0|id;
 	for(int i=1;i<4;i++){
