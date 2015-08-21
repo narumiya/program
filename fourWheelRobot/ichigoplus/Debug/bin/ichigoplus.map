@@ -6,10 +6,12 @@ c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc
                               ..\obj\utilplus.o (sin)
 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/thumb2\libm.a(lib_a-sf_cos.o)
                               ..\obj\utilplus.o (cosf)
+c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/thumb2\libm.a(lib_a-sf_modf.o)
+                              ..\obj\my_standard_io.o (modff)
 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/thumb2\libm.a(lib_a-sf_sin.o)
                               ..\obj\utilplus.o (sinf)
 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/thumb2\libm.a(lib_a-w_pow.o)
-                              ..\obj\name_converter.o (pow)
+                              ..\obj\my_standard_io.o (pow)
 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/thumb2\libm.a(lib_a-wf_acos.o)
                               ..\obj\utilplus.o (acosf)
 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/thumb2\libm.a(lib_a-wf_atan2.o)
@@ -91,7 +93,7 @@ c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc
 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/thumb2\libgcc.a(_arm_fixdfsi.o)
                               ..\obj\servo.o (__aeabi_d2iz)
 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/thumb2\libgcc.a(_arm_fixunsdfsi.o)
-                              ..\obj\name_converter.o (__aeabi_d2uiz)
+                              ..\obj\my_standard_io.o (__aeabi_d2uiz)
 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/thumb2\libgcc.a(_arm_truncdfsf2.o)
                               ..\obj\util.o (__aeabi_d2f)
 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/thumb2\libgcc.a(_arm_addsubsf3.o)
@@ -101,7 +103,7 @@ c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc
 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/thumb2\libgcc.a(_arm_cmpsf2.o)
                               ..\obj\utilplus.o (__aeabi_fcmpeq)
 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/thumb2\libgcc.a(_arm_fixsfsi.o)
-                              ..\obj\pin.o (__aeabi_f2iz)
+                              ..\obj\my_standard_io.o (__aeabi_f2iz)
 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/thumb2\libgcc.a(_arm_fixunssfsi.o)
                               ..\obj\config_pwm.o (__aeabi_f2uiz)
 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/thumb2\libgcc.a(_aeabi_ldivmod.o)
@@ -129,7 +131,7 @@ c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc
 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memcpy-stub.o)
                               c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/thumb2\libgcc.a(unwind-arm.o) (memcpy)
 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-memset.o)
-                              ..\obj\pin.o (memset)
+                              ..\obj\my_standard_io.o (memset)
 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-printf.o)
                               ..\obj\pin.o (printf)
 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-puts.o)
@@ -1003,6 +1005,45 @@ Discarded input sections
  .text          0x00000000        0x0 ..\obj\config_can.o
  .data          0x00000000        0x0 ..\obj\config_can.o
  .bss           0x00000000        0x0 ..\obj\config_can.o
+ .text          0x00000000        0x0 ..\obj\my_standard_io.o
+ .data          0x00000000        0x0 ..\obj\my_standard_io.o
+ .bss           0x00000000       0xe4 ..\obj\my_standard_io.o
+ .text.put_c    0x00000000       0x1c ..\obj\my_standard_io.o
+ .text.put_i    0x00000000      0x100 ..\obj\my_standard_io.o
+ .text.put_si   0x00000000       0x3c ..\obj\my_standard_io.o
+ .text.put_f    0x00000000      0x198 ..\obj\my_standard_io.o
+ .text.put_st   0x00000000       0x48 ..\obj\my_standard_io.o
+ .text.put_enter
+                0x00000000       0x1c ..\obj\my_standard_io.o
+ .text.i_print  0x00000000       0x30 ..\obj\my_standard_io.o
+ .text.f_print  0x00000000       0x30 ..\obj\my_standard_io.o
+ .text.f2_print
+                0x00000000       0x2c ..\obj\my_standard_io.o
+ .text.put_ib   0x00000000       0x70 ..\obj\my_standard_io.o
+ .text.put_ix   0x00000000       0x90 ..\obj\my_standard_io.o
+ .text.value_data
+                0x00000000       0xac ..\obj\my_standard_io.o
+ .text.write_value
+                0x00000000       0x20 ..\obj\my_standard_io.o
+ .text.read_value
+                0x00000000       0x24 ..\obj\my_standard_io.o
+ .text.receive_orders_c
+                0x00000000      0x198 ..\obj\my_standard_io.o
+ .text.receive_order_c
+                0x00000000       0x24 ..\obj\my_standard_io.o
+ .text.recive_order_st
+                0x00000000       0xa8 ..\obj\my_standard_io.o
+ .debug_info    0x00000000      0x5bc ..\obj\my_standard_io.o
+ .debug_abbrev  0x00000000      0x165 ..\obj\my_standard_io.o
+ .debug_aranges
+                0x00000000       0xa0 ..\obj\my_standard_io.o
+ .debug_ranges  0x00000000       0x90 ..\obj\my_standard_io.o
+ .debug_line    0x00000000      0x346 ..\obj\my_standard_io.o
+ .debug_str     0x00000000      0x293 ..\obj\my_standard_io.o
+ .comment       0x00000000       0x47 ..\obj\my_standard_io.o
+ .ARM.attributes
+                0x00000000       0x33 ..\obj\my_standard_io.o
+ .debug_frame   0x00000000      0x238 ..\obj\my_standard_io.o
  .text          0x00000000        0x0 ..\obj\diskio.o
  .data          0x00000000        0x0 ..\obj\diskio.o
  .bss           0x00000000        0x0 ..\obj\diskio.o
@@ -2906,6 +2947,12 @@ Discarded input sections
  .ARM.attributes
                 0x00000000       0x29 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/thumb2\libm.a(lib_a-sf_cos.o)
  .debug_frame   0x00000000       0x28 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/thumb2\libm.a(lib_a-sf_cos.o)
+ .text          0x00000000       0x48 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/thumb2\libm.a(lib_a-sf_modf.o)
+ .data          0x00000000        0x0 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/thumb2\libm.a(lib_a-sf_modf.o)
+ .bss           0x00000000        0x0 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/thumb2\libm.a(lib_a-sf_modf.o)
+ .ARM.attributes
+                0x00000000       0x29 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/thumb2\libm.a(lib_a-sf_modf.o)
+ .debug_frame   0x00000000       0x2c c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/thumb2\libm.a(lib_a-sf_modf.o)
  .text          0x00000000       0x7c c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/thumb2\libm.a(lib_a-sf_sin.o)
  .data          0x00000000        0x0 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/thumb2\libm.a(lib_a-sf_sin.o)
  .bss           0x00000000        0x0 c:/users/ózê∂/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/thumb2\libm.a(lib_a-sf_sin.o)
@@ -7274,6 +7321,7 @@ LOAD ..\obj\stm32f4xx_can.o
 LOAD ..\obj\utilplus.o
 LOAD ..\obj\mcutime.o
 LOAD ..\obj\config_can.o
+LOAD ..\obj\my_standard_io.o
 LOAD ..\obj\diskio.o
 LOAD ..\obj\startup_stm32f4xx.o
 LOAD ..\obj\stm32f4xx_crc.o
@@ -7677,7 +7725,7 @@ OUTPUT(ichigoplus.elf elf32-littlearm)
  .comment       0x00000000       0x47 ..\obj\config_usart.o
  .comment       0x00000000       0x47 ..\obj\stm32f4xx_tim.o
 
-.debug_info     0x00000000    0x1f3f7
+.debug_info     0x00000000    0x1f405
  .debug_info    0x00000000      0x88e ..\obj\config_pwm.o
  .debug_info    0x0000088e     0x24ef ..\obj\usb_core.o
  .debug_info    0x00002d7d      0x2cc ..\obj\config_port.o
@@ -7691,31 +7739,31 @@ OUTPUT(ichigoplus.elf elf32-littlearm)
  .debug_info    0x00006b47       0xed ..\obj\startup_stm32f4xx.o
  .debug_info    0x00006c34      0xe69 ..\obj\usbd_core.o
  .debug_info    0x00007a9d     0x6c23 ..\obj\pin.o
- .debug_info    0x0000e6c0     0x11ad ..\obj\main.o
- .debug_info    0x0000f86d      0xc21 ..\obj\stm32f4xx_rcc.o
- .debug_info    0x0001048e      0x841 ..\obj\system.o
- .debug_info    0x00010ccf      0xc0c ..\obj\stm32f4xx_adc.o
- .debug_info    0x000118db      0x20f ..\obj\blink.o
- .debug_info    0x00011aea      0x240 ..\obj\can.o
- .debug_info    0x00011d2a      0x62f ..\obj\config_adc.o
- .debug_info    0x00012359      0x13f ..\obj\error.o
- .debug_info    0x00012498      0x691 ..\obj\config_systick.o
- .debug_info    0x00012b29     0x1b3f ..\obj\stm32_ub_sdcard.o
- .debug_info    0x00014668      0x5d6 ..\obj\stm32f4xx_gpio.o
- .debug_info    0x00014c3e      0x566 ..\obj\system_stm32f4xx.o
- .debug_info    0x000151a4      0x3fa ..\obj\syscalls.o
- .debug_info    0x0001559e      0x718 ..\obj\stm32f4xx_dma.o
- .debug_info    0x00015cb6      0xfd8 ..\obj\usb_bsp.o
- .debug_info    0x00016c8e      0xf6f ..\obj\usbd_req.o
- .debug_info    0x00017bfd     0x1d41 ..\obj\usb_dcd_int.o
- .debug_info    0x0001993e      0x331 ..\obj\stm32f4xx_exti.o
- .debug_info    0x00019c6f      0x89d ..\obj\name_converter.o
- .debug_info    0x0001a50c      0x51c ..\obj\misc.o
- .debug_info    0x0001aa28      0xff3 ..\obj\usb_dcd.o
- .debug_info    0x0001ba1b      0xd0e ..\obj\serial.o
- .debug_info    0x0001c729      0xc8b ..\obj\usbd_ioreq.o
- .debug_info    0x0001d3b4      0x40e ..\obj\config_usart.o
- .debug_info    0x0001d7c2     0x1c35 ..\obj\stm32f4xx_tim.o
+ .debug_info    0x0000e6c0     0x11bb ..\obj\main.o
+ .debug_info    0x0000f87b      0xc21 ..\obj\stm32f4xx_rcc.o
+ .debug_info    0x0001049c      0x841 ..\obj\system.o
+ .debug_info    0x00010cdd      0xc0c ..\obj\stm32f4xx_adc.o
+ .debug_info    0x000118e9      0x20f ..\obj\blink.o
+ .debug_info    0x00011af8      0x240 ..\obj\can.o
+ .debug_info    0x00011d38      0x62f ..\obj\config_adc.o
+ .debug_info    0x00012367      0x13f ..\obj\error.o
+ .debug_info    0x000124a6      0x691 ..\obj\config_systick.o
+ .debug_info    0x00012b37     0x1b3f ..\obj\stm32_ub_sdcard.o
+ .debug_info    0x00014676      0x5d6 ..\obj\stm32f4xx_gpio.o
+ .debug_info    0x00014c4c      0x566 ..\obj\system_stm32f4xx.o
+ .debug_info    0x000151b2      0x3fa ..\obj\syscalls.o
+ .debug_info    0x000155ac      0x718 ..\obj\stm32f4xx_dma.o
+ .debug_info    0x00015cc4      0xfd8 ..\obj\usb_bsp.o
+ .debug_info    0x00016c9c      0xf6f ..\obj\usbd_req.o
+ .debug_info    0x00017c0b     0x1d41 ..\obj\usb_dcd_int.o
+ .debug_info    0x0001994c      0x331 ..\obj\stm32f4xx_exti.o
+ .debug_info    0x00019c7d      0x89d ..\obj\name_converter.o
+ .debug_info    0x0001a51a      0x51c ..\obj\misc.o
+ .debug_info    0x0001aa36      0xff3 ..\obj\usb_dcd.o
+ .debug_info    0x0001ba29      0xd0e ..\obj\serial.o
+ .debug_info    0x0001c737      0xc8b ..\obj\usbd_ioreq.o
+ .debug_info    0x0001d3c2      0x40e ..\obj\config_usart.o
+ .debug_info    0x0001d7d0     0x1c35 ..\obj\stm32f4xx_tim.o
 
 .debug_abbrev   0x00000000     0x45b0
  .debug_abbrev  0x00000000      0x160 ..\obj\config_pwm.o
@@ -7875,7 +7923,7 @@ OUTPUT(ichigoplus.elf elf32-littlearm)
  .debug_ranges  0x00001938       0x10 ..\obj\config_usart.o
  .debug_ranges  0x00001948      0x2e8 ..\obj\stm32f4xx_tim.o
 
-.debug_line     0x00000000     0x968d
+.debug_line     0x00000000     0x968b
  .debug_line    0x00000000      0x2d2 ..\obj\config_pwm.o
  .debug_line    0x000002d2      0x69f ..\obj\usb_core.o
  .debug_line    0x00000971      0x1ed ..\obj\config_port.o
@@ -7889,31 +7937,31 @@ OUTPUT(ichigoplus.elf elf32-littlearm)
  .debug_line    0x00002477       0xa9 ..\obj\startup_stm32f4xx.o
  .debug_line    0x00002520      0x342 ..\obj\usbd_core.o
  .debug_line    0x00002862     0x18c0 ..\obj\pin.o
- .debug_line    0x00004122      0x3f5 ..\obj\main.o
- .debug_line    0x00004517      0x565 ..\obj\stm32f4xx_rcc.o
- .debug_line    0x00004a7c      0x193 ..\obj\system.o
- .debug_line    0x00004c0f      0x51b ..\obj\stm32f4xx_adc.o
- .debug_line    0x0000512a       0xc5 ..\obj\blink.o
- .debug_line    0x000051ef       0xbb ..\obj\can.o
- .debug_line    0x000052aa      0x29a ..\obj\config_adc.o
- .debug_line    0x00005544      0x1b5 ..\obj\error.o
- .debug_line    0x000056f9      0x1d0 ..\obj\config_systick.o
- .debug_line    0x000058c9      0xc15 ..\obj\stm32_ub_sdcard.o
- .debug_line    0x000064de      0x308 ..\obj\stm32f4xx_gpio.o
- .debug_line    0x000067e6      0x1a4 ..\obj\system_stm32f4xx.o
- .debug_line    0x0000698a      0x198 ..\obj\syscalls.o
- .debug_line    0x00006b22      0x3a5 ..\obj\stm32f4xx_dma.o
- .debug_line    0x00006ec7      0x2e2 ..\obj\usb_bsp.o
- .debug_line    0x000071a9      0x3f2 ..\obj\usbd_req.o
- .debug_line    0x0000759b      0x382 ..\obj\usb_dcd_int.o
- .debug_line    0x0000791d      0x26e ..\obj\stm32f4xx_exti.o
- .debug_line    0x00007b8b      0x3c0 ..\obj\name_converter.o
- .debug_line    0x00007f4b      0x20e ..\obj\misc.o
- .debug_line    0x00008159      0x30a ..\obj\usb_dcd.o
- .debug_line    0x00008463      0x39e ..\obj\serial.o
- .debug_line    0x00008801      0x256 ..\obj\usbd_ioreq.o
- .debug_line    0x00008a57      0x208 ..\obj\config_usart.o
- .debug_line    0x00008c5f      0xa2e ..\obj\stm32f4xx_tim.o
+ .debug_line    0x00004122      0x3f3 ..\obj\main.o
+ .debug_line    0x00004515      0x565 ..\obj\stm32f4xx_rcc.o
+ .debug_line    0x00004a7a      0x193 ..\obj\system.o
+ .debug_line    0x00004c0d      0x51b ..\obj\stm32f4xx_adc.o
+ .debug_line    0x00005128       0xc5 ..\obj\blink.o
+ .debug_line    0x000051ed       0xbb ..\obj\can.o
+ .debug_line    0x000052a8      0x29a ..\obj\config_adc.o
+ .debug_line    0x00005542      0x1b5 ..\obj\error.o
+ .debug_line    0x000056f7      0x1d0 ..\obj\config_systick.o
+ .debug_line    0x000058c7      0xc15 ..\obj\stm32_ub_sdcard.o
+ .debug_line    0x000064dc      0x308 ..\obj\stm32f4xx_gpio.o
+ .debug_line    0x000067e4      0x1a4 ..\obj\system_stm32f4xx.o
+ .debug_line    0x00006988      0x198 ..\obj\syscalls.o
+ .debug_line    0x00006b20      0x3a5 ..\obj\stm32f4xx_dma.o
+ .debug_line    0x00006ec5      0x2e2 ..\obj\usb_bsp.o
+ .debug_line    0x000071a7      0x3f2 ..\obj\usbd_req.o
+ .debug_line    0x00007599      0x382 ..\obj\usb_dcd_int.o
+ .debug_line    0x0000791b      0x26e ..\obj\stm32f4xx_exti.o
+ .debug_line    0x00007b89      0x3c0 ..\obj\name_converter.o
+ .debug_line    0x00007f49      0x20e ..\obj\misc.o
+ .debug_line    0x00008157      0x30a ..\obj\usb_dcd.o
+ .debug_line    0x00008461      0x39e ..\obj\serial.o
+ .debug_line    0x000087ff      0x256 ..\obj\usbd_ioreq.o
+ .debug_line    0x00008a55      0x208 ..\obj\config_usart.o
+ .debug_line    0x00008c5d      0xa2e ..\obj\stm32f4xx_tim.o
 
 .debug_str      0x00000000     0x9e54
  .debug_str     0x00000000      0x62a ..\obj\config_pwm.o
@@ -7943,7 +7991,7 @@ OUTPUT(ichigoplus.elf elf32-littlearm)
  .debug_str     0x00003420     0x288a ..\obj\pin.o
                                0x2de9 (size before relaxing)
  .debug_str     0x00005caa      0x156 ..\obj\main.o
-                                0xaf7 (size before relaxing)
+                                0xb0a (size before relaxing)
  .debug_str     0x00005e00      0x528 ..\obj\stm32f4xx_rcc.o
                                 0x806 (size before relaxing)
  .debug_str     0x00006328      0x3f5 ..\obj\system.o

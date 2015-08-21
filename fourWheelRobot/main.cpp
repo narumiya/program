@@ -1,7 +1,7 @@
 //libraries
 
 //application
-
+#include "my_standard_io.h"
 //controller
 #include "layer_controller/blink.hpp"
 //base
@@ -16,10 +16,7 @@
 int main(void)
 {
 	long long int time=0;
-	Led0 led;
-	Blink blink(led);
-	blink.setup();
-	blink.time(100);
+	Led0 led;Blink blink(led);blink.setup();blink.time(100);
 	Serial0 serial;serial.setup(115200);
 	Enc0 enc0;enc0.setup();
 	Enc1 enc1;enc1.setup();
@@ -31,8 +28,9 @@ int main(void)
 		blink.cycle();
 		blink0.cycle();
 		blink1.cycle();
-		if(millis()-time>=100){
+		if(millis()-time>=5){
 			time=millis();
+
 			//serial.printf("%d, %d, %d, %d\n\r",enc0.count(),enc1.count(),enc2.count(),enc3.count());
 		}
 	}
