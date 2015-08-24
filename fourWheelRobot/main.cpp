@@ -31,7 +31,6 @@ int main(void)
 	A2 a2;a2.setupAnalogIn();
 	A3 a3;a3.setupAnalogIn();
 	A4 a4;a4.setupAnalogIn();
-	int flag=0;
 
 	while(1){
 		blink.cycle();

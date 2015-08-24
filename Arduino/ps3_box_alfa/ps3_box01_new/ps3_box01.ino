@@ -256,10 +256,10 @@ public:
 //RelayMD motor2(A4,A5);
 //RelayMD motor3(0,1);
 
-RelayMD motor0(7,8);
+RelayMD motor0(8,7);
 RelayMD motor1(4,5);
 RelayMD motor2(0,1);
-RelayMD motor3(A4,A5);
+RelayMD motor3(A5,A4);
 
 
 Ta7291p motor4(A0,A2,3);
@@ -287,13 +287,15 @@ void setup() {
 }
 
 int tireFlag=0;
+float leftJoy=0.0,rightJoy=0.0;
+int flag=0;
+int moveFlag=0;
+int offFlag=0;
+int circleFlag=0;
+int R2Flag=0;
+int rubleFlag=0;
+   
 void loop() {
-   float leftJoy=0.0,rightJoy=0.0;
-   int flag=0;
-   int moveFlag=0;
-   int offFlag=0;
-   int circleFlag=0;
-   int R1Flag=0;
   Usb.Task();
   if (PS3.PS3Connected) {
     led.manual();
@@ -372,13 +374,13 @@ void loop() {
    if((PS3.getAnalogButton(R1)>10 && PS3.getAnalogButton(L1)==0)
             || (PS3.getAnalogButton(TRIANGLE)>10 && PS3.getAnalogButton(CROSS)==0)){
       //上方向 
-      motor2.cw();
+      motor3.cw();
    }else if((PS3.getAnalogButton(R1)==0 && PS3.getAnalogButton(L1)>10)
             || (PS3.getAnalogButton(TRIANGLE)==0 && PS3.getAnalogButton(CROSS)>10)){
       //下方向
-      motor2.ccw();
+      motor3.ccw();
    }else{
-      motor2.stop();
+      motor3.stop();
    }
    
    //吸引スイッチ
@@ -397,37 +399,38 @@ void loop() {
       }
    }
    
-   if(R1Flag==0){
+   if(R2Flag==0){
       if(PS3.getAnalogButton(R2)>10){
-         R1Flag=1;
+         R2Flag=1;
          if(moveFlag==0){
               moveFlag=1;
           }else if(moveFlag==1){
               moveFlag=0;
          } 
       }
-    }else if(R1Flag==1){
+    }else if(R2Flag==1){
        if(PS3.getAnalogButton(R2)==0){
-         R1Flag=0;
+         R2Flag=0;
         }
     }
        
-      
+      //吸引スイッチ
       if(moveFlag==1){
-         motor3.cw();
-         PS3.setRumbleOn(RumbleHigh);
+         motor2.cw();
+         motor4.duty(-1.0);
+         if(rubleFlag==1){
+          // PS3.setRumbleOn(RumbleLow);
+           rubleFlag=0;
+         }
       }else if(moveFlag==0){
-         motor3.stop();
-         PS3.setRumbleOff();
+         motor2.stop();
+         motor4.duty(0);
+         if(rubleFlag==0){
+            //PS3.setRumbleOff();
+            rubleFlag=1;
+         }
       }
-      
-   if(flag==0){
-      if((PS3.getAnalogButton(R2)>10 ||  PS3.getAnalogButton(CIRCLE)>10)){
-         motor3.cw();
-      }else{
-         motor3.stop();
-      }
-   }
+     
     
     if (PS3.getButtonPress(PS) || PS3.getButtonPress(START)) {
        led.disconnect();
@@ -461,115 +464,14 @@ void loop() {
   }
   else{
     led.disconnect();
+    motor0.stop();
+     motor1.stop();
+     motor2.stop();
+     motor3.stop();
+     motor4.duty(0);
+     motor5.duty(0);
   }
   
-
-  //  led.cycleChange()
-  /*  if (PS3.PS3Connected) {
-   
-   if(PS3.getAnalogButton(UP)>10){
-   if(PS3.getAnalogButton(RIGHT)>10){
-   motor0.cw();
-   motor1.stop();
-   }else if(PS3.getAnalogButton(LEFT)>10){
-   motor0.stop();
-   motor1.cw();
-   }else{
-   motor0.cw();
-   motor1.cw();
-   }
-   }else if(PS3.getAnalogButton(DOWN)){
-   if(PS3.getAnalogButton(RIGHT)>10){
-   motor0.stop();
-   motor1.ccw();
-   }else if(PS3.getAnalogButton(LEFT)>10){
-   motor0.ccw();
-   motor1.stop();
-   }else{
-   motor0.ccw();
-   motor1.ccw();
-   }
-   }else{
-   if(PS3.getAnalogButton(RIGHT)>10){
-   motor0.cw();
-   motor1.ccw();
-   }else if(PS3.getAnalogButton(LEFT)>10){
-   motor0.ccw();
-   motor1.cw();
-   }else{
-   motor0.stop();
-   motor1.stop();
-   }
-   }
-   
-   if(PS3.getAnalogButton(L1)>10){
-   motor2.cw();
-   }else if(PS3.getAnalogButton(L2)>10){
-   motor2.ccw();
-   }else{
-   motor2.stop();
-   }
-   
-   if(PS3.getAnalogButton(R1)>10){
-   motor3.cw();
-   }else if(PS3.getAnalogButton(R2)>10){
-   motor3.ccw();
-   }else{
-   motor3.stop();
-   }
-   
-   if(PS3.getAnalogButton(TRIANGLE)>10){
-   motor4.duty(1);
-   }else if(PS3.getAnalogButton(CIRCLE)>10){
-   motor4.duty(-1);
-   }else{
-   motor4.duty(0);
-   }
-   
-   if(PS3.getAnalogButton(SQUARE)>10){
-   motor5.duty(1);
-   }else if(PS3.getAnalogButton(CROSS)>10){
-   motor5.duty(-1);
-   }else{
-   motor5.duty(0);
-   }
-   
-   if (PS3.getButtonPress(PS)) {
-   PS3.disconnect();
-   PS3.setLedOff();
-   }
-   
-   if(fPitch!=PS3.getAngle(Pitch)){
-   fPitch=PS3.getAngle(Pitch);
-   fPitchTime=millis();
-   }
-   if(fRoll!=PS3.getAngle(Roll)){
-   fRoll=PS3.getAngle(Roll);
-   fRollTime=millis();
-   }
-   if(millis()-fPitchTime>500&&millis()-fRollTime>500){
-   led.disconnect();
-   motor0.stop();
-   motor1.stop();
-   motor2.stop();
-   motor3.stop();
-   motor4.duty(0);
-   motor5.duty(0);
-   }else{
-   led.manual();
-   }
-   } 
-   else {
-   led.disconnect();
-   }
-   motor0.cycle();
-   motor1.cycle();
-   motor2.cycle();
-   motor3.cycle();
-   
-   motor4.cycle();
-   motor5.cycle();
-   */
   motor0.cycle();
   motor1.cycle();
   motor2.cycle();
