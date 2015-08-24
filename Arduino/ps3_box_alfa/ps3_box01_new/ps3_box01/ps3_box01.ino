@@ -288,18 +288,19 @@ void setup() {
 
 int tireFlag=0;
 float leftJoy=0.0,rightJoy=0.0;
-int flag=0;
 int moveFlag=0;
-int offFlag=0;
 int circleFlag=0;
 int R2Flag=0;
-int rubleFlag=0;
-   
+long long int timer=0;
+
 void loop() {
+
   Usb.Task();
   if (PS3.PS3Connected) {
     led.manual();
     
+    if(millis()-timer>=5){
+       timer=millis();
     tireFlag=1;
     
       leftJoy=(1 - ((float)PS3.getAnalogHat(LeftHatY)/127.5));
@@ -417,19 +418,12 @@ void loop() {
       //吸引スイッチ
       if(moveFlag==1){
          motor2.cw();
-         motor4.duty(-1.0);
-         if(rubleFlag==1){
-          // PS3.setRumbleOn(RumbleLow);
-           rubleFlag=0;
-         }
+         motor4.duty(-0.01);
       }else if(moveFlag==0){
          motor2.stop();
          motor4.duty(0);
-         if(rubleFlag==0){
-            //PS3.setRumbleOff();
-            rubleFlag=1;
-         }
       }
+    }
      
     
     if (PS3.getButtonPress(PS) || PS3.getButtonPress(START)) {

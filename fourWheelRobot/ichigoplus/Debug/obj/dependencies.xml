@@ -11,11 +11,6 @@
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx_conf.h"/>
       </source>
-      <source file="..\..\..\layer_controller\robotCenter.cpp" lastModified="14f5dc13dfb">
-         <include file="..\..\..\layer_controller\robotCenter.hpp"/>
-         <include file="..\..\..\layer_driver\base\util.h"/>
-         <include file="..\..\..\layer_controller\calculate.h"/>
-      </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_conf\usb_conf.h" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>

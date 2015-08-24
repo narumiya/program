@@ -421,14 +421,6 @@ void loop() {
          PS3.setRumbleOff();
       }
       
-   if(flag==0){
-      if((PS3.getAnalogButton(R2)>10 ||  PS3.getAnalogButton(CIRCLE)>10)){
-         motor3.cw();
-      }else{
-         motor3.stop();
-      }
-   }
-    
     if (PS3.getButtonPress(PS) || PS3.getButtonPress(START)) {
        led.disconnect();
        motor0.stop();
