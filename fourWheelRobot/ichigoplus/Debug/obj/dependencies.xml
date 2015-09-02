@@ -235,14 +235,6 @@
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
          <include file="..\..\..\cmsis_lib\include\misc.h"/>
       </source>
-      <source file="..\..\..\layer_driver\board\pin.hpp" lastModified="14f4ef2540b">
-         <include file="..\..\..\layer_driver\base\serial.hpp"/>
-         <include file="..\..\..\layer_driver\base\digital.hpp"/>
-         <include file="..\..\..\layer_driver\base\analog.hpp"/>
-         <include file="..\..\..\layer_driver\base\encoder.hpp"/>
-         <include file="..\..\..\layer_driver\base\pwm.hpp"/>
-         <include file="..\..\..\layer_driver\base\can.hpp"/>
-      </source>
       <source file="..\..\..\layer_driver\base\analog.hpp" lastModified="14eb18e6c90">
       </source>
       <source file="..\..\..\layer_driver\circuit\servo.hpp" lastModified="14f01e888db">
@@ -673,14 +665,6 @@
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
          <include file="..\..\..\cmsis_lib\include\misc.h"/>
       </source>
-      <source file="..\..\..\layer_driver\board\pin.hpp" lastModified="14f4ef2540b">
-         <include file="..\..\..\layer_driver\base\serial.hpp"/>
-         <include file="..\..\..\layer_driver\base\digital.hpp"/>
-         <include file="..\..\..\layer_driver\base\analog.hpp"/>
-         <include file="..\..\..\layer_driver\base\encoder.hpp"/>
-         <include file="..\..\..\layer_driver\base\pwm.hpp"/>
-         <include file="..\..\..\layer_driver\base\can.hpp"/>
-      </source>
       <source file="..\..\..\layer_driver\base\analog.hpp" lastModified="14eb18e6c90">
       </source>
       <source file="..\..\..\layer_driver\circuit\servo.hpp" lastModified="14f01e888db">
@@ -1060,6 +1044,9 @@
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\core\usbd_ioreq.h"/>
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_conf\usbd_desc.h"/>
       </source>
+      <source file="..\..\..\layer_controller\move.hpp" lastModified="14f8ddc1fea">
+         <include file="..\..\..\layer_driver\circuit\md.hpp"/>
+      </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_adc.c" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_adc.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
@@ -1149,6 +1136,12 @@
          <include file="..\..\..\layer_driver\base\watchdog.h"/>
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_iwdg.h"/>
       </source>
+      <source file="..\..\..\layer_controller\my_else_calculation.h" lastModified="14f8de01524">
+      </source>
+      <source file="..\..\..\layer_controller\my_else_calculation.c" lastModified="14f8ddfe575">
+         <include file="..\..\..\layer_controller\my_else_calculation.h"/>
+         <include file="..\..\..\layer_driver\base\util.h"/>
+      </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_usart.c" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_usart.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
@@ -1185,7 +1178,7 @@
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
          <include file="..\..\..\cmsis_lib\include\misc.h"/>
       </source>
-      <source file="..\..\..\layer_driver\board\pin.hpp" lastModified="14f4ef2540b">
+      <source file="..\..\..\layer_driver\board\pin.hpp" lastModified="14f8c8b5e9d">
          <include file="..\..\..\layer_driver\base\serial.hpp"/>
          <include file="..\..\..\layer_driver\base\digital.hpp"/>
          <include file="..\..\..\layer_driver\base\analog.hpp"/>
@@ -1389,7 +1382,12 @@
          <include file="..\..\..\cmsis\core_cmFunc.h"/>
          <include file="..\..\..\cmsis\core_cm4_simd.h"/>
       </source>
-      <source file="..\..\..\layer_controller\move.cpp" lastModified="14f648e57b0">
+      <source file="..\..\..\layer_controller\move.cpp" lastModified="14f8ddc23a3">
+         <include file="..\..\..\layer_controller\move.hpp"/>
+         <include file="..\..\..\layer_driver\base\util.h"/>
+         <include file="..\..\..\layer_controller\calculate.h"/>
+         <include file="..\..\..\layer_driver\base\digital.hpp"/>
+         <include file="..\..\..\layer_driver\base\pwm.hpp"/>
       </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_exti.c" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_exti.h"/>
@@ -1434,13 +1432,15 @@
          <include file="..\..\..\layer_driver\base\digital.hpp"/>
          <include file="..\..\..\layer_driver\base\pwm.hpp"/>
       </source>
-      <source file="..\..\..\main.cpp" lastModified="14f6778f177">
+      <source file="..\..\..\main.cpp" lastModified="14f8d971897">
          <include file="..\..\..\layer_application\my_standard_io.h"/>
          <include file="..\..\..\layer_controller\blink.hpp"/>
          <include file="..\..\..\layer_controller\robotCenter.hpp"/>
+         <include file="..\..\..\layer_controller\move.hpp"/>
          <include file="..\..\..\layer_driver\base\system.h"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
          <include file="..\..\..\layer_driver\board\pin.hpp"/>
+         <include file="..\..\..\layer_driver\circuit\md.hpp"/>
       </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\sd\fatfs\ff.h" lastModified="14eb18e6c90">
          <include file="..\..\..\layer_driver\board\stm32f4_config\sd\fatfs\integer.h"/>
@@ -1480,7 +1480,7 @@
       </source>
       <source file="..\..\..\cmsis\core_cm4_simd.h" lastModified="14eb18e7460">
       </source>
-      <source file="..\..\..\layer_controller\calculate.c" lastModified="14f5f472c8d">
+      <source file="..\..\..\layer_controller\calculate.c" lastModified="14f8dcaa768">
          <include file="..\..\..\layer_controller\calculate.h"/>
       </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\config_pwm.h" lastModified="14eb18e6c90">
