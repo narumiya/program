@@ -418,7 +418,7 @@ void loop() {
       //吸引スイッチ
       if(moveFlag==1){
          motor2.cw();
-         motor4.duty(-0.01);
+         motor4.duty(-1);
       }else if(moveFlag==0){
          motor2.stop();
          motor4.duty(0);

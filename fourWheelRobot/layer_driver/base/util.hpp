@@ -107,6 +107,14 @@ Coord operator*(Coord coord1,float value);
 Coord operator/(Coord coord1,float value);
 Coord operator/(float value,Coord coord2);
 
+class PhysicalObject{
+public:
+	virtual void forwardTime(float time);
+	Coord position;
+	Coord velocity;
+	Coord acceleration;
+};
+
 int sign(int val);
 int sign(float val);
 

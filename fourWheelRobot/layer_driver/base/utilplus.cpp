@@ -321,6 +321,11 @@ void Coord::revolutionEulerinverse(float a, float b, float c){
 
 }
 
+void PhysicalObject::forwardTime(float time){
+	velocity=velocity+acceleration*time;
+	position=position+velocity*time;
+}
+
 Coord operator+(Coord coord1,Coord coord2){
 	return Coord(coord1.x()+coord2.x(),coord1.y()+coord2.y(),coord1.z()+coord2.z(),coord1.ex()+coord2.ex(),coord1.ey()+coord2.ey(),coord1.ez()+coord2.ez());
 }
