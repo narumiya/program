@@ -1,220 +1,223 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
    <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F407VG -DSTM32F4XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -DSUPPORT_CPLUSPLUS -DSTM32F4DISCOVERY -DSTM32F4DISCOVERY_2LB_3_5 -I..\..\..\..\..\Users\陽生\Documents\program\fourWheelRobot\layer_driver\board -I..\..\..\..\..\Users\陽生\Documents\program\fourWheelRobot\layer_driver\board\stm32f4_config\sd\fatfs -I..\..\..\..\..\Users\陽生\Documents\program\fourWheelRobot\layer_driver\board\stm32f4_config\sd\fatfs\lo_level_ub -I..\..\..\..\..\Users\陽生\Documents\program\fourWheelRobot\layer_driver\base -I..\..\..\..\..\Users\陽生\Documents\program\fourWheelRobot\layer_driver\board\stm32f4_config\usb\usb_lib\core -I..\..\..\..\..\Users\陽生\Documents\program\fourWheelRobot\layer_controller -I..\..\..\..\..\Users\陽生\Documents\program\fourWheelRobot\layer_driver\board\stm32f4_config\usb\usb_lib\otg -I..\..\..\..\..\Users\陽生\Documents\program\fourWheelRobot\layer_driver\board\stm32f4_config\usb -I..\..\..\..\..\Users\陽生\Documents\program\fourWheelRobot\cmsis_boot -I..\..\..\..\..\Users\陽生\Documents\program\fourWheelRobot\cmsis -I..\..\..\..\..\Users\陽生\Documents\program -I..\..\..\..\..\Users\陽生\Documents\program\fourWheelRobot\layer_driver -I..\..\..\..\..\Users\陽生\Documents\program\fourWheelRobot\layer_driver\board\stm32f4_config\usb\usb_lib -I..\..\..\..\..\Users\陽生\Documents\program\fourWheelRobot\layer_application -I..\..\..\..\..\Users\陽生\Documents\program\fourWheelRobot\cmsis_lib\include -I..\..\..\..\..\Users\陽生\Documents\program\fourWheelRobot\layer_driver\board\stm32f4_config\usb\usb_lib\cdc -I..\..\..\..\..\Users\陽生\Documents\program\fourWheelRobot\layer_driver\board\stm32f4_config -I..\..\..\..\..\Users\陽生\Documents\program\fourWheelRobot\layer_driver\board\stm32f4_config\sd -I..\..\..\..\..\Users\陽生\Documents\program\fourWheelRobot\cmsis_lib -I..\..\..\..\..\Users\陽生\Documents\program\fourWheelRobot\layer_driver\board\stm32f4_config\usb\usb_conf -I..\..\..\..\..\Users\陽生\Documents\program\fourWheelRobot">
-      <target file="usbd_cdc_vcp.o" lastModified="14f5da07f94">
+      <target file="usbd_cdc_vcp.o" lastModified="14fa6da1db5">
          <source file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\cdc\usbd_cdc_vcp.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="analog.o" lastModified="14f5da07795">
+      <target file="analog.o" lastModified="14fa6da14eb">
          <source file="..\..\..\layer_driver\base\analog.cpp" lastModified="14eb18e6c90"/>
       </target>
-      <target file="stm32f4xx_usart.o" lastModified="14f5da06ecb">
+      <target file="stm32f4xx_usart.o" lastModified="14fa6da0c5f">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_usart.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="digital.o" lastModified="14f5da08486">
+      <target file="digital.o" lastModified="14fa6da22d5">
          <source file="..\..\..\layer_driver\base\digital.cpp" lastModified="14eb18e6c90"/>
       </target>
-      <target file="robotCenter.o" lastModified="14f67783240">
-         <source file="..\..\..\layer_controller\robotCenter.cpp" lastModified="14f6380effd"/>
+      <target file="robotCenter.o" lastModified="14fa75131f1">
+         <source file="..\..\..\layer_controller\robotCenter.cpp" lastModified="14fa58ab7b0"/>
       </target>
-      <target file="misc.o" lastModified="14f5da0859f">
+      <target file="misc.o" lastModified="14fa6da246c">
          <source file="..\..\..\cmsis_lib\source\misc.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="usbd_req.o" lastModified="14f5da081f6">
+      <target file="usbd_req.o" lastModified="14fa6da1fd8">
          <source file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\core\usbd_req.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="config_port.o" lastModified="14f5da06b31">
+      <target file="config_port.o" lastModified="14fa6da0848">
          <source file="..\..\..\layer_driver\board\stm32f4_config\config_port.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="config_adc.o" lastModified="14f5da07ae1">
+      <target file="config_adc.o" lastModified="14fa6da18c3">
          <source file="..\..\..\layer_driver\board\stm32f4_config\config_adc.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="blink.o" lastModified="14f5da079b8">
+      <target file="blink.o" lastModified="14fa6da177b">
          <source file="..\..\..\layer_controller\blink.cpp" lastModified="14eb18e6c90"/>
       </target>
-      <target file="stm32_ub_sdcard.o" lastModified="14f5da07e1d">
+      <target file="stm32_ub_sdcard.o" lastModified="14fa6da1c2e">
          <source file="..\..\..\layer_driver\board\stm32f4_config\sd\fatfs\lo_level_ub\stm32_ub_sdcard.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="stm32f4xx_gpio.o" lastModified="14f5da07e7b">
+      <target file="stm32f4xx_gpio.o" lastModified="14fa6da1c9c">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_gpio.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="stm32f4xx_flash.o" lastModified="14f5da07f36">
+      <target file="stm32f4xx_flash.o" lastModified="14fa6da1d57">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_flash.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="usbd_desc.o" lastModified="14f5da07b8d">
+      <target file="usbd_desc.o" lastModified="14fa6da196f">
          <source file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_conf\usbd_desc.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="pin.o" lastModified="14f8c8b6302">
-         <source file="..\..\..\layer_driver\board\pin.cpp" lastModified="14f4f6c885f"/>
+      <target file="pin.o" lastModified="14fa6da13d1">
+         <source file="..\..\..\layer_driver\board\pin.cpp" lastModified="14f972851f2"/>
       </target>
-      <target file="stm32f4xx_crc.o" lastModified="14f5da07478">
+      <target file="stm32f4xx_crc.o" lastModified="14fa6da1103">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_crc.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="usbd_cdc_core.o" lastModified="14f5da0832e">
+      <target file="usbd_cdc_core.o" lastModified="14fa6da2130">
          <source file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\cdc\usbd_cdc_core.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="config_usart.o" lastModified="14f5da0886e">
+      <target file="config_usart.o" lastModified="14fa6da28b2">
          <source file="..\..\..\layer_driver\board\stm32f4_config\config_usart.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="stm32f4xx_adc.o" lastModified="14f5da0796a">
+      <target file="stm32f4xx_adc.o" lastModified="14fa6da172d">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_adc.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="stm32_ub_usbdisk.o" lastModified="14f5da07ec9">
+      <target file="stm32_ub_usbdisk.o" lastModified="14fa6da1cea">
          <source file="..\..\..\layer_driver\board\stm32f4_config\sd\fatfs\lo_level_ub\stm32_ub_usbdisk.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="stm32f4xx_iwdg.o" lastModified="14f5da074c6">
+      <target file="stm32f4xx_iwdg.o" lastModified="14fa6da1151">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_iwdg.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="my_else_calculation.o" lastModified="14f8de01449">
+      <target file="my_else_calculation.o" lastModified="14fa6da2324">
          <source file="..\..\..\layer_controller\my_else_calculation.c" lastModified="14f8ddfe18d"/>
       </target>
-      <target file="usb_dcd_int.o" lastModified="14f5da08273">
+      <target file="usb_dcd_int.o" lastModified="14fa6da2055">
          <source file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\otg\usb_dcd_int.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="stm32f4xx_sdio.o" lastModified="14f5da06bae">
+      <target file="debug.o" lastModified="14facab6430">
+         <source file="..\..\..\layer_application\debug.cpp" lastModified="14facac19ec"/>
+      </target>
+      <target file="stm32f4xx_sdio.o" lastModified="14fa6da08a6">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_sdio.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="config_i2c.o" lastModified="14f5da08726">
+      <target file="config_i2c.o" lastModified="14fa6da2650">
          <source file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="config_can.o" lastModified="14f5da07284">
+      <target file="config_can.o" lastModified="14fa6da0fbb">
          <source file="..\..\..\layer_driver\board\stm32f4_config\config_can.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="config_systick.o" lastModified="14f5da07c87">
+      <target file="config_systick.o" lastModified="14fa6da1a98">
          <source file="..\..\..\layer_driver\board\stm32f4_config\config_systick.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="servo.o" lastModified="14f8c8b6479">
+      <target file="dual_shock.o" lastModified="14fa6fba59a">
+         <source file="..\..\..\layer_driver\circuit\dual_shock.cpp" lastModified="14fa6f47027"/>
+      </target>
+      <target file="servo.o" lastModified="14fa6da1b34">
          <source file="..\..\..\layer_driver\circuit\servo.cpp" lastModified="14f4ef289b4"/>
       </target>
-      <target file="mcutime.o" lastModified="14f5da071c9">
+      <target file="mcutime.o" lastModified="14fa6da0f5d">
          <source file="..\..\..\layer_driver\base\mcutime.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="my_standard_io.o" lastModified="14f5da0739d">
+      <target file="my_standard_io.o" lastModified="14fa6da1018">
          <source file="..\..\..\layer_application\my_standard_io.c" lastModified="14d75a16874"/>
       </target>
-      <target file="system.o" lastModified="14f5f413e40">
+      <target file="system.o" lastModified="14fa6da1643">
          <source file="..\..\..\layer_driver\base\system.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="can.o" lastModified="14f5da07a06">
+      <target file="can.o" lastModified="14fa6da17e8">
          <source file="..\..\..\layer_driver\base\can.cpp" lastModified="14eb18e6c90"/>
       </target>
-      <target file="stm32f4xx_pwr.o" lastModified="14f5da06fc5">
+      <target file="stm32f4xx_pwr.o" lastModified="14fa6da0d78">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_pwr.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="stm32f4xx_can.o" lastModified="14f5da07052">
+      <target file="stm32f4xx_can.o" lastModified="14fa6da0df5">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_can.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="stm32f4xx_rtc.o" lastModified="14f5da087b3">
+      <target file="stm32f4xx_rtc.o" lastModified="14fa6da27f6">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_rtc.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="ff.o" lastModified="14f5da08447">
+      <target file="ff.o" lastModified="14fa6da2249">
          <source file="..\..\..\layer_driver\board\stm32f4_config\sd\fatfs\ff.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="usb_dcd.o" lastModified="14f5da0860c">
+      <target file="usb_dcd.o" lastModified="14fa6da24d9">
          <source file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\otg\usb_dcd.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="stm32f4xx_tim.o" lastModified="14f5da0892a">
+      <target file="stm32f4xx_tim.o" lastModified="14fa6da296d">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_tim.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="config_pwm.o" lastModified="14f5da069ba">
+      <target file="config_pwm.o" lastModified="14fa6da06f0">
          <source file="..\..\..\layer_driver\board\stm32f4_config\config_pwm.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="utilplus.o" lastModified="14f5f413ba0">
+      <target file="utilplus.o" lastModified="14fa6da0eff">
          <source file="..\..\..\layer_driver\base\utilplus.cpp" lastModified="14f5f3b2d5d"/>
       </target>
-      <target file="syscalls.o" lastModified="14f5f413f69">
+      <target file="syscalls.o" lastModified="14fa6da1e90">
          <source file="..\..\..\syscalls\syscalls.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="config_encoder.o" lastModified="14f5da06cf6">
+      <target file="config_encoder.o" lastModified="14fa6da0a8a">
          <source file="..\..\..\layer_driver\board\stm32f4_config\config_encoder.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="utility.o" lastModified="14f552d3872">
-         <source file="..\..\..\layer_controller\utility.c" lastModified="14f552d02e3"/>
-      </target>
-      <target file="config_iwdg.o" lastModified="14f5da07b2f">
+      <target file="config_iwdg.o" lastModified="14fa6da1911">
          <source file="..\..\..\layer_driver\board\stm32f4_config\config_iwdg.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="encoder.o" lastModified="14f5da07a45">
+      <target file="encoder.o" lastModified="14fa6da1837">
          <source file="..\..\..\layer_driver\base\encoder.cpp" lastModified="14f55bfd4e9"/>
       </target>
-      <target file="error.o" lastModified="14f5da07beb">
+      <target file="error.o" lastModified="14fa6da19cd">
          <source file="..\..\..\layer_driver\board\error.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="stm32_ub_atadrive.o" lastModified="14f5da0837c">
+      <target file="stm32_ub_atadrive.o" lastModified="14fa6da217e">
          <source file="..\..\..\layer_driver\board\stm32f4_config\sd\fatfs\lo_level_ub\stm32_ub_atadrive.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="usbd_ioreq.o" lastModified="14f5da08810">
+      <target file="usbd_ioreq.o" lastModified="14fa6da2854">
          <source file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\core\usbd_ioreq.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="startup_stm32f4xx.o" lastModified="14f5da0742a">
+      <target file="startup_stm32f4xx.o" lastModified="14fa6da10a5">
          <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="stm32_ub_fatfs.o" lastModified="14f5da07803">
+      <target file="stm32_ub_fatfs.o" lastModified="14fa6da1577">
          <source file="..\..\..\layer_driver\board\stm32f4_config\sd\stm32_ub_fatfs.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="md.o" lastModified="14f5da06c79">
-         <source file="..\..\..\layer_driver\circuit\md.cpp" lastModified="14f54fec09c"/>
+      <target file="md.o" lastModified="14fa7804701">
+         <source file="..\..\..\layer_driver\circuit\md.cpp" lastModified="14f91d30b3a"/>
       </target>
-      <target file="util.o" lastModified="14f5f413a97">
+      <target file="util.o" lastModified="14fa6da0d0b">
          <source file="..\..\..\layer_driver\base\util.c" lastModified="14f5f3b2d58"/>
       </target>
-      <target file="calculate.o" lastModified="14f8dcaa6ec">
+      <target file="calculate.o" lastModified="14fa6da0a2c">
          <source file="..\..\..\layer_controller\calculate.c" lastModified="14f8dcaa380"/>
       </target>
-      <target file="config_usb.o" lastModified="14f5da06e0f">
+      <target file="config_usb.o" lastModified="14fa6da0bd2">
          <source file="..\..\..\layer_driver\board\stm32f4_config\usb\config_usb.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="serial.o" lastModified="14f5f414034">
+      <target file="serial.o" lastModified="14fa6da25b4">
          <source file="..\..\..\layer_driver\base\serial.cpp" lastModified="14eb18e6c90"/>
       </target>
-      <target file="stm32f4xx_exti.o" lastModified="14f5da084e4">
+      <target file="stm32f4xx_exti.o" lastModified="14fa6da2381">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_exti.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="name_converter.o" lastModified="14f5da08551">
+      <target file="name_converter.o" lastModified="14fa6da23ef">
          <source file="..\..\..\layer_driver\board\stm32f4_config\name_converter.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="usb_bsp.o" lastModified="14f5da08169">
+      <target file="usb_bsp.o" lastModified="14fa6da1f6a">
          <source file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_conf\usb_bsp.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="usbd_usr.o" lastModified="14f5da06c1b">
+      <target file="usbd_usr.o" lastModified="14fa6da0932">
          <source file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_conf\usbd_usr.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="usb_core.o" lastModified="14f5da06a95">
+      <target file="usb_core.o" lastModified="14fa6da079c">
          <source file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\otg\usb_core.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="diskio.o" lastModified="14f5da073fb">
+      <target file="diskio.o" lastModified="14fa6da1076">
          <source file="..\..\..\layer_driver\board\stm32f4_config\sd\fatfs\diskio.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="logging.o" lastModified="14f5f413fd7">
+      <target file="logging.o" lastModified="14fa6da20c2">
          <source file="..\..\..\layer_driver\base\logging.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="system_stm32f4xx.o" lastModified="14f5da07ff2">
+      <target file="system_stm32f4xx.o" lastModified="14fa6da1e13">
          <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="stm32f4xx_dma.o" lastModified="14f5da080fc">
+      <target file="stm32f4xx_dma.o" lastModified="14fa6da1f0d">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_dma.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="watchdog.o" lastModified="14f5da07a83">
+      <target file="watchdog.o" lastModified="14fa6da1865">
          <source file="..\..\..\layer_driver\base\watchdog.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="iwdg_software_reset.o" lastModified="14f5da06ae3">
+      <target file="iwdg_software_reset.o" lastModified="14fa6da07fa">
          <source file="..\..\..\layer_driver\board\stm32f4_config\iwdg_software_reset.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="software_reset.o" lastModified="14f5da06d44">
+      <target file="software_reset.o" lastModified="14fa6da0af7">
          <source file="..\..\..\layer_driver\base\software_reset.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="stm32f4xx_rcc.o" lastModified="14f5da0788f">
+      <target file="stm32f4xx_rcc.o" lastModified="14fa6da15f4">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_rcc.c" lastModified="14eb18e6c90"/>
       </target>
-      <target file="move.o" lastModified="14f8ddc2394">
-         <source file="..\..\..\layer_controller\move.cpp" lastModified="14f8ddc1fbb"/>
+      <target file="move.o" lastModified="14fa780480a">
+         <source file="..\..\..\layer_controller\move.cpp" lastModified="14fa6e3ae7b"/>
       </target>
-      <target file="main.o" lastModified="14f8ddc2346">
-         <source file="..\..\..\main.cpp" lastModified="14f8d971897"/>
+      <target file="main.o" lastModified="14facac2845">
+         <source file="..\..\..\main.cpp" lastModified="14fac7d9d9e"/>
       </target>
-      <target file="ta7291.o" lastModified="14f5da0865b">
+      <target file="ta7291.o" lastModified="14fa6da2547">
          <source file="..\..\..\layer_driver\circuit\ta7291.cpp" lastModified="14e1fde00d6"/>
       </target>
-      <target file="usbd_core.o" lastModified="14f5da07534">
+      <target file="usbd_core.o" lastModified="14fa6da11af">
          <source file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\core\usbd_core.c" lastModified="14eb18e6c90"/>
       </target>
    </processor>

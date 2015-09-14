@@ -1,5 +1,5 @@
 #ifndef ROBOTCENTER_HPP
-#define ROBOTCENER_HPP
+#define ROBOTCENTER_HPP
 
 #include "encoder.hpp"
 #include "util.hpp"
@@ -20,6 +20,8 @@ private:
 	float encRadius;					//中心からエンコーダまでの距離
 	float coordX;
 	float coordY;
+	float angle;//-M_PI~MPI
+	float originalAngle;//-M_PI~MPIにしてない
 	int64_t time;
 	enum{
 		LEFT,
@@ -27,13 +29,14 @@ private:
 		BACK
 	};
 public:
-	float angle;
 	float velocity;
 	float omega;
 	RobotCenter(Encoder &l,Encoder &r,Encoder &b);
 	void setup();
 	void cycle();
 	void resetInfo();
+	float getAngle(){return (angle);};
+	float getOriginalAngle(){return (originalAngle);};
 };
 
 #endif

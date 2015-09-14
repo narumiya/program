@@ -17,6 +17,7 @@ private:
 		REVERSE
 	};
 public:
+	Md(){};
 	Md(Digital &cwPin,Digital &ccwPin,Pwm &pwmPin);
 	int setup();
 	void cycle();

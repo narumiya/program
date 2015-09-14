@@ -60,7 +60,77 @@ public:
 	}
 };
 
-class D0:public Digital{
+class Led2:public Digital,public Pwm{
+private:
+	int mode;
+	enum{
+		MODE_NULL,
+		MODE_PWM,
+		MODE_DIGITAL
+	};
+	int _digitalWrite();
+	void _digitalWrite(int value);
+	int _digitalRead();
+	int _setupDigitalIn();
+	int _setupDigitalOut();
+	int _setupDigitalInPullUp();
+	int _setupDigitalInPullDown();
+	int _setupPwmOut(float frequency, float duty);
+	void _pwmWrite(float duty);
+	float _pwmWrite();
+public:
+
+	Digital& operator= (int value) {
+		digitalWrite(value);
+		return *this;
+	}
+
+	Digital& operator= (Digital& dig) {
+		digitalWrite(dig.digitalRead());
+		return *this;
+	}
+
+	operator int() {
+		return digitalRead();
+	}
+};
+
+class Led3:public Digital,public Pwm{
+private:
+	int mode;
+	enum{
+		MODE_NULL,
+		MODE_PWM,
+		MODE_DIGITAL
+	};
+	int _digitalWrite();
+	void _digitalWrite(int value);
+	int _digitalRead();
+	int _setupDigitalIn();
+	int _setupDigitalOut();
+	int _setupDigitalInPullUp();
+	int _setupDigitalInPullDown();
+	int _setupPwmOut(float frequency, float duty);
+	void _pwmWrite(float duty);
+	float _pwmWrite();
+public:
+
+	Digital& operator= (int value) {
+		digitalWrite(value);
+		return *this;
+	}
+
+	Digital& operator= (Digital& dig) {
+		digitalWrite(dig.digitalRead());
+		return *this;
+	}
+
+	operator int() {
+		return digitalRead();
+	}
+};
+
+class Sw0:public Digital{
 private:
 	int _digitalWrite();
 	void _digitalWrite(int value);
@@ -86,7 +156,7 @@ public:
 	}
 };
 
-class D1:public Digital{
+class Sw1:public Digital{
 private:
 	int _digitalWrite();
 	void _digitalWrite(int value);
@@ -112,7 +182,7 @@ public:
 	}
 };
 
-class D2:public Digital{
+class Sw2:public Digital{
 private:
 	int _digitalWrite();
 	void _digitalWrite(int value);
@@ -138,7 +208,7 @@ public:
 	}
 };
 
-class D3:public Digital{
+class Sw3:public Digital{
 private:
 	int _digitalWrite();
 	void _digitalWrite(int value);
@@ -164,7 +234,42 @@ public:
 	}
 };
 
-class D4:public Digital{
+class Buzzer:public Digital,public Pwm{
+private:
+	int mode;
+	enum{
+		MODE_NULL,
+		MODE_PWM,
+		MODE_DIGITAL
+	};
+	int _digitalWrite();
+	void _digitalWrite(int value);
+	int _digitalRead();
+	int _setupDigitalIn();
+	int _setupDigitalOut();
+	int _setupDigitalInPullUp();
+	int _setupDigitalInPullDown();
+	int _setupPwmOut(float frequency, float duty);
+	void _pwmWrite(float duty);
+	float _pwmWrite();
+public:
+
+	Digital& operator= (int value) {
+		digitalWrite(value);
+		return *this;
+	}
+
+	Digital& operator= (Digital& dig) {
+		digitalWrite(dig.digitalRead());
+		return *this;
+	}
+
+	operator int() {
+		return digitalRead();
+	}
+};
+
+class CW0:public Digital{
 private:
 	int _digitalWrite();
 	void _digitalWrite(int value);
@@ -190,7 +295,7 @@ public:
 	}
 };
 
-class D5:public Digital{
+class CCW0:public Digital{
 private:
 	int _digitalWrite();
 	void _digitalWrite(int value);
@@ -216,7 +321,7 @@ public:
 	}
 };
 
-class D6:public Digital{
+class CW1:public Digital{
 private:
 	int _digitalWrite();
 	void _digitalWrite(int value);
@@ -242,7 +347,7 @@ public:
 	}
 };
 
-class D7:public Digital{
+class CCW1:public Digital{
 private:
 	int _digitalWrite();
 	void _digitalWrite(int value);
@@ -268,7 +373,7 @@ public:
 	}
 };
 
-class D8:public Digital{
+class CW2:public Digital{
 private:
 	int _digitalWrite();
 	void _digitalWrite(int value);
@@ -294,7 +399,7 @@ public:
 	}
 };
 
-class D9:public Digital{
+class CCW2:public Digital{
 private:
 	int _digitalWrite();
 	void _digitalWrite(int value);
@@ -320,7 +425,7 @@ public:
 	}
 };
 
-class Cw0:public Digital{
+class CW3:public Digital{
 private:
 	int _digitalWrite();
 	void _digitalWrite(int value);
@@ -346,7 +451,7 @@ public:
 	}
 };
 
-class Ccw0:public Digital{
+class CCW3:public Digital{
 private:
 	int _digitalWrite();
 	void _digitalWrite(int value);
@@ -372,7 +477,7 @@ public:
 	}
 };
 
-class Cw1:public Digital{
+class CW4:public Digital{
 private:
 	int _digitalWrite();
 	void _digitalWrite(int value);
@@ -398,7 +503,7 @@ public:
 	}
 };
 
-class Ccw1:public Digital{
+class CCW4:public Digital{
 private:
 	int _digitalWrite();
 	void _digitalWrite(int value);
@@ -424,7 +529,7 @@ public:
 	}
 };
 
-class Cw2:public Digital{
+class CW5:public Digital{
 private:
 	int _digitalWrite();
 	void _digitalWrite(int value);
@@ -450,7 +555,7 @@ public:
 	}
 };
 
-class Ccw2:public Digital{
+class CCW5:public Digital{
 private:
 	int _digitalWrite();
 	void _digitalWrite(int value);
@@ -476,369 +581,6 @@ public:
 	}
 };
 
-class Cw3:public Digital{
-private:
-	int _digitalWrite();
-	void _digitalWrite(int value);
-	int _digitalRead();
-	int _setupDigitalIn();
-	int _setupDigitalOut();
-	int _setupDigitalInPullUp();
-	int _setupDigitalInPullDown();
-public:
-
-	Digital& operator= (int value) {
-		digitalWrite(value);
-		return *this;
-	}
-
-	Digital& operator= (Digital& dig) {
-		digitalWrite(dig.digitalRead());
-		return *this;
-	}
-
-	operator int() {
-		return digitalRead();
-	}
-};
-
-class Ccw3:public Digital{
-private:
-	int _digitalWrite();
-	void _digitalWrite(int value);
-	int _digitalRead();
-	int _setupDigitalIn();
-	int _setupDigitalOut();
-	int _setupDigitalInPullUp();
-	int _setupDigitalInPullDown();
-public:
-
-	Digital& operator= (int value) {
-		digitalWrite(value);
-		return *this;
-	}
-
-	Digital& operator= (Digital& dig) {
-		digitalWrite(dig.digitalRead());
-		return *this;
-	}
-
-	operator int() {
-		return digitalRead();
-	}
-};
-
-class Cw4:public Digital{
-private:
-	int _digitalWrite();
-	void _digitalWrite(int value);
-	int _digitalRead();
-	int _setupDigitalIn();
-	int _setupDigitalOut();
-	int _setupDigitalInPullUp();
-	int _setupDigitalInPullDown();
-public:
-
-	Digital& operator= (int value) {
-		digitalWrite(value);
-		return *this;
-	}
-
-	Digital& operator= (Digital& dig) {
-		digitalWrite(dig.digitalRead());
-		return *this;
-	}
-
-	operator int() {
-		return digitalRead();
-	}
-};
-
-class Ccw4:public Digital{
-private:
-	int _digitalWrite();
-	void _digitalWrite(int value);
-	int _digitalRead();
-	int _setupDigitalIn();
-	int _setupDigitalOut();
-	int _setupDigitalInPullUp();
-	int _setupDigitalInPullDown();
-public:
-
-	Digital& operator= (int value) {
-		digitalWrite(value);
-		return *this;
-	}
-
-	Digital& operator= (Digital& dig) {
-		digitalWrite(dig.digitalRead());
-		return *this;
-	}
-
-	operator int() {
-		return digitalRead();
-	}
-};
-
-class Cw5:public Digital{
-private:
-	int _digitalWrite();
-	void _digitalWrite(int value);
-	int _digitalRead();
-	int _setupDigitalIn();
-	int _setupDigitalOut();
-	int _setupDigitalInPullUp();
-	int _setupDigitalInPullDown();
-public:
-
-	Digital& operator= (int value) {
-		digitalWrite(value);
-		return *this;
-	}
-
-	Digital& operator= (Digital& dig) {
-		digitalWrite(dig.digitalRead());
-		return *this;
-	}
-
-	operator int() {
-		return digitalRead();
-	}
-};
-
-class Ccw5:public Digital{
-private:
-	int _digitalWrite();
-	void _digitalWrite(int value);
-	int _digitalRead();
-	int _setupDigitalIn();
-	int _setupDigitalOut();
-	int _setupDigitalInPullUp();
-	int _setupDigitalInPullDown();
-public:
-
-	Digital& operator= (int value) {
-		digitalWrite(value);
-		return *this;
-	}
-
-	Digital& operator= (Digital& dig) {
-		digitalWrite(dig.digitalRead());
-		return *this;
-	}
-
-	operator int() {
-		return digitalRead();
-	}
-};
-
-class Cw6:public Digital{
-private:
-	int _digitalWrite();
-	void _digitalWrite(int value);
-	int _digitalRead();
-	int _setupDigitalIn();
-	int _setupDigitalOut();
-	int _setupDigitalInPullUp();
-	int _setupDigitalInPullDown();
-public:
-
-	Digital& operator= (int value) {
-		digitalWrite(value);
-		return *this;
-	}
-
-	Digital& operator= (Digital& dig) {
-		digitalWrite(dig.digitalRead());
-		return *this;
-	}
-
-	operator int() {
-		return digitalRead();
-	}
-};
-
-class Ccw6:public Digital{
-private:
-	int _digitalWrite();
-	void _digitalWrite(int value);
-	int _digitalRead();
-	int _setupDigitalIn();
-	int _setupDigitalOut();
-	int _setupDigitalInPullUp();
-	int _setupDigitalInPullDown();
-public:
-
-	Digital& operator= (int value) {
-		digitalWrite(value);
-		return *this;
-	}
-
-	Digital& operator= (Digital& dig) {
-		digitalWrite(dig.digitalRead());
-		return *this;
-	}
-
-	operator int() {
-		return digitalRead();
-	}
-};
-
-class Cw7:public Digital{
-private:
-	int _digitalWrite();
-	void _digitalWrite(int value);
-	int _digitalRead();
-	int _setupDigitalIn();
-	int _setupDigitalOut();
-	int _setupDigitalInPullUp();
-	int _setupDigitalInPullDown();
-public:
-
-	Digital& operator= (int value) {
-		digitalWrite(value);
-		return *this;
-	}
-
-	Digital& operator= (Digital& dig) {
-		digitalWrite(dig.digitalRead());
-		return *this;
-	}
-
-	operator int() {
-		return digitalRead();
-	}
-};
-
-class Ccw7:public Digital{
-private:
-	int _digitalWrite();
-	void _digitalWrite(int value);
-	int _digitalRead();
-	int _setupDigitalIn();
-	int _setupDigitalOut();
-	int _setupDigitalInPullUp();
-	int _setupDigitalInPullDown();
-public:
-
-	Digital& operator= (int value) {
-		digitalWrite(value);
-		return *this;
-	}
-
-	Digital& operator= (Digital& dig) {
-		digitalWrite(dig.digitalRead());
-		return *this;
-	}
-
-	operator int() {
-		return digitalRead();
-	}
-};
-
-class Cw8:public Digital{
-private:
-	int _digitalWrite();
-	void _digitalWrite(int value);
-	int _digitalRead();
-	int _setupDigitalIn();
-	int _setupDigitalOut();
-	int _setupDigitalInPullUp();
-	int _setupDigitalInPullDown();
-public:
-
-	Digital& operator= (int value) {
-		digitalWrite(value);
-		return *this;
-	}
-
-	Digital& operator= (Digital& dig) {
-		digitalWrite(dig.digitalRead());
-		return *this;
-	}
-
-	operator int() {
-		return digitalRead();
-	}
-};
-
-class Ccw8:public Digital{
-private:
-	int _digitalWrite();
-	void _digitalWrite(int value);
-	int _digitalRead();
-	int _setupDigitalIn();
-	int _setupDigitalOut();
-	int _setupDigitalInPullUp();
-	int _setupDigitalInPullDown();
-public:
-
-	Digital& operator= (int value) {
-		digitalWrite(value);
-		return *this;
-	}
-
-	Digital& operator= (Digital& dig) {
-		digitalWrite(dig.digitalRead());
-		return *this;
-	}
-
-	operator int() {
-		return digitalRead();
-	}
-};
-
-class Cw9:public Digital{
-private:
-	int _digitalWrite();
-	void _digitalWrite(int value);
-	int _digitalRead();
-	int _setupDigitalIn();
-	int _setupDigitalOut();
-	int _setupDigitalInPullUp();
-	int _setupDigitalInPullDown();
-public:
-
-	Digital& operator= (int value) {
-		digitalWrite(value);
-		return *this;
-	}
-
-	Digital& operator= (Digital& dig) {
-		digitalWrite(dig.digitalRead());
-		return *this;
-	}
-
-	operator int() {
-		return digitalRead();
-	}
-};
-
-class Ccw9:public Digital{
-private:
-	int _digitalWrite();
-	void _digitalWrite(int value);
-	int _digitalRead();
-	int _setupDigitalIn();
-	int _setupDigitalOut();
-	int _setupDigitalInPullUp();
-	int _setupDigitalInPullDown();
-public:
-
-	Digital& operator= (int value) {
-		digitalWrite(value);
-		return *this;
-	}
-
-	Digital& operator= (Digital& dig) {
-		digitalWrite(dig.digitalRead());
-		return *this;
-	}
-
-	operator int() {
-		return digitalRead();
-	}
-};
 /***********AD**************************/
 class A0:public Digital,public Analog{
 private:
@@ -1074,146 +816,6 @@ public:
 	}
 };
 
-class A5:public Digital,public Analog{
-private:
-	enum{
-		MODE_NULL,
-		MODE_ANALOG,
-		MODE_DIGITAL
-	};
-	int mode;
-	int _digitalWrite();
-	void _digitalWrite(int value);
-	int _digitalRead();
-	int _setupDigitalIn();
-	int _setupDigitalOut();
-	int _setupDigitalInPullUp();
-	int _setupDigitalInPullDown();
-
-	int _setupAnalogIn();
-	float _analogRead();
-public:
-	A5(){mode=0;};
-
-	int analogResolution(){return 4095;};
-	float analogVoltage(){return 3.3;};
-
-	Digital& operator= (int value) {
-		digitalWrite(value);
-		return *this;
-	}
-
-	Digital& operator= (Digital& dig) {
-		digitalWrite(dig.digitalRead());
-		return *this;
-	}
-
-	operator bool(){
-		return digitalRead();
-	}
-
-	operator int() {
-		return digitalRead();
-	}
-
-	operator float() {
-		return analogRead();
-	}
-};
-
-class A6:public Digital,public Analog{
-private:
-	enum{
-		MODE_NULL,
-		MODE_ANALOG,
-		MODE_DIGITAL
-	};
-	int mode;
-	int _digitalWrite();
-	void _digitalWrite(int value);
-	int _digitalRead();
-	int _setupDigitalIn();
-	int _setupDigitalOut();
-	int _setupDigitalInPullUp();
-	int _setupDigitalInPullDown();
-
-	int _setupAnalogIn();
-	float _analogRead();
-public:
-	A6(){mode=0;};
-
-	int analogResolution(){return 4095;};
-	float analogVoltage(){return 3.3;};
-
-	Digital& operator= (int value) {
-		digitalWrite(value);
-		return *this;
-	}
-
-	Digital& operator= (Digital& dig) {
-		digitalWrite(dig.digitalRead());
-		return *this;
-	}
-
-	operator bool(){
-		return digitalRead();
-	}
-
-	operator int() {
-		return digitalRead();
-	}
-
-	operator float() {
-		return analogRead();
-	}
-};
-
-class A7:public Digital,public Analog{
-private:
-	enum{
-		MODE_NULL,
-		MODE_ANALOG,
-		MODE_DIGITAL
-	};
-	int mode;
-	int _digitalWrite();
-	void _digitalWrite(int value);
-	int _digitalRead();
-	int _setupDigitalIn();
-	int _setupDigitalOut();
-	int _setupDigitalInPullUp();
-	int _setupDigitalInPullDown();
-
-	int _setupAnalogIn();
-	float _analogRead();
-public:
-	A7(){mode=0;};
-
-	int analogResolution(){return 4095;};
-	float analogVoltage(){return 3.3;};
-
-	Digital& operator= (int value) {
-		digitalWrite(value);
-		return *this;
-	}
-
-	Digital& operator= (Digital& dig) {
-		digitalWrite(dig.digitalRead());
-		return *this;
-	}
-
-	operator bool(){
-		return digitalRead();
-	}
-
-	operator int() {
-		return digitalRead();
-	}
-
-	operator float() {
-		return analogRead();
-	}
-};
 
 /********pwm****************/
 class Pwm0:public Digital,public Pwm{
@@ -1310,7 +912,7 @@ public:
 	}
 
 	Pwm& operator= (Pwm& pwm) {
-		pwm.pwmWrite(pwm.pwmWrite());
+		pwm.pwmWrite();
 		return *this;
 	}
 
@@ -1327,6 +929,7 @@ public:
 		else return 0.0;
 	}
 };
+
 class Pwm2:public Digital,public Pwm{
 private:
 	enum{
@@ -1551,228 +1154,6 @@ public:
 	}
 };
 
-class Pwm6:public Digital,public Pwm{
-private:
-	enum{
-		MODE_NULL,
-		MODE_PWM,
-		MODE_DIGITAL
-	};
-	int mode;
-	int _digitalWrite();
-	void _digitalWrite(int value);
-	int _digitalRead();
-	int _setupDigitalIn();
-	int _setupDigitalOut();
-	int _setupDigitalInPullUp();
-	int _setupDigitalInPullDown();
-
-	int _setupPwmOut(float frequency,float duty);
-	void _pwmWrite(float duty);
-	float _pwmWrite();
-public:
-	Pwm6(){mode=0;}
-
-	Digital& operator= (int value) {
-		digitalWrite(value);
-		return *this;
-	}
-
-	Digital& operator= (Digital& dig) {
-		digitalWrite(dig.digitalRead());
-		return *this;
-	}
-
-	Pwm& operator= (float value) {
-		pwmWrite(value);
-		return *this;
-	}
-
-	Pwm& operator= (Pwm& pwm) {
-		pwm.pwmWrite(pwm.pwmWrite());
-		return *this;
-	}
-
-	operator bool(){
-		return digitalRead();
-	}
-
-	operator int() {
-		return digitalRead();
-	}
-
-	operator float() {
-		if (mode==MODE_PWM)return pwmWrite();
-		else return 0.0;
-	}
-};
-
-class Pwm7:public Digital,public Pwm{
-private:
-	enum{
-		MODE_NULL,
-		MODE_PWM,
-		MODE_DIGITAL
-	};
-	int mode;
-	int _digitalWrite();
-	void _digitalWrite(int value);
-	int _digitalRead();
-	int _setupDigitalIn();
-	int _setupDigitalOut();
-	int _setupDigitalInPullUp();
-	int _setupDigitalInPullDown();
-
-	int _setupPwmOut(float frequency,float duty);
-	void _pwmWrite(float duty);
-	float _pwmWrite();
-public:
-	Pwm7(){mode=0;}
-
-	Digital& operator= (int value) {
-		digitalWrite(value);
-		return *this;
-	}
-
-	Digital& operator= (Digital& dig) {
-		digitalWrite(dig.digitalRead());
-		return *this;
-	}
-
-	Pwm& operator= (float value) {
-		pwmWrite(value);
-		return *this;
-	}
-
-	Pwm& operator= (Pwm& pwm) {
-		pwm.pwmWrite(pwm.pwmWrite());
-		return *this;
-	}
-
-	operator bool(){
-		return digitalRead();
-	}
-
-	operator int() {
-		return digitalRead();
-	}
-
-	operator float() {
-		if (mode==MODE_PWM)return pwmWrite();
-		else return 0.0;
-	}
-};
-class Pwm8:public Digital,public Pwm{
-private:
-	enum{
-		MODE_NULL,
-		MODE_PWM,
-		MODE_DIGITAL
-	};
-	int mode;
-	int _digitalWrite();
-	void _digitalWrite(int value);
-	int _digitalRead();
-	int _setupDigitalIn();
-	int _setupDigitalOut();
-	int _setupDigitalInPullUp();
-	int _setupDigitalInPullDown();
-
-	int _setupPwmOut(float frequency,float duty);
-	void _pwmWrite(float duty);
-	float _pwmWrite();
-public:
-	Pwm8(){mode=0;}
-
-	Digital& operator= (int value) {
-		digitalWrite(value);
-		return *this;
-	}
-
-	Digital& operator= (Digital& dig) {
-		digitalWrite(dig.digitalRead());
-		return *this;
-	}
-
-	Pwm& operator= (float value) {
-		pwmWrite(value);
-		return *this;
-	}
-
-	Pwm& operator= (Pwm& pwm) {
-		pwm.pwmWrite(pwm.pwmWrite());
-		return *this;
-	}
-
-	operator bool(){
-		return digitalRead();
-	}
-
-	operator int() {
-		return digitalRead();
-	}
-
-	operator float() {
-		if (mode==MODE_PWM)return pwmWrite();
-		else return 0.0;
-	}
-};
-
-class Pwm9:public Digital,public Pwm{
-private:
-	enum{
-		MODE_NULL,
-		MODE_PWM,
-		MODE_DIGITAL
-	};
-	int mode;
-	int _digitalWrite();
-	void _digitalWrite(int value);
-	int _digitalRead();
-	int _setupDigitalIn();
-	int _setupDigitalOut();
-	int _setupDigitalInPullUp();
-	int _setupDigitalInPullDown();
-
-	int _setupPwmOut(float frequency,float duty);
-	void _pwmWrite(float duty);
-	float _pwmWrite();
-public:
-	Pwm9(){mode=0;}
-
-	Digital& operator= (int value) {
-		digitalWrite(value);
-		return *this;
-	}
-
-	Digital& operator= (Digital& dig) {
-		digitalWrite(dig.digitalRead());
-		return *this;
-	}
-
-	Pwm& operator= (float value) {
-		pwmWrite(value);
-		return *this;
-	}
-
-	Pwm& operator= (Pwm& pwm) {
-		pwm.pwmWrite(pwm.pwmWrite());
-		return *this;
-	}
-
-	operator bool(){
-		return digitalRead();
-	}
-
-	operator int() {
-		return digitalRead();
-	}
-
-	operator float() {
-		if (mode==MODE_PWM)return pwmWrite();
-		else return 0.0;
-	}
-};
 /********encoder*************/
 class Enc0:public Encoder{
 public:
@@ -1802,16 +1183,6 @@ public:
 	}
 };
 
-class Enc3:public Encoder{
-public:
-	int setup();
-	int count();
-	operator int() {
-		return count();
-	}
-};
-
-
 /*********Serial*************/
 class Serial0:public Serial{
 private:
@@ -1829,16 +1200,6 @@ private:
 	static SerialInterface *interface;
 	int _setup(int baudrate, SerialInterface &interfaceArg, int parity, int wordLength);
 	friend void serial1_interrupt();
-public:
-	static void transmit(char);
-	void charWrite(char value);
-};
-
-class Serial2:public Serial{
-private:
-	static SerialInterface *interface;
-	int _setup(int baudrate, SerialInterface &interfaceArg, int parity, int wordLength);
-	friend void serial2_interrupt();
 public:
 	static void transmit(char);
 	void charWrite(char value);

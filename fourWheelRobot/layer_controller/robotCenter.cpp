@@ -10,11 +10,12 @@ RobotCenter::RobotCenter(Encoder &l,Encoder &r,Encoder &b){
 	enc[RIGHT]=&r;
 	enc[BACK]=&b;
 	encRadius=0.0;
-	angle=0.0;
 	coordX=0.0;
 	coordY=0.0;
 	velocity=0.0;
 	omega=0.0;
+	angle=0.0;
+	originalAngle=0;
 	time=millis();
 	for(int i=0;i<3;i++){
 		oldEncDisi[i]=0;
@@ -42,7 +43,7 @@ void RobotCenter::setup(){
 	encMountAngle[LEFT]=dtor(150);
 	encMountAngle[RIGHT]=dtor(30);
 	encMountAngle[BACK]=dtor(-90);
-	encRadius=0.0;
+	encRadius=100.0;
 }
 
 void RobotCenter::cycle(){
@@ -57,8 +58,8 @@ void RobotCenter::cycle(){
 			oldEncDisi[i]=enc[i]->value();
 			encAngle[i]=gapEncDis[i]/encRadius;
 		}
-		angle+=(encAngle[0]+encAngle[1]+encAngle[2])/3.0;
-		angle=area(angle,(-1.0)*M_PI,M_PI);
+		originalAngle+=(encAngle[0]+encAngle[1]+encAngle[2])/3.0;
+		angle=area(originalAngle,(-1.0)*M_PI,M_PI);
 
 		for(int i=0;i<3;i++){
 			moveEncX[i]=fabs(gapEncDis[i])*cos(encMountAngle[i]+angle+radiusReverse(gapEncDis[i]));
@@ -96,4 +97,5 @@ void	RobotCenter::resetInfo(){
 	angle=0.0;
 	coordX=0.0;
 	coordY=0.0;
+	originalAngle=0.0;
 }

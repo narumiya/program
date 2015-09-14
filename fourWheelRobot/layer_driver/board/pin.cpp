@@ -14,59 +14,52 @@ extern "C" {
 
 #include "pin.hpp"
 
-#define LED0		GPIOD,GPIO_Pin_14
-#define LED1		GPIOD,GPIO_Pin_15
+#define LED0		GPIOB,GPIO_Pin_12//GPIOB,GPIO_Pin_0
+#define LED1		GPIOE,GPIO_Pin_15//GPIOC,GPIO_Pin_0//input ‚Å‚«‚È‚¢
+#define LED2		GPIOB,GPIO_Pin_14//pwm‚Å‚«‚é//GPIOA,GPIO_Pin_5
+#define LED3		GPIOB,GPIO_Pin_15//pwm‚Å‚«‚éGPIOA,GPIO_Pin_4
+#define SW0		GPIOA,GPIO_Pin_15//GPIOE,GPIO_Pin_2
+#define SW1		GPIOB,GPIO_Pin_13//GPIOE,GPIO_Pin_4
+#define SW2		GPIOD,GPIO_Pin_11//GPIOE,GPIO_Pin_8
+#define SW3		GPIOD,GPIO_Pin_10//GPIOA,GPIO_Pin_15
+#define BUZZER	GPIOB,GPIO_Pin_1//pwm‚Å‚«‚éGPIOE,GPIO_Pin_3
 
 
-#define AD0		GPIOC,GPIO_Pin_0
+#define AD0		GPIOC,GPIO_Pin_5
 #define AD1		GPIOC,GPIO_Pin_1
 #define AD2		GPIOC,GPIO_Pin_2
 #define AD3		GPIOC,GPIO_Pin_3
-#define AD4		GPIOE,GPIO_Pin_12
+#define AD4		GPIOC,GPIO_Pin_4
 
 
-#define PWM4				GPIOE,GPIO_Pin_8//GPIOE,GPIO_Pin_6
-#define PWM4SET			TIM1,PWM4
-#define PWM4TIMCH		TIM1,1
-#define CWIO4				GPIOB,GPIO_Pin_2//GPIOD,GPIO_Pin_11
-#define CCWIO4			GPIOE,GPIO_Pin_10//GPIOD,GPIO_Pin_10
+#define PWM0		GPIOE,GPIO_Pin_11//GPIOE,GPIO_Pin_9
+#define CWIO0		GPIOA,GPIO_Pin_4//GPIOE,GPIO_Pin_10
+#define CCWIO0	GPIOC,GPIO_Pin_0//GPIOE,GPIO_Pin_7
 
-#define PWM5				GPIOA,GPIO_Pin_2//GPIOE,GPIO_Pin_5
-#define PWM5SET			TIM2,PWM5
-#define PWM5TIMCH		TIM2,3
-#define CWIO5				GPIOE,GPIO_Pin_6//GPIOB,GPIO_Pin_1
-#define CCWIO5			GPIOE,GPIO_Pin_7//GPIOB,GPIO_Pin_2
+#define PWM1		GPIOE,GPIO_Pin_6//GPIOE,GPIO_Pin_11
+#define CWIO1		GPIOE,GPIO_Pin_12//GPIOE,GPIO_Pin_15
+#define CCWIO1	GPIOA,GPIO_Pin_5//GPIOE,GPIO_Pin_12
 
-#define PWM6				GPIOE,GPIO_Pin_14//GPIOE,GPIO_Pin_6
-#define PWM6SET			TIM1,PWM6
-#define PWM6TIMCH		TIM1,4
-#define CWIO6				GPIOB,GPIO_Pin_10//GPIOD,GPIO_Pin_11
-#define CCWIO6			GPIOB,GPIO_Pin_12//GPIOD,GPIO_Pin_10
+#define PWM2		GPIOE,GPIO_Pin_5//GPIOE,GPIO_Pin_13
+#define CWIO2		GPIOB,GPIO_Pin_2//GPIOB,GPIO_Pin_13
+#define CCWIO2	GPIOE,GPIO_Pin_7//GPIOB,GPIO_Pin_12
 
-#define PWM7				GPIOE,GPIO_Pin_13//GPIOE,GPIO_Pin_5
-#define PWM7SET			TIM1,PWM7
-#define PWM7TIMCH		TIM1,3
-#define CWIO7				GPIOD,GPIO_Pin_12//GPIOB,GPIO_Pin_1
-#define CCWIO7			GPIOE,GPIO_Pin_15//GPIOB,GPIO_Pin_2
+#define PWM3		GPIOE,GPIO_Pin_9//GPIOE,GPIO_Pin_14
+#define CWIO3		GPIOE,GPIO_Pin_10//GPIOB,GPIO_Pin_15
+#define CCWIO3	GPIOB,GPIO_Pin_0//GPIOB,GPIO_Pin_14
 
+#define PWM4		GPIOE,GPIO_Pin_14//GPIOE,GPIO_Pin_6
+#define CWIO4		GPIOE,GPIO_Pin_4//GPIOD,GPIO_Pin_11
+#define CCWIO4	GPIOE,GPIO_Pin_2//GPIOD,GPIO_Pin_10
 
-#define ENC0TIM	TIM8
-#define ENC0			GPIOC,GPIO_Pin_6 | GPIO_Pin_7
-#define ENC1TIM	TIM4
-#define ENC1			GPIOB,GPIO_Pin_6 | GPIO_Pin_7		//PA6 input‚Å‚«‚È‚¢
-#define ENC2TIM	TIM3
-#define ENC2			GPIOB,GPIO_Pin_4 | GPIO_Pin_5
-#define ENC3TIM	TIM5
-#define ENC3			GPIOA,GPIO_Pin_0 | GPIO_Pin_1
+#define PWM5		GPIOE,GPIO_Pin_13//GPIOE,GPIO_Pin_5
+#define CWIO5		GPIOE,GPIO_Pin_8//GPIOB,GPIO_Pin_1
+#define CCWIO5	GPIOE,GPIO_Pin_3//GPIOB,GPIO_Pin_2
 
 
-#define SERIAL0TxRx		GPIOD,GPIO_Pin_5,GPIOD,GPIO_Pin_6
-#define SERIAL0CH 		USART2
-#define SERIAL1TxRx		GPIOA,GPIO_Pin_9,GPIOA,GPIO_Pin_10
-#define SERIAL1CH 		USART1
-#define SERIAL2TxRx		GPIOD,GPIO_Pin_8,GPIOD,GPIO_Pin_9
-#define SERIAL2CH 		USART3
-
+#define ENC0		GPIOD,GPIO_Pin_12 | GPIO_Pin_13
+#define ENC1		GPIOA,GPIO_Pin_6 | GPIO_Pin_7		//PA6 input‚Å‚«‚È‚¢
+#define ENC2		GPIOA,GPIO_Pin_0 | GPIO_Pin_1
 
 int Led0:: _digitalWrite()
 {
@@ -154,13 +147,657 @@ int Led1::_setupDigitalInPullDown()
 	return 0;
 }
 
+int Led2:: _digitalWrite()
+{
+	return GPIO_ReadOutputDataBit(LED2);
+}
 
-int Cw4:: _digitalWrite()
+void Led2::_digitalWrite(int value)
+{
+	if(value==0){
+		GPIO_ResetBits(LED2);
+	}else{
+		GPIO_SetBits(LED2);
+	}
+}
+
+int Led2::_digitalRead()
+{
+	return GPIO_ReadInputDataBit(LED2);
+}
+
+int Led2::_setupDigitalIn()
+{
+	Init_port(GPIO_Mode_IN, LED2, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int Led2::_setupDigitalOut()
+{
+	Init_port(GPIO_Mode_OUT, LED2, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int Led2::_setupDigitalInPullUp()
+{
+	Init_port(GPIO_Mode_IN, LED2, GPIO_PuPd_UP, GPIO_OType_PP);
+	return 0;
+}
+
+int Led2::_setupDigitalInPullDown()
+{
+	Init_port(GPIO_Mode_IN, LED2, GPIO_PuPd_DOWN, GPIO_OType_PP);
+	return 0;
+}
+
+int Led3:: _digitalWrite()
+{
+	return GPIO_ReadOutputDataBit(LED3);
+}
+
+void Led3::_digitalWrite(int value)
+{
+	if(value==0){
+		GPIO_ResetBits(LED3);
+	}else{
+		GPIO_SetBits(LED3);
+	}
+}
+
+int Led3::_digitalRead()
+{
+	return GPIO_ReadInputDataBit(LED3);
+}
+
+int Led3::_setupDigitalIn()
+{
+	Init_port(GPIO_Mode_IN, LED3, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int Led3::_setupDigitalOut()
+{
+	Init_port(GPIO_Mode_OUT, LED3, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int Led3::_setupDigitalInPullUp()
+{
+	Init_port(GPIO_Mode_IN, LED3, GPIO_PuPd_UP, GPIO_OType_PP);
+	return 0;
+}
+
+int Led3::_setupDigitalInPullDown()
+{
+	Init_port(GPIO_Mode_IN, LED3, GPIO_PuPd_DOWN, GPIO_OType_PP);
+	return 0;
+}
+
+int Sw0:: _digitalWrite()
+{
+	return GPIO_ReadOutputDataBit(SW0);
+}
+
+void Sw0::_digitalWrite(int value)
+{
+	if(value==0){
+		GPIO_ResetBits(SW0);
+	}else{
+		GPIO_SetBits(SW0);
+	}
+}
+
+int Sw0::_digitalRead()
+{
+	return GPIO_ReadInputDataBit(SW0);
+}
+
+int Sw0::_setupDigitalIn()
+{
+	Init_port(GPIO_Mode_IN, SW0, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int Sw0::_setupDigitalOut()
+{
+	//Init_port(GPIO_Mode_OUT, SW0, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 1;
+}
+
+int Sw0::_setupDigitalInPullUp()
+{
+	Init_port(GPIO_Mode_IN, SW0, GPIO_PuPd_UP, GPIO_OType_PP);
+	return 0;
+}
+
+int Sw0::_setupDigitalInPullDown()
+{
+	Init_port(GPIO_Mode_IN, SW0, GPIO_PuPd_DOWN, GPIO_OType_PP);
+	return 0;
+}
+
+int Sw1:: _digitalWrite()
+{
+	return GPIO_ReadOutputDataBit(SW1);
+}
+
+void Sw1::_digitalWrite(int value)
+{
+	if(value==0){
+		GPIO_ResetBits(SW1);
+	}else{
+		GPIO_SetBits(SW1);
+	}
+}
+
+int Sw1::_digitalRead()
+{
+	return GPIO_ReadInputDataBit(SW1);
+}
+
+int Sw1::_setupDigitalIn()
+{
+	Init_port(GPIO_Mode_IN, SW1, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int Sw1::_setupDigitalOut()
+{
+	//Init_port(GPIO_Mode_OUT, SW1, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 1;
+}
+
+int Sw1::_setupDigitalInPullUp()
+{
+	Init_port(GPIO_Mode_IN, SW1, GPIO_PuPd_UP, GPIO_OType_PP);
+	return 0;
+}
+
+int Sw1::_setupDigitalInPullDown()
+{
+	Init_port(GPIO_Mode_IN, SW1, GPIO_PuPd_DOWN, GPIO_OType_PP);
+	return 0;
+}
+
+int Sw2:: _digitalWrite()
+{
+	return GPIO_ReadOutputDataBit(SW2);
+}
+
+void Sw2::_digitalWrite(int value)
+{
+	if(value==0){
+		GPIO_ResetBits(SW2);
+	}else{
+		GPIO_SetBits(SW2);
+	}
+}
+
+int Sw2::_digitalRead()
+{
+	return GPIO_ReadInputDataBit(SW2);
+}
+
+int Sw2::_setupDigitalIn()
+{
+	Init_port(GPIO_Mode_IN, SW2, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int Sw2::_setupDigitalOut()
+{
+	//Init_port(GPIO_Mode_OUT, SW2, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 1;
+}
+
+int Sw2::_setupDigitalInPullUp()
+{
+	Init_port(GPIO_Mode_IN, SW2, GPIO_PuPd_UP, GPIO_OType_PP);
+	return 0;
+}
+
+int Sw2::_setupDigitalInPullDown()
+{
+	Init_port(GPIO_Mode_IN, SW2, GPIO_PuPd_DOWN, GPIO_OType_PP);
+	return 0;
+}
+
+int Sw3:: _digitalWrite()
+{
+	return GPIO_ReadOutputDataBit(SW3);
+}
+
+void Sw3::_digitalWrite(int value)
+{
+	if(value==0){
+		GPIO_ResetBits(SW3);
+	}else{
+		GPIO_SetBits(SW3);
+	}
+}
+
+int Sw3::_digitalRead()
+{
+	return GPIO_ReadInputDataBit(SW3);
+}
+
+int Sw3::_setupDigitalIn()
+{
+	Init_port(GPIO_Mode_IN, SW3, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int Sw3::_setupDigitalOut()
+{
+	//Init_port(GPIO_Mode_OUT, SW3, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 1;
+}
+
+int Sw3::_setupDigitalInPullUp()
+{
+	Init_port(GPIO_Mode_IN, SW3, GPIO_PuPd_UP, GPIO_OType_PP);
+	return 0;
+}
+
+int Sw3::_setupDigitalInPullDown()
+{
+	Init_port(GPIO_Mode_IN, SW3, GPIO_PuPd_DOWN, GPIO_OType_PP);
+	return 0;
+}
+
+int Buzzer:: _digitalWrite()
+{
+	return GPIO_ReadOutputDataBit(BUZZER);
+}
+
+void Buzzer::_digitalWrite(int value)
+{
+	if(value==0){
+		GPIO_ResetBits(BUZZER);
+	}else{
+		GPIO_SetBits(BUZZER);
+	}
+}
+
+int Buzzer::_digitalRead()
+{
+	return GPIO_ReadInputDataBit(BUZZER);
+}
+
+int Buzzer::_setupDigitalIn()
+{
+	Init_port(GPIO_Mode_IN, BUZZER, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int Buzzer::_setupDigitalOut()
+{
+	Init_port(GPIO_Mode_OUT, BUZZER, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int Buzzer::_setupDigitalInPullUp()
+{
+	Init_port(GPIO_Mode_IN, BUZZER, GPIO_PuPd_UP, GPIO_OType_PP);
+	return 0;
+}
+
+int Buzzer::_setupDigitalInPullDown()
+{
+	Init_port(GPIO_Mode_IN, BUZZER, GPIO_PuPd_DOWN, GPIO_OType_PP);
+	return 0;
+}
+
+int CW0:: _digitalWrite()
+{
+	return GPIO_ReadOutputDataBit(CWIO0);
+}
+
+void CW0::_digitalWrite(int value)
+{
+	if(value==0){
+		GPIO_ResetBits(CWIO0);
+	}else{
+		GPIO_SetBits(CWIO0);
+	}
+}
+
+int CW0::_digitalRead()
+{
+	return GPIO_ReadInputDataBit(CWIO0);
+}
+
+int CW0::_setupDigitalIn()
+{
+	Init_port(GPIO_Mode_IN, CWIO0, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int CW0::_setupDigitalOut()
+{
+	Init_port(GPIO_Mode_OUT, CWIO0, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int CW0::_setupDigitalInPullUp()
+{
+	Init_port(GPIO_Mode_IN, CWIO0, GPIO_PuPd_UP, GPIO_OType_PP);
+	return 0;
+}
+
+int CW0::_setupDigitalInPullDown()
+{
+	Init_port(GPIO_Mode_IN, CWIO0, GPIO_PuPd_DOWN, GPIO_OType_PP);
+	return 0;
+}
+
+int CCW0:: _digitalWrite()
+{
+	return GPIO_ReadOutputDataBit(CCWIO0);
+}
+
+void CCW0::_digitalWrite(int value)
+{
+	if(value==0){
+		GPIO_ResetBits(CCWIO0);
+	}else{
+		GPIO_SetBits(CCWIO0);
+	}
+}
+
+int CCW0::_digitalRead()
+{
+	return GPIO_ReadInputDataBit(CCWIO0);
+}
+
+int CCW0::_setupDigitalIn()
+{
+	Init_port(GPIO_Mode_IN, CCWIO0, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int CCW0::_setupDigitalOut()
+{
+	Init_port(GPIO_Mode_OUT, CCWIO0, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int CCW0::_setupDigitalInPullUp()
+{
+	Init_port(GPIO_Mode_IN, CCWIO0, GPIO_PuPd_UP, GPIO_OType_PP);
+	return 0;
+}
+
+int CCW0::_setupDigitalInPullDown()
+{
+	Init_port(GPIO_Mode_IN, CCWIO0, GPIO_PuPd_DOWN, GPIO_OType_PP);
+	return 0;
+}
+
+int CW1:: _digitalWrite()
+{
+	return GPIO_ReadOutputDataBit(CWIO1);
+}
+
+void CW1::_digitalWrite(int value)
+{
+	if(value==0){
+		GPIO_ResetBits(CWIO1);
+	}else{
+		GPIO_SetBits(CWIO1);
+	}
+}
+
+int CW1::_digitalRead()
+{
+	return GPIO_ReadInputDataBit(CWIO1);
+}
+
+int CW1::_setupDigitalIn()
+{
+	Init_port(GPIO_Mode_IN, CWIO1, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int CW1::_setupDigitalOut()
+{
+	Init_port(GPIO_Mode_OUT, CWIO1, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int CW1::_setupDigitalInPullUp()
+{
+	Init_port(GPIO_Mode_IN, CWIO1, GPIO_PuPd_UP, GPIO_OType_PP);
+	return 0;
+}
+
+int CW1::_setupDigitalInPullDown()
+{
+	Init_port(GPIO_Mode_IN, CWIO1, GPIO_PuPd_DOWN, GPIO_OType_PP);
+	return 0;
+}
+
+int CCW1:: _digitalWrite()
+{
+	return GPIO_ReadOutputDataBit(CCWIO1);
+}
+
+void CCW1::_digitalWrite(int value)
+{
+	if(value==0){
+		GPIO_ResetBits(CCWIO1);
+	}else{
+		GPIO_SetBits(CCWIO1);
+	}
+}
+
+int CCW1::_digitalRead()
+{
+	return GPIO_ReadInputDataBit(CCWIO1);
+}
+
+int CCW1::_setupDigitalIn()
+{
+	Init_port(GPIO_Mode_IN, CCWIO1, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int CCW1::_setupDigitalOut()
+{
+	Init_port(GPIO_Mode_OUT, CCWIO1, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int CCW1::_setupDigitalInPullUp()
+{
+	Init_port(GPIO_Mode_IN, CCWIO1, GPIO_PuPd_UP, GPIO_OType_PP);
+	return 0;
+}
+
+int CCW1::_setupDigitalInPullDown()
+{
+	Init_port(GPIO_Mode_IN, CCWIO1, GPIO_PuPd_DOWN, GPIO_OType_PP);
+	return 0;
+}
+
+int CW2:: _digitalWrite()
+{
+	return GPIO_ReadOutputDataBit(CWIO2);
+}
+
+void CW2::_digitalWrite(int value)
+{
+	if(value==0){
+		GPIO_ResetBits(CWIO2);
+	}else{
+		GPIO_SetBits(CWIO2);
+	}
+}
+
+int CW2::_digitalRead()
+{
+	return GPIO_ReadInputDataBit(CWIO2);
+}
+
+int CW2::_setupDigitalIn()
+{
+	Init_port(GPIO_Mode_IN, CWIO2, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int CW2::_setupDigitalOut()
+{
+	Init_port(GPIO_Mode_OUT, CWIO2, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int CW2::_setupDigitalInPullUp()
+{
+	Init_port(GPIO_Mode_IN, CWIO2, GPIO_PuPd_UP, GPIO_OType_PP);
+	return 0;
+}
+
+int CW2::_setupDigitalInPullDown()
+{
+	Init_port(GPIO_Mode_IN, CWIO2, GPIO_PuPd_DOWN, GPIO_OType_PP);
+	return 0;
+}
+
+int CCW2:: _digitalWrite()
+{
+	return GPIO_ReadOutputDataBit(CCWIO2);
+}
+
+void CCW2::_digitalWrite(int value)
+{
+	if(value==0){
+		GPIO_ResetBits(CCWIO2);
+	}else{
+		GPIO_SetBits(CCWIO2);
+	}
+}
+
+int CCW2::_digitalRead()
+{
+	return GPIO_ReadInputDataBit(CCWIO2);
+}
+
+int CCW2::_setupDigitalIn()
+{
+	Init_port(GPIO_Mode_IN, CCWIO2, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int CCW2::_setupDigitalOut()
+{
+	Init_port(GPIO_Mode_OUT, CCWIO2, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int CCW2::_setupDigitalInPullUp()
+{
+	Init_port(GPIO_Mode_IN, CCWIO2, GPIO_PuPd_UP, GPIO_OType_PP);
+	return 0;
+}
+
+int CCW2::_setupDigitalInPullDown()
+{
+	Init_port(GPIO_Mode_IN, CCWIO2, GPIO_PuPd_DOWN, GPIO_OType_PP);
+	return 0;
+}
+
+int CW3:: _digitalWrite()
+{
+	return GPIO_ReadOutputDataBit(CWIO3);
+}
+
+void CW3::_digitalWrite(int value)
+{
+	if(value==0){
+		GPIO_ResetBits(CWIO3);
+	}else{
+		GPIO_SetBits(CWIO3);
+	}
+}
+
+int CW3::_digitalRead()
+{
+	return GPIO_ReadInputDataBit(CWIO3);
+}
+
+int CW3::_setupDigitalIn()
+{
+	Init_port(GPIO_Mode_IN, CWIO3, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int CW3::_setupDigitalOut()
+{
+	Init_port(GPIO_Mode_OUT, CWIO3, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int CW3::_setupDigitalInPullUp()
+{
+	Init_port(GPIO_Mode_IN, CWIO3, GPIO_PuPd_UP, GPIO_OType_PP);
+	return 0;
+}
+
+int CW3::_setupDigitalInPullDown()
+{
+	Init_port(GPIO_Mode_IN, CWIO3, GPIO_PuPd_DOWN, GPIO_OType_PP);
+	return 0;
+}
+
+int CCW3:: _digitalWrite()
+{
+	return GPIO_ReadOutputDataBit(CCWIO3);
+}
+
+void CCW3::_digitalWrite(int value)
+{
+	if(value==0){
+		GPIO_ResetBits(CCWIO3);
+	}else{
+		GPIO_SetBits(CCWIO3);
+	}
+}
+
+int CCW3::_digitalRead()
+{
+	return GPIO_ReadInputDataBit(CCWIO3);
+}
+
+int CCW3::_setupDigitalIn()
+{
+	Init_port(GPIO_Mode_IN, CCWIO3, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int CCW3::_setupDigitalOut()
+{
+	Init_port(GPIO_Mode_OUT, CCWIO3, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int CCW3::_setupDigitalInPullUp()
+{
+	Init_port(GPIO_Mode_IN, CCWIO3, GPIO_PuPd_UP, GPIO_OType_PP);
+	return 0;
+}
+
+int CCW3::_setupDigitalInPullDown()
+{
+	Init_port(GPIO_Mode_IN, CCWIO3, GPIO_PuPd_DOWN, GPIO_OType_PP);
+	return 0;
+}
+
+int CW4:: _digitalWrite()
 {
 	return GPIO_ReadOutputDataBit(CWIO4);
 }
 
-void Cw4::_digitalWrite(int value)
+void CW4::_digitalWrite(int value)
 {
 	if(value==0){
 		GPIO_ResetBits(CWIO4);
@@ -169,41 +806,41 @@ void Cw4::_digitalWrite(int value)
 	}
 }
 
-int Cw4::_digitalRead()
+int CW4::_digitalRead()
 {
 	return GPIO_ReadInputDataBit(CWIO4);
 }
 
-int Cw4::_setupDigitalIn()
+int CW4::_setupDigitalIn()
 {
 	Init_port(GPIO_Mode_IN, CWIO4, GPIO_PuPd_NOPULL, GPIO_OType_PP);
 	return 0;
 }
 
-int Cw4::_setupDigitalOut()
+int CW4::_setupDigitalOut()
 {
 	Init_port(GPIO_Mode_OUT, CWIO4, GPIO_PuPd_NOPULL, GPIO_OType_PP);
 	return 0;
 }
 
-int Cw4::_setupDigitalInPullUp()
+int CW4::_setupDigitalInPullUp()
 {
 	Init_port(GPIO_Mode_IN, CWIO4, GPIO_PuPd_UP, GPIO_OType_PP);
 	return 0;
 }
 
-int Cw4::_setupDigitalInPullDown()
+int CW4::_setupDigitalInPullDown()
 {
 	Init_port(GPIO_Mode_IN, CWIO4, GPIO_PuPd_DOWN, GPIO_OType_PP);
 	return 0;
 }
 
-int Ccw4:: _digitalWrite()
+int CCW4:: _digitalWrite()
 {
 	return GPIO_ReadOutputDataBit(CCWIO4);
 }
 
-void Ccw4::_digitalWrite(int value)
+void CCW4::_digitalWrite(int value)
 {
 	if(value==0){
 		GPIO_ResetBits(CCWIO4);
@@ -212,41 +849,41 @@ void Ccw4::_digitalWrite(int value)
 	}
 }
 
-int Ccw4::_digitalRead()
+int CCW4::_digitalRead()
 {
 	return GPIO_ReadInputDataBit(CCWIO4);
 }
 
-int Ccw4::_setupDigitalIn()
+int CCW4::_setupDigitalIn()
 {
 	Init_port(GPIO_Mode_IN, CCWIO4, GPIO_PuPd_NOPULL, GPIO_OType_PP);
 	return 0;
 }
 
-int Ccw4::_setupDigitalOut()
+int CCW4::_setupDigitalOut()
 {
 	Init_port(GPIO_Mode_OUT, CCWIO4, GPIO_PuPd_NOPULL, GPIO_OType_PP);
 	return 0;
 }
 
-int Ccw4::_setupDigitalInPullUp()
+int CCW4::_setupDigitalInPullUp()
 {
 	Init_port(GPIO_Mode_IN, CCWIO4, GPIO_PuPd_UP, GPIO_OType_PP);
 	return 0;
 }
 
-int Ccw4::_setupDigitalInPullDown()
+int CCW4::_setupDigitalInPullDown()
 {
 	Init_port(GPIO_Mode_IN, CCWIO4, GPIO_PuPd_DOWN, GPIO_OType_PP);
 	return 0;
 }
 
-int Cw5:: _digitalWrite()
+int CW5:: _digitalWrite()
 {
 	return GPIO_ReadOutputDataBit(CWIO5);
 }
 
-void Cw5::_digitalWrite(int value)
+void CW5::_digitalWrite(int value)
 {
 	if(value==0){
 		GPIO_ResetBits(CWIO5);
@@ -255,41 +892,41 @@ void Cw5::_digitalWrite(int value)
 	}
 }
 
-int Cw5::_digitalRead()
+int CW5::_digitalRead()
 {
 	return GPIO_ReadInputDataBit(CWIO5);
 }
 
-int Cw5::_setupDigitalIn()
+int CW5::_setupDigitalIn()
 {
 	Init_port(GPIO_Mode_IN, CWIO5, GPIO_PuPd_NOPULL, GPIO_OType_PP);
 	return 0;
 }
 
-int Cw5::_setupDigitalOut()
+int CW5::_setupDigitalOut()
 {
 	Init_port(GPIO_Mode_OUT, CWIO5, GPIO_PuPd_NOPULL, GPIO_OType_PP);
 	return 0;
 }
 
-int Cw5::_setupDigitalInPullUp()
+int CW5::_setupDigitalInPullUp()
 {
 	Init_port(GPIO_Mode_IN, CWIO5, GPIO_PuPd_UP, GPIO_OType_PP);
 	return 0;
 }
 
-int Cw5::_setupDigitalInPullDown()
+int CW5::_setupDigitalInPullDown()
 {
 	Init_port(GPIO_Mode_IN, CWIO5, GPIO_PuPd_DOWN, GPIO_OType_PP);
 	return 0;
 }
 
-int Ccw5:: _digitalWrite()
+int CCW5:: _digitalWrite()
 {
 	return GPIO_ReadOutputDataBit(CCWIO5);
 }
 
-void Ccw5::_digitalWrite(int value)
+void CCW5::_digitalWrite(int value)
 {
 	if(value==0){
 		GPIO_ResetBits(CCWIO5);
@@ -298,204 +935,32 @@ void Ccw5::_digitalWrite(int value)
 	}
 }
 
-int Ccw5::_digitalRead()
+int CCW5::_digitalRead()
 {
 	return GPIO_ReadInputDataBit(CCWIO5);
 }
 
-int Ccw5::_setupDigitalIn()
+int CCW5::_setupDigitalIn()
 {
 	Init_port(GPIO_Mode_IN, CCWIO5, GPIO_PuPd_NOPULL, GPIO_OType_PP);
 	return 0;
 }
 
-int Ccw5::_setupDigitalOut()
+int CCW5::_setupDigitalOut()
 {
 	Init_port(GPIO_Mode_OUT, CCWIO5, GPIO_PuPd_NOPULL, GPIO_OType_PP);
 	return 0;
 }
 
-int Ccw5::_setupDigitalInPullUp()
+int CCW5::_setupDigitalInPullUp()
 {
 	Init_port(GPIO_Mode_IN, CCWIO5, GPIO_PuPd_UP, GPIO_OType_PP);
 	return 0;
 }
 
-int Ccw5::_setupDigitalInPullDown()
+int CCW5::_setupDigitalInPullDown()
 {
 	Init_port(GPIO_Mode_IN, CCWIO5, GPIO_PuPd_DOWN, GPIO_OType_PP);
-	return 0;
-}
-
-int Cw6:: _digitalWrite()
-{
-	return GPIO_ReadOutputDataBit(CWIO6);
-}
-
-void Cw6::_digitalWrite(int value)
-{
-	if(value==0){
-		GPIO_ResetBits(CWIO6);
-	}else{
-		GPIO_SetBits(CWIO6);
-	}
-}
-
-int Cw6::_digitalRead()
-{
-	return GPIO_ReadInputDataBit(CWIO6);
-}
-
-int Cw6::_setupDigitalIn()
-{
-	Init_port(GPIO_Mode_IN, CWIO6, GPIO_PuPd_NOPULL, GPIO_OType_PP);
-	return 0;
-}
-
-int Cw6::_setupDigitalOut()
-{
-	Init_port(GPIO_Mode_OUT, CWIO6, GPIO_PuPd_NOPULL, GPIO_OType_PP);
-	return 0;
-}
-
-int Cw6::_setupDigitalInPullUp()
-{
-	Init_port(GPIO_Mode_IN, CWIO6, GPIO_PuPd_UP, GPIO_OType_PP);
-	return 0;
-}
-
-int Cw6::_setupDigitalInPullDown()
-{
-	Init_port(GPIO_Mode_IN, CWIO6, GPIO_PuPd_DOWN, GPIO_OType_PP);
-	return 0;
-}
-
-int Ccw6:: _digitalWrite()
-{
-	return GPIO_ReadOutputDataBit(CCWIO6);
-}
-
-void Ccw6::_digitalWrite(int value)
-{
-	if(value==0){
-		GPIO_ResetBits(CCWIO6);
-	}else{
-		GPIO_SetBits(CCWIO6);
-	}
-}
-
-int Ccw6::_digitalRead()
-{
-	return GPIO_ReadInputDataBit(CCWIO6);
-}
-
-int Ccw6::_setupDigitalIn()
-{
-	Init_port(GPIO_Mode_IN, CCWIO6, GPIO_PuPd_NOPULL, GPIO_OType_PP);
-	return 0;
-}
-
-int Ccw6::_setupDigitalOut()
-{
-	Init_port(GPIO_Mode_OUT, CCWIO6, GPIO_PuPd_NOPULL, GPIO_OType_PP);
-	return 0;
-}
-
-int Ccw6::_setupDigitalInPullUp()
-{
-	Init_port(GPIO_Mode_IN, CCWIO6, GPIO_PuPd_UP, GPIO_OType_PP);
-	return 0;
-}
-
-int Ccw6::_setupDigitalInPullDown()
-{
-	Init_port(GPIO_Mode_IN, CCWIO6, GPIO_PuPd_DOWN, GPIO_OType_PP);
-	return 0;
-}
-
-int Cw7:: _digitalWrite()
-{
-	return GPIO_ReadOutputDataBit(CWIO7);
-}
-
-void Cw7::_digitalWrite(int value)
-{
-	if(value==0){
-		GPIO_ResetBits(CWIO7);
-	}else{
-		GPIO_SetBits(CWIO7);
-	}
-}
-
-int Cw7::_digitalRead()
-{
-	return GPIO_ReadInputDataBit(CWIO7);
-}
-
-int Cw7::_setupDigitalIn()
-{
-	Init_port(GPIO_Mode_IN, CWIO7, GPIO_PuPd_NOPULL, GPIO_OType_PP);
-	return 0;
-}
-
-int Cw7::_setupDigitalOut()
-{
-	Init_port(GPIO_Mode_OUT, CWIO7, GPIO_PuPd_NOPULL, GPIO_OType_PP);
-	return 0;
-}
-
-int Cw7::_setupDigitalInPullUp()
-{
-	Init_port(GPIO_Mode_IN, CWIO7, GPIO_PuPd_UP, GPIO_OType_PP);
-	return 0;
-}
-
-int Cw7::_setupDigitalInPullDown()
-{
-	Init_port(GPIO_Mode_IN, CWIO7, GPIO_PuPd_DOWN, GPIO_OType_PP);
-	return 0;
-}
-
-int Ccw7:: _digitalWrite()
-{
-	return GPIO_ReadOutputDataBit(CCWIO7);
-}
-
-void Ccw7::_digitalWrite(int value)
-{
-	if(value==0){
-		GPIO_ResetBits(CCWIO7);
-	}else{
-		GPIO_SetBits(CCWIO7);
-	}
-}
-
-int Ccw7::_digitalRead()
-{
-	return GPIO_ReadInputDataBit(CCWIO7);
-}
-
-int Ccw7::_setupDigitalIn()
-{
-	Init_port(GPIO_Mode_IN, CCWIO7, GPIO_PuPd_NOPULL, GPIO_OType_PP);
-	return 0;
-}
-
-int Ccw7::_setupDigitalOut()
-{
-	Init_port(GPIO_Mode_OUT, CCWIO7, GPIO_PuPd_NOPULL, GPIO_OType_PP);
-	return 0;
-}
-
-int Ccw7::_setupDigitalInPullUp()
-{
-	Init_port(GPIO_Mode_IN, CCWIO7, GPIO_PuPd_UP, GPIO_OType_PP);
-	return 0;
-}
-
-int Ccw7::_setupDigitalInPullDown()
-{
-	Init_port(GPIO_Mode_IN, CCWIO7, GPIO_PuPd_DOWN, GPIO_OType_PP);
 	return 0;
 }
 
@@ -720,6 +1185,183 @@ int A4::_setupDigitalInPullDown()
 	return 0;
 }
 
+int Pwm0:: _digitalWrite()
+{
+	return GPIO_ReadOutputDataBit(PWM0);
+}
+
+void Pwm0::_digitalWrite(int value)
+{
+	if(value==0){
+		GPIO_ResetBits(PWM0);
+	}else{
+		GPIO_SetBits(PWM0);
+	}
+}
+
+int Pwm0::_digitalRead()
+{
+	return GPIO_ReadInputDataBit(PWM0);
+}
+
+int Pwm0::_setupDigitalIn()
+{
+	Init_port(GPIO_Mode_IN, PWM0, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int Pwm0::_setupDigitalOut()
+{
+	mode = MODE_DIGITAL;
+	Init_port(GPIO_Mode_OUT, PWM0, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int Pwm0::_setupDigitalInPullUp()
+{
+	Init_port(GPIO_Mode_IN, PWM0, GPIO_PuPd_UP, GPIO_OType_PP);
+	return 0;
+}
+
+int Pwm0::_setupDigitalInPullDown()
+{
+	Init_port(GPIO_Mode_IN, PWM0, GPIO_PuPd_DOWN, GPIO_OType_PP);
+	return 0;
+}
+
+int Pwm1:: _digitalWrite()
+{
+	return GPIO_ReadOutputDataBit(PWM1);
+}
+
+void Pwm1::_digitalWrite(int value)
+{
+	if(value==0){
+		GPIO_ResetBits(PWM1);
+	}else{
+		GPIO_SetBits(PWM1);
+	}
+}
+
+int Pwm1::_digitalRead()
+{
+	return GPIO_ReadInputDataBit(PWM1);
+}
+
+int Pwm1::_setupDigitalIn()
+{
+	Init_port(GPIO_Mode_IN, PWM1, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int Pwm1::_setupDigitalOut()
+{
+	mode = MODE_DIGITAL;
+	Init_port(GPIO_Mode_OUT, PWM1, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int Pwm1::_setupDigitalInPullUp()
+{
+	Init_port(GPIO_Mode_IN, PWM1, GPIO_PuPd_UP, GPIO_OType_PP);
+	return 0;
+}
+
+int Pwm1::_setupDigitalInPullDown()
+{
+	Init_port(GPIO_Mode_IN, PWM1, GPIO_PuPd_DOWN, GPIO_OType_PP);
+	return 0;
+}
+
+
+int Pwm2:: _digitalWrite()
+{
+	return GPIO_ReadOutputDataBit(PWM2);
+}
+
+void Pwm2::_digitalWrite(int value)
+{
+	if(value==0){
+		GPIO_ResetBits(PWM2);
+	}else{
+		GPIO_SetBits(PWM2);
+	}
+}
+
+int Pwm2::_digitalRead()
+{
+	return GPIO_ReadInputDataBit(PWM2);
+}
+
+int Pwm2::_setupDigitalIn()
+{
+	Init_port(GPIO_Mode_IN, PWM2, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int Pwm2::_setupDigitalOut()
+{
+	mode = MODE_DIGITAL;
+	Init_port(GPIO_Mode_OUT, PWM2, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int Pwm2::_setupDigitalInPullUp()
+{
+	Init_port(GPIO_Mode_IN, PWM2, GPIO_PuPd_UP, GPIO_OType_PP);
+	return 0;
+}
+
+int Pwm2::_setupDigitalInPullDown()
+{
+	Init_port(GPIO_Mode_IN, PWM2, GPIO_PuPd_DOWN, GPIO_OType_PP);
+	return 0;
+}
+
+int Pwm3:: _digitalWrite()
+{
+	return GPIO_ReadOutputDataBit(PWM3);
+}
+
+void Pwm3::_digitalWrite(int value)
+{
+	if(value==0){
+		GPIO_ResetBits(PWM3);
+	}else{
+		GPIO_SetBits(PWM3);
+	}
+}
+
+int Pwm3::_digitalRead()
+{
+	return GPIO_ReadInputDataBit(PWM3);
+}
+
+int Pwm3::_setupDigitalIn()
+{
+	Init_port(GPIO_Mode_IN, PWM3, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int Pwm3::_setupDigitalOut()
+{
+	mode = MODE_DIGITAL;
+	Init_port(GPIO_Mode_OUT, PWM3, GPIO_PuPd_NOPULL, GPIO_OType_PP);
+	return 0;
+}
+
+int Pwm3::_setupDigitalInPullUp()
+{
+	Init_port(GPIO_Mode_IN, PWM3, GPIO_PuPd_UP, GPIO_OType_PP);
+	return 0;
+}
+
+int Pwm3::_setupDigitalInPullDown()
+{
+	Init_port(GPIO_Mode_IN, PWM3, GPIO_PuPd_DOWN, GPIO_OType_PP);
+	return 0;
+}
+
 
 int Pwm4:: _digitalWrite()
 {
@@ -809,95 +1451,6 @@ int Pwm5::_setupDigitalInPullDown()
 	return 0;
 }
 
-int Pwm6:: _digitalWrite()
-{
-	return GPIO_ReadOutputDataBit(PWM6);
-}
-
-void Pwm6::_digitalWrite(int value)
-{
-	if(value==0){
-		GPIO_ResetBits(PWM6);
-	}else{
-		GPIO_SetBits(PWM6);
-	}
-}
-
-int Pwm6::_digitalRead()
-{
-	return GPIO_ReadInputDataBit(PWM6);
-}
-
-int Pwm6::_setupDigitalIn()
-{
-	Init_port(GPIO_Mode_IN, PWM6, GPIO_PuPd_NOPULL, GPIO_OType_PP);
-	return 0;
-}
-
-int Pwm6::_setupDigitalOut()
-{
-	mode = MODE_DIGITAL;
-	Init_port(GPIO_Mode_OUT, PWM6, GPIO_PuPd_NOPULL, GPIO_OType_PP);
-	return 0;
-}
-
-int Pwm6::_setupDigitalInPullUp()
-{
-	Init_port(GPIO_Mode_IN, PWM6, GPIO_PuPd_UP, GPIO_OType_PP);
-	return 0;
-}
-
-int Pwm6::_setupDigitalInPullDown()
-{
-	Init_port(GPIO_Mode_IN, PWM6, GPIO_PuPd_DOWN, GPIO_OType_PP);
-	return 0;
-}
-
-int Pwm7:: _digitalWrite()
-{
-	return GPIO_ReadOutputDataBit(PWM7);
-}
-
-void Pwm7::_digitalWrite(int value)
-{
-	if(value==0){
-		GPIO_ResetBits(PWM7);
-	}else{
-		GPIO_SetBits(PWM7);
-	}
-}
-
-int Pwm7::_digitalRead()
-{
-	return GPIO_ReadInputDataBit(PWM7);
-}
-
-int Pwm7::_setupDigitalIn()
-{
-	Init_port(GPIO_Mode_IN, PWM7, GPIO_PuPd_NOPULL, GPIO_OType_PP);
-	return 0;
-}
-
-int Pwm7::_setupDigitalOut()
-{
-	mode = MODE_DIGITAL;
-	Init_port(GPIO_Mode_OUT, PWM7, GPIO_PuPd_NOPULL, GPIO_OType_PP);
-	return 0;
-}
-
-int Pwm7::_setupDigitalInPullUp()
-{
-	Init_port(GPIO_Mode_IN, PWM7, GPIO_PuPd_UP, GPIO_OType_PP);
-	return 0;
-}
-
-int Pwm7::_setupDigitalInPullDown()
-{
-	Init_port(GPIO_Mode_IN, PWM7, GPIO_PuPd_DOWN, GPIO_OType_PP);
-	return 0;
-}
-
-
 int A0::_setupAnalogIn()
 {
 	mode = MODE_ANALOG;
@@ -959,6 +1512,13 @@ float A4::_analogRead()
 }
 
 
+#define ENC0TIM	TIM4
+#define ENC0			GPIOD,GPIO_Pin_12 | GPIO_Pin_13
+#define ENC1TIM	TIM3
+#define ENC1			GPIOA,GPIO_Pin_6 | GPIO_Pin_7
+#define ENC2TIM	TIM5
+#define ENC2			GPIOA,GPIO_Pin_0 | GPIO_Pin_1
+
 int Enc0::setup()
 {
 	Init_encoder(ENC0TIM,ENC0);
@@ -995,16 +1555,113 @@ int Enc2::count()
 	else return Select_encoder_count(ENC2TIM);
 }
 
-int Enc3::setup()
+
+#define PWM0SET			TIM1,GPIOE,GPIO_Pin_11
+#define PWM0TIMCH		TIM1,2
+
+#define PWM1SET			TIM9,GPIOE,GPIO_Pin_6
+#define PWM1TIMCH		TIM9,2
+
+#define PWM2SET			TIM9,GPIOE,GPIO_Pin_5
+#define PWM2TIMCH		TIM9,1
+
+#define PWM3SET			TIM1,GPIOE,GPIO_Pin_9
+#define PWM3TIMCH		TIM1,1
+
+#define PWM4SET			TIM1,GPIOE,GPIO_Pin_14
+#define PWM4TIMCH		TIM1,4
+
+#define PWM5SET			TIM1,GPIOE,GPIO_Pin_13
+#define PWM5TIMCH		TIM1,3
+
+
+//led3‚©buzzer‚Ç‚Á‚¿‚©‚µ‚©pwm‚Å‚«‚È‚¢
+#define LED2SET			TIM8,GPIOB,GPIO_Pin_14
+#define LED2TIMCH		TIM8,2
+
+#define LED3SET			TIM8,GPIOB,GPIO_Pin_15
+#define LED3TIMCH		TIM8,3
+
+#define BUZZERSET		TIM8,GPIOB,GPIO_Pin_1
+#define BUZZERTIMCH	TIM8,3
+
+int Pwm0::_setupPwmOut(float frequency, float duty)
 {
-	Init_encoder(ENC3TIM,ENC3);
-	return 0;
+	int i;
+	mode = MODE_PWM;
+	i=Init_PWM(PWM0SET,frequency);
+	Set_duty(PWM0TIMCH,duty);
+	return i;
 }
 
-int Enc3::count()
+void Pwm0::_pwmWrite(float duty)
 {
-	if(revFlag) return -Select_encoder_count(ENC3TIM);
-	else return Select_encoder_count(ENC3TIM);
+	Set_duty(PWM0TIMCH,duty);
+}
+
+float Pwm0::_pwmWrite()
+{
+	return Read_duty(PWM0TIMCH);
+}
+
+
+int Pwm1::_setupPwmOut(float frequency, float duty)
+{
+	int i;
+	mode = MODE_PWM;
+	i=Init_PWM(PWM1SET,frequency);
+	Set_duty(PWM1TIMCH,duty);
+	return i;
+}
+
+void Pwm1::_pwmWrite(float duty)
+{
+	Set_duty(PWM1TIMCH,duty);
+}
+
+float Pwm1::_pwmWrite()
+{
+	return Read_duty(PWM1TIMCH);
+}
+
+
+int Pwm2::_setupPwmOut(float frequency, float duty)
+{
+	int i;
+	mode = MODE_PWM;
+	i=Init_PWM(PWM2SET,frequency);
+	Set_duty(PWM2TIMCH,duty);
+	return i;
+}
+
+void Pwm2::_pwmWrite(float duty)
+{
+	Set_duty(PWM2TIMCH,duty);
+}
+
+float Pwm2::_pwmWrite()
+{
+	return Read_duty(PWM2TIMCH);
+}
+
+
+int Pwm3::_setupPwmOut(float frequency, float duty)
+{
+	int i;
+	mode = MODE_PWM;
+	i=Init_PWM(PWM3SET,frequency);
+	Set_duty(PWM3TIMCH,duty);
+	return i;
+}
+
+void Pwm3::_pwmWrite(float duty)
+{
+	Set_duty(PWM3TIMCH,duty);
+}
+
+float Pwm3::_pwmWrite()
+{
+	return Read_duty(PWM3TIMCH);
 }
 
 
@@ -1047,44 +1704,71 @@ float Pwm5::_pwmWrite()
 	return Read_duty(PWM5TIMCH);
 }
 
-int Pwm6::_setupPwmOut(float frequency, float duty)
+
+int Led2::_setupPwmOut(float frequency, float duty)
 {
 	int i;
 	mode = MODE_PWM;
-	i=Init_PWM(PWM6SET,frequency);
-	Set_duty(PWM6TIMCH,duty);
+	i=Init_PWM(LED2SET,frequency);
+	Set_duty(LED2TIMCH,duty);
 	return i;
 }
 
-void Pwm6::_pwmWrite(float duty)
+void Led2::_pwmWrite(float duty)
 {
-	Set_duty(PWM6TIMCH,duty);
+	Set_duty(LED2TIMCH,duty);
 }
 
-float Pwm6::_pwmWrite()
+float Led2::_pwmWrite()
 {
-	return Read_duty(PWM6TIMCH);
+	return Read_duty(LED2TIMCH);
 }
 
-int Pwm7::_setupPwmOut(float frequency, float duty)
+int Led3::_setupPwmOut(float frequency, float duty)
 {
 	int i;
 	mode = MODE_PWM;
-	i=Init_PWM(PWM7SET,frequency);
-	Set_duty(PWM7TIMCH,duty);
+	i=Init_PWM(LED3SET,frequency);
+	Set_duty(LED3TIMCH,duty);
 	return i;
 }
 
-void Pwm7::_pwmWrite(float duty)
+void Led3::_pwmWrite(float duty)
 {
-	Set_duty(PWM7TIMCH,duty);
+	Set_duty(LED3TIMCH,duty);
 }
 
-float Pwm7::_pwmWrite()
+float Led3::_pwmWrite()
 {
-	return Read_duty(PWM7TIMCH);
+	return Read_duty(LED3TIMCH);
 }
 
+
+int Buzzer::_setupPwmOut(float frequency, float duty)
+{
+	int i;
+	mode = MODE_PWM;
+	i=Init_PWM(BUZZERSET,frequency);
+	Set_duty(BUZZERTIMCH,duty);
+	return i;
+}
+
+void Buzzer::_pwmWrite(float duty)
+{
+	Set_duty(BUZZERTIMCH,duty);
+}
+
+float Buzzer::_pwmWrite()
+{
+	return Read_duty(BUZZERTIMCH);
+}
+
+#define SERIAL0TxRx	GPIOA,GPIO_Pin_2,GPIOA,GPIO_Pin_3
+#define SERIAL0CH USART2
+//#define SERIAL0TxRx GPIOD,GPIO_Pin_8,GPIOD,GPIO_Pin_9
+//#define SERIAL0CH USART3
+#define SERIAL1TxRx	GPIOB,GPIO_Pin_10,GPIOB,GPIO_Pin_11
+#define SERIAL1CH USART3
 
 SerialInterface *Serial0::interface;
 
@@ -1124,50 +1808,22 @@ int Serial1::_setup(int baudrate, SerialInterface &interfaceArg, int parity, int
 	return 0;
 }
 
+void serial1_interrupt(){
+	Serial1::interface->serialReadChar(USART_ReceiveData(SERIAL1CH));
+}
+
+extern "C" void USART3_IRQHandler(void){
+	serial1_interrupt();
+}
+
 void Serial1::charWrite(char value)
 {
 	transmit(value);
 }
 
-void serial1_interrupt(){
-	Serial1::interface->serialReadChar(USART_ReceiveData(SERIAL1CH));
-}
-
 void Serial1::transmit(char value){
 	while(USART_GetFlagStatus(SERIAL1CH, USART_FLAG_TXE) == RESET);
 	USART_SendData(SERIAL1CH, value);
-}
-
-extern "C" void USART1_IRQHandler(void){
-	serial1_interrupt();
-}
-
-SerialInterface *Serial2::interface;
-
-int Serial2::_setup(int baudrate, SerialInterface &interfaceArg, int parity, int wordLength)
-{
-	Init_USART(SERIAL2CH,baudrate,SERIAL2TxRx,parity,wordLength);
-	interface=&interfaceArg;
-	interface->serialInterfaceSetup(transmit);
-	return 0;
-}
-
-void Serial2::charWrite(char value)
-{
-	transmit(value);
-}
-
-void serial2_interrupt(){
-	Serial2::interface->serialReadChar(USART_ReceiveData(SERIAL2CH));
-}
-
-void Serial2::transmit(char value){
-	while(USART_GetFlagStatus(SERIAL2CH, USART_FLAG_TXE) == RESET);
-	USART_SendData(SERIAL2CH, value);
-}
-
-extern "C" void USART3_IRQHandler(void){
-	serial2_interrupt();
 }
 
 void std_char_out(char value){
@@ -1241,7 +1897,9 @@ int Can0::setIdAll(){
 
 int Can0::read(int id,int number,unsigned char data[8]){
 //	printf("id:%x length:%x data:%x,%x,%x,%x,%x,%x,%x,%x\n",id,number,data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7]);
-	for(int i=0;i<canInterfaceCursor;i++) if(canInterface[i]->canId(id)) canInterface[i]->canRead(id,number,data);
+	for(int i=0;i<canInterfaceCursor;i++){
+		if(canInterface[i]->canId(id)) canInterface[i]->canRead(id,number,data);
+	}
 	return 0;
 }
 

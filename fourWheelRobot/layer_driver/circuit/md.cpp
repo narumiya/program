@@ -61,7 +61,7 @@ void Md::free(){
 
 void Md::duty(float value){
 	if(value>0.95) request=0.95;
-	else if(value<-0.95) request=-95.0;
+	else if(value<-0.95) request=-0.95;
 	else if(0<value&&value<0.05 ) request=0.05;
 	else if(-0.05<value&&value<0) request=-0.05;
 	else request=value;
