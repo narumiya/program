@@ -3,12 +3,14 @@
 
 #include "layer_driver/base/serial.hpp"
 #include "layer_driver/circuit/servo.hpp"
+#include "layer_application/console.hpp"
 
-class ServoControll:public SerialInterface{
+class ServoControll:public ConsoleCommand,public SerialInterface{
 private:
 	Servo *servo;
 public:
-	ServoControll(Serial &serialPin,Servo &servoPin);
-	int setup();
+	ServoControll(Servo &servoPin,Serial &serialPin,Console &console):ConsoleCommand(console){servo=&servoPin;serial=&serialPin;};
+	int commandCompare(char *str){return !strcmp(str,"servo");}
+	int commandRequest(int argc,char **argv);
 };
 #endif

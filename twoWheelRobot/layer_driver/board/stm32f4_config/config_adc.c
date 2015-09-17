@@ -75,6 +75,7 @@ uint8_t Select_ADC_channel(GPIO_TypeDef *GPIOx, uint16_t pin)
 void Init_ADC1(GPIO_TypeDef *GPIOx, uint16_t pin){
 	unsigned short i = 0;
 	static unsigned short ch = 0;
+
 //	static uint8_t ADC_channel[16] = {NO_CHANNEL};
 
 	//\‘¢‘Ì•Ï”‚ğéŒ¾
@@ -217,7 +218,6 @@ void Init_ADC1(GPIO_TypeDef *GPIOx, uint16_t pin){
 
 	ADC_RegularChannelConfig(ADC1,Select_ADC_channel(GPIOx,pin), ch, ADC_SampleTime_480Cycles);
 	g_adc_port[ch-1] = Select_ADC_channel(GPIOx,pin);
-
 
 /*	//ADC_Channel‚Ì‘I‘ğ
 	for(i = 0; i <16; i ++){
