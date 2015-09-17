@@ -1,18 +1,20 @@
-#include "stm32f4xx.h"
-#include "stm32f4xx_conf.h"
+
+#include "pin.hpp"
 
 extern "C" {
+#include "stm32f4xx.h"
+#include "stm32f4xx_conf.h"
 #include "config_usart.h"
 #include "config_encoder.h"
 #include "config_systick.h"
 #include "config_usart.h"
 #include "config_pwm.h"
 #include "config_port.h"
-#include "config_adc.h"
+#include "layer_driver/board/stm32f4_config/config_adc.h"
 #include "config_can.h"
 }
 
-#include "pin.hpp"
+
 
 #define LED0		GPIOB,GPIO_Pin_12//GPIOB,GPIO_Pin_0
 #define LED1		GPIOE,GPIO_Pin_15//GPIOC,GPIO_Pin_0//input ‚Å‚«‚È‚¢
@@ -35,31 +37,57 @@ extern "C" {
 #define PWM0		GPIOE,GPIO_Pin_11//GPIOE,GPIO_Pin_9
 #define CWIO0		GPIOA,GPIO_Pin_4//GPIOE,GPIO_Pin_10
 #define CCWIO0	GPIOC,GPIO_Pin_0//GPIOE,GPIO_Pin_7
+#define PWM0SET			TIM1,GPIOE,GPIO_Pin_11
+#define PWM0TIMCH		TIM1,2
 
 #define PWM1		GPIOE,GPIO_Pin_6//GPIOE,GPIO_Pin_11
 #define CWIO1		GPIOE,GPIO_Pin_12//GPIOE,GPIO_Pin_15
 #define CCWIO1	GPIOA,GPIO_Pin_5//GPIOE,GPIO_Pin_12
+#define PWM1SET			TIM9,GPIOE,GPIO_Pin_6
+#define PWM1TIMCH		TIM9,2
 
 #define PWM2		GPIOE,GPIO_Pin_5//GPIOE,GPIO_Pin_13
 #define CWIO2		GPIOB,GPIO_Pin_2//GPIOB,GPIO_Pin_13
 #define CCWIO2	GPIOE,GPIO_Pin_7//GPIOB,GPIO_Pin_12
+#define PWM2SET			TIM9,GPIOE,GPIO_Pin_5
+#define PWM2TIMCH		TIM9,1
 
 #define PWM3		GPIOE,GPIO_Pin_9//GPIOE,GPIO_Pin_14
 #define CWIO3		GPIOE,GPIO_Pin_10//GPIOB,GPIO_Pin_15
 #define CCWIO3	GPIOB,GPIO_Pin_0//GPIOB,GPIO_Pin_14
+#define PWM3SET			TIM1,GPIOE,GPIO_Pin_9
+#define PWM3TIMCH		TIM1,1
 
 #define PWM4		GPIOE,GPIO_Pin_14//GPIOE,GPIO_Pin_6
 #define CWIO4		GPIOE,GPIO_Pin_4//GPIOD,GPIO_Pin_11
 #define CCWIO4	GPIOE,GPIO_Pin_2//GPIOD,GPIO_Pin_10
+#define PWM4SET			TIM1,GPIOE,GPIO_Pin_14
+#define PWM4TIMCH		TIM1,4
 
 #define PWM5		GPIOE,GPIO_Pin_13//GPIOE,GPIO_Pin_5
 #define CWIO5		GPIOE,GPIO_Pin_8//GPIOB,GPIO_Pin_1
 #define CCWIO5	GPIOE,GPIO_Pin_3//GPIOB,GPIO_Pin_2
+#define PWM5SET			TIM1,GPIOE,GPIO_Pin_13
+#define PWM5TIMCH		TIM1,3
+
+//led3‚©buzzer‚Ç‚Á‚¿‚©‚µ‚©pwm‚Å‚«‚È‚¢
+#define LED2SET			TIM8,GPIOB,GPIO_Pin_14
+#define LED2TIMCH		TIM8,2
+
+#define LED3SET			TIM8,GPIOB,GPIO_Pin_15
+#define LED3TIMCH		TIM8,3
+
+#define BUZZERSET		TIM8,GPIOB,GPIO_Pin_1
+#define BUZZERTIMCH	TIM8,3
 
 
+#define ENC0TIM	TIM4
 #define ENC0		GPIOD,GPIO_Pin_12 | GPIO_Pin_13
+#define ENC1TIM	TIM3
 #define ENC1		GPIOA,GPIO_Pin_6 | GPIO_Pin_7		//PA6 input‚Å‚«‚È‚¢
+#define ENC2TIM	TIM5
 #define ENC2		GPIOA,GPIO_Pin_0 | GPIO_Pin_1
+
 
 int Led0:: _digitalWrite()
 {
@@ -1451,14 +1479,6 @@ int Pwm5::_setupDigitalInPullDown()
 	return 0;
 }
 
-
-#define AD0		GPIOC,GPIO_Pin_5
-#define AD1		GPIOC,GPIO_Pin_1
-#define AD2		GPIOC,GPIO_Pin_2
-#define AD3		GPIOC,GPIO_Pin_3
-#define AD4		GPIOC,GPIO_Pin_4
-
-
 int A0::_setupAnalogIn()
 {
 	mode = MODE_ANALOG;
@@ -1520,13 +1540,6 @@ float A4::_analogRead()
 }
 
 
-#define ENC0TIM	TIM4
-#define ENC0			GPIOD,GPIO_Pin_12 | GPIO_Pin_13
-#define ENC1TIM	TIM3
-#define ENC1			GPIOA,GPIO_Pin_6 | GPIO_Pin_7
-#define ENC2TIM	TIM5
-#define ENC2			GPIOA,GPIO_Pin_0 | GPIO_Pin_1
-
 int Enc0::setup()
 {
 	Init_encoder(ENC0TIM,ENC0);
@@ -1563,35 +1576,6 @@ int Enc2::count()
 	else return Select_encoder_count(ENC2TIM);
 }
 
-
-#define PWM0SET			TIM1,GPIOE,GPIO_Pin_11
-#define PWM0TIMCH		TIM1,2
-
-#define PWM1SET			TIM9,GPIOE,GPIO_Pin_6
-#define PWM1TIMCH		TIM9,2
-
-#define PWM2SET			TIM9,GPIOE,GPIO_Pin_5
-#define PWM2TIMCH		TIM9,1
-
-#define PWM3SET			TIM1,GPIOE,GPIO_Pin_9
-#define PWM3TIMCH		TIM1,1
-
-#define PWM4SET			TIM1,GPIOE,GPIO_Pin_14
-#define PWM4TIMCH		TIM1,4
-
-#define PWM5SET			TIM1,GPIOE,GPIO_Pin_13
-#define PWM5TIMCH		TIM1,3
-
-
-//led3‚©buzzer‚Ç‚Á‚¿‚©‚µ‚©pwm‚Å‚«‚È‚¢
-#define LED2SET			TIM8,GPIOB,GPIO_Pin_14
-#define LED2TIMCH		TIM8,2
-
-#define LED3SET			TIM8,GPIOB,GPIO_Pin_15
-#define LED3TIMCH		TIM8,3
-
-#define BUZZERSET		TIM8,GPIOB,GPIO_Pin_1
-#define BUZZERTIMCH	TIM8,3
 
 int Pwm0::_setupPwmOut(float frequency, float duty)
 {

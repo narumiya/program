@@ -22,16 +22,20 @@ extern "C"{
 #include "layer_driver/circuit/servo.hpp"
 #include "layer_driver/circuit/r1350n/r1350n.hpp"
 #include "layer_driver/circuit/button/button.hpp"
+#include "layer_driver/board/stm32f4_config/config_adc.h"
 
 #if 1
 int main(){
-	int serialTime=0;
+	unsigned int serialTime=0;
 	CW0 cw0;CCW0 ccw0;Pwm0 pwm0;
 	CW1 cw1;CCW1 ccw1;Pwm1 pwm1;
 	MiniMD motor0(ccw0,cw0,pwm0);
 	MiniMD motor1(cw1,ccw1,pwm1);
 	Move move(motor0,motor1);
 	motor0.setup();motor1.setup();
+	Led0 led;
+	Blink blink(led);blink.setup();
+	blink.time(200);
 	A0 a0;a0.setupAnalogIn();
 	A1 a1;a1.setupAnalogIn();
 	A2 a2;a2.setupAnalogIn();
@@ -39,17 +43,17 @@ int main(){
 	A4 a4;a4.setupAnalogIn();
 	CW2 cw2;cw2.setupDigitalInPullDown();
 	Button button(cw2);button.setup(true,100);
-	Serial0 gyroPin;R1350n gyro(gyroPin);
-	Serial1 serial;//serial.setup(115200);
-	gyro.setup();
+	Serial0 gyroPin;R1350n gyro(gyroPin);gyro.setup();
+	Serial1 serial;serial.setup(115200);
 
-	Console console(serial);console.setup(115200);
+	/*Console console(serial);console.setup(115200);
 	console.setNewLine(Console::NEWLINE_CR);
-	Echo echo(console);
+	Echo echo(console);*/
 
 	while(1){
-		button.cycle();
-		console.cycle();
+		blink.cycle();
+		//button.cycle();
+		//console.cycle();
 		//echo.commandCycle();
 		/*motor0.duty(1);motor1.duty(1);
 		motor0.cycle();motor1.cycle();
@@ -58,11 +62,12 @@ int main(){
 		if(millis()-serialTime>=100){
 			serialTime=millis();
 			//serial.printf("%.4f\n",rtod(gyro.angle()));
-			/*serial.printf("ad0 %.2f,",a0.analogRead());
+			serial.printf("ad0 %.2f,",a0.analogRead());
 			serial.printf("ad1 %.2f,",a1.analogRead());
 			serial.printf("ad2 %.2f,",a2.analogRead());
+			//serial.printf("ad2 %.2f,\n",get_ADC1_value(GPIOC,GPIO_Pin_5));
 			serial.printf("ad3 %.2f,",a3.analogRead());
-			serial.printf("ad4 %.2f\n",a4.analogRead());*/
+			serial.printf("ad4 %.2f\n",a4.analogRead());
 		}
 	}
 }
