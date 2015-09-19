@@ -11,7 +11,7 @@
 class Servo:public SerialInterface{
 	private:
 		Pwm *pwm;
-		Serial *serial;
+		//Serial *serial;
 		float Period;		//周期(ms)
 		float NeutPulse;	//ms 真ん中のパルス
 		float RangeDeg;	//サーボ動作角度
@@ -19,15 +19,18 @@ class Servo:public SerialInterface{
 		float request;
 		int targetAngle[NUM];
 		int servoAngle[NUM];
-		int time;
+		unsigned int time;
 		int Id;
 	public:
 		/*PWMで動かす*/
+		/*電源投入時信号線を500ms LOW*/
+
 		Servo (Pwm &pwmPin);
 		int setup(float setPeriod, float setRangeDeg, float setNeutral, float setMaxPulse);
 		void cycle();
 		void duty(float deg);
 		/*シリアルで動かす*/
+		/*電源投入時信号線を500ms HIGH*/
 		Servo (Serial &serialPin);
 		int setup();
 		void setAngle(int id,float angle);

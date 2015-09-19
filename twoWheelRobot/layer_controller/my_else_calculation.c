@@ -40,8 +40,6 @@ float calc_pid(pid_data_t *data,float difference,pid_gain_t gain){
 	data->i_data += difference;
 	data->old_gap_data  = difference;
 
-	ans = area(ans,-1,1);
-
 	return (ans);
 }
 

@@ -5,12 +5,20 @@
 #include "layer_driver/circuit/servo.hpp"
 #include "layer_application/console.hpp"
 
-class ServoControll:public ConsoleCommand,public SerialInterface{
+class ServoControll:public ConsoleCommand{
 private:
+	enum{
+		DEG=1,
+	};
 	Servo *servo;
+	int mode;
+	float degree;
+	void moveCycle();
+	void designateAngleCycle();
 public:
-	ServoControll(Servo &servoPin,Serial &serialPin,Console &console):ConsoleCommand(console){servo=&servoPin;serial=&serialPin;};
+	ServoControll(Servo &servoPin,Console &console):ConsoleCommand(console){servo=&servoPin;mode=0;};
 	int commandCompare(char *str){return !strcmp(str,"servo");}
 	int commandRequest(int argc,char **argv);
+	void cycle();
 };
 #endif

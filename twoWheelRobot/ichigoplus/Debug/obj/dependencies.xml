@@ -7,6 +7,9 @@
       <source file="..\..\..\layer_driver\board\stm32f4_config\config_pwm.c" lastModified="14eb18e7078">
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_pwm.h"/>
       </source>
+      <source file="..\..\..\layer_application\servo_controll.cpp" lastModified="14fdefc6b1c">
+         <include file="..\..\..\layer_application\servo_controll.hpp"/>
+      </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\config_systick.h" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx_conf.h"/>
@@ -42,7 +45,7 @@
       <source file="..\..\..\layer_driver\board\stm32f4_config\config_port.c" lastModified="14eb18e6c90">
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_port.h"/>
       </source>
-      <source file="..\..\..\layer_driver\circuit\servo.cpp" lastModified="14fd48b3b91">
+      <source file="..\..\..\layer_driver\circuit\servo.cpp" lastModified="14fdf197c29">
          <include file="..\..\..\layer_driver\circuit\servo.hpp"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
          <include file="..\..\..\layer_driver\board\pin.hpp"/>
@@ -195,8 +198,11 @@
          <include file="..\..\..\layer_driver\base\digital.hpp"/>
          <include file="..\..\..\layer_driver\base\pwm.hpp"/>
       </source>
-      <source file="..\..\..\layer_controller\move.hpp" lastModified="14fd4ed42b4">
+      <source file="..\..\..\layer_controller\move.hpp" lastModified="14fe43e1f24">
          <include file="..\..\..\layer_driver\circuit\mini_md_1.0\mini_md.hpp"/>
+         <include file="..\..\..\layer_driver\base\analog.hpp"/>
+         <include file="..\..\..\layer_driver\circuit\button_info.hpp"/>
+         <include file="..\..\..\layer_driver\board\pin.hpp"/>
       </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_adc.c" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_adc.h"/>
@@ -224,7 +230,7 @@
       <source file="..\..\..\layer_driver\board\stm32f4_config\sd\fatfs\diskio.h" lastModified="14eb18e6c90">
          <include file="..\..\..\layer_driver\board\stm32f4_config\sd\fatfs\integer.h"/>
       </source>
-      <source file="..\..\..\layer_driver\circuit\button\button.cpp" lastModified="14fd0b1c8d4">
+      <source file="..\..\..\layer_driver\circuit\button\button.cpp" lastModified="14fe380ef8c">
          <include file="..\..\..\layer_driver\circuit\button\button.hpp"/>
       </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\core\usbd_core.h" lastModified="14eb18e6c90">
@@ -285,6 +291,10 @@
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_dma.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
+      <source file="..\..\..\layer_driver\circuit\button_info.cpp" lastModified="14fe3f62b7e">
+         <include file="..\..\..\layer_driver\circuit\button_info.hpp"/>
+         <include file="..\..\..\layer_driver\base\mcutime.h"/>
+      </source>
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_pwr.h" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
@@ -299,7 +309,7 @@
       </source>
       <source file="..\..\..\layer_controller\my_else_calculation.h" lastModified="14f8de01524">
       </source>
-      <source file="..\..\..\layer_controller\my_else_calculation.c" lastModified="14f8ddfe575">
+      <source file="..\..\..\layer_controller\my_else_calculation.c" lastModified="14fe40adc07">
          <include file="..\..\..\layer_controller\my_else_calculation.h"/>
          <include file="..\..\..\layer_driver\base\util.h"/>
       </source>
@@ -318,7 +328,7 @@
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\otg\usb_core.h"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\layer_application\servo_controll.hpp" lastModified="14fdc4bf3bc">
+      <source file="..\..\..\layer_application\servo_controll.hpp" lastModified="14fdedbc4c8">
          <include file="..\..\..\layer_driver\base\serial.hpp"/>
          <include file="..\..\..\layer_driver\circuit\servo.hpp"/>
          <include file="..\..\..\layer_application\console.hpp"/>
@@ -342,7 +352,7 @@
       </source>
       <source file="..\..\..\layer_driver\base\analog.hpp" lastModified="14fd0699a15">
       </source>
-      <source file="..\..\..\layer_driver\circuit\servo.hpp" lastModified="14fdc343b30">
+      <source file="..\..\..\layer_driver\circuit\servo.hpp" lastModified="14fe3e3382a">
          <include file="..\..\..\layer_driver\base\pwm.hpp"/>
          <include file="..\..\..\layer_driver\base\serial.hpp"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_usart.h"/>
@@ -555,9 +565,6 @@
          <include file="..\..\..\layer_driver\base\util.h"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
       </source>
-      <source file="..\..\..\layer_controller\move.cpp" lastModified="14fd4ed057d">
-         <include file="..\..\..\layer_controller\move.hpp"/>
-      </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_exti.c" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_exti.h"/>
       </source>
@@ -584,6 +591,9 @@
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\layer_driver\board\stm32f4_config\sd\fatfs\diskio.h"/>
       </source>
+      <source file="..\..\..\layer_driver\circuit\button_info.hpp" lastModified="14fe3f62b6e">
+         <include file="..\..\..\layer_driver\base\digital.hpp"/>
+      </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_conf\usbd_desc.h" lastModified="14eb18e6c90">
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\core\usbd_def.h"/>
       </source>
@@ -608,7 +618,8 @@
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
-      <source file="..\..\..\main.cpp" lastModified="14fdc4e5818">
+      <source file="..\..\..\main.cpp" lastModified="14fe5775e29">
+         <include file="..\..\..\layer_driver\board\stm32f4_config\config_adc.h"/>
          <include file="..\..\..\layer_application\console.hpp"/>
          <include file="..\..\..\layer_application\servo_controll.hpp"/>
          <include file="..\..\..\layer_controller\blink.hpp"/>
@@ -651,7 +662,12 @@
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rtc.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
+      <source file="..\..\..\layer_controller\calculate.h" lastModified="14fdf4fba67">
+      </source>
       <source file="..\..\..\cmsis\core_cm4_simd.h" lastModified="14eb18e7460">
+      </source>
+      <source file="..\..\..\layer_controller\calculate.c" lastModified="14fdf4fbe20">
+         <include file="..\..\..\layer_controller\calculate.h"/>
       </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\config_pwm.h" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>

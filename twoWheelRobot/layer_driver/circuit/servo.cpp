@@ -5,6 +5,7 @@
 
 Servo::Servo(Pwm &pwmPin){
 	pwm=&pwmPin;
+	time=millis();
 }
 
 Servo::Servo(Serial &serialPin){
@@ -13,7 +14,7 @@ Servo::Servo(Serial &serialPin){
 		targetAngle[i]=0;
 		servoAngle[i]=0;
 	}
-	time=0;
+	time=millis();
 	Id=0;
 }
 
@@ -23,6 +24,7 @@ int Servo::setup(float setPeriod, float setRangeDeg, float setNeutral, float set
 	NeutPulse = setNeutral;
 	MaxPulse = setMaxPulse;
 	pwm->setupPwmOut(1/(Period/1000),0);
+	delay_ms(500);
 	return 0;
 }
 

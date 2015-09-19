@@ -11,7 +11,7 @@ Button::Button(Digital *pinArg){
 
 
 int Button::setup(bool onWhenWhat,int millisArg){
-	outputState=0;
+
 	setChatteringTime(millisArg);
 	setOnWhenHigh(onWhenWhat);
 	return pin->setupDigitalInPullDown();

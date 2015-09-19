@@ -1,5 +1,7 @@
 //libraries
-
+extern "C"{
+#include "layer_driver/board/stm32f4_config/config_adc.h"
+}
 //application
 #include "layer_application/console.hpp"
 #include "layer_application/servo_controll.hpp"
@@ -18,61 +20,94 @@
 #include "layer_driver/circuit/servo.hpp"
 #include "layer_driver/circuit/r1350n/r1350n.hpp"
 #include "layer_driver/circuit/button/button.hpp"
-
+#define INITANGLE -15.0
 #if 1
+#define AD0		GPIOC,GPIO_Pin_5
+#define AD1		GPIOC,GPIO_Pin_1
+#define AD2		GPIOC,GPIO_Pin_2
+#define AD3		GPIOC,GPIO_Pin_3
+#define AD4		GPIOC,GPIO_Pin_4
 int main(){
-	unsigned int serialTime=0;
-	CW2 cw2;CCW2 ccw2;Pwm2 pwm2;
+	CW0 cw0;CCW0 ccw0;Pwm0 pwm0;
 	CW1 cw1;CCW1 ccw1;Pwm1 pwm1;
-	MiniMD right(ccw2,cw2,pwm2);
+	MiniMD right(ccw0,cw0,pwm0);
 	MiniMD left(cw1,ccw1,pwm1);
-	Move move(left,right);
-	left.setup();right.setup();
-	Pwm0 pwm0;
-	Servo servo(pwm0);
-	servo.setup(30,270,1.5,2.3);
+	//Pwm0 pwm0;
+	//Servo servo(pwm0);
+	CW5 cw5;
+	ButtonInfo startSW(cw5);
 	Led0 led;
 	Blink blink(led);blink.setup();
 	blink.time(200);
-	CW4 cw4;cw4.setupDigitalInPullDown();
-	Button button(cw4);button.setup(true,100);
-	Serial0 gyroPin;R1350n gyro(gyroPin);gyro.setup();
-	Serial1 serial;
-	Console console(serial);console.setup(115200);
+	Serial1 gyroPin;R1350n gyro(gyroPin);gyro.setup();
+	Serial0 serial;serial.setup(115200);
+	/*Console console(serial);console.setup(115200);
 	console.setNewLine(Console::NEWLINE_CR);
-	ServoControll controll(servo,serial,console);
-	Echo echo(console);
-
+	ServoControll servoControll(servo,console);*/
+	//servo.setup(30,270,1.5,2.3);
 	A0 a0;A1 a1;A2 a2;A3 a3;A4 a4;
-	a0.setupAnalogIn();
-	a1.setupAnalogIn();
-	a2.setupAnalogIn();
-	a3.setupAnalogIn();
-	a4.setupAnalogIn();
-
+	Move move(left,right,a0,a1,a2,a3,a4,startSW);
+	move.setup();
+	/*int i=a0.setupAnalogIn();
+	i=a1.setupAnalogIn();
+	i=a2.setupAnalogIn();
+	i=a3.setupAnalogIn();
+	i=a4.setupAnalogIn();*/
+	//Init_ADC1(AD0);
+	Init_ADC1(AD1);
+	//Init_ADC1(AD2);
+	Init_ADC1(AD3);
+	//Init_ADC1(AD4);
+	//int flag=0;float deg=0;
+	unsigned int serialTime=0;
+	//unsigned int tim=millis();
 	while(1){
+		//move.TPR105Cycle();
 		blink.cycle();
-		button.cycle();
-		console.cycle();
+		move.cycle();
+		//console.cycle();
+		//servoControll.cycle();
 		/*motor0.duty(1);motor1.duty(1);
 		motor0.cycle();motor1.cycle();
 		if(button.value()) gyro.reset();*/
 
+		/*if(millis()-tim>=50){0
+			if(serial.charAvailable()){
+				flag=1;
+				char key=serial.readChar();
+				serial.printf("key %c\n",key);
+				if(key=='d'){
+					deg+=5.0;
+					deg=floatlimit(-135,deg,135);
+				}else if(key=='a'){
+					deg-=5.0;
+					deg=floatlimit(-135,deg,135);
+				}else if(key=='w'){
+					deg=0;
+				}
+				serial.printf("deg %.2f",deg);
+				servo.duty(deg);
+			}
+		}*/
+		//if(flag==1)servo.cycle();
 		if(millis()-serialTime>=100){
 			serialTime=millis();
-			//serial.printf("%.4f\n",rtod(gyro.angle()));
-			/*serial.printf("ad0 %.2f,",a0.analogRead());
-			serial.printf("ad1 %.2f,",a1.analogRead());
-			serial.printf("ad2 %.2f,",a2.analogRead());
-			serial.printf("ad3 %.2f,",a3.analogRead());
-			serial.printf("ad4 %.2f\n",a4.analogRead());*/
-
+			/*serial.printf("deg %.4f",rtod(gyro.angle()));
+			serial.printf("accx %.4f",gyro.accelx()*9.8/4095);
+			serial.printf("accy %.4f",gyro.accely()*9.8/4095);
+			serial.printf("accz %.4f\n",gyro.accelz()*9.8/4095);*/
+			//serial.printf("ad0 %f,",a0.analogRead());
+			//serial.printf("ad1 %f,",a1.analogRead());
+			//serial.printf("ad2 %f,",a2.analogRead());
+			//serial.printf("ad3 %f,",a3.analogRead());
+			//serial.printf("ad4 %f  ",a4.analogRead());
+			//move.printAdValue();
+			//serial.printf("\n");
 		}
 	}
 }
 
 #endif
-
 
 #if 0
 int main(void){
@@ -290,6 +325,7 @@ int main(void){
 	}
 }
 #endif
+
 #if 0
 int main(void)
 {
