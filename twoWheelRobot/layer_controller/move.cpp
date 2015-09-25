@@ -5,10 +5,10 @@
 extern "C"{
 #include "mcutime.h"
 #include "calculate.h"
-#include "my_else_calculation.h"
+
 }
 
-Move::	Move(MiniMD &l,MiniMD &r,ButtonInfo &swPin){
+Move::Move(MiniMD &l,MiniMD &r,ButtonInfo &swPin){
 	md[0]=&l;md[1]=&r;
 	sw=&swPin;
 	mode=NONSENSOR;
@@ -21,7 +21,6 @@ Move::	Move(MiniMD &l,MiniMD &r,ButtonInfo &swPin){
 Move::Move(MiniMD &l,MiniMD &r,Analog &a0,Analog &a1,Analog &a2,Analog &a3,Analog &a4,ButtonInfo &swPin){
 	mode=USESENSOR;
 	sw=&swPin;
-	md[0]=&l;md[1]=&r;
 	an[0]=&a0;an[1]=&a1;
 	an[2]=&a2;an[3]=&a3;
 	an[4]=&a4;
@@ -33,19 +32,40 @@ Move::Move(MiniMD &l,MiniMD &r,Analog &a0,Analog &a1,Analog &a2,Analog &a3,Analo
 	time=millis();
 	startFlag=false;
 	calibraFlag=false;
+	useServo=false;
+}
+Move::Move(Analog &a0,Analog &a1,Analog &a2,Analog &a3,Analog &a4,ButtonInfo &swPin,Servo &servoPin){
+	mode=USESENSOR;
+	sw=&swPin;
+	servo=&servoPin;
+	an[0]=&a0;an[1]=&a1;
+	an[2]=&a2;an[3]=&a3;
+	an[4]=&a4;
+	for(int i=0;i<5;i++){
+		adData[i]=0.0;
+	}
+	countWhile=0;
+	countAverage=500;
+	time=millis();
+	startFlag=false;
+	calibraFlag=false;
+	useServo=true;
 }
 int Move::setup(){
-	sw->setup(false,50);
+	sw->setup(true,25);
 	led1.setupDigitalOut();
 	led2.setupDigitalOut();
 	led3.setupDigitalOut();
-	for(int i=0;i<2;i++){
-		md[i]->setup();
-	}
 	if(mode==USESENSOR){
 		/*for(int i=0;i<5;i++){
 			an[i]->setupAnalogIn();
 		}*/
+	}
+	if(useServo) servo->setup(30,270,1.5,2.3);
+	else{
+		for(int i=0;i<2;i++){
+			md[i]->setup();
+		}
 	}
 	return 0;
 }
@@ -64,19 +84,38 @@ void Move::cycle(){
 			//}
 		}else if(startFlag){
 			led3.digitalHigh();
-			float speed=0.35;
-			float rotation=rotationOutput();
-			setDuty(speed,rotation);
-			//printf("output,%.2f",rotation);
-			//printf("middle%f",middle);
-			//printf("sw,%d",sw->readValue());
-			//printf("\n");
+			if(!useServo){
+				pid_gain_t gain=set_pid_gain(0.65,0.0,1.2);//p0.3直進の出力なし
+				float speed=0.0;
+				float rotation=floatlimit(-1.0,rotationOutput(gain),1.0);
+				setDuty(speed,rotation);
+				//printf("output,%.2f",rotation);
+				//printf("middle%f",middle);
+				//printf("sw,%d",sw->readValue());
+				//printf("\n");
+			}else{
+				static float output=servo->initAngle(INITANGLE);
+				pid_gain_t gain=set_pid_gain(0.000035,0.0,0.0);//1度→0.0019
+				float angle=rotationOutput(gain);
+				output+=angle;
+				if(output>=servo->initAngle(45)){
+					output=servo->initAngle(45);
+				}else if(output<=servo->initAngle(-45)){
+					output=servo->initAngle(-45);
+				}
+				//printf("output,%.2f\n",output);
+				servo->setDuty(output);
+			}
 		}
 		countAverage=countWhile;
 		countWhile=0;
 	}
-	for(int i=0;i<2;i++)
-		md[i]->cycle();
+	if(!useServo){
+		for(int i=0;i<2;i++)
+			md[i]->cycle();
+	}else{
+		servo->cycle();
+	}
 }
 
 void Move::setDuty(float straight,float rotat){
@@ -91,28 +130,36 @@ void Move::TPR105Cycle(){
 	}
 }
 
-float Move::rotationOutput(){
+float Move::rotationOutput(pid_gain_t gain){
 	static pid_data_t data={0};
-	const pid_gain_t gain=set_pid_gain(0.3,0.0,0.0);
-	static int reset=millis();
+	//const pid_gain_t gain=set_pid_gain(0.65,0.0,1.2);//p0.3直進の出力なし
+	float ad=0;
+
+	//static int reset=millis();
 	//const pid_gain_t gain=set_pid_gain(0.2,0.0,0);
 
-	if(millis()-reset>=100){
+	/*if(millis()-reset>=100){
 		reset=millis();
 		reset_pid_data(&data);
-	}
+	}*/
 	//float ad=((adData[1]+adData[3])-middle);///((other-white));
-	float ad=((adData[1]-adData[3]));
+	ad=((adData[1]-adData[3]));//差分を0にするように
 	//printf("ad,%f",ad);
-	return  floatlimit(-1.0,calc_pid(&data,ad,gain),1.0);
+	float output=calc_pid(&data,ad,gain);
+	//printf("%f,  %f,   %f\n",adData[3],adData[1],output);
+
+	return  output;
 	//return calc_pid(&data,ad,gain);
 }
 
 
 void Move::printAdValue(){
-	for(int i=0;i<5;i++){
-		printf("ad%d,%.4f",i,adData[i]);
-	}
+	//printf("ad%d,%.4f",0,adData[0]);
+	printf("ad%d,%.4f",1,adData[1]);
+	//printf("ad%d,%.4f",2,adData[2]);
+	printf("ad%d,%.4f",3,adData[3]);
+	//printf("ad%d,%.4f",4,adData[4]);
+	printf("\n");
 }
 
 

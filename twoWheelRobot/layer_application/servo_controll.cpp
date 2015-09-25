@@ -21,7 +21,7 @@ void ServoControll::cycle(){
 }
 
 void ServoControll::designateAngleCycle(){
-	servo->duty(degree);
+	servo->setAngle(degree);
 	servo->cycle();
 }
 

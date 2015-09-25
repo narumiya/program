@@ -20,7 +20,7 @@ extern "C"{
 #include "layer_driver/circuit/servo.hpp"
 #include "layer_driver/circuit/r1350n/r1350n.hpp"
 #include "layer_driver/circuit/button/button.hpp"
-#define INITANGLE -15.0
+
 #if 1
 #define AD0		GPIOC,GPIO_Pin_5
 #define AD1		GPIOC,GPIO_Pin_1
@@ -30,12 +30,13 @@ extern "C"{
 int main(){
 	CW0 cw0;CCW0 ccw0;Pwm0 pwm0;
 	CW1 cw1;CCW1 ccw1;Pwm1 pwm1;
-	MiniMD right(ccw0,cw0,pwm0);
-	MiniMD left(cw1,ccw1,pwm1);
+	//MiniMD right(ccw0,cw0,pwm0);
+	//MiniMD left(cw1,ccw1,pwm1);
 	//Pwm0 pwm0;
-	//Servo servo(pwm0);
+	Servo servo(pwm0);
 	CW5 cw5;
-	ButtonInfo startSW(cw5);
+	Sw0 sw;
+	ButtonInfo startSW(sw);
 	Led0 led;
 	Blink blink(led);blink.setup();
 	blink.time(200);
@@ -44,10 +45,11 @@ int main(){
 	/*Console console(serial);console.setup(115200);
 	console.setNewLine(Console::NEWLINE_CR);
 	ServoControll servoControll(servo,console);*/
-	//servo.setup(30,270,1.5,2.3);
 	A0 a0;A1 a1;A2 a2;A3 a3;A4 a4;
-	Move move(left,right,a0,a1,a2,a3,a4,startSW);
+	//Move move(left,right,a0,a1,a2,a3,a4,startSW);
+	Move move(a0,a1,a2,a3,a4,startSW,servo);
 	move.setup();
+	//servo.setup(30,270,1.5,2.3);
 	/*int i=a0.setupAnalogIn();
 	i=a1.setupAnalogIn();
 	i=a2.setupAnalogIn();
@@ -58,9 +60,9 @@ int main(){
 	//Init_ADC1(AD2);
 	Init_ADC1(AD3);
 	//Init_ADC1(AD4);
-	//int flag=0;float deg=0;
+	int flag=0;float deg=0;
 	unsigned int serialTime=0;
-	//unsigned int tim=millis();
+	unsigned int tim=millis();
 	while(1){
 		//move.TPR105Cycle();
 		blink.cycle();
@@ -71,7 +73,7 @@ int main(){
 		motor0.cycle();motor1.cycle();
 		if(button.value()) gyro.reset();*/
 
-		/*if(millis()-tim>=50){0
+		/*if(millis()-tim>=50){
 			if(serial.charAvailable()){
 				flag=1;
 				char key=serial.readChar();
@@ -86,11 +88,11 @@ int main(){
 					deg=0;
 				}
 				serial.printf("deg %.2f",deg);
-				servo.duty(deg);
+				servo.setAngle(deg);
 			}
-		}*/
-		//if(flag==1)servo.cycle();
-		if(millis()-serialTime>=100){
+		}
+		if(flag==1)servo.cycle();*/
+		if(millis()-serialTime>=300){
 			serialTime=millis();
 			/*serial.printf("deg %.4f",rtod(gyro.angle()));
 			serial.printf("accx %.4f",gyro.accelx()*9.8/4095);
@@ -101,7 +103,8 @@ int main(){
 			//serial.printf("ad2 %f,",a2.analogRead());
 			//serial.printf("ad3 %f,",a3.analogRead());
 			//serial.printf("ad4 %f  ",a4.analogRead());
-			//move.printAdValue();
+			move.printAdValue();
+			//printf("%d\n",startSW.readValue());
 			//serial.printf("\n");
 		}
 	}

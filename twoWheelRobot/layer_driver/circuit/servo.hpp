@@ -28,7 +28,9 @@ class Servo:public SerialInterface{
 		Servo (Pwm &pwmPin);
 		int setup(float setPeriod, float setRangeDeg, float setNeutral, float setMaxPulse);
 		void cycle();
-		void duty(float deg);
+		void setAngle(float deg);
+		void setDuty(float pos);
+		float initAngle(float deg);
 		/*シリアルで動かす*/
 		/*電源投入時信号線を500ms HIGH*/
 		Servo (Serial &serialPin);

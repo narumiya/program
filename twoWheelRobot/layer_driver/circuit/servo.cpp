@@ -2,6 +2,7 @@
 #include "servo.hpp"
 #include "mcutime.h"
 #include "pin.hpp"
+#include <stdio.h>
 
 Servo::Servo(Pwm &pwmPin){
 	pwm=&pwmPin;
@@ -33,16 +34,32 @@ int Servo::setup(){
 	return 0;
 }
 
-void Servo::duty(float deg){
-	static float old=0;
-	float duty=0;
-	if(!((-RangeDeg/2.0)<=deg && deg <=RangeDeg/2.0))
+void Servo::setAngle(float deg){
+	static float old=0.0;
+	float duty=0.0;
+	if(!((-RangeDeg/2.0)<=deg && deg <=(RangeDeg/2.0)))
 		request=old;
 	else{
 		duty = (fabs(MaxPulse-NeutPulse)) / (Period * fabs(RangeDeg/2.0)) * deg + NeutPulse/Period;
 		request= duty;
 		old=duty;
 	}
+}
+
+void Servo::setDuty(float pos){
+	static float old=0.0;
+	float duty;
+	if((NeutPulse-fabs(MaxPulse-NeutPulse))/Period<=pos && pos<=MaxPulse/Period){//neutPulse-(MaxPulse-neutPulse)
+		duty=pos;
+		request=duty;
+		old=duty;
+	}else{
+		request=old;
+	}
+}
+
+float Servo::initAngle(float deg){
+	return (fabs(MaxPulse-NeutPulse)) / (Period * fabs(RangeDeg/2.0)) * deg + NeutPulse/Period;
 }
 
 void Servo::cycle(){

@@ -19,6 +19,7 @@ ButtonInfo::ButtonInfo(Digital &digitalPin){
 int ButtonInfo::setup(bool normaly,int time){
 	normalyClose=normaly;
 	chatTime=time;
+	if(normalyClose)state=1;
 	return pin->setupDigitalInPullDown();
 }
 
