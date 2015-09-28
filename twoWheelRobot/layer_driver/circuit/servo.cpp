@@ -2,6 +2,7 @@
 #include "servo.hpp"
 #include "mcutime.h"
 #include "pin.hpp"
+#include "util.h"
 #include <stdio.h>
 
 Servo::Servo(Pwm &pwmPin){
@@ -34,13 +35,15 @@ int Servo::setup(){
 	return 0;
 }
 
-void Servo::setAngle(float deg){
+void Servo::setAngle(float rad){
 	static float old=0.0;
 	float duty=0.0;
-	if(!((-RangeDeg/2.0)<=deg && deg <=(RangeDeg/2.0)))
+	//if(!((-RangeDeg/2.0)<=deg && deg <=(RangeDeg/2.0)))
+	if(!(dtor((-RangeDeg/2.0))<=rad && rad <=dtor((RangeDeg/2.0))))
 		request=old;
 	else{
-		duty = (fabs(MaxPulse-NeutPulse)) / (Period * fabs(RangeDeg/2.0)) * deg + NeutPulse/Period;
+		//duty = (fabs(MaxPulse-NeutPulse)) / (Period * fabs(RangeDeg/2.0)) * deg + NeutPulse/Period;
+		duty=cvtPulse(rad);
 		request= duty;
 		old=duty;
 	}
@@ -58,8 +61,9 @@ void Servo::setDuty(float pos){
 	}
 }
 
-float Servo::initAngle(float deg){
-	return (fabs(MaxPulse-NeutPulse)) / (Period * fabs(RangeDeg/2.0)) * deg + NeutPulse/Period;
+float Servo::cvtPulse(float rad){
+	//return (fabs(MaxPulse-NeutPulse)) / (Period * fabs(RangeDeg/2.0)) * deg + NeutPulse/Period;
+	return  (fabs(MaxPulse-NeutPulse)) / (Period * dtor(fabs(RangeDeg/2.0))) *rad + NeutPulse/Period;
 }
 
 void Servo::cycle(){

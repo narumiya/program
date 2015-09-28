@@ -45,10 +45,11 @@
       <source file="..\..\..\layer_driver\board\stm32f4_config\config_port.c" lastModified="14eb18e6c90">
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_port.h"/>
       </source>
-      <source file="..\..\..\layer_driver\circuit\servo.cpp" lastModified="15003fec5e3">
+      <source file="..\..\..\layer_driver\circuit\servo.cpp" lastModified="1500757c47d">
          <include file="..\..\..\layer_driver\circuit\servo.hpp"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
          <include file="..\..\..\layer_driver\board\pin.hpp"/>
+         <include file="..\..\..\layer_driver\base\util.h"/>
       </source>
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_i2c.h" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
@@ -198,7 +199,7 @@
          <include file="..\..\..\layer_driver\base\digital.hpp"/>
          <include file="..\..\..\layer_driver\base\pwm.hpp"/>
       </source>
-      <source file="..\..\..\layer_controller\move.hpp" lastModified="15003e5039f">
+      <source file="..\..\..\layer_controller\move.hpp" lastModified="15007531607">
          <include file="..\..\..\layer_driver\circuit\mini_md_1.0\mini_md.hpp"/>
          <include file="..\..\..\layer_driver\circuit\servo.hpp"/>
          <include file="..\..\..\layer_driver\base\analog.hpp"/>
@@ -351,7 +352,7 @@
       </source>
       <source file="..\..\..\layer_driver\base\analog.hpp" lastModified="14fd0699a15">
       </source>
-      <source file="..\..\..\layer_driver\circuit\servo.hpp" lastModified="15003cb1ec0">
+      <source file="..\..\..\layer_driver\circuit\servo.hpp" lastModified="1500757bccc">
          <include file="..\..\..\layer_driver\base\pwm.hpp"/>
          <include file="..\..\..\layer_driver\base\serial.hpp"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_usart.h"/>
@@ -564,7 +565,7 @@
          <include file="..\..\..\layer_driver\base\util.h"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
       </source>
-      <source file="..\..\..\layer_controller\move.cpp" lastModified="150043bf9d1">
+      <source file="..\..\..\layer_controller\move.cpp" lastModified="150080c6b63">
          <include file="..\..\..\layer_controller\move.hpp"/>
          <include file="..\..\..\layer_driver\board\pin.hpp"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
@@ -622,20 +623,6 @@
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_tim.c" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
-      </source>
-      <source file="..\..\..\main.cpp" lastModified="150040e34ab">
-         <include file="..\..\..\layer_driver\board\stm32f4_config\config_adc.h"/>
-         <include file="..\..\..\layer_application\console.hpp"/>
-         <include file="..\..\..\layer_application\servo_controll.hpp"/>
-         <include file="..\..\..\layer_controller\blink.hpp"/>
-         <include file="..\..\..\layer_controller\move.hpp"/>
-         <include file="..\..\..\layer_driver\base\system.h"/>
-         <include file="..\..\..\layer_driver\base\mcutime.h"/>
-         <include file="..\..\..\layer_driver\board\pin.hpp"/>
-         <include file="..\..\..\layer_driver\circuit\mini_md_1.0\mini_md.hpp"/>
-         <include file="..\..\..\layer_driver\circuit\servo.hpp"/>
-         <include file="..\..\..\layer_driver\circuit\r1350n\r1350n.hpp"/>
-         <include file="..\..\..\layer_driver\circuit\button\button.hpp"/>
       </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\sd\fatfs\ff.h" lastModified="14eb18e6c90">
          <include file="..\..\..\layer_driver\board\stm32f4_config\sd\fatfs\integer.h"/>

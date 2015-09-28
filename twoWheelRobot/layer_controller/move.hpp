@@ -22,7 +22,7 @@ private:
 	Servo *servo;
 	unsigned int time;
 	Analog *an[5];
-	ButtonInfo *sw;
+	ButtonInfo *startSw;
 	Led1 led1;
 	Led2 led2;
 	Led3 led3;

@@ -10,7 +10,7 @@ extern "C"{
 
 Move::Move(MiniMD &l,MiniMD &r,ButtonInfo &swPin){
 	md[0]=&l;md[1]=&r;
-	sw=&swPin;
+	startSw=&swPin;
 	mode=NONSENSOR;
 	countWhile=0;
 	countAverage=500;
@@ -20,7 +20,7 @@ Move::Move(MiniMD &l,MiniMD &r,ButtonInfo &swPin){
 
 Move::Move(MiniMD &l,MiniMD &r,Analog &a0,Analog &a1,Analog &a2,Analog &a3,Analog &a4,ButtonInfo &swPin){
 	mode=USESENSOR;
-	sw=&swPin;
+	startSw=&swPin;
 	an[0]=&a0;an[1]=&a1;
 	an[2]=&a2;an[3]=&a3;
 	an[4]=&a4;
@@ -36,7 +36,7 @@ Move::Move(MiniMD &l,MiniMD &r,Analog &a0,Analog &a1,Analog &a2,Analog &a3,Analo
 }
 Move::Move(Analog &a0,Analog &a1,Analog &a2,Analog &a3,Analog &a4,ButtonInfo &swPin,Servo &servoPin){
 	mode=USESENSOR;
-	sw=&swPin;
+	startSw=&swPin;
 	servo=&servoPin;
 	an[0]=&a0;an[1]=&a1;
 	an[2]=&a2;an[3]=&a3;
@@ -52,7 +52,7 @@ Move::Move(Analog &a0,Analog &a1,Analog &a2,Analog &a3,Analog &a4,ButtonInfo &sw
 	useServo=true;
 }
 int Move::setup(){
-	sw->setup(true,25);
+	startSw->setup(true,25);
 	led1.setupDigitalOut();
 	led2.setupDigitalOut();
 	led3.setupDigitalOut();
@@ -73,14 +73,14 @@ int Move::setup(){
 void Move::cycle(){
 	if(mode==USESENSOR){
 		TPR105Cycle();
-		if(!calibraFlag)calibraFlag=calibra();
+		//if(!calibraFlag)calibraFlag=calibra();
 	}else	calibraFlag=true;
-	sw->cycle();
-	if(millis()-time>=5){
+	startSw->cycle();
+	if(millis()-time>=1){
 		time=millis();
 		if(!startFlag){
 			//if(calibraFlag){
-				if(sw->readDownEdge()) startFlag=true;
+				if(startSw->readDownEdge()) startFlag=true;
 			//}
 		}else if(startFlag){
 			led3.digitalHigh();
@@ -94,17 +94,42 @@ void Move::cycle(){
 				//printf("sw,%d",sw->readValue());
 				//printf("\n");
 			}else{
-				static float output=servo->initAngle(INITANGLE);
-				pid_gain_t gain=set_pid_gain(0.000035,0.0,0.0);//1“x¨0.0019
+				//static float output=servo->cvtPulse(dtor(INITANGLE));
+				//pid_gain_t gain=set_pid_gain(0.000035,0.0,0.0);//1“x¨0.0019
+				static float output=dtor(INITANGLE);//servo->cvtPulse(dtor(INITANGLE));
+				static float oldAngle=0;
+				static int flag[2]={0};
+				pid_gain_t gain=set_pid_gain(0.0018,0.0,0.0);
 				float angle=rotationOutput(gain);
+
 				output+=angle;
-				if(output>=servo->initAngle(45)){
-					output=servo->initAngle(45);
-				}else if(output<=servo->initAngle(-45)){
-					output=servo->initAngle(-45);
+				/*if(flag[0]==0){
+					if(adData[1]>=0.95&&adData[3]<=0.05){
+						flag[0]=1;
+						oldAngle=output;
+					}
+				}else if(flag[0]==1){
+					if(adData[1]<=0.05&&adData[3]<=0.05){
+						flag[0]=0;
+						output=oldAngle;
+					}
 				}
+				if(flag[1]==0){
+					if(adData[3]>=0.95&&adData[1]<=0.05){
+						flag[1]=1;
+						oldAngle=output;
+					}
+				}else if(flag[1]==1){
+					if(adData[3]<=0.05&&adData[1]<=0.05){
+						flag[1]=0;
+						output=oldAngle;
+					}
+				}*/
+				if(startSw->readValue()) output=dtor(INITANGLE);
+				output=floatlimit(dtor(-55.0),output,dtor(55.0));
+				servo->setAngle(output);
+				servo->cycle();
 				//printf("output,%.2f\n",output);
-				servo->setDuty(output);
 			}
 		}
 		countAverage=countWhile;
@@ -113,8 +138,6 @@ void Move::cycle(){
 	if(!useServo){
 		for(int i=0;i<2;i++)
 			md[i]->cycle();
-	}else{
-		servo->cycle();
 	}
 }
 
@@ -167,7 +190,7 @@ int Move::calibra(){
 	static int flag=0;
 	switch(flag){
 	case 0:
-		if(!sw->readDownEdge())	white=adData[1]+adData[3];
+		if(!startSw->readDownEdge())	white=adData[1]+adData[3];
 		else{
 			flag=1;
 			led1.digitalHigh();
@@ -175,7 +198,7 @@ int Move::calibra(){
 		}
 		break;
 	case 1:
-		if(!sw->readDownEdge())	other=adData[1]+adData[3];
+		if(!startSw->readDownEdge())	other=adData[1]+adData[3];
 		else{
 			flag=2;
 			middle=(white+other)/2;

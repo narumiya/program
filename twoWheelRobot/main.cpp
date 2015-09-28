@@ -61,12 +61,22 @@ int main(){
 	Init_ADC1(AD3);
 	//Init_ADC1(AD4);
 	int flag=0;float deg=0;
-	unsigned int serialTime=0;
+	unsigned int serialTime=millis();
 	unsigned int tim=millis();
+	unsigned int gyroTime=millis();
+	int initTime=millis();
+	float initaccx=0,initaccy=0;
+	float accx=0,accy=0;
+	while((millis()-initTime<=4000)){
+		initaccx=gyro.accelx();//*9806.65/4095;
+		initaccy=gyro.accely();//*9806.65/4095;
+	}
+	float x=0,y=0;
+
 	while(1){
 		//move.TPR105Cycle();
 		blink.cycle();
-		move.cycle();
+		//move.cycle();
 		//console.cycle();
 		//servoControll.cycle();
 		/*motor0.duty(1);motor1.duty(1);
@@ -92,18 +102,43 @@ int main(){
 			}
 		}
 		if(flag==1)servo.cycle();*/
+
+		if(millis()-gyroTime>=10){
+			gyroTime=millis();
+			//accx=((gyro.accely()-initaccy)*(9806.65/2048.0));//4095
+			//accy=((gyro.accelx()-initaccx)*(9806.65/2048.0));// /2048.0));//4095
+			/*if(fabs(gyro.accely()-initaccy)>=32.0){
+				accx=(gyro.accely()-initaccy)*(9806.65/4095);
+				accy=(gyro.accelx()-initaccx)*(9806.65/4095);
+				x+=accx*0.01*0.01;
+				y+=accy*0.01*0.01;
+			}*/
+			if((gyro.accely()-initaccy)>=5){
+			//serial.printf("accx %.4f",(gyro.accelx()-initaccx));//*9.80665/4095));
+				serial.printf("accy %.4f\n",(gyro.accely()-initaccy));//*9.80665/4095));
+			}
+			initaccx=gyro.accelx();//*9806.65/4095;
+			initaccy=gyro.accely();//*9806.65/4095;
+		}
+
 		if(millis()-serialTime>=300){
 			serialTime=millis();
-			/*serial.printf("deg %.4f",rtod(gyro.angle()));
-			serial.printf("accx %.4f",gyro.accelx()*9.8/4095);
-			serial.printf("accy %.4f",gyro.accely()*9.8/4095);
-			serial.printf("accz %.4f\n",gyro.accelz()*9.8/4095);*/
+			//serial.printf("accx %f",accx);
+			//serial.printf("accy %f",accy);
+			//serial.printf("accz %f",accz);
+			//serial.printf("x,%f,y,%f",x,y);
+			//serial.printf("\n");
+			//serial.printf("deg %.4f",rtod(gyro.angle()));
+			//serial.printf("accx %.4f",(gyro.accelx()-initaccx));//*9.80665/4095));
+			//serial.printf("accy %.4f",(gyro.accely()-initaccy));//*9.80665/4095));
+			//serial.printf("accz %.4f",(gyro.accelz()));//*9.80665/4095));
+			//serial.printf("x,%f,y,%f",x,y);
 			//serial.printf("ad0 %f,",a0.analogRead());
 			//serial.printf("ad1 %f,",a1.analogRead());
 			//serial.printf("ad2 %f,",a2.analogRead());
 			//serial.printf("ad3 %f,",a3.analogRead());
 			//serial.printf("ad4 %f  ",a4.analogRead());
-			move.printAdValue();
+			//move.printAdValue();
 			//printf("%d\n",startSW.readValue());
 			//serial.printf("\n");
 		}
