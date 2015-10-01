@@ -25,7 +25,7 @@ private:
 	int accelYData;
 	int accelZData;
 	int initialAngleData;
-	char readingData[15];
+	unsigned char readingData[15];
 	int readingCount;
 	int readStart;
 	int angleRoopCount;
@@ -34,8 +34,8 @@ private:
 	Serial *serial;
 
 public:
-	R1350n(Serial &serial){angleData=0;readingCount=0;readStart=0;initialSetStart=0;angleRoopCount=0;this->serial=&serial;};
-	void serialReadChar(char data);
+	R1350n(Serial &serial){angleData=0;readingCount=0;readStart=0;initialSetStart=0;angleRoopCount=0;accelXData=0;accelYData=0;accelZData=0;this->serial=&serial;};
+	void serialReadChar( char data);
 	int setup(){initialSetStart=1;return serial->setup(115200,(*this));};
 	float angle();
 	float rate(){return rateData*M_PI/18000.0;};

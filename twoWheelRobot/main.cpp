@@ -28,11 +28,24 @@ extern "C"{
 #define AD3		GPIOC,GPIO_Pin_3
 #define AD4		GPIOC,GPIO_Pin_4
 int main(){
-	CW0 cw0;CCW0 ccw0;Pwm0 pwm0;
-	CW1 cw1;CCW1 ccw1;Pwm1 pwm1;
-	//MiniMD right(ccw0,cw0,pwm0);
+	//CW0 cw0;CCW0 ccw0;Pwm0 pwm0;
+	//CW1 cw1;CCW1 ccw1;Pwm1 pwm1;
+	//MiniMD right(ccw1,cw1,pwm1);
+	/*right.setup();
+	Buzzer buzz;
+	buzz.setupDigitalOut();
+	while(1){
+		right.duty(0.5);
+		right.cycle();
+		buzz.digitalHigh();
+		delay_ms(500);
+		right.duty(-0.5);
+		right.cycle();
+		buzz.digitalLow();
+		delay_ms(500);
+	}*/
 	//MiniMD left(cw1,ccw1,pwm1);
-	//Pwm0 pwm0;
+	Pwm0 pwm0;
 	Servo servo(pwm0);
 	CW5 cw5;
 	Sw0 sw;
@@ -50,38 +63,71 @@ int main(){
 	Move move(a0,a1,a2,a3,a4,startSW,servo);
 	move.setup();
 	//servo.setup(30,270,1.5,2.3);
+	startSW.setup(true,50);
 	/*int i=a0.setupAnalogIn();
 	i=a1.setupAnalogIn();
 	i=a2.setupAnalogIn();
 	i=a3.setupAnalogIn();
 	i=a4.setupAnalogIn();*/
-	//Init_ADC1(AD0);
+	Init_ADC1(AD0);
 	Init_ADC1(AD1);
-	//Init_ADC1(AD2);
+	Init_ADC1(AD2);
 	Init_ADC1(AD3);
-	//Init_ADC1(AD4);
+	Init_ADC1(AD4);
 	int flag=0;float deg=0;
 	unsigned int serialTime=millis();
 	unsigned int tim=millis();
 	unsigned int gyroTime=millis();
 	int initTime=millis();
-	float initaccx=0,initaccy=0;
-	float accx=0,accy=0;
+
+	float velocity=0.0;float oldVelocity=0.0;
+	float acc=0.0;	float oldAcc=0.0;
+	float location=0.0;
+	float initaccx=0;
 	while((millis()-initTime<=4000)){
 		initaccx=gyro.accelx();//*9806.65/4095;
-		initaccy=gyro.accely();//*9806.65/4095;
+		//initaccy=gyro.accely();//*9806.65/4095;
 	}
-	float x=0,y=0;
+	float x=0.0,y=0.0;
+	float accel[3]={0.0};
+	float tmp=0.0;
 
+	float accx=0,accy=0,accz=0;
+	//重力除くプログラム
+	float threshold=4.0;
+	float thresholdMin=1;
+	float alfa=0.95;
+	//実際の加速度値
+	float currentOrientationValues[3]={0.0,0.0,0.0};
+	float currentOrientationValuesOld[3]={0.0,0.0,0.0};
+	//フィルタ後の加速度値
+	float currentAccelerationValues[3]={0.0,0.0,0.0};
+	//差分
+	float dx=0.0,dy=0.0,dz=0.0;
+	//1つ前の値
+	float oldX=0.0,oldY=0.0,oldZ=0.0;
+	//ベクトル量
+	float vectorSize=0.0;
+	//カウンタ
+	unsigned int counter=0;
+	//一回目のゆれを省くカウントフラグ（一回の端末の揺れで2回データが取れてしまうのを防ぐため
+	bool counted=false;
+	bool vecx=true;//x軸加速方向
+	bool vecy=true;//y軸加速方向
+	bool vecz=true;//z軸加速方向
+	bool noiseflg=true;//ノイズ対策
+	float vectorSixeMax=0.0;
+	int wait=0;
 	while(1){
+		startSW.cycle();
 		//move.TPR105Cycle();
 		blink.cycle();
 		//move.cycle();
 		//console.cycle();
 		//servoControll.cycle();
 		/*motor0.duty(1);motor1.duty(1);
-		motor0.cycle();motor1.cycle();
-		if(button.value()) gyro.reset();*/
+		motor0.cycle();motor1.cycle();*/
+		if(startSW.readValue()) gyro.reset();
 
 		/*if(millis()-tim>=50){
 			if(serial.charAvailable()){
@@ -105,34 +151,128 @@ int main(){
 
 		if(millis()-gyroTime>=10){
 			gyroTime=millis();
-			//accx=((gyro.accely()-initaccy)*(9806.65/2048.0));//4095
-			//accy=((gyro.accelx()-initaccx)*(9806.65/2048.0));// /2048.0));//4095
-			/*if(fabs(gyro.accely()-initaccy)>=32.0){
-				accx=(gyro.accely()-initaccy)*(9806.65/4095);
-				accy=(gyro.accelx()-initaccx)*(9806.65/4095);
-				x+=accx*0.01*0.01;
-				y+=accy*0.01*0.01;
-			}*/
-			if((gyro.accely()-initaccy)>=5){
-			//serial.printf("accx %.4f",(gyro.accelx()-initaccx));//*9.80665/4095));
-				serial.printf("accy %.4f\n",(gyro.accely()-initaccy));//*9.80665/4095));
+			accx=(gyro.accelx()/1000.0)*9.80;
+			accy=(gyro.accely()/1000.0)*9.80;
+			accz=(gyro.accelz()/1000.0)*9.80;
+			currentOrientationValues[0] =currentOrientationValuesOld[0]*alfa+accx*(1.0-alfa);
+			currentOrientationValues[1] =currentOrientationValuesOld[1]*alfa+accy*(1.0-alfa);
+			currentOrientationValues[2] =currentOrientationValuesOld[2]*alfa+accz*(1.0-alfa);
+			currentAccelerationValues[0] = accx-currentOrientationValues[0];
+			currentAccelerationValues[1] = accy-currentOrientationValues[1];
+			currentAccelerationValues[2] = accz-currentOrientationValues[2];
+			for(int i=0;i<3;i++)
+					currentOrientationValuesOld[i]=currentOrientationValues[i];
+
+			if(fabs(currentAccelerationValues[0])<=0.07){
+				velocity=0;
+				currentAccelerationValues[0]=0;
 			}
-			initaccx=gyro.accelx();//*9806.65/4095;
-			initaccy=gyro.accely();//*9806.65/4095;
+			if(wait>=100){
+				velocity+=((currentAccelerationValues[0]+oldAcc)*0.01)/2.0;//[m/s]
+				location+=((velocity+oldVelocity)*0.01)/2.0;//[m]
+				x=location*1000.0;
+				oldAcc=currentAccelerationValues[0];
+				oldVelocity=velocity;
+			}else{
+				wait+=10;
+			}
+			/*//ローパスフィルタで重力値を抽出
+			currentOrientationValues[0] =accx*0.1+currentOrientationValues[0]*(1.0-0.1);
+			currentOrientationValues[1] =accy*0.1+currentOrientationValues[1]*(1.0-0.1);
+			currentOrientationValues[2] =accz*0.1+currentOrientationValues[2]*(1.0-0.1);
+			//重力の値を省く
+			currentAccelerationValues[0] = accx-currentOrientationValues[0];
+			currentAccelerationValues[1] = accy-currentOrientationValues[1];
+			currentAccelerationValues[2] = accz-currentOrientationValues[2];
+			// ベクトル値を求めるために差分を計算
+			dx = currentAccelerationValues[0] - oldX;
+ 			dy = currentAccelerationValues[1] - oldY;
+ 			dz = currentAccelerationValues[2] - oldZ;
+
+ 			vectorSize=sqrtf(dx * dx + dy * dy + dz * dz);
+ 			// 一回目はノイズになるから省く
+ 			if (noiseflg == true) {
+ 				noiseflg = false;
+ 			} else {
+ 				if (vectorSize>threshold){
+ 					if(counted){
+ 						//serial.printf("accx:,%f,accz:,%f,vector:,%f\n",dx,dz,vectorSize);
+ 						counter++;
+ 						counted=false;
+ 						if(vectorSize>vectorSixeMax){
+ 							vectorSixeMax=vectorSize;
+ 						}
+ 					}else if(!counted){
+ 						counted=true;
+ 					}
+ 				}
+ 			}
+ 			oldX = currentAccelerationValues[0];
+ 			oldY = currentAccelerationValues[1];
+ 			oldZ = currentAccelerationValues[2];*/
+
 		}
 
-		if(millis()-serialTime>=300){
+		/*if(millis()-gyroTime>=10){
+			gyroTime=millis();
+
+			//accx=(gyro.accely()-initaccy)*(9806.65);
+			//float accel=gyro.accelx();
+			accel[2]=gyro.accelx();
+			tmp=accel[2];
+			accel[2]=(accel[0]+accel[1]+accel[2])/3.0;
+			tmp-=accel[2];
+			//if((accel-initaccx<=-5)||(accel-initaccx>=5)){
+				tmp=(accel[2]/1000)*9.806;  //acc:[m/s^2]
+				velocity+=((acc+accel[1])*0.01)/2.0;//v:[m/s]
+			//}else{
+				//acc=0;
+				//velocity=0;
+			//}
+			//serial.printf("accy %f\n",(gyro.accelx()));
+			location+=((velocity+oldVelocity)*0.01)/2.0;//[m]
+			x=location*1000.0;
+			//accx=(((gyro.accely()-initaccy)/1000.0)*9.806);  //accx:[m/s^2]
+			//accy=(((gyro.accelx()-initaccx))*9806.65);
+			//accy=(gyro.accelx()-initaccx)*(9806.65);
+			//if(fabs(accx) <= 0.1) accx = 0.0;
+			//x+=accx*0.01*0.01*1000;
+			//y+=accy*0.01*0.01;
+			//if((gyro.accely()-initaccy)>=5){
+			//serial.printf("accx %.4f",(gyro.accelx()-initaccx));//*9.80665/4095));
+			//	serial.printf("accy %.4f\n",(gyro.accely()-initaccy));//*9.80665/4095));
+			//}
+			//accy=gyro.accelx();//*9806.65/4095;
+			accel[0]=accel[1];
+			accel[1]=accel[2];
+
+			oldAcc=acc;
+			oldVelocity=velocity;
+		}*/
+
+		if(millis()-serialTime>=100){
 			serialTime=millis();
+			//serial.printf("accx %f",currentAccelerationValues[0]);
+			//serial.printf("accy %f",currentAccelerationValues[1]);
+			//serial.printf("accz %f  ",currentAccelerationValues[2]);
+
 			//serial.printf("accx %f",accx);
 			//serial.printf("accy %f",accy);
 			//serial.printf("accz %f",accz);
-			//serial.printf("x,%f,y,%f",x,y);
+			serial.printf("x,%f",x);
+			serial.printf("vel %f",velocity);
 			//serial.printf("\n");
 			//serial.printf("deg %.4f",rtod(gyro.angle()));
-			//serial.printf("accx %.4f",(gyro.accelx()-initaccx));//*9.80665/4095));
-			//serial.printf("accy %.4f",(gyro.accely()-initaccy));//*9.80665/4095));
+			//serial.printf("y %f",(gyro.accely()-initaccx));//*9.80665/4095));
+			//serial.printf("accy %f",(gyro.accely()-initaccy));//*9.80665/4095));
 			//serial.printf("accz %.4f",(gyro.accelz()));//*9.80665/4095));
 			//serial.printf("x,%f,y,%f",x,y);
+			//serial.printf("accx %f",(gyro.accelx()/1000.0)*9.800);
+			//serial.printf("accy %f",(gyro.accely()/1000.0)*9.8000);
+			//serial.printf("accz %f",(gyro.accelz()/1000.0)*9.8000);
+			//serial.printf("accx %f",(gyro.accelx()));
+			//serial.printf("accy %f",(gyro.accely()));
+			//serial.printf("accz %f",(gyro.accelz()));
 			//serial.printf("ad0 %f,",a0.analogRead());
 			//serial.printf("ad1 %f,",a1.analogRead());
 			//serial.printf("ad2 %f,",a2.analogRead());
@@ -140,7 +280,7 @@ int main(){
 			//serial.printf("ad4 %f  ",a4.analogRead());
 			//move.printAdValue();
 			//printf("%d\n",startSW.readValue());
-			//serial.printf("\n");
+			serial.printf("\n");
 		}
 	}
 }

@@ -177,12 +177,12 @@ float Move::rotationOutput(pid_gain_t gain){
 
 
 void Move::printAdValue(){
-	//printf("ad%d,%.4f",0,adData[0]);
+	printf("ad%d,%.4f",0,adData[0]);
 	printf("ad%d,%.4f",1,adData[1]);
-	//printf("ad%d,%.4f",2,adData[2]);
+	printf("ad%d,%.4f",2,adData[2]);
 	printf("ad%d,%.4f",3,adData[3]);
-	//printf("ad%d,%.4f",4,adData[4]);
-	printf("\n");
+	printf("ad%d,%.4f",4,adData[4]);
+	//printf("\n");
 }
 
 

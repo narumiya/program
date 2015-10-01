@@ -67,7 +67,7 @@
       <source file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\cdc\usbd_cdc_core.h" lastModified="14eb18e6c90">
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\core\usbd_ioreq.h"/>
       </source>
-      <source file="..\..\..\layer_driver\base\serial.cpp" lastModified="14fd0699e11">
+      <source file="..\..\..\layer_driver\base\serial.cpp" lastModified="150186ccbdc">
          <include file="..\..\..\layer_driver\base\serial.hpp"/>
       </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.c" lastModified="14eb18e6c90">
@@ -283,7 +283,7 @@
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_flash.c" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_flash.h"/>
       </source>
-      <source file="..\..\..\layer_driver\circuit\r1350n\r1350n.cpp" lastModified="14f8b8a8a44">
+      <source file="..\..\..\layer_driver\circuit\r1350n\r1350n.cpp" lastModified="15019f61648">
          <include file="..\..\..\layer_driver\circuit\r1350n\r1350n.hpp"/>
          <include file="..\..\..\layer_driver\base\logging.h"/>
       </source>
@@ -373,7 +373,7 @@
       <source file="..\..\..\layer_driver\board\stm32f4_config\config_encoder.c" lastModified="14eb18e6c90">
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_encoder.h"/>
       </source>
-      <source file="..\..\..\layer_driver\base\serial.hpp" lastModified="14fd0699e12">
+      <source file="..\..\..\layer_driver\base\serial.hpp" lastModified="150186ccbbd">
          <include file="..\..\..\layer_driver\base\util.hpp"/>
       </source>
       <source file="..\..\..\cmsis\core_cmInstr.h" lastModified="14eb18e7460">
@@ -565,7 +565,7 @@
          <include file="..\..\..\layer_driver\base\util.h"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
       </source>
-      <source file="..\..\..\layer_controller\move.cpp" lastModified="150080c6b63">
+      <source file="..\..\..\layer_controller\move.cpp" lastModified="1501dfa0cf5">
          <include file="..\..\..\layer_controller\move.hpp"/>
          <include file="..\..\..\layer_driver\board\pin.hpp"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
@@ -587,7 +587,7 @@
          <include file="..\..\..\layer_application\console.hpp"/>
          <include file="..\..\..\layer_driver\base\logging.h"/>
       </source>
-      <source file="..\..\..\layer_driver\circuit\r1350n\r1350n.hpp" lastModified="14f8b8a8a4b">
+      <source file="..\..\..\layer_driver\circuit\r1350n\r1350n.hpp" lastModified="150186ccb8e">
          <include file="..\..\..\layer_driver\base\serial.hpp"/>
       </source>
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_iwdg.h" lastModified="14eb18e6c90">
