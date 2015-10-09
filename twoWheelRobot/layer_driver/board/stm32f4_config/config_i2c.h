@@ -38,10 +38,11 @@ typedef struct{
 	int red;
 	int green;
 	int blue;
+	int infrared;
 }Rgb_t;
 /*カラーセンサ*/
 void I2cColorConfig(char mode);
-void I2cGetColor(Rgb_t rgb);
+void I2cGetColor(Rgb_t *rgb);
 void I2cCommandSend(char address,char command, char data);
 uint8_t I2C_read_nack(I2C_TypeDef* I2Cx);
 

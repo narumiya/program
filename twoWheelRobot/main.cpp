@@ -2,6 +2,7 @@
 extern "C"{
 #include "layer_driver/board/stm32f4_config/config_adc.h"
 #include "layer_driver/board/stm32f4_config/config_i2c.h"
+#include "stm32f4xx.h"
 }
 //application
 #include "layer_application/console.hpp"
@@ -27,17 +28,26 @@ int main(){
 	//Enc0 enc0;enc0.setup();
 	//Enc1 enc1;enc1.setup();
 	//Enc2 enc2;enc2.setup();
-	Init_i2c(I2C2);
-	//I2c_lcd_init();
-	I2cColorConfig(LOW);
 	Led0 led;Blink blink(led);blink.setup();
 	blink.time(200);
+	Init_i2c(I2C2);
+	//I2c_lcd_init();
+	//I2cColorConfig(LOW);
+
 	Serial0 serial0;serial0.setup(115200);
 	//Serial1 serial1;serial1.setup(115200);
-
+	Rgb_t rgb;
+	unsigned long int time=millis();
 	while(1){
 		blink.cycle();
-		//serial0.printf("%d\n",I2C_read_nack(I2C2));
+		I2cGetColor(&rgb);
+		if(millis()-time>=300){
+			time=millis();
+			serial0.printf("r:%d",rgb.red);
+			serial0.printf("g:%d",rgb.green);
+			serial0.printf("b:%d",rgb.blue);
+			serial0.printf("inf:%d\n",rgb.infrared);
+		}
 		//I2c_lcd_locate(0,0);
 		//I2c_lcd_put_c('a');
 		//I2c_lcd_put_str("Hello!!");

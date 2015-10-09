@@ -150,15 +150,16 @@ void I2c_chack_wait(int flag){
 
 void I2cColorConfig(char mode){
 	if(mode==LOW){
-		delay_ms(200);
-		I2cCommandSend(0x2A,0x00,0x84);
 		delay_ms(5);
-		I2cCommandSend(0x2A,0x00,0x04);
+		//I2cCommandSend(0x2A,0x00,0x84);
+		I2cCommandSend(0x54,0x00,0x84);
+		delay_ms(5);
+		I2cCommandSend(0x54,0x00,0x04);
 	}else if(mode==HIGH){
-		delay_ms(200);
-		I2cCommandSend(0x2A,0x00,0x89);
 		delay_ms(5);
-		I2cCommandSend(0x2A,0x00,0x09);
+		I2cCommandSend(0x54,0x00,0x89);
+		delay_ms(5);
+		I2cCommandSend(0x54,0x00,0x09);
 	}
 }
 
@@ -176,6 +177,7 @@ void I2cCommandSend( char address, char command,  char data){
 	 //I2c_chack_wait(I2C_EVENT_MASTER_BYTE_TRANSMITTED);
 	 while(!I2C_CheckEvent(USE_I2C, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
 	I2C_GenerateSTOP(USE_I2C,ENABLE);
+
 }
 
 uint8_t I2C_read_nack(I2C_TypeDef* I2Cx){
@@ -189,5 +191,57 @@ uint8_t I2C_read_nack(I2C_TypeDef* I2Cx){
  	// read data from I2C data register and return data byte
  	uint8_t data = I2C_ReceiveData(I2Cx);
  	return data;
+}
+
+void I2cGetColor(Rgb_t *rgb){
+	char str[8]={0};
+	int i=0;
+	/*I2C_GenerateSTART(USE_I2C,ENABLE);
+	//I2c_chack_wait(I2C_EVENT_MASTER_MODE_SELECT);
+	while(!I2C_CheckEvent(USE_I2C, I2C_EVENT_MASTER_MODE_SELECT));
+	I2C_Send7bitAddress(USE_I2C,0x54,I2C_Direction_Transmitter);
+	// I2c_chack_wait(I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED);
+	while(!I2C_CheckEvent(USE_I2C, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED));
+	I2C_SendData(USE_I2C,0x03);
+	while(!I2C_CheckEvent(USE_I2C, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
+	I2C_GenerateSTOP(USE_I2C,ENABLE);
+	I2C_GenerateSTART(USE_I2C, ENABLE);
+	while(!I2C_CheckEvent(USE_I2C, I2C_EVENT_MASTER_MODE_SELECT));
+	I2C_Send7bitAddress(USE_I2C, 0x55, I2C_Direction_Receiver);
+	while(!I2C_CheckEvent(USE_I2C, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED));
+	*/
+	I2cColorConfig(HIGH);
+	while(I2C_GetFlagStatus(USE_I2C, I2C_FLAG_BUSY));
+	I2C_GenerateSTART(USE_I2C, ENABLE);
+	while(!I2C_CheckEvent(USE_I2C, I2C_EVENT_MASTER_MODE_SELECT));
+	I2C_Send7bitAddress(USE_I2C, 0x54, I2C_Direction_Transmitter);
+	while(!I2C_CheckEvent(USE_I2C, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED));
+	I2C_Cmd(USE_I2C, ENABLE);
+	I2C_SendData(USE_I2C, 0x03);
+	while(!I2C_CheckEvent(USE_I2C, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
+	I2C_GenerateSTART(USE_I2C, ENABLE);
+	while(!I2C_CheckEvent(USE_I2C, I2C_EVENT_MASTER_MODE_SELECT));
+	I2C_Send7bitAddress(USE_I2C, 0x55, I2C_Direction_Receiver);
+	while(!I2C_CheckEvent(USE_I2C, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED));
+	i=8;int j=0;
+	while(i){
+	    if(i == 1){
+	      I2C_AcknowledgeConfig(USE_I2C, DISABLE);
+	      I2C_GenerateSTOP(USE_I2C, ENABLE);
+	    }
+		if(I2C_CheckEvent(USE_I2C, I2C_EVENT_MASTER_BYTE_RECEIVED)){
+			str[j]=I2C_ReceiveData(USE_I2C);
+			j++;
+			i--;
+		}
+	}
+	I2C_AcknowledgeConfig(USE_I2C, ENABLE);
+    //I2C_AcknowledgeConfig(USE_I2C, DISABLE);
+    //I2C_GenerateSTOP(USE_I2C, ENABLE);
+
+	rgb->red=str[0]<<8 | str[1];
+	rgb->green=str[2]<<8 | str[3];
+	rgb->blue=str[4]<<8 | str[5];
+	rgb->infrared=str[6]<<8 | str[7];
 }
 

@@ -62,6 +62,10 @@
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_i2c.h" lastModified="1503755b595">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
+      <source file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.h" lastModified="1504c486679">
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_i2c.h"/>
+         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+      </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\usb\config_usb.h" lastModified="14eb18e6c90">
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\cdc\usbd_cdc_core.h"/>
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\core\usbd_usr.h"/>
@@ -74,6 +78,10 @@
       </source>
       <source file="..\..\..\layer_driver\base\serial.cpp" lastModified="150186ccbdc">
          <include file="..\..\..\layer_driver\base\serial.hpp"/>
+      </source>
+      <source file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.c" lastModified="1504c486689">
+         <include file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.h"/>
+         <include file="..\..\..\layer_driver\base\mcutime.h"/>
       </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\usb\config_usb.c" lastModified="14eb18e7078">
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\config_usb.h"/>
