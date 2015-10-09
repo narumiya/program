@@ -7,6 +7,14 @@
       <source file="..\..\..\layer_driver\board\stm32f4_config\config_pwm.c" lastModified="14eb18e7078">
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_pwm.h"/>
       </source>
+      <source file="..\..\..\layer_driver\base\i2c.cpp" lastModified="15041d24588">
+      </source>
+      <source file="..\..\..\layer_controller\robo_center.hpp" lastModified="1503ce8b5c2">
+         <include file="..\..\..\layer_driver\base\encoder.hpp"/>
+         <include file="..\..\..\layer_driver\circuit\button_info.hpp"/>
+         <include file="..\..\..\layer_driver\circuit\r1350n\r1350n.hpp"/>
+         <include file="..\..\..\layer_driver\base\util.hpp"/>
+      </source>
       <source file="..\..\..\layer_application\servo_controll.cpp" lastModified="15003cb9479">
          <include file="..\..\..\layer_application\servo_controll.hpp"/>
       </source>
@@ -21,7 +29,7 @@
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_systick.h"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx_conf.h"/>
       </source>
-      <source file="..\..\..\layer_driver\board\pin.cpp" lastModified="14fdc0110b5">
+      <source file="..\..\..\layer_driver\board\pin.cpp" lastModified="150419226a9">
          <include file="..\..\..\layer_driver\board\pin.hpp"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx_conf.h"/>
@@ -51,11 +59,8 @@
          <include file="..\..\..\layer_driver\board\pin.hpp"/>
          <include file="..\..\..\layer_driver\base\util.h"/>
       </source>
-      <source file="..\..\..\cmsis_lib\include\stm32f4xx_i2c.h" lastModified="14eb18e6c90">
+      <source file="..\..\..\cmsis_lib\include\stm32f4xx_i2c.h" lastModified="1503755b595">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
-      </source>
-      <source file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.h" lastModified="14eb18e6c90">
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_i2c.h"/>
       </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\usb\config_usb.h" lastModified="14eb18e6c90">
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\cdc\usbd_cdc_core.h"/>
@@ -69,9 +74,6 @@
       </source>
       <source file="..\..\..\layer_driver\base\serial.cpp" lastModified="150186ccbdc">
          <include file="..\..\..\layer_driver\base\serial.hpp"/>
-      </source>
-      <source file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.c" lastModified="14eb18e6c90">
-         <include file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.h"/>
       </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\usb\config_usb.c" lastModified="14eb18e7078">
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\config_usb.h"/>
@@ -130,6 +132,10 @@
          <include file="..\..\..\layer_driver\board\stm32f4_config\name_converter.h"/>
       </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_conf\usbd_conf.h" lastModified="14eb18e6c90">
+      </source>
+      <source file="..\..\..\cmsis_lib\source\stm32f4xx_i2c.c" lastModified="1503755b95e">
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_i2c.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\config_adc.c" lastModified="14fdc052512">
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_adc.h"/>
@@ -378,6 +384,12 @@
       </source>
       <source file="..\..\..\cmsis\core_cmInstr.h" lastModified="14eb18e7460">
       </source>
+      <source file="..\..\..\layer_controller\robo_center.cpp" lastModified="1504164bcf2">
+         <include file="..\..\..\layer_controller\robo_center.hpp"/>
+         <include file="..\..\..\layer_driver\base\mcutime.h"/>
+         <include file="..\..\..\layer_controller\calculate.h"/>
+         <include file="..\..\..\layer_driver\base\util.h"/>
+      </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\config_iwdg.h" lastModified="14eb18e6c90">
       </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\config_iwdg.c" lastModified="14eb18e6c90">
@@ -473,7 +485,8 @@
       <source file="..\..\..\layer_driver\base\system.h" lastModified="14fd0699a2c">
          <include file="..\..\..\layer_driver\base\logging.h"/>
       </source>
-      <source file="..\..\..\cmsis_boot\stm32f4xx_conf.h" lastModified="14eb18e93a0">
+      <source file="..\..\..\cmsis_boot\stm32f4xx_conf.h" lastModified="1503759b297">
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_adc.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_can.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_crc.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_dma.h"/>
@@ -506,7 +519,7 @@
       <source file="..\..\..\cmsis_lib\source\misc.c" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_lib\include\misc.h"/>
       </source>
-      <source file="..\..\..\layer_driver\base\encoder.cpp" lastModified="14fd0699e0e">
+      <source file="..\..\..\layer_driver\base\encoder.cpp" lastModified="15041698185">
          <include file="..\..\..\layer_driver\base\encoder.hpp"/>
       </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\iwdg_software_reset.c" lastModified="14eb18e6c90">
@@ -565,7 +578,7 @@
          <include file="..\..\..\layer_driver\base\util.h"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
       </source>
-      <source file="..\..\..\layer_controller\move.cpp" lastModified="1501dfa0cf5">
+      <source file="..\..\..\layer_controller\move.cpp" lastModified="1502d1037db">
          <include file="..\..\..\layer_controller\move.hpp"/>
          <include file="..\..\..\layer_driver\board\pin.hpp"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
@@ -654,11 +667,11 @@
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rtc.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
-      <source file="..\..\..\layer_controller\calculate.h" lastModified="14fdf4fba67">
+      <source file="..\..\..\layer_controller\calculate.h" lastModified="1503c3ac14b">
       </source>
       <source file="..\..\..\cmsis\core_cm4_simd.h" lastModified="14eb18e7460">
       </source>
-      <source file="..\..\..\layer_controller\calculate.c" lastModified="14fdf4fbe20">
+      <source file="..\..\..\layer_controller\calculate.c" lastModified="1503c397a1b">
          <include file="..\..\..\layer_controller\calculate.h"/>
       </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\config_pwm.h" lastModified="14eb18e6c90">

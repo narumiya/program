@@ -99,7 +99,8 @@ void Move::cycle(){
 				static float output=dtor(INITANGLE);//servo->cvtPulse(dtor(INITANGLE));
 				static float oldAngle=0;
 				static int flag[2]={0};
-				pid_gain_t gain=set_pid_gain(0.0018,0.0,0.0);
+				//pid_gain_t gain=set_pid_gain(0.0050,0.0,0.0160);//0.0018
+				pid_gain_t gain=set_pid_gain(0.0018,0.0,0.00);//0.0018
 				float angle=rotationOutput(gain);
 
 				output+=angle;
@@ -126,7 +127,7 @@ void Move::cycle(){
 					}
 				}*/
 				if(startSw->readValue()) output=dtor(INITANGLE);
-				output=floatlimit(dtor(-55.0),output,dtor(55.0));
+				output=floatlimit(dtor(-70.0),output,dtor(70.0));
 				servo->setAngle(output);
 				servo->cycle();
 				//printf("output,%.2f\n",output);
@@ -166,6 +167,7 @@ float Move::rotationOutput(pid_gain_t gain){
 		reset_pid_data(&data);
 	}*/
 	//float ad=((adData[1]+adData[3])-middle);///((other-white));
+	//ad=(((1.0-adData[1])-(1.0-adData[3])));//·•ª‚ğ0‚É‚·‚é‚æ‚¤‚É
 	ad=((adData[1]-adData[3]));//·•ª‚ğ0‚É‚·‚é‚æ‚¤‚É
 	//printf("ad,%f",ad);
 	float output=calc_pid(&data,ad,gain);
@@ -177,11 +179,11 @@ float Move::rotationOutput(pid_gain_t gain){
 
 
 void Move::printAdValue(){
-	printf("ad%d,%.4f",0,adData[0]);
-	printf("ad%d,%.4f",1,adData[1]);
-	printf("ad%d,%.4f",2,adData[2]);
-	printf("ad%d,%.4f",3,adData[3]);
-	printf("ad%d,%.4f",4,adData[4]);
+	printf("ad%d,%.4f ",0,adData[0]);
+	printf("ad%d,%.4f ",1,adData[1]);
+	printf("ad%d,%.4f ",2,adData[2]);
+	printf("ad%d,%.4f ",3,adData[3]);
+	printf("ad%d,%.4f ",4,adData[4]);
 	//printf("\n");
 }
 
