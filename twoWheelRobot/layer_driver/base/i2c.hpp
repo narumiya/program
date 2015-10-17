@@ -5,8 +5,10 @@ class I2c;
 class I2cInterface{
 public:
 	int i2cSetup();
-	int i2cWrite(char address,char data);
-	virtual char i2cRead(char address);
+	int i2cWrite(char address,char *data);
+	int i2cSetAddress(int address);
+	virtual char i2cRead(char address)=0;
+	virtual int i2cId(int id){return 0;};
 
 	int i2cInterfaceSetup(I2c *i2c);
 private:
@@ -15,8 +17,10 @@ private:
 
 class I2c{
 public:
-	virtual void write(char value,char address);
-	virtual char read(char address);
 	virtual int setup()=0;
+	virtual int write(char address,char *value)=0;
+	int addInterface(I2cInterface *interfaceArg){return addInterface(*interfaceArg);};
+	virtual int addInterface(I2cInterface &interfaceArg)=0;
+	virtual int setAdress(int address)=0;
 };
 #endif

@@ -28,36 +28,61 @@ int main(){
 	//Enc0 enc0;enc0.setup();
 	//Enc1 enc1;enc1.setup();
 	//Enc2 enc2;enc2.setup();
+	Serial0 serial0;serial0.setup(115200);
 	Led0 led;Blink blink(led);blink.setup();
 	blink.time(200);
 	Init_i2c(I2C2);
 	//I2c_lcd_init();
-	//I2cColorConfig(LOW);
-
-	Serial0 serial0;serial0.setup(115200);
+	I2CLcdCommand();
 	//Serial1 serial1;serial1.setup(115200);
-	Rgb_t rgb;
+	Rgb_t rgb={0,0,0,0};
+	char str[30];
 	unsigned long int time=millis();
+	int flag=0;
 	while(1){
 		blink.cycle();
-		I2cGetColor(&rgb);
+		I2cColorConfig(HIGH);
+
 		if(millis()-time>=300){
 			time=millis();
+			/*switch(flag){
+			case 0:
+				I2CLcdLocate(0,0);
+				I2CLcdSendString("Hello");flag=1;
+				break;
+			case 1:
+				I2CLcdLocate(3,1);
+				I2CLcdSendString("World");flag=2;
+				break;
+			case 2:flag=3;break;
+			case 3:
+				I2CLcdClear();flag=0;
+				break;
+			}*/
+			rgb=getColor();
+			sprintf(str,"R%3d",rgb.red);
+			I2CLcdLocate(0,0);
+			I2CLcdSendString(str);
+			sprintf(str,"G%3d",rgb.green);
+			I2CLcdLocate(4,0);
+			I2CLcdSendString(str);
+			sprintf(str,"B%3d",rgb.blue);
+			I2CLcdLocate(0,1);
+			I2CLcdSendString(str);
 			serial0.printf("r:%d",rgb.red);
 			serial0.printf("g:%d",rgb.green);
 			serial0.printf("b:%d",rgb.blue);
 			serial0.printf("inf:%d\n",rgb.infrared);
 		}
-		//I2c_lcd_locate(0,0);
+		/*I2c_lcd_locate(0,0);
 		//I2c_lcd_put_c('a');
-		//I2c_lcd_put_str("Hello!!");
-		//I2c_lcd_locate(2,1);
-		//I2c_lcd_put_str("World!!");
+		I2c_lcd_put_str("Hello!!");
+		I2c_lcd_locate(2,1);
+		I2c_lcd_put_str("World!!");*/
 		//serial0.printf("%d %d %d\n",enc0.count(),enc1.count(),enc2.count());
 		//serial1.printf("%d %d %d\n",enc0.count(),enc1.count(),enc2.count());
 	}
 }
-
 #endif
 
 #if 0

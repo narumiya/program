@@ -7,7 +7,8 @@
       <source file="..\..\..\layer_driver\board\stm32f4_config\config_pwm.c" lastModified="14eb18e7078">
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_pwm.h"/>
       </source>
-      <source file="..\..\..\layer_driver\base\i2c.cpp" lastModified="15041d24588">
+      <source file="..\..\..\layer_driver\base\i2c.cpp" lastModified="15074fb2d62">
+         <include file="..\..\..\layer_driver\base\i2c.hpp"/>
       </source>
       <source file="..\..\..\layer_controller\robo_center.hpp" lastModified="1503ce8b5c2">
          <include file="..\..\..\layer_driver\base\encoder.hpp"/>
@@ -62,7 +63,7 @@
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_i2c.h" lastModified="1503755b595">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.h" lastModified="1504c486679">
+      <source file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.h" lastModified="150736f88b4">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_i2c.h"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
@@ -76,12 +77,12 @@
       <source file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\cdc\usbd_cdc_core.h" lastModified="14eb18e6c90">
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\core\usbd_ioreq.h"/>
       </source>
-      <source file="..\..\..\layer_driver\base\serial.cpp" lastModified="150186ccbdc">
-         <include file="..\..\..\layer_driver\base\serial.hpp"/>
-      </source>
-      <source file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.c" lastModified="1504c486689">
+      <source file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.c" lastModified="15074b9a154">
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.h"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
+      </source>
+      <source file="..\..\..\layer_driver\base\serial.cpp" lastModified="150186ccbdc">
+         <include file="..\..\..\layer_driver\base\serial.hpp"/>
       </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\usb\config_usb.c" lastModified="14eb18e7078">
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\config_usb.h"/>
@@ -326,6 +327,8 @@
       <source file="..\..\..\layer_controller\my_else_calculation.c" lastModified="14fe40adc07">
          <include file="..\..\..\layer_controller\my_else_calculation.h"/>
          <include file="..\..\..\layer_driver\base\util.h"/>
+      </source>
+      <source file="..\..\..\layer_driver\base\i2c.hpp" lastModified="15074fc4343">
       </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_usart.c" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_usart.h"/>
@@ -644,6 +647,23 @@
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_tim.c" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
+      </source>
+      <source file="..\..\..\main.cpp" lastModified="15074c16858">
+         <include file="..\..\..\layer_driver\board\stm32f4_config\config_adc.h"/>
+         <include file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.h"/>
+         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+         <include file="..\..\..\layer_application\console.hpp"/>
+         <include file="..\..\..\layer_application\servo_controll.hpp"/>
+         <include file="..\..\..\layer_controller\blink.hpp"/>
+         <include file="..\..\..\layer_controller\move.hpp"/>
+         <include file="..\..\..\layer_controller\robo_center.hpp"/>
+         <include file="..\..\..\layer_driver\base\system.h"/>
+         <include file="..\..\..\layer_driver\base\mcutime.h"/>
+         <include file="..\..\..\layer_driver\board\pin.hpp"/>
+         <include file="..\..\..\layer_driver\circuit\mini_md_1.0\mini_md.hpp"/>
+         <include file="..\..\..\layer_driver\circuit\servo.hpp"/>
+         <include file="..\..\..\layer_driver\circuit\r1350n\r1350n.hpp"/>
+         <include file="..\..\..\layer_driver\circuit\button\button.hpp"/>
       </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\sd\fatfs\ff.h" lastModified="14eb18e6c90">
          <include file="..\..\..\layer_driver\board\stm32f4_config\sd\fatfs\integer.h"/>
