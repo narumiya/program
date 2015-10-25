@@ -1,20 +1,17 @@
 #include "config_i2c.h"
 #include "mcutime.h"
+#include "name_converter.h"
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
 //int Init_i2c(GPIO_TypeDef *sda_port, uint16_t sda_pin,GPIO_TypeDef *scl_port, uint16_t scl_pin){return 0;};
 
-typedef struct{
-	char data[26];
-	int dataSize;
-}I2C_t;
 
-I2C_t i2c[256];
+
 Rgb_t g_rgb;
 //îzóÒÇÃå¬êîÇÕidÇÃêî
 
-void Init_i2c(I2C_TypeDef *use_i2c){
+void Init_i2c(I2C_TypeDef *use_i2c,GPIO_TypeDef *GPIOx, uint16_t sclPin, uint16_t sdaPin){
 	GPIO_InitTypeDef GPIO_InitStructure;
 	I2C_InitTypeDef	I2C_InitStructure;
 	NVIC_InitTypeDef NVIC_InitStructure;
@@ -26,17 +23,18 @@ void Init_i2c(I2C_TypeDef *use_i2c){
 	}
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
 	GPIO_StructInit(&GPIO_InitStructure);
-	if(use_i2c == I2C1){
+	/*if(use_i2c == I2C1){
 		GPIO_InitStructure.GPIO_Pin = I2C1_SCL_PIN | I2C1_SDA_PIN;
 	}else if(use_i2c == I2C2){
 		GPIO_InitStructure.GPIO_Pin = I2C2_SCL_PIN | I2C2_SDA_PIN;
-	}
+	}*/
 
+	GPIO_InitStructure.GPIO_Pin = sclPin | sdaPin;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	if(use_i2c == I2C1){
+	/*if(use_i2c == I2C1){
 		GPIO_Init(I2C1_PORT, &GPIO_InitStructure);
 		if(I2C1_SCL_PIN == GPIO_Pin_6){
 			GPIO_PinAFConfig(I2C1_PORT, GPIO_PinSource6, GPIO_AF_I2C1);
@@ -52,8 +50,16 @@ void Init_i2c(I2C_TypeDef *use_i2c){
 		GPIO_Init(I2C2_PORT, &GPIO_InitStructure);
 		GPIO_PinAFConfig(I2C2_PORT, GPIO_PinSource10, GPIO_AF_I2C2);
 		GPIO_PinAFConfig(I2C2_PORT, GPIO_PinSource11, GPIO_AF_I2C2);
+	}*/
+	if(use_i2c == I2C1){
+		GPIO_Init(GPIOx, &GPIO_InitStructure);
+		GPIO_PinAFConfig(GPIOx, Pin_select_source(sclPin), GPIO_AF_I2C1);
+		GPIO_PinAFConfig(GPIOx,  Pin_select_source(sdaPin), GPIO_AF_I2C1);
+	}else if(use_i2c == I2C2){
+		GPIO_Init(GPIOx, &GPIO_InitStructure);
+		GPIO_PinAFConfig(GPIOx, Pin_select_source(sclPin), GPIO_AF_I2C2);
+		GPIO_PinAFConfig(GPIOx, Pin_select_source(sdaPin), GPIO_AF_I2C2);
 	}
-
 	I2C_ITConfig(use_i2c, I2C_IT_EVT|I2C_IT_BUF|I2C_IT_ERR, ENABLE);
 	I2C_StructInit(&I2C_InitStructure);
 	I2C_InitStructure.I2C_Mode = I2C_Mode_I2C;
@@ -68,27 +74,29 @@ void Init_i2c(I2C_TypeDef *use_i2c){
 	I2C_Init(use_i2c,&I2C_InitStructure);
 
 	/* Configure the I2C event priority */
-	NVIC_InitStructure.NVIC_IRQChannel = I2C2_EV_IRQn;
+	if(use_i2c==I2C1){
+		NVIC_InitStructure.NVIC_IRQChannel = I2C1_EV_IRQn;//|I2C1_ER_IRQn;
+	}else if(use_i2c==I2C2){
+		NVIC_InitStructure.NVIC_IRQChannel = I2C2_EV_IRQn;//|I2C2_ER_IRQn;
+	}
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure);
 }
-
-int g_TxBufferSize=0;
+/*
 int g_directionFlag=2;
+int g_TxBufferSize=0;
+int g_RxBufferSize=0;
 int g_TxSlaveAddress=0;
 int g_RxSlaveAddress=0;
-char g_I2C2BufferRx[256]={0};
-int g_RxBufferSize=0;
+char g_I2C2BufferRx[10]={0};
+*/
+
+/*
 void I2C1_EV_IRQHandler(void){
 
 }
-void I2C1_ER_IRQHandler(void){
-	if (I2C_GetITStatus(I2C1, I2C_IT_AF))
-		I2C_ClearITPendingBit(I2C1, I2C_IT_AF);
-}
-
 void I2C2_EV_IRQHandler(void){
 	static int TxAddress=0;
 	static int RxAddress=0;
@@ -141,18 +149,14 @@ void I2C2_EV_IRQHandler(void){
     				analaysColor(g_I2C2BufferRx);
         			RxDataNum=0;
         			g_RxBufferSize=0;
-    				I2C_AcknowledgeConfig(USE_I2C, ENABLE);
+    				I2C_AcknowledgeConfig(I2C2, ENABLE);
     		}
     		break;
     	default:
     		break;
 	}
 }
-
-void I2C2_ER_IRQHandler(void){
-	if (I2C_GetITStatus(I2C2, I2C_IT_AF))
-		I2C_ClearITPendingBit(I2C2, I2C_IT_AF);
-}
+*/
 
 static int f_i2c_error=3;
 
@@ -248,6 +252,7 @@ void I2c_chack_wait(int flag){
 		}
 	}
 }
+/*
 void I2CLcdCommand(void){
 	delay_ms(100);
 	I2cCommandSend(0x7C,0x00,0x38);delay_ms(2);
@@ -260,6 +265,7 @@ void I2CLcdCommand(void){
 	I2cCommandSend(0x7C,0x00,0x0C);delay_ms(2);
 	I2cCommandSend(0x7C,0x00,0x01);delay_ms(30);
 }
+
 void I2CLcdCommandSend(char data){
 	const int slaveAddress=0x7C;
 
@@ -325,16 +331,16 @@ void I2cColorConfig(char mode){
 		}
 	}
 }
-
+*/
 void I2cCommandSend(int address,char command,char data){
-
-	while(!(g_TxBufferSize==0&&g_RxBufferSize==0));
+	/*while(!(g_TxBufferSize==0&&g_RxBufferSize==0));
 	i2c[address].data[0]=command;
 	i2c[address].data[1]=data;
 	g_TxBufferSize=2;
 	g_TxSlaveAddress=address;
 	g_directionFlag=TX;
-	I2C_GenerateSTART(I2C2,ENABLE);
+	I2C_GenerateSTART(I2C2,ENABLE);*/
+
 	/*I2C_GenerateSTART(USE_I2C,ENABLE);
 	//I2c_chack_wait(I2C_EVENT_MASTER_MODE_SELECT);
 	while(!I2C_CheckEvent(USE_I2C, I2C_EVENT_MASTER_MODE_SELECT));
@@ -349,8 +355,10 @@ void I2cCommandSend(int address,char command,char data){
 	 while(!I2C_CheckEvent(USE_I2C, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
 	I2C_GenerateSTOP(USE_I2C,ENABLE);*/
 }
+#define LOW 0
+#define HIGH 1
 void I2cGetColor(Rgb_t *rgb){
-	char str[8]={0};
+	//char str[8]={0};
 
 	I2cColorConfig(HIGH);
 	/*while(I2C_GetFlagStatus(USE_I2C, I2C_FLAG_BUSY));

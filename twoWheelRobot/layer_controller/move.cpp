@@ -97,8 +97,8 @@ void Move::cycle(){
 				//static float output=servo->cvtPulse(dtor(INITANGLE));
 				//pid_gain_t gain=set_pid_gain(0.000035,0.0,0.0);//1“x¨0.0019
 				static float output=dtor(INITANGLE);//servo->cvtPulse(dtor(INITANGLE));
-				static float oldAngle=0;
-				static int flag[2]={0};
+				//static float oldAngle=0;
+				//static int flag[2]={0};
 				//pid_gain_t gain=set_pid_gain(0.0050,0.0,0.0160);//0.0018
 				pid_gain_t gain=set_pid_gain(0.0018,0.0,0.00);//0.0018
 				float angle=rotationOutput(gain);

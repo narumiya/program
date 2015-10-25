@@ -4,8 +4,6 @@
 #include "cmsis_lib/include/stm32f4xx_i2c.h"
 #include "stm32f4xx.h"
 
-#define TX 0
-#define RX 1
 
 #define I2C1_SCL_PIN	GPIO_Pin_6
 #define I2C1_SDA_PIN	GPIO_Pin_7
@@ -17,7 +15,9 @@
 #define I2C2_SDA_PIN	GPIO_Pin_11
 #define I2C2_PORT	GPIOB
 
-void Init_i2c(I2C_TypeDef *use_i2c);
+void Init_i2c(I2C_TypeDef *use_i2c,GPIO_TypeDef *GPIOx, uint16_t sclPin, uint16_t sdaPin);
+
+
 
 //----------------------------------------------------------
 /*I2C_LCD‚Ì‹@”\ */
@@ -37,10 +37,6 @@ void I2CLcdSendChar(char c);
 void I2CLcdSendString(char *str);
 void I2CLcdLocate(char x,char y);
 void I2CLcdClear(void);
-
-#define LOW 0
-#define HIGH 1
-#define USE_I2C	I2C2
 
 typedef struct{
 	int red;

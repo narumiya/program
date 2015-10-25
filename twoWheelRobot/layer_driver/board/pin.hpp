@@ -7,6 +7,8 @@
 #include "encoder.hpp"
 #include "pwm.hpp"
 
+#include "i2c.hpp"
+
 /**********IO****************************/
 class Led0:public Digital{
 private:
@@ -1225,4 +1227,36 @@ private:
 	static int read(int id,int number,unsigned char data[8]);
 	friend void Can0_Interrupt();
 };
+
+/***I2C****/
+typedef struct{
+	char data[20];
+	char address;
+	int dataSize;
+	bool txrxFlag;
+}I2c_t;
+
+class I2c0:public I2c{
+private:
+	unsigned int time;
+	static int directionFlag;
+	static int bufferSize;
+	static int slaveAddress;
+	static char sendData[20];
+	static int i2cInterfaceCursor;
+	static RingBuffer<I2c_t,256> txBuf;
+	static I2cInterface *i2cInterface[10];
+	friend void I2c0_Interrupt();
+	static void startI2c();
+public:
+	I2c0();
+	void cycle();
+	int setup();
+	int addInterface(I2cInterface &interfaceArg);
+	int write(char address,char *value,char dataSize,bool txrx);
+
+	//送信または受信待ちフラグ
+	int getBufferFlag();
+};
+
 #endif // PIN_H_INCLUDED

@@ -23,7 +23,55 @@ extern "C"{
 #include "layer_driver/circuit/servo.hpp"
 #include "layer_driver/circuit/r1350n/r1350n.hpp"
 #include "layer_driver/circuit/button/button.hpp"
+#include "layer_driver/circuit/lcd/aqm0802.hpp"
+#include "layer_driver/circuit/s11059.hpp"
 #if 1
+#include <stdio.h>
+#include <string.h>
+int main(){
+	long long int time=millis();
+
+	Led0 led;Blink blink(led);blink.setup();
+	blink.time(200);
+	Serial0 serial0;serial0.setup(115200);
+	I2c0 i2c;i2c.setup();
+	Aqm0802 lcd(i2c);lcd.setup();
+	S11059 color(i2c);color.setup();
+
+	char data[10]={'\0'};
+	int flag=0;
+
+	while(1){
+		blink.cycle();
+		color.setMode(1);
+		color.cycle();
+		i2c.cycle();
+		if(millis()-time>=500){
+			time=millis();
+			if(!flag){
+				flag=1;
+				sprintf(data,"Hello");
+				lcd.setCursor(0,0);
+				lcd.sendString(data);
+				lcd.setCursor(1,1);
+				sprintf(data,"World");
+				lcd.sendString(data);
+			}else{
+				flag=0;
+				lcd.clear();
+			}
+			serial0.printf("r:%d",color.getRed());
+			serial0.printf("g:%d",color.getGreen());
+			serial0.printf("b:%d",color.getBlue());
+			serial0.printf("inf:%d\n",color.getInfrared());
+		}
+	}
+}
+#endif
+#if 0
+#define I2C2_SCL_PIN	GPIO_Pin_10
+#define I2C2_SDA_PIN	GPIO_Pin_11
+#define I2C2_PORT	GPIOB
 int main(){
 	//Enc0 enc0;enc0.setup();
 	//Enc1 enc1;enc1.setup();
@@ -31,7 +79,7 @@ int main(){
 	Serial0 serial0;serial0.setup(115200);
 	Led0 led;Blink blink(led);blink.setup();
 	blink.time(200);
-	Init_i2c(I2C2);
+	Init_i2c(I2C2,I2C2_PORT,I2C2_SCL_PIN,I2C2_SDA_PIN);
 	//I2c_lcd_init();
 	I2CLcdCommand();
 	//Serial1 serial1;serial1.setup(115200);

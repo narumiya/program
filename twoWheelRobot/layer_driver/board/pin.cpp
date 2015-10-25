@@ -1,7 +1,8 @@
 
 #include "pin.hpp"
-
 extern "C" {
+#include <string.h>
+#include "mcutime.h"
 #include "stm32f4xx.h"
 #include "stm32f4xx_conf.h"
 #include "config_usart.h"
@@ -12,6 +13,7 @@ extern "C" {
 #include "config_port.h"
 #include "layer_driver/board/stm32f4_config/config_adc.h"
 #include "config_can.h"
+#include "config_i2c.h"
 }
 
 
@@ -87,7 +89,6 @@ extern "C" {
 #define ENC1		GPIOA,GPIO_Pin_6 | GPIO_Pin_7		//PA6 input‚Å‚«‚È‚¢
 #define ENC2TIM	TIM5
 #define ENC2		GPIOA,GPIO_Pin_0 | GPIO_Pin_1
-
 
 int Led0:: _digitalWrite()
 {
@@ -1809,8 +1810,7 @@ extern "C" void USART3_IRQHandler(void){
 	serial1_interrupt();
 }
 
-void Serial1::writeChar(char value)
-{
+void Serial1::writeChar(char value){
 	transmit(value);
 }
 
@@ -1924,7 +1924,163 @@ void Can0_Interrupt(){
 	}
 }
 
-extern "C" void CAN1_RX0_IRQHandler(void)
-{
+extern "C" void CAN1_RX0_IRQHandler(void){
 	Can0_Interrupt();
 }
+
+#define I2C_PORT_SCL_SDA		GPIOB,GPIO_Pin_10,GPIO_Pin_11
+
+int I2c0::directionFlag;
+int I2c0::slaveAddress;
+int I2c0::bufferSize;
+char I2c0::sendData[20];
+I2cInterface * I2c0::i2cInterface[10];
+int I2c0::i2cInterfaceCursor=0;
+RingBuffer<I2c_t,256> I2c0::txBuf;
+
+I2c0::I2c0(){
+	directionFlag=true;
+	slaveAddress=0;
+	bufferSize=0;
+}
+
+int I2c0::setup(){
+	static bool flag=false;
+	time=millis();
+	if(!flag){
+		Init_i2c(I2C2,I2C_PORT_SCL_SDA);delay_ms(10);
+		flag=true;
+		return 0;
+	}
+	return 1;
+}
+
+int I2c0::addInterface(I2cInterface &interfaceArg){
+	if(i2cInterfaceCursor>=10) return 1;
+	i2cInterface[i2cInterfaceCursor++]=&interfaceArg;
+	interfaceArg.i2cInterfaceSetup(this);
+	return 0;
+}
+
+int I2c0::write(char address,char *value,char dataSize,bool txrx){
+	I2c_t i2c;
+
+	if(getBufferFlag()==0){
+		if(txBuf.isEmpty()==1){
+			slaveAddress=address;
+			bufferSize=dataSize;
+			for(int i=0;i<dataSize;i++){
+				sendData[i]=*(value+i);
+			}
+			directionFlag=txrx;
+			I2C_GenerateSTART(I2C2,ENABLE);
+			return 0;
+		}
+	}
+	i2c.address=address;
+	for(int i=0;i<dataSize;i++){
+		i2c.data[i]=*(value+i);
+	}
+	i2c.dataSize=dataSize;
+	i2c.txrxFlag=txrx;
+	while(txBuf.write(i2c)){
+		cycle();
+	}
+
+	return 0;
+}
+
+int I2c0::getBufferFlag(){
+	return bufferSize;
+}
+
+void I2c0_Interrupt(void){
+	static int TxDataNum=0;
+	static int RxDataNum=0;
+	static char *rxData;
+	//int j;
+
+	switch (I2C_GetLastEvent(I2C2)){
+		case I2C_EVENT_MASTER_MODE_SELECT:
+			if(I2c0::directionFlag==TX){
+				I2C_Send7bitAddress(I2C2, I2c0::slaveAddress, I2C_Direction_Transmitter);
+			}else if(I2c0::directionFlag==RX){
+				I2C_Send7bitAddress(I2C2, I2c0::slaveAddress, I2C_Direction_Receiver);
+			}
+			break;
+		case I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED:
+			I2C_SendData(I2C2, I2c0::sendData[TxDataNum++]);
+			break;
+		case I2C_EVENT_MASTER_BYTE_TRANSMITTED:
+			if(TxDataNum<I2c0::bufferSize){
+				I2C_SendData(I2C2, I2c0::sendData[TxDataNum++]);
+				if(I2c0::bufferSize - TxDataNum<1)
+					I2C_GenerateSTOP(I2C2, ENABLE);
+			}else{
+				if(I2c0::sendData[0]==0x03){
+					I2c0::bufferSize=8;
+					I2c0::slaveAddress=0x55;
+					I2c0::directionFlag=RX;
+					I2C_GenerateSTART(I2C2, ENABLE);
+				}
+				//for(j=0;j<10;j++)	I2c0::sendData[j]='\0';
+				TxDataNum=0;
+				I2c0::bufferSize=0;
+				//I2c0::startI2c();
+			}
+			break;
+		case I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED:
+			//g_I2C2BufferRx[RxDataNum++]=I2C_ReceiveData(I2C2);
+			break;
+		case I2C_EVENT_MASTER_BYTE_RECEIVED:
+			rxData[RxDataNum++]=I2C_ReceiveData(I2C2);
+			if(I2c0::bufferSize==RxDataNum+1){
+				I2C_AcknowledgeConfig(I2C2, DISABLE);
+				I2C_GenerateSTOP(I2C2, ENABLE);
+			}
+			if(I2c0::bufferSize-RxDataNum<1){
+				int i;
+				for(i=0;i<I2c0::i2cInterfaceCursor;i++){
+					if(I2c0::i2cInterface[i]->i2cAddress(I2c0::slaveAddress))
+						I2c0::i2cInterface[i]->i2cRead(rxData);
+				}
+				RxDataNum=0;
+				for(i=0;i<I2c0::bufferSize;i++)	rxData[i]='\0';
+				I2c0::bufferSize=0;
+				I2C_AcknowledgeConfig(I2C2, ENABLE);
+			}
+			break;
+		default:
+			break;
+	}
+}
+
+void I2c0::startI2c(){
+	if(txBuf.isEmpty()==0){
+		I2c_t i2c;i2c=txBuf.read();
+		slaveAddress=i2c.address;
+		bufferSize=i2c.dataSize;
+		//sendData=i2c.data;
+		//strcpy(sendData,i2c.data);
+		for(int i=0;i<bufferSize;i++){
+			sendData[i]=i2c.data[i];
+		}
+		directionFlag=i2c.txrxFlag;
+		I2C_GenerateSTART(I2C2,ENABLE);
+	}
+}
+
+void I2c0::cycle(){
+	if(getBufferFlag()==0){
+		if(millis()-time>=1){
+			time=millis();
+			startI2c();
+		}
+	}else{
+		time=millis();
+	}
+}
+extern "C" void I2C2_EV_IRQHandler(void){
+	I2c0_Interrupt();
+}
+

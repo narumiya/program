@@ -8,10 +8,6 @@ int I2cInterface::i2cInterfaceSetup(I2c *i2c){
 int I2cInterface::i2cSetup(){
 	return i2c->setup();
 }
-int I2cInterface::i2cWrite(char address,char *data){
-	return i2c->write(address,data);
-}
-
-int I2cInterface::i2cSetAddress(int address){
-	return i2c->setAdress(address);
+int I2cInterface::i2cWrite(char address,char *value,char dataSize,bool txrx){
+	return i2c->write(address,value,dataSize,txrx);
 }

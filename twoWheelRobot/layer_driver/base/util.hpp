@@ -128,10 +128,14 @@ public:
         return 0;
     }
     T read(){
-        if(readPointer==writePointer) return 0;
-        T buf=data[readPointer];
-        readPointer = (readPointer + 1) % (bufSize+1);
-        return buf;
+        if(readPointer==writePointer){
+        	T value={0};
+        	return value;
+        }else{
+        	T buf=data[readPointer];
+        	readPointer = (readPointer + 1) % (bufSize+1);
+        	return buf;
+        }
     }
     T peek(){
     	if(readPointer==writePointer) return 0;
