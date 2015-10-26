@@ -23,34 +23,42 @@ void	S11059::i2cRead(char *data){
 	blue=data[4]<<8 | data[5];
 	infrared=data[6]<<8 | data[7];
 }
-#define LOW 0
-#define HIGH 1
 
 void S11059::cycle(){
 	static int flag=0;
-	char data[2];
-		if(millis()-time>=5){
-			time=millis();
-			if(flag==0){
-				if(mode==LOW){
-					data[0]=0x00;data[1]=0x84;
-				}else if(mode==HIGH){
-					data[0]=0x00;data[1]=0x89;
-				}
+	char data[3]={'\0'};
+
+	if(millis()-time>=5){
+		time=millis();
+		if(flag==0){
+			if(mode==LOW){
+				data[0]=0x00;data[1]=0x84;
 				i2cWrite(0x54,data,2,TX);
 				flag=1;
-			}else if(flag==1){
-				if(mode==LOW){
-					data[0]=0x00;data[1]=0x04;
-				}else if(mode==HIGH){
-					data[0]=0x00;data[1]=0x09;
-				}
+			}else if(mode==HIGH){
+				data[0]=0x00;data[1]=0x89;
+				i2cWrite(0x54,data,2,TX);
+				flag=1;
+			}
+		}else if(flag==1){
+			if(mode==LOW){
+				data[0]=0x00;data[1]=0x04;
 				i2cWrite(0x54,data,2,TX);
 				flag=2;
-			}else if(flag==2) flag=3;
-			  else if(flag==3){
-				data[0]=0x03;
-				i2cWrite(0x54,data,1,TX);
+			}else if(mode==HIGH){
+				data[0]=0x00;data[1]=0x09;
+				i2cWrite(0x54,data,2,TX);
+				flag=2;
 			}
+		}else if(flag==2) flag=3;
+		  else if(flag==3){
+			data[0]=0x03;
+			i2cWrite(0x54,data,1,TX);
+			flag=0;
 		}
+	}
+}
+
+int S11059::i2cAddress(int address){
+	return address==readAddress;
 }

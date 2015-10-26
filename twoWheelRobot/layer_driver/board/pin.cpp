@@ -1985,6 +1985,7 @@ int I2c0::write(char address,char *value,char dataSize,bool txrx){
 	i2c.txrxFlag=txrx;
 	while(txBuf.write(i2c)){
 		cycle();
+		printf("x");
 	}
 
 	return 0;
@@ -1997,8 +1998,7 @@ int I2c0::getBufferFlag(){
 void I2c0_Interrupt(void){
 	static int TxDataNum=0;
 	static int RxDataNum=0;
-	static char *rxData;
-	//int j;
+	static char rxData[10];
 
 	switch (I2C_GetLastEvent(I2C2)){
 		case I2C_EVENT_MASTER_MODE_SELECT:
@@ -2014,7 +2014,7 @@ void I2c0_Interrupt(void){
 		case I2C_EVENT_MASTER_BYTE_TRANSMITTED:
 			if(TxDataNum<I2c0::bufferSize){
 				I2C_SendData(I2C2, I2c0::sendData[TxDataNum++]);
-				if(I2c0::bufferSize - TxDataNum<1)
+				if(I2c0::bufferSize-TxDataNum<1)
 					I2C_GenerateSTOP(I2C2, ENABLE);
 			}else{
 				if(I2c0::sendData[0]==0x03){
@@ -2023,7 +2023,8 @@ void I2c0_Interrupt(void){
 					I2c0::directionFlag=RX;
 					I2C_GenerateSTART(I2C2, ENABLE);
 				}
-				//for(j=0;j<10;j++)	I2c0::sendData[j]='\0';
+				int j;
+				for(j=0;j<10;j++)	I2c0::sendData[j]='\0';
 				TxDataNum=0;
 				I2c0::bufferSize=0;
 				//I2c0::startI2c();
@@ -2041,13 +2042,15 @@ void I2c0_Interrupt(void){
 			if(I2c0::bufferSize-RxDataNum<1){
 				int i;
 				for(i=0;i<I2c0::i2cInterfaceCursor;i++){
-					if(I2c0::i2cInterface[i]->i2cAddress(I2c0::slaveAddress))
+					printf("a");
+					if(I2c0::i2cInterface[i]->i2cAddress(I2c0::slaveAddress)){
 						I2c0::i2cInterface[i]->i2cRead(rxData);
+					}
 				}
 				RxDataNum=0;
 				for(i=0;i<I2c0::bufferSize;i++)	rxData[i]='\0';
-				I2c0::bufferSize=0;
 				I2C_AcknowledgeConfig(I2C2, ENABLE);
+				I2c0::bufferSize=0;
 			}
 			break;
 		default:
@@ -2072,7 +2075,7 @@ void I2c0::startI2c(){
 
 void I2c0::cycle(){
 	if(getBufferFlag()==0){
-		if(millis()-time>=1){
+		if(millis()-time>=3){
 			time=millis();
 			startI2c();
 		}
@@ -2080,7 +2083,8 @@ void I2c0::cycle(){
 		time=millis();
 	}
 }
+/*
 extern "C" void I2C2_EV_IRQHandler(void){
 	I2c0_Interrupt();
 }
-
+*/

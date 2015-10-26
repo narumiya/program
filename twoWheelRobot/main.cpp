@@ -35,16 +35,17 @@ int main(){
 	blink.time(200);
 	Serial0 serial0;serial0.setup(115200);
 	I2c0 i2c;i2c.setup();
+	printf("start");
 	Aqm0802 lcd(i2c);lcd.setup();
-	S11059 color(i2c);color.setup();
+	S11059 color(i2c);//color.setup();
 
 	char data[10]={'\0'};
 	int flag=0;
 
 	while(1){
 		blink.cycle();
-		color.setMode(1);
-		color.cycle();
+		color.setMode(S11059::HIGH);
+		//color.cycle();
 		i2c.cycle();
 		if(millis()-time>=500){
 			time=millis();
@@ -60,10 +61,10 @@ int main(){
 				flag=0;
 				lcd.clear();
 			}
-			serial0.printf("r:%d",color.getRed());
+			/*serial0.printf("r:%d",color.getRed());
 			serial0.printf("g:%d",color.getGreen());
 			serial0.printf("b:%d",color.getBlue());
-			serial0.printf("inf:%d\n",color.getInfrared());
+			serial0.printf("inf:%d\n",color.getInfrared());*/
 		}
 	}
 }

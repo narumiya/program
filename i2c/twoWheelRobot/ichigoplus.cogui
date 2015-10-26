@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workbench version="2.0">
+<workbenchAdvisor/>
+<window>
+<fastViewData fastViewLocation="1024">
+<orientation position="512" view="org.eclipse.debug.ui.ExpressionView"/>
+<orientation position="512" view="org.coocox.codebugger.trace.ui.traceview"/>
+<orientation position="512" view="org.eclipse.ui.console.ConsoleView"/>
+<orientation position="512" view="org.eclipse.debug.ui.VariableView"/>
+</fastViewData>
+<perspectiveBar/>
+<page focus="true" label="Workspace - CooCox CoBuilder">
+<editors>
+<editorArea activeWorkbook="DefaultEditorWorkbook">
+<info part="DefaultEditorWorkbook">
+<folder appearance="1" expanded="2">
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
+<part id="6"/>
+<part id="7"/>
+<part id="8"/>
+<part id="9"/>
+</presentation>
+</folder>
+</info>
+<info part="org.eclipse.ui.internal.EditorStack@8d291b" ratio="0.4731369" ratioLeft="546" ratioRight="608" relationship="2" relative="DefaultEditorWorkbook">
+<folder appearance="1" expanded="2">
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
+<part id="6"/>
+<part id="7"/>
+<part id="8"/>
+<part id="9"/>
+<part id="10"/>
+<part id="11"/>
+<part id="12"/>
+</presentation>
+</folder>
+</info>
+</editorArea>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="mcutime.c" partName="mcutime.c" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/base/mcutime.c" title="mcutime.c" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/base/mcutime.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/base/mcutime.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="444" selectionTopPixel="240"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.cpp" partName="main.cpp" path="C:/Users/陽生/Downloads/program-master/twoWheelRobot/main.cpp" title="main.cpp" tooltip="C:/Users/陽生/Downloads/program-master/twoWheelRobot/main.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/main.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1153" selectionTopPixel="680"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_i2c.h" partName="stm32f4xx_i2c.h" path="C:/Users/陽生/Documents/program/twoWheelRobot/cmsis_lib/include/stm32f4xx_i2c.h" title="stm32f4xx_i2c.h" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/cmsis_lib/include/stm32f4xx_i2c.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/cmsis_lib/include/stm32f4xx_i2c.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="10" selectionOffset="7443" selectionTopPixel="4020"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="pin.cpp" partName="pin.cpp" path="C:/Users/陽生/Downloads/program-master/twoWheelRobot/layer_driver/board/pin.cpp" title="pin.cpp" tooltip="C:/Users/陽生/Downloads/program-master/twoWheelRobot/layer_driver/board/pin.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/board/pin.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="36806" selectionTopPixel="40830"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="util.hpp" partName="util.hpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/base/util.hpp" title="util.hpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/base/util.hpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/base/util.hpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3131" selectionTopPixel="2257"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="robo_center.hpp" partName="robo_center.hpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_controller/robo_center.hpp" title="robo_center.hpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_controller/robo_center.hpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_controller/robo_center.hpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="602" selectionTopPixel="97"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="can.hpp" partName="can.hpp" path="C:/Users/陽生/Downloads/program-master/twoWheelRobot/layer_driver/base/can.hpp" title="can.hpp" tooltip="C:/Users/陽生/Downloads/program-master/twoWheelRobot/layer_driver/base/can.hpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/base/can.hpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1092" selectionTopPixel="497"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="config_pwm.c" partName="config_pwm.c" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/board/stm32f4_config/config_pwm.c" title="config_pwm.c" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/board/stm32f4_config/config_pwm.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/board/stm32f4_config/config_pwm.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="serial.hpp" partName="serial.hpp" path="C:/Users/陽生/Downloads/program-master/twoWheelRobot/layer_driver/base/serial.hpp" title="serial.hpp" tooltip="C:/Users/陽生/Downloads/program-master/twoWheelRobot/layer_driver/base/serial.hpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/base/serial.hpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3923" selectionTopPixel="2557"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="s11059.cpp" partName="s11059.cpp" path="C:/Users/陽生/Downloads/program-master/twoWheelRobot/layer_driver/circuit/s11059.cpp" title="s11059.cpp" tooltip="C:/Users/陽生/Downloads/program-master/twoWheelRobot/layer_driver/circuit/s11059.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/circuit/s11059.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="208" selectionTopPixel="240"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="can.cpp" partName="can.cpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/base/can.cpp" title="can.cpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/base/can.cpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/base/can.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="177" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="i2c.cpp" partName="i2c.cpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/base/i2c.cpp" title="i2c.cpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/base/i2c.cpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/base/i2c.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="293" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="pin.hpp" partName="pin.hpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/board/pin.hpp" title="pin.hpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/board/pin.hpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/board/pin.hpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="21041" selectionTopPixel="24637"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="config_adc.c" partName="config_adc.c" path="C:/Users/陽生/Downloads/program-master/twoWheelRobot/layer_driver/board/stm32f4_config/config_adc.c" title="config_adc.c" tooltip="C:/Users/陽生/Downloads/program-master/twoWheelRobot/layer_driver/board/stm32f4_config/config_adc.c" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/board/stm32f4_config/config_adc.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="33" selectionOffset="552" selectionTopPixel="90"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="name_converter.c" partName="name_converter.c" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/board/stm32f4_config/name_converter.c" title="name_converter.c" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/board/stm32f4_config/name_converter.c" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/board/stm32f4_config/name_converter.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4908" selectionTopPixel="5340"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="config_i2c.h" partName="config_i2c.h" path="C:/Users/陽生/Downloads/program-master/twoWheelRobot/layer_driver/board/stm32f4_config/config_i2c.h" title="config_i2c.h" tooltip="C:/Users/陽生/Downloads/program-master/twoWheelRobot/layer_driver/board/stm32f4_config/config_i2c.h" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/board/stm32f4_config/config_i2c.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="8" selectionOffset="366" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="aqm0802.hpp" partName="aqm0802.hpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/lcd/aqm0802.hpp" title="aqm0802.hpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/lcd/aqm0802.hpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/circuit/lcd/aqm0802.hpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="7" selectionOffset="138" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="move.cpp" partName="move.cpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_controller/move.cpp" title="move.cpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_controller/move.cpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_controller/move.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2295" selectionTopPixel="1880"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="aqm0802.cpp" partName="aqm0802.cpp" path="C:/Users/陽生/Downloads/program-master/twoWheelRobot/layer_driver/circuit/lcd/aqm0802.cpp" title="aqm0802.cpp" tooltip="C:/Users/陽生/Downloads/program-master/twoWheelRobot/layer_driver/circuit/lcd/aqm0802.cpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/circuit/lcd/aqm0802.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="912" selectionTopPixel="510"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="i2c.hpp" partName="i2c.hpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/base/i2c.hpp" title="i2c.hpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/base/i2c.hpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/base/i2c.hpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="212" selectionTopPixel="97"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="can_encoder.cpp" partName="can_encoder.cpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/can_encoder/can_encoder.cpp" title="can_encoder.cpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/can_encoder/can_encoder.cpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/circuit/can_encoder/can_encoder.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1152" selectionTopPixel="37"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="s11059.hpp" partName="s11059.hpp" path="C:/Users/陽生/Downloads/program-master/twoWheelRobot/layer_driver/circuit/s11059.hpp" title="s11059.hpp" tooltip="C:/Users/陽生/Downloads/program-master/twoWheelRobot/layer_driver/circuit/s11059.hpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/circuit/s11059.hpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="7" selectionOffset="397" selectionTopPixel="197"/>
+</editor>
+<editor focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="config_i2c.c" partName="config_i2c.c" path="C:/Users/陽生/Downloads/program-master/twoWheelRobot/layer_driver/board/stm32f4_config/config_i2c.c" title="config_i2c.c" tooltip="C:/Users/陽生/Downloads/program-master/twoWheelRobot/layer_driver/board/stm32f4_config/config_i2c.c" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/board/stm32f4_config/config_i2c.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5106" selectionTopPixel="2837"/>
+</editor>
+</editors>
+<views>
+<view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
+<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="43">
+<expanded>
+<element path="/ichigoplus"/>
+<element path="/ichigoplus/cmsis_lib"/>
+<element path="/ichigoplus/layer_application"/>
+<element path="/ichigoplus/layer_controller"/>
+<element path="/ichigoplus/layer_driver"/>
+<element path="/ichigoplus/layer_driver/base"/>
+<element path="/ichigoplus/layer_driver/board"/>
+<element path="/ichigoplus/layer_driver/circuit"/>
+<element path="/ichigoplus/layer_driver/circuit/can_encoder"/>
+</expanded>
+<selection>
+<element path="/ichigoplus/layer_driver/circuit/can_encoder/can_encoder.cpp"/>
+</selection>
+</viewState>
+</view>
+<view id="org.coocox.codebugger.trace.ui.traceview" partName="Semihosting">
+<viewState/>
+</view>
+<view id="org.eclipse.search.ui.views.SearchView" partName="Search">
+<viewState isPinned="false">
+<view IMemento.internal.id="" org.eclipse.search.lastActivation="0"/>
+<view IMemento.internal.id="org.eclipse.search.text.FileSearchResultPage" org.eclipse.search.lastActivation="1" org.eclipse.search.resultpage.layout="2" org.eclipse.search.resultpage.limit="1000" org.eclipse.search.resultpage.sorting="2"/>
+</viewState>
+</view>
+<view id="org.eclipse.debug.ui.DebugView" partName="Debug"/>
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
+<viewState/>
+</view>
+<view id="org.eclipse.debug.ui.VariableView" partName="Variables"/>
+</views>
+<perspectives activePart="org.eclipse.cdt.ui.editor.CEditor" activePerspective="org.coocox.builder.perspective.CoBuilder">
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="org.coocox.builder.ui.PerspectiveCoBuilder" id="org.coocox.builder.perspective.CoBuilder" label="CooCox CoBuilder"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.coocox.component.ui.actionSet"/>
+<alwaysOnActionSet id="org.coocox.welcome.ui.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
+<alwaysOnActionSet id="org.coocox.userspace.actionSet"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.showMemoryAction"/>
+<hide_menu_item_id id="org.eclipse.jdt.ui.refactoring.menu"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.ShowDisassemblyAction"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.showExpressionsAction"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.showDebugAction"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.showConsoleAction"/>
+<hide_menu_item_id id="org.eclipse.cdt.debug.internal.ui.actions.ToggleInstructionStepModeAction"/>
+<hide_menu_item_id id="org.eclipse.jdt.ui.source.menu"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.showMemoryBrowserAction"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.showVariablesAction"/>
+<hide_menu_item_id id="org.coocox.builder.ui.openProjectExplorerAction"/>
+<hide_menu_item_id id="org.coocox.codebugger.trace.actions.ShowTraceControlAction"/>
+<hide_menu_item_id id="org.eclipse.debug.ui.commands.TerminateAndRelaunch"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.showRegistersAction"/>
+<hide_toolbar_item_id id="org.eclipse.cdt.debug.internal.ui.actions.ToggleInstructionStepModeAction"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<hide_toolbar_item_id id="org.eclipse.debug.ui.commands.TerminateAndRelaunch"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.eclipse.search.ui.views.SearchView"/>
+<view id="org.coocox.builder.ui.views.ProjectView"/>
+<fastViewBars/>
+<layout>
+<mainWindow>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@9801f4">
+<folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">
+<page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
+<page content="org.coocox.component.ui.ComponentView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="stickyFolderRight" ratio="0.749497" ratioLeft="745" ratioRight="249" relationship="2" relative="org.eclipse.ui.internal.ViewStack@9801f4">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@840847" ratio="0.7342342" ratioLeft="489" ratioRight="177" relationship="4" relative="org.eclipse.ui.internal.ViewStack@9801f4">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="org.eclipse.search.ui.views.SearchView" label="Search"/>
+<page content="org.eclipse.cdt.ui.typeHierarchy" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.14612547" ratioLeft="198" ratioRight="1157" relationship="2" relative="org.eclipse.ui.internal.ViewStack@9801f4"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@605b1e" ratio="0.71907216" ratioLeft="558" ratioRight="218" relationship="2" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="2">
+<page content="org.coocox.builder.ui.exampleView" label="LabelNotFound"/>
+<page content="org.coocox.component.ui.Help" label="LabelNotFound"/>
+<page content="org.eclipse.debug.ui.BreakpointView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
+<page content="org.coocox.coassistant.view.CoAssistantView" label="LabelNotFound"/>
+<page content="org.coocox.builder.ui.MoreExampleView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="org.coocox.codebugger.configuration.ui.Perspective" id="org.coocox.codebugger.configuration.perspective" label="CoDebugger"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.coocox.component.ui.actionSet"/>
+<alwaysOnActionSet id="org.coocox.welcome.ui.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.debugActionSet"/>
+<hide_menu_item_id id="org.coocox.builder.ui.newFile"/>
+<hide_menu_item_id id="org.coocox.builder.ui.newFolder"/>
+<hide_menu_item_id id="org.coocox.builder.ui.openFile"/>
+<hide_menu_item_id id="org.eclipse.ui.file.save"/>
+<hide_menu_item_id id="org.eclipse.ui.file.saveAs"/>
+<hide_menu_item_id id="org.eclipse.ui.file.saveAll"/>
+<hide_menu_item_id id="org.coocox.builder.rcp.projectMenu"/>
+<hide_menu_item_id id="org.coocox.builder.rcp.flashMenu"/>
+<hide_menu_item_id id="org.coocox.builder.ui.showHelpViewAction"/>
+<hide_menu_item_id id="org.coocox.component.ui.ShowRepositoryAction"/>
+<hide_menu_item_id id="org.coocox.builder.ui.debug"/>
+<hide_menu_item_id id="org.coocox.builder.ui.build"/>
+<hide_menu_item_id id="org.coocox.builder.ui.rebuild"/>
+<hide_menu_item_id id="org.eclipse.jdt.ui.refactoring.menu"/>
+<hide_menu_item_id id="org.eclipse.jdt.ui.source.menu"/>
+<hide_menu_item_id id="org.coocox.builder.ui.actions.ConfigurationAction"/>
+<hide_menu_item_id id="org.coocox.welcome.ui.action.welcome"/>
+<hide_menu_item_id id="org.coocox.welcome.ui.action.repository"/>
+<hide_toolbar_item_id id="org.coocox.builder.ui.newProject"/>
+<hide_toolbar_item_id id="org.coocox.builder.ui.newFile"/>
+<hide_toolbar_item_id id="org.eclipse.ui.file.save"/>
+<hide_toolbar_item_id id="org.coocox.component.ui.ShowRepositoryAction"/>
+<hide_toolbar_item_id id="org.coocox.builder.ui.build"/>
+<hide_toolbar_item_id id="org.coocox.builder.ui.rebuild"/>
+<hide_toolbar_item_id id="org.coocox.builder.ui.debug"/>
+<hide_toolbar_item_id id="org.coocox.codebugger.configuration.coideProgramDownloadAction"/>
+<hide_toolbar_item_id id="org.coocox.codebugger.configuration.coideFlashEraseAction"/>
+<hide_toolbar_item_id id="org.coocox.builder.ui.actions.TargetManageAction"/>
+<hide_toolbar_item_id id="org.coocox.builder.ui.actions.ConfigurationAction"/>
+<hide_toolbar_item_id id="org.coocox.welcome.ui.action.welcome"/>
+<hide_toolbar_item_id id="org.coocox.welcome.ui.action.repository"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.eclipse.debug.ui.DebugView"/>
+<view id="org.coocox.codebugger.trace.ui.traceview"/>
+<view id="org.eclipse.debug.ui.VariableView"/>
+<view id="org.coocox.builder.ui.views.ProjectView"/>
+<fastViewBars/>
+<viewLayoutRec closeable="false" id="org.eclipse.debug.ui.DebugView"/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="org.eclipse.ui.internal.ViewStack@10a76c4">&#x0A;<folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">&#x0A;<page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="stickyFolderRight" ratio="0.7496318" ratioLeft="1018" ratioRight="340" relationship="2" relative="org.eclipse.ui.internal.ViewStack@10a76c4">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1dfbf12" ratio="0.6995516" ratioLeft="468" ratioRight="201" relationship="4" relative="org.eclipse.ui.internal.ViewStack@10a76c4">&#x0A;<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
+<page content="org.eclipse.debug.ui.BreakpointView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@34c8d0" ratio="0.5" ratioLeft="679" ratioRight="679" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1dfbf12">&#x0A;<folder activePageID="org.coocox.codebugger.trace.ui.traceview" appearance="2" expanded="2">&#x0A;<page content="org.coocox.codebugger.trace.ui.traceview" label="Semihosting"/>
+<page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
+<page content="org.eclipse.debug.ui.ExpressionView" label="LabelNotFound"/>
+<page content="org.eclipse.debug.ui.MemoryView" label="LabelNotFound"/>
+<page content="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1e12805" ratio="0.7496318" ratioLeft="1018" ratioRight="340" relationship="2" relative="org.eclipse.ui.internal.ViewStack@10a76c4">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.cdt.dsf.debug.ui.disassembly.view" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
+<page content="org.eclipse.debug.ui.RegisterView" label="LabelNotFound"/>
+<page content="org.coocox.coassistant.view.CoAssistantView_debug" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.29960707" ratioLeft="305" ratioRight="713" relationship="2" relative="org.eclipse.ui.internal.ViewStack@10a76c4"/>
+</mainWindow>
+</layout>
+</perspective>
+</perspectives>
+<workingSets/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/main.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/layer_driver/circuit/lcd/aqm0802.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/layer_driver/board/pin.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/layer_driver/circuit/s11059.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/layer_driver/base/serial.hpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/layer_driver/board/stm32f4_config/config_i2c.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/layer_driver/board/stm32f4_config/config_adc.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/layer_driver/board/stm32f4_config/config_i2c.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/layer_driver/base/can.hpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/main.cpp"/>
+</editors>
+<item historyLabel="main.cpp" index="0">
+<position info="not_deleted" x="1151" y="0"/>
+</item>
+<item historyLabel="pin.cpp" index="2">
+<position info="not_deleted" x="34719" y="0"/>
+</item>
+<item historyLabel="s11059.cpp" index="3">
+<position info="not_deleted" x="442" y="0"/>
+</item>
+<item historyLabel="s11059.cpp" index="3">
+<position info="not_deleted" x="321" y="0"/>
+</item>
+<item historyLabel="s11059.cpp" index="3">
+<position info="not_deleted" x="320" y="0"/>
+</item>
+<item historyLabel="s11059.cpp" index="3">
+<position info="not_deleted" x="60" y="0"/>
+</item>
+<item historyLabel="main.cpp" index="0">
+<position info="not_deleted" x="1157" y="5"/>
+</item>
+<item historyLabel="s11059.cpp" index="3">
+<position info="not_deleted" x="534" y="0"/>
+</item>
+<item historyLabel="main.cpp" index="0">
+<position info="not_deleted" x="1151" y="0"/>
+</item>
+<item historyLabel="pin.cpp" index="2">
+<position info="not_deleted" x="37275" y="0"/>
+</item>
+<item historyLabel="main.cpp" index="0">
+<position info="not_deleted" x="1151" y="0"/>
+</item>
+<item historyLabel="serial.hpp" index="4">
+<position info="not_deleted" x="3923" y="0"/>
+</item>
+<item historyLabel="pin.cpp" index="2">
+<position info="not_deleted" x="36693" y="0"/>
+</item>
+<item historyLabel="main.cpp" index="0">
+<position info="not_deleted" x="1151" y="0"/>
+</item>
+<item historyLabel="aqm0802.cpp" index="1">
+<position info="not_deleted" x="912" y="0"/>
+</item>
+<item historyLabel="config_i2c.h" index="5">
+<position info="not_deleted" x="980" y="11"/>
+</item>
+<item historyLabel="config_adc.c" index="6">
+<position info="not_deleted" x="552" y="33"/>
+</item>
+<item historyLabel="config_i2c.h" index="5">
+<position info="not_deleted" x="366" y="8"/>
+</item>
+<item historyLabel="config_i2c.c" index="7">
+<position info="not_deleted" x="9997" y="0"/>
+</item>
+<item historyLabel="main.cpp" index="0">
+<position info="not_deleted" x="1414" y="0"/>
+</item>
+<item historyLabel="pin.cpp" index="2">
+<position info="not_deleted" x="36856" y="0"/>
+</item>
+<item historyLabel="s11059.cpp" index="3">
+<position info="not_deleted" x="985" y="0"/>
+</item>
+<item historyLabel="config_i2c.c" index="7">
+<position info="not_deleted" x="9866" y="0"/>
+</item>
+<item historyLabel="main.cpp" index="0">
+<position info="not_deleted" x="2580" y="0"/>
+</item>
+<item historyLabel="pin.cpp" index="2">
+<position info="not_deleted" x="36108" y="0"/>
+</item>
+<item historyLabel="config_i2c.c" index="7">
+<position info="not_deleted" x="9668" y="0"/>
+</item>
+<item historyLabel="pin.cpp" index="2">
+<position info="not_deleted" x="36146" y="0"/>
+</item>
+<item historyLabel="config_i2c.c" index="7">
+<position info="not_deleted" x="4620" y="0"/>
+</item>
+<item historyLabel="pin.cpp" index="2">
+<position info="not_deleted" x="36285" y="0"/>
+</item>
+<item historyLabel="config_i2c.c" index="7">
+<position info="not_deleted" x="4856" y="0"/>
+</item>
+<item historyLabel="pin.cpp" index="2">
+<position info="not_deleted" x="36440" y="16"/>
+</item>
+<item historyLabel="config_i2c.c" index="7">
+<position info="not_deleted" x="4934" y="0"/>
+</item>
+<item historyLabel="pin.cpp" index="2">
+<position info="not_deleted" x="36508" y="0"/>
+</item>
+<item historyLabel="main.cpp" index="0">
+<position info="not_deleted" x="1172" y="5"/>
+</item>
+<item historyLabel="pin.cpp" index="2">
+<position info="not_deleted" x="37259" y="0"/>
+</item>
+<item historyLabel="s11059.cpp" index="3">
+<position info="not_deleted" x="62" y="0"/>
+</item>
+<item historyLabel="pin.cpp" index="2">
+<position info="not_deleted" x="36534" y="0"/>
+</item>
+<item historyLabel="main.cpp" index="0">
+<position info="not_deleted" x="1151" y="0"/>
+</item>
+<item historyLabel="config_i2c.c" index="7">
+<position info="not_deleted" x="4676" y="0"/>
+</item>
+<item historyLabel="main.cpp" index="0">
+<position info="not_deleted" x="1172" y="0"/>
+</item>
+<item historyLabel="config_i2c.c" index="7">
+<position info="not_deleted" x="5106" y="0"/>
+</item>
+<item historyLabel="main.cpp" index="0">
+<position info="not_deleted" x="1206" y="0"/>
+</item>
+<item historyLabel="serial.hpp" index="4">
+<position info="not_deleted" x="3923" y="0"/>
+</item>
+<item historyLabel="s11059.cpp" index="3">
+<position info="not_deleted" x="266" y="0"/>
+</item>
+<item historyLabel="pin.cpp" index="2">
+<position info="not_deleted" x="36534" y="0"/>
+</item>
+<item historyLabel="pin.cpp" index="2">
+<position info="not_deleted" x="34509" y="0"/>
+</item>
+<item historyLabel="s11059.cpp" index="3">
+<position info="not_deleted" x="208" y="0"/>
+</item>
+<item historyLabel="pin.cpp" index="2">
+<position info="not_deleted" x="34509" y="0"/>
+</item>
+<item historyLabel="can.hpp" index="8">
+<position info="not_deleted" x="1092" y="0"/>
+</item>
+<item active="true" historyLabel="main.cpp" index="9">
+<position info="not_deleted" x="1208" y="0"/>
+</item>
+</navigationHistory>
+<input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
+</page>
+<workbenchWindowAdvisor/>
+<actionBarAdvisor/>
+</window>
+<mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="config_i2c.c" tooltip="ichigoplus/layer_driver/board/stm32f4_config/config_i2c.c">
+<persistable path="/ichigoplus/layer_driver/board/stm32f4_config/config_i2c.c"/>
+</file>
+<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="can.hpp" tooltip="C:\Users\陽生\Documents\program\twoWheelRobot\layer_driver\base\can.hpp">
+<persistable path="C:\Users\陽生\Documents\program\twoWheelRobot\layer_driver\base\can.hpp" project="ichigoplus"/>
+</file>
+<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="i2c.hpp" tooltip="C:\Users\陽生\Documents\program\twoWheelRobot\layer_driver\base\i2c.hpp">
+<persistable path="C:\Users\陽生\Documents\program\twoWheelRobot\layer_driver\base\i2c.hpp" project="ichigoplus"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="blink.hpp" tooltip="ichigoplus/layer_controller/blink.hpp">
+<persistable path="/ichigoplus/layer_controller/blink.hpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="blink.cpp" tooltip="ichigoplus/layer_controller/blink.cpp">
+<persistable path="/ichigoplus/layer_controller/blink.cpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="can_encoder.cpp" tooltip="ichigoplus/layer_driver/circuit/can_encoder/can_encoder.cpp">
+<persistable path="/ichigoplus/layer_driver/circuit/can_encoder/can_encoder.cpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="s11059.hpp" tooltip="ichigoplus/layer_driver/circuit/s11059.hpp">
+<persistable path="/ichigoplus/layer_driver/circuit/s11059.hpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="s11059.cpp" tooltip="ichigoplus/layer_driver/circuit/s11059.cpp">
+<persistable path="/ichigoplus/layer_driver/circuit/s11059.cpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="serial.hpp" tooltip="ichigoplus/layer_driver/base/serial.hpp">
+<persistable path="/ichigoplus/layer_driver/base/serial.hpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="mcutime.h" tooltip="ichigoplus/layer_driver/base/mcutime.h">
+<persistable path="/ichigoplus/layer_driver/base/mcutime.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="config_usart.h" tooltip="ichigoplus/layer_driver/board/stm32f4_config/config_usart.h">
+<persistable path="/ichigoplus/layer_driver/board/stm32f4_config/config_usart.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="config_usart.c" tooltip="ichigoplus/layer_driver/board/stm32f4_config/config_usart.c">
+<persistable path="/ichigoplus/layer_driver/board/stm32f4_config/config_usart.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="config_pwm.h" tooltip="ichigoplus/layer_driver/board/stm32f4_config/config_pwm.h">
+<persistable path="/ichigoplus/layer_driver/board/stm32f4_config/config_pwm.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="config_pwm.c" tooltip="ichigoplus/layer_driver/board/stm32f4_config/config_pwm.c">
+<persistable path="/ichigoplus/layer_driver/board/stm32f4_config/config_pwm.c"/>
+</file>
+<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="i2c.hpp" tooltip="C:\Users\陽生\Documents\program\twoWheelRobot\layer_driver\base\i2c.hpp">
+<persistable path="C:\Users\陽生\Documents\program\twoWheelRobot\layer_driver\base\i2c.hpp" project="ichigoplus"/>
+</file>
+</mruList>
+</workbench>

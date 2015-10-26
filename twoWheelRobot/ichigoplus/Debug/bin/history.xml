@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
    <processor signature="4.8.4 -mcpu=cortex-m4 -mthumb -g -Map=ichigoplus.map -O0 --gc-sections -lm -lgcc -lc -lstdc++ -LC:\CooCox\CoIDE\configuration\ProgramData\ichigoplus -TC:\CooCox\CoIDE\configuration\ProgramData\ichigoplus/link.ld -g">
-      <target file="ichigoplus.elf" lastModified="150999f8a12">
+      <target file="ichigoplus.elf" lastModified="150a3cf97d1">
          <source file="..\obj\config_pwm.o" lastModified="1509927093d"/>
          <source file="..\obj\usb_core.o" lastModified="15099270a18"/>
          <source file="..\obj\iwdg_software_reset.o" lastModified="15099270a76"/>
@@ -27,10 +27,10 @@
          <source file="..\obj\startup_stm32f4xx.o" lastModified="150992712f2"/>
          <source file="..\obj\stm32f4xx_crc.o" lastModified="15099271350"/>
          <source file="..\obj\stm32f4xx_iwdg.o" lastModified="1509927139e"/>
-         <source file="..\obj\s11059.o" lastModified="150999ee2fa"/>
+         <source file="..\obj\s11059.o" lastModified="150a3b11b97"/>
          <source file="..\obj\usbd_core.o" lastModified="1509927140b"/>
-         <source file="..\obj\pin.o" lastModified="1509994b74e"/>
-         <source file="..\obj\main.o" lastModified="150999f8561"/>
+         <source file="..\obj\pin.o" lastModified="150a3cf92ff"/>
+         <source file="..\obj\main.o" lastModified="150a3cf93aa"/>
          <source file="..\obj\analog.o" lastModified="1509927169c"/>
          <source file="..\obj\stm32_ub_fatfs.o" lastModified="15099271709"/>
          <source file="..\obj\stm32f4xx_rcc.o" lastModified="15099271786"/>
@@ -74,7 +74,7 @@
          <source file="..\obj\misc.o" lastModified="150992726d8"/>
          <source file="..\obj\usb_dcd.o" lastModified="15099272745"/>
          <source file="..\obj\serial.o" lastModified="150992727b3"/>
-         <source file="..\obj\config_i2c.o" lastModified="1509994b8a6"/>
+         <source file="..\obj\config_i2c.o" lastModified="150a3a84df9"/>
          <source file="..\obj\console.o" lastModified="150992728bc"/>
          <source file="..\obj\can_encoder.o" lastModified="1509927291a"/>
          <source file="..\obj\stm32f4xx_rtc.o" lastModified="150992729b6"/>
