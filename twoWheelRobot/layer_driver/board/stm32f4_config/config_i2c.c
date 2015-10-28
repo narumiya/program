@@ -8,7 +8,7 @@
 
 
 
-Rgb_t g_rgb;
+Rgb_t g_rgb={0.0};
 //îzóÒÇÃå¬êîÇÕidÇÃêî
 
 void Init_i2c(I2C_TypeDef *use_i2c,GPIO_TypeDef *GPIOx, uint16_t sclPin, uint16_t sdaPin){
@@ -84,19 +84,24 @@ void Init_i2c(I2C_TypeDef *use_i2c,GPIO_TypeDef *GPIOx, uint16_t sclPin, uint16_
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure);
 }
-/*
+
 int g_directionFlag=2;
 int g_TxBufferSize=0;
 int g_RxBufferSize=0;
 int g_TxSlaveAddress=0;
 int g_RxSlaveAddress=0;
 char g_I2C2BufferRx[10]={0};
-*/
+char g_SendData[20]={0};
 
-/*
+#define TX 0
+#define RX 1
+#define HIGH 0
+#define LOW 1
+
 void I2C1_EV_IRQHandler(void){
 
 }
+#if 0
 void I2C2_EV_IRQHandler(void){
 	static int TxAddress=0;
 	static int RxAddress=0;
@@ -115,22 +120,22 @@ void I2C2_EV_IRQHandler(void){
     		}
     		break;
     	case I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED:
-    		I2C_SendData(I2C2, i2c[TxAddress].data[TxDataNum++]);
+    		I2C_SendData(I2C2, g_SendData[TxDataNum++]);
     		break;
     	case I2C_EVENT_MASTER_BYTE_TRANSMITTED:
     		if(TxDataNum<g_TxBufferSize){
-    			I2C_SendData(I2C2, i2c[TxAddress].data[TxDataNum++]);
+    			I2C_SendData(I2C2, g_SendData[TxDataNum++]);
     			if(g_TxBufferSize - TxDataNum<1)
     				I2C_GenerateSTOP(I2C2, ENABLE);
 			}else{
-	       		if(i2c[TxAddress].data[0]==0x03){
+	       		if(g_SendData[0]==0x03){
 					g_RxBufferSize=8;
 					g_RxSlaveAddress=0x55;
 					g_directionFlag=RX;
 					//I2C_Cmd(I2C2,ENABLE);
 					I2C_GenerateSTART(I2C2, ENABLE);
 	        	}
-				for(j=0;j<26;j++)	i2c[TxAddress].data[j]='\0';
+
 				TxDataNum=0;
 				g_TxBufferSize=0;
 			}
@@ -147,17 +152,16 @@ void I2C2_EV_IRQHandler(void){
     		if(g_RxBufferSize-RxDataNum<1){
     			if(RxAddress==0x55)
     				analaysColor(g_I2C2BufferRx);
-        			RxDataNum=0;
-        			g_RxBufferSize=0;
-    				I2C_AcknowledgeConfig(I2C2, ENABLE);
+        		RxDataNum=0;
+        		g_RxBufferSize=0;
+    			I2C_AcknowledgeConfig(I2C2, ENABLE);
     		}
     		break;
     	default:
     		break;
 	}
 }
-*/
-
+#endif
 static int f_i2c_error=3;
 
 void I2c_lcd_cmd_send(char c){
@@ -224,7 +228,7 @@ void I2c_lcd_put_c(char c){
 		I2C_GenerateSTOP(I2C_LCD_USE_I2C,ENABLE);
 	}*/
 	I2C_GenerateSTART(I2C_LCD_USE_I2C,ENABLE);
-	 //I2c_chack_wait(I2C_EVENT_MASTER_MODE_SELECT);
+	//I2c_chack_wait(I2C_EVENT_MASTER_MODE_SELECT);
 	 while(!I2C_CheckEvent(I2C_LCD_USE_I2C, I2C_EVENT_MASTER_MODE_SELECT));
 	I2C_Send7bitAddress(I2C_LCD_USE_I2C,0x7C,I2C_Direction_Transmitter);
 	// I2c_chack_wait(I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED);
@@ -252,7 +256,7 @@ void I2c_chack_wait(int flag){
 		}
 	}
 }
-/*
+
 void I2CLcdCommand(void){
 	delay_ms(100);
 	I2cCommandSend(0x7C,0x00,0x38);delay_ms(2);
@@ -270,8 +274,8 @@ void I2CLcdCommandSend(char data){
 	const int slaveAddress=0x7C;
 
 	while(!(g_TxBufferSize==0&&g_RxBufferSize==0));
-	i2c[slaveAddress].data[0]=0x00;
-	i2c[slaveAddress].data[1]=data;
+	g_SendData[0]=0x00;
+	g_SendData[1]=data;
 	g_TxBufferSize=2;
 	g_TxSlaveAddress=slaveAddress;
 	g_directionFlag=TX;
@@ -285,9 +289,9 @@ void I2CLcdSendString(char *str){
 	int i;
 
 	while(!(g_TxBufferSize==0&&g_RxBufferSize==0));
-	i2c[slaveAddress].data[0]=0x40;
-	for(i=0;str[i]!='\0';i++)	i2c[slaveAddress].data[i+1]=str[i];
-	g_TxBufferSize=strlen(i2c[slaveAddress].data);
+	g_SendData[0]=0x40;
+	for(i=0;str[i]!='\0';i++)	g_SendData[i]=str[i];
+	g_TxBufferSize=strlen(g_SendData);
 	g_TxSlaveAddress=slaveAddress;
 	g_directionFlag=TX;
 	I2C_GenerateSTART(I2C2,ENABLE);
@@ -306,6 +310,7 @@ void I2CLcdClear(void){
 void I2cColorConfig(char mode){
 	static unsigned int time=0;
 	static int flag=0;
+
 	if(millis()-time>=5){
 		time=millis();
 		if(flag==0){
@@ -324,22 +329,22 @@ void I2cColorConfig(char mode){
 		else if(flag==3){
 			while(!(g_TxBufferSize==0&&g_RxBufferSize==0));
 			g_TxSlaveAddress=0x54;
-			i2c[g_TxSlaveAddress].data[0]=0x03;
+			g_SendData[0]=0x03;
 			g_TxBufferSize=1;
 			g_directionFlag=TX;
 			I2C_GenerateSTART(I2C2,ENABLE);
 		}
 	}
 }
-*/
+
 void I2cCommandSend(int address,char command,char data){
-	/*while(!(g_TxBufferSize==0&&g_RxBufferSize==0));
-	i2c[address].data[0]=command;
-	i2c[address].data[1]=data;
+	while(!(g_TxBufferSize==0&&g_RxBufferSize==0));
+	g_SendData[0]=command;
+	g_SendData[1]=data;
 	g_TxBufferSize=2;
 	g_TxSlaveAddress=address;
 	g_directionFlag=TX;
-	I2C_GenerateSTART(I2C2,ENABLE);*/
+	I2C_GenerateSTART(I2C2,ENABLE);
 
 	/*I2C_GenerateSTART(USE_I2C,ENABLE);
 	//I2c_chack_wait(I2C_EVENT_MASTER_MODE_SELECT);
@@ -355,8 +360,7 @@ void I2cCommandSend(int address,char command,char data){
 	 while(!I2C_CheckEvent(USE_I2C, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
 	I2C_GenerateSTOP(USE_I2C,ENABLE);*/
 }
-#define LOW 0
-#define HIGH 1
+
 void I2cGetColor(Rgb_t *rgb){
 	//char str[8]={0};
 

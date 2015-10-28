@@ -1239,9 +1239,6 @@ typedef struct{
 class I2c0:public I2c{
 private:
 	unsigned int time;
-	static int directionFlag;
-	static int bufferSize;
-	static int slaveAddress;
 	static char sendData[20];
 	static int i2cInterfaceCursor;
 	static RingBuffer<I2c_t,256> txBuf;
@@ -1249,6 +1246,11 @@ private:
 	friend void I2c0_Interrupt();
 	static void startI2c();
 public:
+	static int directionFlag;
+	static int txBufferSize;
+	static int rxBufferSize;
+	static int txSlaveAddress;
+	static int rxSlaveAddress;
 	I2c0();
 	void cycle();
 	int setup();

@@ -2,6 +2,7 @@
 #include "pin.hpp"
 extern "C" {
 #include <string.h>
+#include <stdio.h>
 #include "mcutime.h"
 #include "stm32f4xx.h"
 #include "stm32f4xx_conf.h"
@@ -1931,8 +1932,10 @@ extern "C" void CAN1_RX0_IRQHandler(void){
 #define I2C_PORT_SCL_SDA		GPIOB,GPIO_Pin_10,GPIO_Pin_11
 
 int I2c0::directionFlag;
-int I2c0::slaveAddress;
-int I2c0::bufferSize;
+int I2c0::rxSlaveAddress;
+int I2c0::txSlaveAddress;
+int I2c0::txBufferSize;
+int I2c0::rxBufferSize;
 char I2c0::sendData[20];
 I2cInterface * I2c0::i2cInterface[10];
 int I2c0::i2cInterfaceCursor=0;
@@ -1940,8 +1943,10 @@ RingBuffer<I2c_t,256> I2c0::txBuf;
 
 I2c0::I2c0(){
 	directionFlag=true;
-	slaveAddress=0;
-	bufferSize=0;
+	rxSlaveAddress=0;
+	txSlaveAddress=0;
+	txBufferSize=0;
+	rxBufferSize=0;
 }
 
 int I2c0::setup(){
@@ -1967,8 +1972,8 @@ int I2c0::write(char address,char *value,char dataSize,bool txrx){
 
 	if(getBufferFlag()==0){
 		if(txBuf.isEmpty()==1){
-			slaveAddress=address;
-			bufferSize=dataSize;
+			txSlaveAddress=address;
+			txBufferSize=dataSize;
 			for(int i=0;i<dataSize;i++){
 				sendData[i]=*(value+i);
 			}
@@ -1984,73 +1989,78 @@ int I2c0::write(char address,char *value,char dataSize,bool txrx){
 	i2c.dataSize=dataSize;
 	i2c.txrxFlag=txrx;
 	while(txBuf.write(i2c)){
-		cycle();
-		printf("x");
+		cycle();printf("max\n");
 	}
 
 	return 0;
 }
 
 int I2c0::getBufferFlag(){
-	return bufferSize;
+	return rxBufferSize+txBufferSize;
 }
 
+#include "layer_driver/circuit/s11059.hpp"
 void I2c0_Interrupt(void){
+	static int TxAddress=0;
+	static int RxAddress=0;
 	static int TxDataNum=0;
 	static int RxDataNum=0;
-	static char rxData[10];
+	static char rxData[10]={0};
 
 	switch (I2C_GetLastEvent(I2C2)){
 		case I2C_EVENT_MASTER_MODE_SELECT:
 			if(I2c0::directionFlag==TX){
-				I2C_Send7bitAddress(I2C2, I2c0::slaveAddress, I2C_Direction_Transmitter);
+				TxAddress=I2c0::txSlaveAddress;
+				I2C_Send7bitAddress(I2C2, TxAddress, I2C_Direction_Transmitter);
 			}else if(I2c0::directionFlag==RX){
-				I2C_Send7bitAddress(I2C2, I2c0::slaveAddress, I2C_Direction_Receiver);
+				RxAddress=I2c0::rxSlaveAddress;
+				I2C_Send7bitAddress(I2C2, RxAddress, I2C_Direction_Receiver);
 			}
 			break;
 		case I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED:
 			I2C_SendData(I2C2, I2c0::sendData[TxDataNum++]);
 			break;
 		case I2C_EVENT_MASTER_BYTE_TRANSMITTED:
-			if(TxDataNum<I2c0::bufferSize){
+			if(TxDataNum<I2c0::txBufferSize){
 				I2C_SendData(I2C2, I2c0::sendData[TxDataNum++]);
-				if(I2c0::bufferSize-TxDataNum<1)
+				if(I2c0::txBufferSize-TxDataNum<1)
 					I2C_GenerateSTOP(I2C2, ENABLE);
 			}else{
-				if(I2c0::sendData[0]==0x03){
-					I2c0::bufferSize=8;
-					I2c0::slaveAddress=0x55;
+				/*if(I2c0::sendData[0]==0x03){
+					I2c0::rxBufferSize=8;
+					I2c0::rxSlaveAddress=0x55;
 					I2c0::directionFlag=RX;
+					TxDataNum=0;
 					I2C_GenerateSTART(I2C2, ENABLE);
+				}*/
+				int i;
+				for(i=0;i<I2c0::i2cInterfaceCursor;i++){
+					if(I2c0::i2cInterface[i]->i2cAddress(TxAddress)){
+						I2c0::i2cInterface[i]->i2cReStartSend(I2c0::sendData[0]);
+					}
 				}
-				int j;
-				for(j=0;j<10;j++)	I2c0::sendData[j]='\0';
 				TxDataNum=0;
-				I2c0::bufferSize=0;
-				//I2c0::startI2c();
+				I2c0::txBufferSize=0;
 			}
 			break;
-		case I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED:
-			//g_I2C2BufferRx[RxDataNum++]=I2C_ReceiveData(I2C2);
-			break;
+	 	case I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED:
+	    		break;
 		case I2C_EVENT_MASTER_BYTE_RECEIVED:
 			rxData[RxDataNum++]=I2C_ReceiveData(I2C2);
-			if(I2c0::bufferSize==RxDataNum+1){
+			if(I2c0::rxBufferSize==RxDataNum+1){
 				I2C_AcknowledgeConfig(I2C2, DISABLE);
 				I2C_GenerateSTOP(I2C2, ENABLE);
 			}
-			if(I2c0::bufferSize-RxDataNum<1){
+			if(I2c0::rxBufferSize-RxDataNum<1){
+				RxDataNum=0;
+				I2C_AcknowledgeConfig(I2C2, ENABLE);
+				I2c0::rxBufferSize=0;
 				int i;
 				for(i=0;i<I2c0::i2cInterfaceCursor;i++){
-					printf("a");
-					if(I2c0::i2cInterface[i]->i2cAddress(I2c0::slaveAddress)){
+					if(I2c0::i2cInterface[i]->i2cAddress(RxAddress)){
 						I2c0::i2cInterface[i]->i2cRead(rxData);
 					}
 				}
-				RxDataNum=0;
-				for(i=0;i<I2c0::bufferSize;i++)	rxData[i]='\0';
-				I2C_AcknowledgeConfig(I2C2, ENABLE);
-				I2c0::bufferSize=0;
 			}
 			break;
 		default:
@@ -2061,11 +2071,9 @@ void I2c0_Interrupt(void){
 void I2c0::startI2c(){
 	if(txBuf.isEmpty()==0){
 		I2c_t i2c;i2c=txBuf.read();
-		slaveAddress=i2c.address;
-		bufferSize=i2c.dataSize;
-		//sendData=i2c.data;
-		//strcpy(sendData,i2c.data);
-		for(int i=0;i<bufferSize;i++){
+		txSlaveAddress=i2c.address;
+		txBufferSize=i2c.dataSize;
+		for(int i=0;i<txBufferSize;i++){
 			sendData[i]=i2c.data[i];
 		}
 		directionFlag=i2c.txrxFlag;
@@ -2075,7 +2083,7 @@ void I2c0::startI2c(){
 
 void I2c0::cycle(){
 	if(getBufferFlag()==0){
-		if(millis()-time>=3){
+		if(millis()-time>=5){
 			time=millis();
 			startI2c();
 		}
@@ -2083,8 +2091,8 @@ void I2c0::cycle(){
 		time=millis();
 	}
 }
-/*
+
 extern "C" void I2C2_EV_IRQHandler(void){
 	I2c0_Interrupt();
 }
-*/
+

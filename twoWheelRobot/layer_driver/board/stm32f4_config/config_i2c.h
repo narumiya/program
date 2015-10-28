@@ -5,6 +5,7 @@
 #include "stm32f4xx.h"
 
 
+
 #define I2C1_SCL_PIN	GPIO_Pin_6
 #define I2C1_SDA_PIN	GPIO_Pin_7
 //#define I2C1_SCL_PIN	GPIO_Pin_8

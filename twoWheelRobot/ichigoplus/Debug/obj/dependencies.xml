@@ -26,7 +26,7 @@
       <source file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_conf\usb_conf.h" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\layer_driver\board\pin.cpp" lastModified="150a3cf9178">
+      <source file="..\..\..\layer_driver\board\pin.cpp" lastModified="150addeeb7f">
          <include file="..\..\..\layer_driver\board\pin.hpp"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
@@ -40,6 +40,7 @@
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_adc.h"/>
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_can.h"/>
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.h"/>
+         <include file="..\..\..\layer_driver\circuit\s11059.hpp"/>
       </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\config_systick.c" lastModified="14eb18e6c90">
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_systick.h"/>
@@ -65,7 +66,7 @@
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_i2c.h" lastModified="1503755b595">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.h" lastModified="1509984afbc">
+      <source file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.h" lastModified="150a86357d2">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_i2c.h"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
@@ -79,7 +80,7 @@
       <source file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\cdc\usbd_cdc_core.h" lastModified="14eb18e6c90">
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\core\usbd_ioreq.h"/>
       </source>
-      <source file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.c" lastModified="150a3a76aac">
+      <source file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.c" lastModified="150ad967018">
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.h"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
          <include file="..\..\..\layer_driver\board\stm32f4_config\name_converter.h"/>
@@ -168,7 +169,7 @@
          <include file="..\..\..\cmsis_boot\stm32f4xx_conf.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_usart.h"/>
       </source>
-      <source file="..\..\..\layer_driver\circuit\s11059.hpp" lastModified="150a3684f03">
+      <source file="..\..\..\layer_driver\circuit\s11059.hpp" lastModified="150add59adc">
          <include file="..\..\..\layer_driver\base\i2c.hpp"/>
       </source>
       <source file="..\..\..\layer_driver\base\pwm.hpp" lastModified="14fd0699a29">
@@ -228,7 +229,7 @@
          <include file="..\..\..\layer_driver\board\pin.hpp"/>
          <include file="..\..\..\layer_controller\my_else_calculation.h"/>
       </source>
-      <source file="..\..\..\layer_driver\circuit\lcd\aqm0802.hpp" lastModified="15099786241">
+      <source file="..\..\..\layer_driver\circuit\lcd\aqm0802.hpp" lastModified="150add59aad">
          <include file="..\..\..\layer_driver\base\i2c.hpp"/>
       </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_adc.c" lastModified="14eb18e6c90">
@@ -337,7 +338,7 @@
          <include file="..\..\..\layer_controller\my_else_calculation.h"/>
          <include file="..\..\..\layer_driver\base\util.h"/>
       </source>
-      <source file="..\..\..\layer_driver\base\i2c.hpp" lastModified="1509977d1a5">
+      <source file="..\..\..\layer_driver\base\i2c.hpp" lastModified="150add59abd">
       </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_usart.c" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_usart.h"/>
@@ -368,7 +369,7 @@
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
          <include file="..\..\..\cmsis_lib\include\misc.h"/>
       </source>
-      <source file="..\..\..\layer_driver\board\pin.hpp" lastModified="15099372374">
+      <source file="..\..\..\layer_driver\board\pin.hpp" lastModified="150addbdc88">
          <include file="..\..\..\layer_driver\base\serial.hpp"/>
          <include file="..\..\..\layer_driver\base\digital.hpp"/>
          <include file="..\..\..\layer_driver\base\analog.hpp"/>
@@ -556,9 +557,11 @@
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_crc.c" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_crc.h"/>
       </source>
-      <source file="..\..\..\layer_driver\circuit\s11059.cpp" lastModified="150a3b1181c">
+      <source file="..\..\..\layer_driver\circuit\s11059.cpp" lastModified="150ade1ff84">
          <include file="..\..\..\layer_driver\circuit\s11059.hpp"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
+         <include file="..\..\..\layer_driver\board\pin.hpp"/>
+         <include file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.h"/>
       </source>
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_usart.h" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
@@ -666,7 +669,7 @@
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
-      <source file="..\..\..\main.cpp" lastModified="150a3cf9550">
+      <source file="..\..\..\main.cpp" lastModified="150adc8e212">
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_adc.h"/>
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.h"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>

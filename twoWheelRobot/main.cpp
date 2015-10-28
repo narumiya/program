@@ -34,22 +34,22 @@ int main(){
 	Led0 led;Blink blink(led);blink.setup();
 	blink.time(200);
 	Serial0 serial0;serial0.setup(115200);
-	I2c0 i2c;i2c.setup();
-	printf("start");
+	I2c0 i2c;
+	printf("start\n");
+	S11059 color(i2c);color.setup();
 	Aqm0802 lcd(i2c);lcd.setup();
-	S11059 color(i2c);//color.setup();
-
+	color.setMode(S11059::HIGH);
 	char data[10]={'\0'};
+	Rgb_t rgb={0};
 	int flag=0;
-
+	char str[30];
 	while(1){
+		color.cycle();
 		blink.cycle();
-		color.setMode(S11059::HIGH);
-		//color.cycle();
 		i2c.cycle();
-		if(millis()-time>=500){
+		if(millis()-time>=300){
 			time=millis();
-			if(!flag){
+			/*if(!flag){
 				flag=1;
 				sprintf(data,"Hello");
 				lcd.setCursor(0,0);
@@ -60,11 +60,25 @@ int main(){
 			}else{
 				flag=0;
 				lcd.clear();
-			}
-			/*serial0.printf("r:%d",color.getRed());
+			}*/
+			sprintf(str,"R%3d",color.getRed());
+			lcd.setCursor(0,0);
+			lcd.sendString(str);
+			sprintf(str,"G%3d",color.getGreen());
+			lcd.setCursor(4,0);
+			lcd.sendString(str);
+			sprintf(str,"B%3d",color.getBlue());
+			lcd.setCursor(0,1);
+			lcd.sendString(str);
+			serial0.printf("r:%d",color.getRed());
 			serial0.printf("g:%d",color.getGreen());
 			serial0.printf("b:%d",color.getBlue());
-			serial0.printf("inf:%d\n",color.getInfrared());*/
+			serial0.printf("inf:%d\n",color.getInfrared());
+			/*rgb=getColor();
+			serial0.printf("r:%d",rgb.red);
+			serial0.printf("g:%d",rgb.green);
+			serial0.printf("b:%d",rgb.blue);
+			serial0.printf("inf:%d\n",rgb.infrared);*/
 		}
 	}
 }
@@ -90,7 +104,7 @@ int main(){
 	int flag=0;
 	while(1){
 		blink.cycle();
-		I2cColorConfig(HIGH);
+		I2cColorConfig(0);
 
 		if(millis()-time>=300){
 			time=millis();

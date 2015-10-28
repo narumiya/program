@@ -1,6 +1,8 @@
 #include "s11059.hpp"
 #include "mcutime.h"
-
+#include "pin.hpp"
+#include "config_i2c.h"
+#include <stdio.h>
 S11059::S11059(I2c &i2cPin){
 	readAddress=0x55;
 	sendAddress=0x54;
@@ -28,7 +30,7 @@ void S11059::cycle(){
 	static int flag=0;
 	char data[3]={'\0'};
 
-	if(millis()-time>=5){
+	if(millis()-time>=10){
 		time=millis();
 		if(flag==0){
 			if(mode==LOW){
@@ -50,15 +52,28 @@ void S11059::cycle(){
 				i2cWrite(0x54,data,2,TX);
 				flag=2;
 			}
-		}else if(flag==2) flag=3;
-		  else if(flag==3){
-			data[0]=0x03;
+		}else if(flag==2){
+			flag=3;
+		}else if(flag==3){
+			data[0]=0x03;data[1]=0x00;
 			i2cWrite(0x54,data,1,TX);
-			flag=0;
 		}
 	}
 }
 
 int S11059::i2cAddress(int address){
-	return address==readAddress;
+	if(I2c0::directionFlag==RX){
+		return address==readAddress;
+	}else{
+		return address==sendAddress;
+	}
+}
+
+void S11059::i2cReStartSend(char data){
+	if(data==0x03){
+		I2c0::rxBufferSize=8;
+		I2c0::rxSlaveAddress=0x55;
+		I2c0::directionFlag=RX;
+		I2C_GenerateSTART(I2C2, ENABLE);
+	}
 }

@@ -22,6 +22,7 @@ public:
 	int getInfrared(){return infrared;};
 	void setMode(int value){mode=value;};
 	void i2cRead(char *data);
+	void i2cReStartSend(char data);
 	int i2cAddress(int address);
 	void cycle();
 	enum{
