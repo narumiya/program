@@ -11,7 +11,7 @@
 <perspectiveBar/>
 <page focus="true" label="Workspace - CooCox CoBuilder">
 <editors>
-<editorArea activeWorkbook="org.eclipse.ui.internal.EditorStack@8d291b">
+<editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
@@ -47,13 +47,15 @@
 <part id="16"/>
 <part id="17"/>
 <part id="18"/>
+<part id="19"/>
+<part id="20"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.cpp" partName="main.cpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/main.cpp" title="main.cpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/main.cpp" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.cpp" partName="main.cpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/main.cpp" title="main.cpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/main.cpp" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/main.cpp"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="923" selectionTopPixel="1167"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2162" selectionTopPixel="1430"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="util.hpp" partName="util.hpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/base/util.hpp" title="util.hpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/base/util.hpp" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/base/util.hpp"/>
@@ -75,9 +77,9 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_controller/blink.hpp"/>
 <editorState selectionHorizontalPixel="0" selectionLength="5" selectionOffset="176" selectionTopPixel="0"/>
 </editor>
-<editor focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="s11059.cpp" partName="s11059.cpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/s11059.cpp" title="s11059.cpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/s11059.cpp" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/circuit/s11059.cpp"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="237" selectionTopPixel="0"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="ina226.cpp" partName="ina226.cpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/ina226.cpp" title="ina226.cpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/ina226.cpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/circuit/ina226.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1559" selectionTopPixel="1097"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="can.cpp" partName="can.cpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/base/can.cpp" title="can.cpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/base/can.cpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/base/can.cpp"/>
@@ -85,11 +87,11 @@
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="i2c.cpp" partName="i2c.cpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/base/i2c.cpp" title="i2c.cpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/base/i2c.cpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/base/i2c.cpp"/>
-<editorState selectionHorizontalPixel="0" selectionLength="5" selectionOffset="253" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="5" selectionOffset="262" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="pin.hpp" partName="pin.hpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/board/pin.hpp" title="pin.hpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/board/pin.hpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/board/pin.hpp"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="21370" selectionTopPixel="24737"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="21129" selectionTopPixel="24750"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="config_adc.c" partName="config_adc.c" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/board/stm32f4_config/config_adc.c" title="config_adc.c" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/board/stm32f4_config/config_adc.c" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/board/stm32f4_config/config_adc.c"/>
@@ -105,19 +107,19 @@
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="aqm0802.hpp" partName="aqm0802.hpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/lcd/aqm0802.hpp" title="aqm0802.hpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/lcd/aqm0802.hpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/circuit/lcd/aqm0802.hpp"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="388" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="110" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="move.cpp" partName="move.cpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_controller/move.cpp" title="move.cpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_controller/move.cpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_controller/move.cpp"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2295" selectionTopPixel="1880"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="aqm0802.cpp" partName="aqm0802.cpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/lcd/aqm0802.cpp" title="aqm0802.cpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/lcd/aqm0802.cpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="aqm0802.cpp" partName="aqm0802.cpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/lcd/aqm0802.cpp" title="aqm0802.cpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/lcd/aqm0802.cpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/circuit/lcd/aqm0802.cpp"/>
-<editorState selectionHorizontalPixel="0" selectionLength="4" selectionOffset="333" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1006" selectionTopPixel="877"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="i2c.hpp" partName="i2c.hpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/base/i2c.hpp" title="i2c.hpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/base/i2c.hpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/base/i2c.hpp"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="386" selectionTopPixel="117"/>
+<editorState selectionHorizontalPixel="0" selectionLength="10" selectionOffset="303" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="can_encoder.cpp" partName="can_encoder.cpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/can_encoder/can_encoder.cpp" title="can_encoder.cpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/can_encoder/can_encoder.cpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/circuit/can_encoder/can_encoder.cpp"/>
@@ -125,7 +127,7 @@
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="s11059.hpp" partName="s11059.hpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/s11059.hpp" title="s11059.hpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/s11059.hpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/circuit/s11059.hpp"/>
-<editorState selectionHorizontalPixel="0" selectionLength="3" selectionOffset="52" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="11" selectionOffset="379" selectionTopPixel="257"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="can.hpp" partName="can.hpp" title="can.hpp" tooltip="C:\Users\陽生\Documents\program\twoWheelRobot\layer_driver\base\can.hpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
 <input factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" path="C:\Users\陽生\Documents\program\twoWheelRobot\layer_driver\base\can.hpp" project="ichigoplus"/>
@@ -153,12 +155,20 @@
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="pin.cpp" partName="pin.cpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/board/pin.cpp" title="pin.cpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/board/pin.cpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/board/pin.cpp"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="36349" selectionTopPixel="40487"/>
+<editorState selectionHorizontalPixel="0" selectionLength="18" selectionOffset="37039" selectionTopPixel="40940"/>
+</editor>
+<editor focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="ina226.hpp" partName="ina226.hpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/ina226.hpp" title="ina226.hpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/ina226.hpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/circuit/ina226.hpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="10" selectionOffset="319" selectionTopPixel="37"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="s11059.cpp" partName="s11059.cpp" path="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/s11059.cpp" title="s11059.cpp" tooltip="C:/Users/陽生/Documents/program/twoWheelRobot/layer_driver/circuit/s11059.cpp" workbook="org.eclipse.ui.internal.EditorStack@8d291b">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/circuit/s11059.cpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="948" selectionTopPixel="857"/>
 </editor>
 </editors>
 <views>
 <view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
-<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="81">
+<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="85">
 <expanded>
 <element path="/ichigoplus"/>
 <element path="/ichigoplus/cmsis_boot"/>
@@ -172,10 +182,9 @@
 <element path="/ichigoplus/layer_driver/board"/>
 <element path="/ichigoplus/layer_driver/board/stm32f4_config"/>
 <element path="/ichigoplus/layer_driver/circuit"/>
-<element path="/ichigoplus/layer_driver/circuit/can_encoder"/>
 </expanded>
 <selection>
-<element path="/ichigoplus/layer_driver/board/pin.cpp"/>
+<element path="/ichigoplus/layer_driver/circuit/ina226.hpp"/>
 </selection>
 </viewState>
 </view>
@@ -369,163 +378,161 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/main.cpp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/layer_driver/base/i2c.hpp"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/layer_driver/circuit/s11059.cpp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/layer_driver/base/i2c.cpp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/layer_driver/board/pin.hpp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/layer_driver/board/pin.cpp"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/layer_driver/circuit/lcd/aqm0802.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/layer_driver/circuit/ina226.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/layer_driver/circuit/ina226.hpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/main.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/layer_driver/circuit/s11059.hpp"/>
 </editors>
-<item historyLabel="s11059.cpp" index="2">
-<position info="not_deleted" x="1388" y="0"/>
+<item historyLabel="s11059.cpp" index="0">
+<position info="not_deleted" x="1347" y="0"/>
 </item>
-<item historyLabel="pin.hpp" index="4">
-<position info="not_deleted" x="21181" y="0"/>
+<item historyLabel="ina226.hpp" index="2">
+<position info="not_deleted" x="150" y="0"/>
 </item>
-<item historyLabel="pin.cpp" index="5">
-<position info="not_deleted" x="207" y="0"/>
+<item historyLabel="ina226.cpp" index="1">
+<position info="not_deleted" x="828" y="0"/>
 </item>
-<item historyLabel="s11059.cpp" index="2">
-<position info="not_deleted" x="1329" y="0"/>
+<item historyLabel="ina226.cpp" index="1">
+<position info="not_deleted" x="976" y="0"/>
 </item>
-<item historyLabel="main.cpp" index="0">
-<position info="not_deleted" x="1607" y="0"/>
+<item historyLabel="ina226.hpp" index="2">
+<position info="not_deleted" x="216" y="7"/>
 </item>
-<item historyLabel="s11059.cpp" index="2">
-<position info="not_deleted" x="1358" y="0"/>
+<item historyLabel="ina226.cpp" index="1">
+<position info="not_deleted" x="976" y="0"/>
 </item>
-<item historyLabel="main.cpp" index="0">
-<position info="not_deleted" x="467" y="3"/>
+<item historyLabel="ina226.cpp" index="1">
+<position info="not_deleted" x="1044" y="0"/>
 </item>
-<item historyLabel="pin.hpp" index="4">
-<position info="not_deleted" x="1867" y="0"/>
+<item historyLabel="ina226.hpp" index="2">
+<position info="not_deleted" x="88" y="0"/>
 </item>
-<item historyLabel="main.cpp" index="0">
-<position info="not_deleted" x="584" y="0"/>
+<item historyLabel="s11059.cpp" index="0">
+<position info="not_deleted" x="65" y="23"/>
 </item>
-<item historyLabel="pin.cpp" index="5">
-<position info="not_deleted" x="925" y="0"/>
+<item historyLabel="ina226.cpp" index="1">
+<position info="not_deleted" x="88" y="0"/>
 </item>
-<item historyLabel="i2c.hpp" index="1">
-<position info="not_deleted" x="386" y="0"/>
+<item historyLabel="main.cpp" index="3">
+<position info="not_deleted" x="1311" y="0"/>
 </item>
-<item historyLabel="pin.hpp" index="4">
-<position info="not_deleted" x="1873" y="0"/>
+<item historyLabel="ina226.cpp" index="1">
+<position info="not_deleted" x="838" y="0"/>
 </item>
-<item historyLabel="i2c.cpp" index="3">
-<position info="not_deleted" x="253" y="5"/>
+<item historyLabel="main.cpp" index="3">
+<position info="not_deleted" x="1311" y="0"/>
 </item>
-<item historyLabel="main.cpp" index="0">
-<position info="not_deleted" x="584" y="0"/>
+<item historyLabel="ina226.cpp" index="1">
+<position info="not_deleted" x="1144" y="0"/>
 </item>
-<item historyLabel="s11059.cpp" index="2">
-<position info="not_deleted" x="759" y="4"/>
+<item historyLabel="s11059.cpp" index="0">
+<position info="not_deleted" x="326" y="0"/>
 </item>
-<item historyLabel="main.cpp" index="0">
-<position info="not_deleted" x="923" y="0"/>
+<item historyLabel="s11059.hpp" index="4">
+<position info="not_deleted" x="520" y="10"/>
 </item>
-<item historyLabel="s11059.cpp" index="2">
-<position info="not_deleted" x="1447" y="0"/>
+<item historyLabel="ina226.hpp" index="2">
+<position info="not_deleted" x="88" y="0"/>
 </item>
-<item historyLabel="pin.cpp" index="5">
-<position info="not_deleted" x="925" y="0"/>
+<item historyLabel="ina226.hpp" index="2">
+<position info="not_deleted" x="458" y="0"/>
 </item>
-<item historyLabel="pin.hpp" index="4">
-<position info="not_deleted" x="21370" y="0"/>
+<item historyLabel="ina226.cpp" index="1">
+<position info="not_deleted" x="906" y="0"/>
 </item>
-<item historyLabel="s11059.cpp" index="2">
-<position info="not_deleted" x="1392" y="0"/>
+<item historyLabel="ina226.cpp" index="1">
+<position info="not_deleted" x="1599" y="0"/>
 </item>
-<item historyLabel="main.cpp" index="0">
-<position info="not_deleted" x="923" y="0"/>
+<item historyLabel="ina226.hpp" index="2">
+<position info="not_deleted" x="150" y="0"/>
 </item>
-<item historyLabel="pin.cpp" index="5">
-<position info="not_deleted" x="35821" y="0"/>
+<item historyLabel="ina226.cpp" index="1">
+<position info="not_deleted" x="1192" y="0"/>
 </item>
-<item historyLabel="s11059.cpp" index="2">
-<position info="not_deleted" x="1470" y="0"/>
+<item historyLabel="ina226.cpp" index="1">
+<position info="not_deleted" x="379" y="0"/>
 </item>
-<item historyLabel="pin.cpp" index="5">
-<position info="not_deleted" x="36537" y="0"/>
+<item historyLabel="ina226.cpp" index="1">
+<position info="not_deleted" x="87" y="0"/>
 </item>
-<item historyLabel="s11059.cpp" index="2">
-<position info="not_deleted" x="1344" y="14"/>
-</item>
-<item historyLabel="pin.cpp" index="5">
-<position info="not_deleted" x="36492" y="7"/>
-</item>
-<item historyLabel="s11059.cpp" index="2">
+<item historyLabel="ina226.cpp" index="1">
 <position info="not_deleted" x="1443" y="0"/>
 </item>
-<item historyLabel="pin.cpp" index="5">
-<position info="not_deleted" x="36437" y="10"/>
+<item historyLabel="ina226.cpp" index="1">
+<position info="not_deleted" x="1434" y="0"/>
 </item>
-<item historyLabel="s11059.cpp" index="2">
-<position info="not_deleted" x="1344" y="14"/>
+<item historyLabel="ina226.cpp" index="1">
+<position info="not_deleted" x="1461" y="0"/>
 </item>
-<item historyLabel="pin.cpp" index="5">
-<position info="not_deleted" x="36497" y="0"/>
+<item historyLabel="ina226.cpp" index="1">
+<position info="not_deleted" x="1559" y="0"/>
 </item>
-<item historyLabel="s11059.cpp" index="2">
-<position info="not_deleted" x="1344" y="14"/>
+<item historyLabel="s11059.hpp" index="4">
+<position info="not_deleted" x="520" y="10"/>
 </item>
-<item historyLabel="pin.cpp" index="5">
-<position info="not_deleted" x="36450" y="0"/>
+<item historyLabel="s11059.cpp" index="0">
+<position info="not_deleted" x="326" y="0"/>
 </item>
-<item historyLabel="s11059.cpp" index="2">
-<position info="not_deleted" x="158" y="0"/>
+<item historyLabel="ina226.cpp" index="1">
+<position info="not_deleted" x="1493" y="0"/>
 </item>
-<item historyLabel="pin.cpp" index="5">
-<position info="not_deleted" x="36580" y="0"/>
+<item historyLabel="s11059.cpp" index="0">
+<position info="not_deleted" x="1130" y="13"/>
 </item>
-<item historyLabel="s11059.cpp" index="2">
-<position info="not_deleted" x="158" y="0"/>
+<item historyLabel="ina226.cpp" index="1">
+<position info="not_deleted" x="1559" y="0"/>
 </item>
-<item historyLabel="pin.cpp" index="5">
-<position info="not_deleted" x="36574" y="0"/>
+<item historyLabel="main.cpp" index="3">
+<position info="not_deleted" x="1311" y="0"/>
 </item>
-<item historyLabel="s11059.cpp" index="2">
-<position info="not_deleted" x="1498" y="0"/>
+<item historyLabel="main.cpp" index="3">
+<position info="not_deleted" x="817" y="0"/>
 </item>
-<item historyLabel="pin.cpp" index="5">
-<position info="not_deleted" x="36511" y="8"/>
+<item historyLabel="main.cpp" index="3">
+<position info="not_deleted" x="1118" y="0"/>
 </item>
-<item historyLabel="s11059.cpp" index="2">
-<position info="not_deleted" x="1388" y="0"/>
+<item historyLabel="main.cpp" index="3">
+<position info="not_deleted" x="1130" y="0"/>
 </item>
-<item historyLabel="pin.cpp" index="5">
-<position info="not_deleted" x="36511" y="8"/>
+<item historyLabel="main.cpp" index="3">
+<position info="not_deleted" x="2072" y="0"/>
 </item>
-<item historyLabel="s11059.cpp" index="2">
-<position info="not_deleted" x="1247" y="0"/>
+<item historyLabel="main.cpp" index="3">
+<position info="not_deleted" x="2054" y="0"/>
 </item>
-<item historyLabel="pin.cpp" index="5">
-<position info="not_deleted" x="36437" y="10"/>
+<item historyLabel="s11059.cpp" index="0">
+<position info="not_deleted" x="1078" y="0"/>
 </item>
-<item historyLabel="s11059.cpp" index="2">
-<position info="not_deleted" x="1324" y="0"/>
+<item historyLabel="ina226.hpp" index="2">
+<position info="not_deleted" x="150" y="0"/>
 </item>
-<item historyLabel="s11059.cpp" index="2">
-<position info="not_deleted" x="1324" y="0"/>
+<item historyLabel="s11059.hpp" index="4">
+<position info="not_deleted" x="520" y="10"/>
 </item>
-<item historyLabel="pin.cpp" index="5">
-<position info="not_deleted" x="36531" y="0"/>
+<item historyLabel="main.cpp" index="3">
+<position info="not_deleted" x="2120" y="0"/>
 </item>
-<item historyLabel="s11059.cpp" index="2">
-<position info="not_deleted" x="1247" y="0"/>
+<item historyLabel="s11059.hpp" index="4">
+<position info="not_deleted" x="379" y="11"/>
 </item>
-<item historyLabel="pin.cpp" index="5">
-<position info="not_deleted" x="36349" y="0"/>
+<item historyLabel="s11059.cpp" index="0">
+<position info="not_deleted" x="948" y="0"/>
 </item>
-<item historyLabel="s11059.cpp" index="2">
-<position info="not_deleted" x="237" y="0"/>
+<item historyLabel="ina226.hpp" index="2">
+<position info="not_deleted" x="280" y="10"/>
 </item>
-<item historyLabel="pin.cpp" index="5">
-<position info="not_deleted" x="36349" y="0"/>
+<item historyLabel="main.cpp" index="3">
+<position info="not_deleted" x="2120" y="0"/>
 </item>
-<item active="true" historyLabel="aqm0802.cpp" index="6">
-<position info="not_deleted" x="857" y="93"/>
+<item historyLabel="main.cpp" index="3">
+<position info="not_deleted" x="2120" y="0"/>
+</item>
+<item historyLabel="ina226.hpp" index="2">
+<position info="not_deleted" x="319" y="10"/>
+</item>
+<item active="true" historyLabel="main.cpp" index="3">
+<position/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -534,6 +541,18 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="string.h" tooltip="c:\users\陽生\mentorgraphics\sourcery_codebench_lite_for_arm_eabi\arm-none-eabi\include\string.h">
+<persistable uri="file:/c:/users/陽生/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/arm-none-eabi/include/string.h"/>
+</file>
+<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="i2c.hpp" tooltip="C:\Users\陽生\Documents\program\twoWheelRobot\layer_driver\base\i2c.hpp">
+<persistable path="C:\Users\陽生\Documents\program\twoWheelRobot\layer_driver\base\i2c.hpp" project="ichigoplus"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="ina226.hpp" tooltip="ichigoplus/layer_driver/circuit/ina226.hpp">
+<persistable path="/ichigoplus/layer_driver/circuit/ina226.hpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="ina226.cpp" tooltip="ichigoplus/layer_driver/circuit/ina226.cpp">
+<persistable path="/ichigoplus/layer_driver/circuit/ina226.cpp"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="pin.cpp" tooltip="ichigoplus/layer_driver/board/pin.cpp">
 <persistable path="/ichigoplus/layer_driver/board/pin.cpp"/>
 </file>
@@ -566,18 +585,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_adc.h" tooltip="ichigoplus/cmsis_lib/include/stm32f4xx_adc.h">
 <persistable path="/ichigoplus/cmsis_lib/include/stm32f4xx_adc.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="name_converter.h" tooltip="ichigoplus/layer_driver/board/stm32f4_config/name_converter.h">
-<persistable path="/ichigoplus/layer_driver/board/stm32f4_config/name_converter.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="config_usart.c" tooltip="ichigoplus/layer_driver/board/stm32f4_config/config_usart.c">
-<persistable path="/ichigoplus/layer_driver/board/stm32f4_config/config_usart.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="s11059.cpp" tooltip="ichigoplus/layer_driver/circuit/s11059.cpp">
-<persistable path="/ichigoplus/layer_driver/circuit/s11059.cpp"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="analog.hpp" tooltip="ichigoplus/layer_driver/base/analog.hpp">
-<persistable path="/ichigoplus/layer_driver/base/analog.hpp"/>
 </file>
 </mruList>
 </workbench>

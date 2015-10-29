@@ -1936,7 +1936,7 @@ int I2c0::rxSlaveAddress;
 int I2c0::txSlaveAddress;
 int I2c0::txBufferSize;
 int I2c0::rxBufferSize;
-char I2c0::sendData[20];
+unsigned char I2c0::sendData[20];
 I2cInterface * I2c0::i2cInterface[10];
 int I2c0::i2cInterfaceCursor=0;
 RingBuffer<I2c_t,256> I2c0::txBuf;
@@ -1967,7 +1967,7 @@ int I2c0::addInterface(I2cInterface &interfaceArg){
 	return 0;
 }
 
-int I2c0::write(char address,char *value,char dataSize,bool txrx){
+int I2c0::write(char address,unsigned char *value,char dataSize,bool txrx){
 	I2c_t i2c;
 
 	if(getBufferFlag()==0){

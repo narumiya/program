@@ -28,7 +28,7 @@ void	S11059::i2cRead(char *data){
 
 void S11059::cycle(){
 	static int flag=0;
-	char data[3]={'\0'};
+	unsigned char data[3]={'\0'};
 
 	if(millis()-time>=10){
 		time=millis();

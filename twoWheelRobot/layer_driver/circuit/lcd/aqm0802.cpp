@@ -10,7 +10,7 @@ Aqm0802::Aqm0802(I2c &i2cPin){
 }
 
 int Aqm0802::setup(){
-	char data[3]={0};
+	unsigned char data[3]={0};
 	i2cSetup();
 	data[0]=0x00;
 	data[1]=0x38;
@@ -35,30 +35,30 @@ int Aqm0802::setup(){
 }
 
 void Aqm0802::sendString(const char *data){
-	char send[10]={'\0'};
+	unsigned char send[10]={'\0'};
 	send[0]=0x40;
 	for(int i=0;*(data+i)!='\0';i++){
 		send[i+1]=*(data+i);
 	}
-	int size=(int)strlen(send);
+	int size=(int)strlen((char*)send);
 	i2cWrite(0x7C,send,size,TX);
 }
 
 void Aqm0802::sendChar(const char data){
-	char send[2];
+	unsigned char send[2];
 	send[0]=0x40;send[1]=data;
 	i2cWrite(0x7C,send,2,TX);
 }
 
 void Aqm0802::setCursor(const char x,const char y){
-	char data[2];
+	unsigned char data[2];
 	data[0]=0x00;
 	data[1]=0x80|y*0x40|x;
 	i2cWrite(0x7C,data,2,TX);
 }
 
 void Aqm0802::clear(){
-	char data[2];
+	unsigned char data[2];
 	data[0]=0x00;
 	data[1]=0x01;
 	i2cWrite(0x7C,data,2,TX);

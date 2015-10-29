@@ -1239,7 +1239,7 @@ typedef struct{
 class I2c0:public I2c{
 private:
 	unsigned int time;
-	static char sendData[20];
+	static unsigned char sendData[20];
 	static int i2cInterfaceCursor;
 	static RingBuffer<I2c_t,256> txBuf;
 	static I2cInterface *i2cInterface[10];
@@ -1255,7 +1255,7 @@ public:
 	void cycle();
 	int setup();
 	int addInterface(I2cInterface &interfaceArg);
-	int write(char address,char *value,char dataSize,bool txrx);
+	int write(char address,unsigned char *value,char dataSize,bool txrx);
 
 	//送信または受信待ちフラグ
 	int getBufferFlag();

@@ -25,6 +25,7 @@ extern "C"{
 #include "layer_driver/circuit/button/button.hpp"
 #include "layer_driver/circuit/lcd/aqm0802.hpp"
 #include "layer_driver/circuit/s11059.hpp"
+#include "layer_driver/circuit/ina226.hpp"
 #if 1
 #include <stdio.h>
 #include <string.h>
@@ -38,15 +39,18 @@ int main(){
 	printf("start\n");
 	S11059 color(i2c);color.setup();
 	Aqm0802 lcd(i2c);lcd.setup();
+	Ina226 ina(i2c);ina.setup();
 	color.setMode(S11059::HIGH);
-	char data[10]={'\0'};
-	Rgb_t rgb={0};
-	int flag=0;
+
+	//char data[10]={'\0'};
+	//Rgb_t rgb={0};
+	//int flag=0;
 	char str[30];
 	while(1){
 		color.cycle();
 		blink.cycle();
 		i2c.cycle();
+		ina.cycle();
 		if(millis()-time>=300){
 			time=millis();
 			/*if(!flag){
@@ -70,10 +74,12 @@ int main(){
 			sprintf(str,"B%3d",color.getBlue());
 			lcd.setCursor(0,1);
 			lcd.sendString(str);
-			serial0.printf("r:%d",color.getRed());
+			/*serial0.printf("r:%d",color.getRed());
 			serial0.printf("g:%d",color.getGreen());
 			serial0.printf("b:%d",color.getBlue());
-			serial0.printf("inf:%d\n",color.getInfrared());
+			serial0.printf("inf:%d\n",color.getInfrared());*/
+			serial0.printf("v:%.4f",ina.getVoltage());
+			serial0.printf("v:%.4f",ina.getCurrent());
 			/*rgb=getColor();
 			serial0.printf("r:%d",rgb.red);
 			serial0.printf("g:%d",rgb.green);

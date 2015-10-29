@@ -8,7 +8,7 @@ class I2c;
 class I2cInterface{
 public:
 	int i2cSetup();
-	int i2cWrite(char address,char *value,char dataSize,bool txrx);
+	int i2cWrite(char address,unsigned char *value,char dataSize,bool txrx);
 	virtual void i2cRead(char *data)=0;
 	virtual void i2cReStartSend(char data)=0;
 	virtual int i2cAddress(int address){return 0;};
@@ -20,7 +20,7 @@ private:
 class I2c{
 public:
 	virtual int setup()=0;
-	virtual int write(char address,char *value,char dataSize,bool txrx)=0;
+	virtual int write(char address,unsigned char *value,char dataSize,bool txrx)=0;
 	int addInterface(I2cInterface *interfaceArg){return addInterface(*interfaceArg);};
 	virtual int addInterface(I2cInterface &interfaceArg)=0;
 };
