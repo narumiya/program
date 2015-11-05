@@ -1241,7 +1241,7 @@ private:
 	unsigned int time;
 	static unsigned char sendData[20];
 	static int i2cInterfaceCursor;
-	static RingBuffer<I2c_t,256> txBuf;
+	static RingBuffer<I2c_t,512> txBuf;
 	static I2cInterface *i2cInterface[10];
 	friend void I2c0_Interrupt();
 	static void startI2c();

@@ -14,7 +14,7 @@ public:
 	void setCursor(const char x,const char y);
 	void clear();
 	/*read‚µ‚È‚¢‚Ì‚Å•K—v‚È‚µ*/
-	void i2cRead(char *data){};
+	void i2cRead(unsigned char *data){};
 	void i2cReStartSend(char data){};
 };
 

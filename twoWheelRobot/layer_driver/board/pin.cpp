@@ -1939,7 +1939,7 @@ int I2c0::rxBufferSize;
 unsigned char I2c0::sendData[20];
 I2cInterface * I2c0::i2cInterface[10];
 int I2c0::i2cInterfaceCursor=0;
-RingBuffer<I2c_t,256> I2c0::txBuf;
+RingBuffer<I2c_t,512> I2c0::txBuf;
 
 I2c0::I2c0(){
 	directionFlag=true;
@@ -1989,7 +1989,7 @@ int I2c0::write(char address,unsigned char *value,char dataSize,bool txrx){
 	i2c.dataSize=dataSize;
 	i2c.txrxFlag=txrx;
 	while(txBuf.write(i2c)){
-		cycle();printf("max\n");
+		cycle();//printf("max\n");
 	}
 
 	return 0;
@@ -2005,7 +2005,7 @@ void I2c0_Interrupt(void){
 	static int RxAddress=0;
 	static int TxDataNum=0;
 	static int RxDataNum=0;
-	static char rxData[10]={0};
+	static unsigned char rxData[10]={0};
 
 	switch (I2C_GetLastEvent(I2C2)){
 		case I2C_EVENT_MASTER_MODE_SELECT:
@@ -2083,7 +2083,7 @@ void I2c0::startI2c(){
 
 void I2c0::cycle(){
 	if(getBufferFlag()==0){
-		if(millis()-time>=5){
+		if(millis()-time>=10){
 			time=millis();
 			startI2c();
 		}

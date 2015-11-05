@@ -19,7 +19,7 @@ int S11059::setup(){
 	return i2cSetup();
 }
 
-void	S11059::i2cRead(char *data){
+void	S11059::i2cRead(unsigned char *data){
 	red=data[0]<<8 | data[1];
 	green=data[2]<<8 | data[3];
 	blue=data[4]<<8 | data[5];

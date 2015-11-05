@@ -9,7 +9,7 @@ class I2cInterface{
 public:
 	int i2cSetup();
 	int i2cWrite(char address,unsigned char *value,char dataSize,bool txrx);
-	virtual void i2cRead(char *data)=0;
+	virtual void i2cRead(unsigned char *data)=0;
 	virtual void i2cReStartSend(char data)=0;
 	virtual int i2cAddress(int address){return 0;};
 	int i2cInterfaceSetup(I2c *i2c);

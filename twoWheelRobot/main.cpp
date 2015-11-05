@@ -31,26 +31,24 @@ extern "C"{
 #include <string.h>
 int main(){
 	long long int time=millis();
-
+	long long int serialTime=millis();
 	Led0 led;Blink blink(led);blink.setup();
 	blink.time(200);
 	Serial0 serial0;serial0.setup(115200);
 	I2c0 i2c;
-	printf("start\n");
-	S11059 color(i2c);color.setup();
-	Aqm0802 lcd(i2c);lcd.setup();
+	//S11059 color(i2c);color.setup();color.setMode(S11059::HIGH);
+	//Aqm0802 lcd(i2c);lcd.setup();
 	Ina226 ina(i2c);ina.setup();
-	color.setMode(S11059::HIGH);
 
 	//char data[10]={'\0'};
 	//Rgb_t rgb={0};
 	//int flag=0;
 	char str[30];
 	while(1){
-		color.cycle();
+		//color.cycle();
 		blink.cycle();
-		i2c.cycle();
 		ina.cycle();
+		i2c.cycle();
 		if(millis()-time>=300){
 			time=millis();
 			/*if(!flag){
@@ -65,7 +63,7 @@ int main(){
 				flag=0;
 				lcd.clear();
 			}*/
-			sprintf(str,"R%3d",color.getRed());
+			/*sprintf(str,"R%3d",color.getRed());
 			lcd.setCursor(0,0);
 			lcd.sendString(str);
 			sprintf(str,"G%3d",color.getGreen());
@@ -73,18 +71,21 @@ int main(){
 			lcd.sendString(str);
 			sprintf(str,"B%3d",color.getBlue());
 			lcd.setCursor(0,1);
-			lcd.sendString(str);
+			lcd.sendString(str);*/
 			/*serial0.printf("r:%d",color.getRed());
 			serial0.printf("g:%d",color.getGreen());
 			serial0.printf("b:%d",color.getBlue());
 			serial0.printf("inf:%d\n",color.getInfrared());*/
-			serial0.printf("v:%.4f",ina.getVoltage());
-			serial0.printf("v:%.4f",ina.getCurrent());
 			/*rgb=getColor();
 			serial0.printf("r:%d",rgb.red);
 			serial0.printf("g:%d",rgb.green);
 			serial0.printf("b:%d",rgb.blue);
 			serial0.printf("inf:%d\n",rgb.infrared);*/
+		}
+		if(millis()-serialTime>=100){
+			serialTime=millis();
+			serial0.printf("v:%.4f",ina.getVoltage());
+			serial0.printf("c:%.4f\n",ina.getCurrent());
 		}
 	}
 }
