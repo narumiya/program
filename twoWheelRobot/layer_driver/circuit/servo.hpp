@@ -2,12 +2,28 @@
 #define SERVO_HPP
 
 #include "Pwm.hpp"
-#include "serial.hpp"
-#include "stm32f4xx_usart.h"
 
+class Servo{
+protected:
+	Pwm *pwm;
+	float period;		//周期(ms)
+	float neutPulse;	//ms 真ん中のパルス
+	float rangeRad;	//サーボ動作角度
+	float maxPulse;	//ms 最大角度時のパルス
+	float request;
+public:
+	Servo();
+	Servo(Pwm &pwmPin);
+	virtual int setup(float setPeriod, float setRangeRad, float setNeutral, float setMaxPulse);
+	virtual void cycle();
+	virtual void setAngle(float rad);
+	virtual void setDuty(float pos);
+	virtual float cvtPulse(float rad);
+};
+
+#if 0
 #define FREE 99999	//フリー
 #define NUM 1	//デイジーチェーンする個数
-
 class Servo:public SerialInterface{
 private:
 	Pwm *pwm;
@@ -48,5 +64,5 @@ public:
 	int setId(int id,int mode);
 };
 
-
+#endif
 #endif

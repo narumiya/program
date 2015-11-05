@@ -63,7 +63,7 @@
       <source file="..\..\..\layer_driver\board\stm32f4_config\config_port.c" lastModified="14eb18e6c90">
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_port.h"/>
       </source>
-      <source file="..\..\..\layer_driver\circuit\servo.cpp" lastModified="1500757c47d">
+      <source file="..\..\..\layer_driver\circuit\servo.cpp" lastModified="150d7785a80">
          <include file="..\..\..\layer_driver\circuit\servo.hpp"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
          <include file="..\..\..\layer_driver\board\pin.hpp"/>
@@ -389,10 +389,11 @@
       <source file="..\..\..\layer_driver\circuit\ina226.hpp" lastModified="150d73254a8">
          <include file="..\..\..\layer_driver\base\i2c.hpp"/>
       </source>
-      <source file="..\..\..\layer_driver\circuit\servo.hpp" lastModified="150d7362e43">
+      <source file="..\..\..\layer_driver\circuit\kondo_servo.cpp" lastModified="150d774ff1a">
+         <include file="..\..\..\layer_driver\circuit\kondo_servo.hpp"/>
+      </source>
+      <source file="..\..\..\layer_driver\circuit\servo.hpp" lastModified="150d778369c">
          <include file="..\..\..\layer_driver\base\pwm.hpp"/>
-         <include file="..\..\..\layer_driver\base\serial.hpp"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_usart.h"/>
       </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_pwr.c" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_pwr.h"/>
@@ -641,7 +642,7 @@
          <include file="..\..\..\layer_application\console.hpp"/>
          <include file="..\..\..\layer_driver\base\logging.h"/>
       </source>
-      <source file="..\..\..\layer_driver\circuit\r1350n\r1350n.hpp" lastModified="150186ccb8e">
+      <source file="..\..\..\layer_driver\circuit\r1350n\r1350n.hpp" lastModified="150d76d8819">
          <include file="..\..\..\layer_driver\base\serial.hpp"/>
       </source>
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_iwdg.h" lastModified="14eb18e6c90">
@@ -678,7 +679,7 @@
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
-      <source file="..\..\..\main.cpp" lastModified="150d241201b">
+      <source file="..\..\..\main.cpp" lastModified="150d75ebd5b">
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_adc.h"/>
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.h"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
@@ -730,10 +731,14 @@
       </source>
       <source file="..\..\..\layer_controller\calculate.h" lastModified="1503c3ac14b">
       </source>
-      <source file="..\..\..\cmsis\core_cm4_simd.h" lastModified="14eb18e7460">
+      <source file="..\..\..\layer_driver\circuit\kondo_servo.hpp" lastModified="150d778c45d">
+         <include file="..\..\..\layer_driver\circuit\servo.hpp"/>
+         <include file="..\..\..\layer_driver\base\serial.hpp"/>
       </source>
       <source file="..\..\..\layer_controller\calculate.c" lastModified="1503c397a1b">
          <include file="..\..\..\layer_controller\calculate.h"/>
+      </source>
+      <source file="..\..\..\cmsis\core_cm4_simd.h" lastModified="14eb18e7460">
       </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\config_pwm.h" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>

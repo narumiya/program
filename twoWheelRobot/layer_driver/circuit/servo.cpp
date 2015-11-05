@@ -5,6 +5,54 @@
 #include "util.h"
 #include <stdio.h>
 
+
+Servo::Servo(Pwm &pwmPin){
+	pwm=&pwmPin;
+}
+
+int Servo::setup(float setPeriod, float setRangeRad, float setNeutral, float setMaxPulse){
+	period = setPeriod;
+	rangeRad = setRangeRad;
+	neutPulse = setNeutral;
+	maxPulse = setMaxPulse;
+	pwm->setupPwmOut(1/(period/1000),0);
+	delay_ms(500);
+	return 0;
+}
+
+void Servo::setAngle(float rad){
+	static float old=0.0;
+	float duty=0.0;
+
+	if(!((-rangeRad/2.0)<=rad && rad <=(rangeRad/2.0)))
+		request=old;
+	else{
+		duty=cvtPulse(rad);
+		request= duty;
+		old=duty;
+	}
+}
+
+void Servo::setDuty(float pos){
+	static float old=0.0;
+	float duty;
+	if((neutPulse-fabs(maxPulse-neutPulse))/period<=pos && pos<=maxPulse/period){
+		duty=pos;
+		request=duty;
+		old=duty;
+	}else{
+		request=old;
+	}
+}
+
+float Servo::cvtPulse(float rad){
+	return  (fabs(maxPulse-neutPulse)) / (period * fabs(rangeRad/2.0)) *rad + neutPulse/period;
+}
+void Servo::cycle(){
+	pwm->pwmWrite(request);
+}
+
+#if 0
 Servo::Servo(Pwm &pwmPin){
 	pwm=&pwmPin;
 	time=millis();
@@ -205,3 +253,4 @@ int Servo::setId(const int id,const int mode){
 
 	return (int)(serial->readChar() ^ 0xE0);
 }
+#endif

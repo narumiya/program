@@ -26,7 +26,7 @@ extern "C"{
 #include "layer_driver/circuit/lcd/aqm0802.hpp"
 #include "layer_driver/circuit/s11059.hpp"
 #include "layer_driver/circuit/ina226.hpp"
-#if 1
+#if 0
 #include <stdio.h>
 #include <string.h>
 int main(){
@@ -155,7 +155,7 @@ int main(){
 }
 #endif
 
-#if 0
+#if 1
 #define AD0		GPIOC,GPIO_Pin_5
 #define AD1		GPIOC,GPIO_Pin_1
 #define AD2		GPIOC,GPIO_Pin_2
@@ -168,7 +168,7 @@ int main(){
 	Sw1 sw1;ButtonInfo resetSw(sw1);
 	startSW.setup(true,50);
 	resetSw.setup(true,50);
-	Led0 led;Blink blink(led);blink.setup();
+	Led1 led;Blink blink(led);blink.setup();
 	blink.time(200);
 	Serial0 serial;serial.setup(115200);
 	/*Console console(serial);console.setup(115200);
@@ -182,7 +182,7 @@ int main(){
 	//Move move(left,right,a0,a1,a2,a3,a4,startSW);
 	Move move(a0,a1,a2,a3,a4,startSW,servo);
 	//move.setup();
-	//servo.setup(30,270,1.5,2.3);//近藤サーボ
+	servo.setup(30,dtor(270.0),1.5,2.3);//近藤サーボ
 	//servo.setup(20.0,180.0,1.5,2.4);//rb956 rb955
 
 	/*int i=a0.setupAnalogIn();
@@ -261,8 +261,8 @@ int main(){
 			//serial.printf("ad3 %f,",a3.analogRead());
 			//serial.printf("ad4 %f  ",a4.analogRead());
 			//move.printAdValue();
-			serial.printf("x, %f, y, %f ,deg, %f  ",robot.getX(),robot.getY(),rtod(robot.getAngle()));
-			serial.printf("\n");
+			//serial.printf("x, %f, y, %f ,deg, %f  ",robot.getX(),robot.getY(),rtod(robot.getAngle()));
+			//serial.printf("\n");
 		}
 	}
 }
