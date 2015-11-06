@@ -1999,7 +1999,6 @@ int I2c0::getBufferFlag(){
 	return rxBufferSize+txBufferSize;
 }
 
-#include "layer_driver/circuit/s11059.hpp"
 void I2c0_Interrupt(void){
 	static int TxAddress=0;
 	static int RxAddress=0;
@@ -2026,13 +2025,6 @@ void I2c0_Interrupt(void){
 				if(I2c0::txBufferSize-TxDataNum<1)
 					I2C_GenerateSTOP(I2C2, ENABLE);
 			}else{
-				/*if(I2c0::sendData[0]==0x03){
-					I2c0::rxBufferSize=8;
-					I2c0::rxSlaveAddress=0x55;
-					I2c0::directionFlag=RX;
-					TxDataNum=0;
-					I2C_GenerateSTART(I2C2, ENABLE);
-				}*/
 				int i;
 				for(i=0;i<I2c0::i2cInterfaceCursor;i++){
 					if(I2c0::i2cInterface[i]->i2cAddress(TxAddress)){

@@ -110,8 +110,8 @@
     <File name="layer_driver/circuit/lcd/aqm0802.cpp" path="layer_driver/circuit/lcd/aqm0802.cpp" type="1"/>
     <File name="layer_driver/base/logging.h" path="layer_driver/base/logging.h" type="1"/>
     <File name="layer_driver/board/stm32f4_config/sd/fatfs/ffconf.h" path="layer_driver/board/stm32f4_config/sd/fatfs/ffconf.h" type="1"/>
-    <File name="layer_driver/circuit/dual_shock/dual_shock.cpp" path="layer_driver/circuit/dual_shock/dual_shock.cpp" type="1"/>
     <File name="layer_driver/board/stm32f4_config/usb/usb_lib/cdc" path="" type="2"/>
+    <File name="layer_driver/circuit/dual_shock/dual_shock.cpp" path="layer_driver/circuit/dual_shock/dual_shock.cpp" type="1"/>
     <File name="layer_driver/board/stm32f4_config/sd/fatfs/diskio.h" path="layer_driver/board/stm32f4_config/sd/fatfs/diskio.h" type="1"/>
     <File name="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/stat.html" path="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/stat.html" type="1"/>
     <File name="layer_driver/board/stm32f4_config/usb/usb_conf/usbd_conf.h" path="layer_driver/board/stm32f4_config/usb/usb_conf/usbd_conf.h" type="1"/>
@@ -212,14 +212,14 @@
     <File name="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/utime.html" path="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/utime.html" type="1"/>
     <File name="layer_driver/base/software_reset.c" path="layer_driver/base/software_reset.c" type="1"/>
     <File name="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/close.html" path="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/close.html" type="1"/>
-    <File name="layer_driver/circuit/lcd" path="" type="2"/>
     <File name="cmsis_lib/include/stm32f4xx_crc.h" path="cmsis_lib/include/stm32f4xx_crc.h" type="1"/>
+    <File name="layer_driver/circuit/lcd" path="" type="2"/>
     <File name="layer_driver/board/stm32f4_config/sd/fatfs/lo_level_ub/stm32_ub_atadrive.h" path="layer_driver/board/stm32f4_config/sd/fatfs/lo_level_ub/stm32_ub_atadrive.h" type="1"/>
     <File name="layer_driver/board/stm32f4_config/iwdg_software_reset.c" path="layer_driver/board/stm32f4_config/iwdg_software_reset.c" type="1"/>
     <File name="cmsis_boot/stm32f4xx.h" path="cmsis_boot/stm32f4xx.h" type="1"/>
     <File name="layer_driver/base/util.h" path="layer_driver/base/util.h" type="1"/>
-    <File name="layer_driver" path="" type="2"/>
     <File name="layer_driver/board/stm32f4_config/usb/usb_lib/cdc/usbd_cdc_vcp.h" path="layer_driver/board/stm32f4_config/usb/usb_lib/cdc/usbd_cdc_vcp.h" type="1"/>
+    <File name="layer_driver" path="" type="2"/>
     <File name="layer_driver/board/stm32f4_config/name_converter.c" path="layer_driver/board/stm32f4_config/name_converter.c" type="1"/>
     <File name="layer_driver/board/stm32f4_config/logs/codb-time-client-2015-04-07.log" path="layer_driver/board/stm32f4_config/logs/codb-time-client-2015-04-07.log" type="1"/>
     <File name="layer_application/servo_controll.cpp" path="layer_application/servo_controll.cpp" type="1"/>
@@ -258,9 +258,9 @@
     <File name="cmsis" path="" type="2"/>
     <File name="layer_controller/move.cpp" path="layer_controller/move.cpp" type="1"/>
     <File name="layer_controller/blink.hpp" path="layer_controller/blink.hpp" type="1"/>
+    <File name="layer_driver/base/software_reset.h" path="layer_driver/base/software_reset.h" type="1"/>
     <File name="main.cpp" path="main.cpp" type="1"/>
     <File name="layer_driver/board/stm32f4_config/usb/usb_conf/usb_bsp.h" path="layer_driver/board/stm32f4_config/usb/usb_conf/usb_bsp.h" type="1"/>
-    <File name="layer_driver/base/software_reset.h" path="layer_driver/base/software_reset.h" type="1"/>
     <File name="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/unlink.html" path="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/unlink.html" type="1"/>
     <File name="layer_driver/circuit/servo.hpp" path="layer_driver/circuit/servo.hpp" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_rtc.h" path="cmsis_lib/include/stm32f4xx_rtc.h" type="1"/>
@@ -287,10 +287,10 @@
     <File name="cmsis_lib/source/stm32f4xx_flash.c" path="cmsis_lib/source/stm32f4xx_flash.c" type="1"/>
     <File name="layer_controller/calculate.c" path="layer_controller/calculate.c" type="1"/>
     <File name="layer_driver/base/mcutime.c" path="layer_driver/base/mcutime.c" type="1"/>
-    <File name="layer_driver/board/stm32f4_config/config_pwm.h" path="layer_driver/board/stm32f4_config/config_pwm.h" type="1"/>
-    <File name="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/setlabel.html" path="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/setlabel.html" type="1"/>
-    <File name="cmsis/core_cm4.h" path="cmsis/core_cm4.h" type="1"/>
     <File name="layer_driver/board/stm32f4_config/config_iwdg.c" path="layer_driver/board/stm32f4_config/config_iwdg.c" type="1"/>
+    <File name="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/setlabel.html" path="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/setlabel.html" type="1"/>
+    <File name="layer_driver/board/stm32f4_config/config_pwm.h" path="layer_driver/board/stm32f4_config/config_pwm.h" type="1"/>
+    <File name="cmsis/core_cm4.h" path="cmsis/core_cm4.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_crc.c" path="cmsis_lib/source/stm32f4xx_crc.c" type="1"/>
     <File name="layer_driver/board/stm32f4_config/sd/fatfs/lo_level_ub" path="" type="2"/>
     <File name="layer_controller/robo_center.cpp" path="layer_controller/robo_center.cpp" type="1"/>

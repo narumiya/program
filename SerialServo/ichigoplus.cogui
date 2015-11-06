@@ -22,7 +22,7 @@
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="servo.cpp" partName="servo.cpp" path="C:/Users/陽生/Documents/program/SerialServo/layer_driver/circuit/servo.cpp" title="servo.cpp" tooltip="C:/Users/陽生/Documents/program/SerialServo/layer_driver/circuit/servo.cpp" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="servo.cpp" partName="servo.cpp" path="C:/Users/陽生/Documents/program/SerialServo/layer_driver/circuit/servo.cpp" title="servo.cpp" tooltip="C:/Users/陽生/Documents/program/SerialServo/layer_driver/circuit/servo.cpp" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/circuit/servo.cpp"/>
 <editorState selectionHorizontalPixel="0" selectionLength="2" selectionOffset="3088" selectionTopPixel="3140"/>
 </editor>
@@ -30,9 +30,9 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/layer_driver/circuit/servo.hpp"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="148" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.cpp" partName="main.cpp" path="C:/Users/陽生/Documents/program/SerialServo/main.cpp" title="main.cpp" tooltip="C:/Users/陽生/Documents/program/SerialServo/main.cpp" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.cpp" partName="main.cpp" path="C:/Users/陽生/Documents/program/SerialServo/main.cpp" title="main.cpp" tooltip="C:/Users/陽生/Documents/program/SerialServo/main.cpp" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ichigoplus/main.cpp"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="753" selectionTopPixel="660"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="974" selectionTopPixel="810"/>
 </editor>
 </editors>
 <views>
@@ -150,10 +150,8 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/layer_driver/circuit/servo.cpp"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/main.cpp"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/layer_driver/circuit/servo.cpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ichigoplus/main.cpp"/>
 </editors>
-<item historyLabel="servo.cpp" index="1">
-<position info="not_deleted" x="3394" y="0"/>
-</item>
 <item historyLabel="main.cpp" index="0">
 <position info="not_deleted" x="1010" y="0"/>
 </item>
@@ -298,8 +296,11 @@
 <item historyLabel="main.cpp" index="4">
 <position info="not_deleted" x="753" y="0"/>
 </item>
-<item active="true" historyLabel="servo.cpp" index="5">
+<item historyLabel="servo.cpp" index="5">
 <position info="not_deleted" x="2718" y="7"/>
+</item>
+<item active="true" historyLabel="main.cpp" index="6">
+<position info="not_deleted" x="753" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -308,47 +309,47 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="serial.hpp" tooltip="ichigoplus/layer_driver/base/serial.hpp">
-<persistable path="/ichigoplus/layer_driver/base/serial.hpp"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="serial.cpp" tooltip="ichigoplus/layer_driver/base/serial.cpp">
+<persistable path="/ichigoplus/layer_driver/base/serial.cpp"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="encoder.cpp" tooltip="ichigoplus/layer_driver/base/encoder.cpp">
-<persistable path="/ichigoplus/layer_driver/base/encoder.cpp"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="digital.hpp" tooltip="ichigoplus/layer_driver/base/digital.hpp">
+<persistable path="/ichigoplus/layer_driver/base/digital.hpp"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="encoder.hpp" tooltip="ichigoplus/layer_driver/base/encoder.hpp">
-<persistable path="/ichigoplus/layer_driver/base/encoder.hpp"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="dual_shock.hpp" tooltip="ichigoplus/layer_driver/circuit/dual_shock/dual_shock.hpp">
+<persistable path="/ichigoplus/layer_driver/circuit/dual_shock/dual_shock.hpp"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="config_encoder.c" tooltip="ichigoplus/layer_driver/board/stm32f4_config/config_encoder.c">
-<persistable path="/ichigoplus/layer_driver/board/stm32f4_config/config_encoder.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="r1350n.hpp" tooltip="ichigoplus/layer_driver/circuit/r1350n/r1350n.hpp">
+<persistable path="/ichigoplus/layer_driver/circuit/r1350n/r1350n.hpp"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="config_encoder.h" tooltip="ichigoplus/layer_driver/board/stm32f4_config/config_encoder.h">
-<persistable path="/ichigoplus/layer_driver/board/stm32f4_config/config_encoder.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="r1350n.cpp" tooltip="ichigoplus/layer_driver/circuit/r1350n/r1350n.cpp">
+<persistable path="/ichigoplus/layer_driver/circuit/r1350n/r1350n.cpp"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="blink.hpp" tooltip="ichigoplus/layer_controller/blink.hpp">
-<persistable path="/ichigoplus/layer_controller/blink.hpp"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="kondo_servo.hpp" tooltip="ichigoplus/layer_driver/circuit/kondo_servo.hpp">
+<persistable path="/ichigoplus/layer_driver/circuit/kondo_servo.hpp"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="blink.cpp" tooltip="ichigoplus/layer_controller/blink.cpp">
-<persistable path="/ichigoplus/layer_controller/blink.cpp"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="kondo_servo.cpp" tooltip="ichigoplus/layer_driver/circuit/kondo_servo.cpp">
+<persistable path="/ichigoplus/layer_driver/circuit/kondo_servo.cpp"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="pin.cpp" tooltip="ichigoplus/layer_driver/board/pin.cpp">
-<persistable path="/ichigoplus/layer_driver/board/pin.cpp"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="servo.hpp" tooltip="ichigoplus/layer_driver/circuit/servo.hpp">
+<persistable path="/ichigoplus/layer_driver/circuit/servo.hpp"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="pin.hpp" tooltip="ichigoplus/layer_driver/board/pin.hpp">
-<persistable path="/ichigoplus/layer_driver/board/pin.hpp"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="servo.cpp" tooltip="ichigoplus/layer_driver/circuit/servo.cpp">
+<persistable path="/ichigoplus/layer_driver/circuit/servo.cpp"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="mcutime.c" tooltip="ichigoplus/layer_driver/base/mcutime.c">
-<persistable path="/ichigoplus/layer_driver/base/mcutime.c"/>
+<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="util.hpp" tooltip="C:\Users\陽生\Documents\program\twoWheelRobot\layer_driver\base\util.hpp">
+<persistable path="C:\Users\陽生\Documents\program\twoWheelRobot\layer_driver\base\util.hpp" project="ichigoplus"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx.h" tooltip="ichigoplus/cmsis_boot/stm32f4xx.h">
-<persistable path="/ichigoplus/cmsis_boot/stm32f4xx.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="dual_shock.cpp" tooltip="ichigoplus/layer_driver/circuit/dual_shock/dual_shock.cpp">
+<persistable path="/ichigoplus/layer_driver/circuit/dual_shock/dual_shock.cpp"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_usart.c" tooltip="ichigoplus/cmsis_lib/source/stm32f4xx_usart.c">
-<persistable path="/ichigoplus/cmsis_lib/source/stm32f4xx_usart.c"/>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="string.h" tooltip="c:\users\陽生\mentorgraphics\sourcery_codebench_lite_for_arm_eabi\arm-none-eabi\include\string.h">
+<persistable uri="file:/c:/users/陽生/mentorgraphics/sourcery_codebench_lite_for_arm_eabi/arm-none-eabi/include/string.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_usart.h" tooltip="ichigoplus/cmsis_lib/include/stm32f4xx_usart.h">
-<persistable path="/ichigoplus/cmsis_lib/include/stm32f4xx_usart.h"/>
+<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="i2c.hpp" tooltip="C:\Users\陽生\Documents\program\twoWheelRobot\layer_driver\base\i2c.hpp">
+<persistable path="C:\Users\陽生\Documents\program\twoWheelRobot\layer_driver\base\i2c.hpp" project="ichigoplus"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="config_usart.c" tooltip="ichigoplus/layer_driver/board/stm32f4_config/config_usart.c">
-<persistable path="/ichigoplus/layer_driver/board/stm32f4_config/config_usart.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="ina226.hpp" tooltip="ichigoplus/layer_driver/circuit/ina226.hpp">
+<persistable path="/ichigoplus/layer_driver/circuit/ina226.hpp"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="servo.cpp" tooltip="ichigoplus/layer_driver/circuit/circuit/servo.cpp">
 <persistable path="/ichigoplus/layer_driver/circuit/circuit/servo.cpp"/>

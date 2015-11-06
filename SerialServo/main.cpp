@@ -74,7 +74,7 @@ int main(void){
 					deg=-135;break;
 				case 4:
 					flag=0;
-					id++;
+					//id++;
 					if(id==3) id=0;break;
 				}
 			/*switch(flag){
