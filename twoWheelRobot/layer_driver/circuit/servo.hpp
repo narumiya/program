@@ -12,13 +12,13 @@ protected:
 	float maxPulse;	//ms Å‘åŠp“x‚Ìƒpƒ‹ƒX
 	float request;
 public:
-	Servo();
+	Servo(){};
 	Servo(Pwm &pwmPin);
-	virtual int setup(float setPeriod, float setRangeRad, float setNeutral, float setMaxPulse);
+	int setup(float setPeriod, float setRangeRad, float setNeutral, float setMaxPulse);
 	virtual void cycle();
-	virtual void setAngle(float rad);
-	virtual void setDuty(float pos);
-	virtual float cvtPulse(float rad);
+	void setAngle(float rad);
+	void setDuty(float pos);
+	float cvtPulse(float rad);
 };
 
 #if 0

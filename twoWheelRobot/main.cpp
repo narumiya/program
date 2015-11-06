@@ -26,6 +26,7 @@ extern "C"{
 #include "layer_driver/circuit/lcd/aqm0802.hpp"
 #include "layer_driver/circuit/s11059.hpp"
 #include "layer_driver/circuit/ina226.hpp"
+#include "layer_driver/circuit/kondo_servo.hpp"
 #if 0
 #include <stdio.h>
 #include <string.h>
@@ -155,7 +156,7 @@ int main(){
 }
 #endif
 
-#if 1
+#if 0
 #define AD0		GPIOC,GPIO_Pin_5
 #define AD1		GPIOC,GPIO_Pin_1
 #define AD2		GPIOC,GPIO_Pin_2
@@ -163,7 +164,8 @@ int main(){
 #define AD4		GPIOC,GPIO_Pin_4
 int main(){
 	Pwm0 pwm0;
-	Servo servo(pwm0);
+	//Servo servo(pwm0);
+	KondoServo servo(pwm0);
 	Sw0 sw;ButtonInfo startSW(sw);
 	Sw1 sw1;ButtonInfo resetSw(sw1);
 	startSW.setup(true,50);
@@ -182,9 +184,9 @@ int main(){
 	//Move move(left,right,a0,a1,a2,a3,a4,startSW);
 	Move move(a0,a1,a2,a3,a4,startSW,servo);
 	//move.setup();
-	servo.setup(30,dtor(270.0),1.5,2.3);//近藤サーボ
+	//servo.setup(30,dtor(270.0),1.5,2.3);//近藤サーボ
 	//servo.setup(20.0,180.0,1.5,2.4);//rb956 rb955
-
+	servo.setup();
 	/*int i=a0.setupAnalogIn();
 	i=a1.setupAnalogIn();
 	i=a2.setupAnalogIn();
@@ -269,7 +271,7 @@ int main(){
 
 #endif
 
-#if 0
+#if 1
 int main(void){
 	Led0 led0;
 	Sw0 sw0;sw0.setupDigitalIn();
@@ -279,7 +281,7 @@ int main(void){
 	Blink blink0(led0);blink0.setup();blink0.time(200);
 	Serial1 serial1;	serial1.setup(115200);
 	Serial0 serial0;
-	Servo servo(serial0);servo.setup();
+	KondoServo servo(serial0);servo.setup();
 	int flag=0;
 	float deg=0.00;
 	long long int time=0;
@@ -294,15 +296,15 @@ int main(void){
 
 	while(1){
 		blink0.cycle();
-		servo.serialCycle();
+		servo.cycle();
 		if(millis()-time>=5){
 			time=millis();
-			servo.setAngle(id,deg);
-			serial1.printf("target,%.3f,",deg);
+			servo.setAngle(id,dtor(deg));
+			serial1.printf("target,%.3f,",(deg));
 			/*for(int j=0;j<3;j++){
 				serial1.printf("id%d,%.2f,",j,servo.getAngle(j));
 			}*/
-			serial1.printf("id%d,%.2f,",id,servo.getAngle(id));
+			serial1.printf("id%d,%.2f,",id,rtod(servo.getAngle(id)));
 			serial1.printf("\n");
 			//serial1.printf("%d\n",servo.readPara(1,3));
 			//serial1.printf("%d\n",servo.setId(0,1));
@@ -324,7 +326,7 @@ int main(void){
 					deg=-135;break;
 				case 4:
 					flag=0;
-					id++;
+					//id++;
 					if(id==3) id=0;break;
 				}
 			/*switch(flag){
