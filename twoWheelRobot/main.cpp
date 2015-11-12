@@ -156,7 +156,7 @@ int main(){
 }
 #endif
 
-#if 0
+#if 1
 #define AD0		GPIOC,GPIO_Pin_5
 #define AD1		GPIOC,GPIO_Pin_1
 #define AD2		GPIOC,GPIO_Pin_2
@@ -183,10 +183,10 @@ int main(){
 	A0 a0;A1 a1;A2 a2;A3 a3;A4 a4;
 	//Move move(left,right,a0,a1,a2,a3,a4,startSW);
 	Move move(a0,a1,a2,a3,a4,startSW,servo);
-	//move.setup();
+	move.setup();
 	//servo.setup(30,dtor(270.0),1.5,2.3);//‹ß“¡ƒT[ƒ{
 	//servo.setup(20.0,180.0,1.5,2.4);//rb956 rb955
-	servo.setup();
+	//servo.setup();
 	/*int i=a0.setupAnalogIn();
 	i=a1.setupAnalogIn();
 	i=a2.setupAnalogIn();
@@ -202,16 +202,17 @@ int main(){
 	unsigned int tim=millis();
 
 	while(1){
-		startSW.cycle();
+		//startSW.cycle();
 		//move.TPR105Cycle();
 		blink.cycle();
 		robot.cycle();
-		//move.cycle();
+		move.cycle();
 		//console.cycle();
 		//servoControll.cycle();
 		if(startSW.readValue()) gyro.reset();
 
-		if(millis()-tim>=50){
+		/*if(millis()-tim>=50){
+			tim=millis();
 			if(serial.charAvailable()){
 				flag=true;
 				char key=serial.readChar();
@@ -229,49 +230,26 @@ int main(){
 				servo.setAngle(dtor(deg));
 			}
 		}
-		if(flag)servo.cycle();
+		if(flag)servo.cycle();*/
 
-		if(millis()-serialTime>=100){
+		if(millis()-serialTime>=300){
 			serialTime=millis();
-			//serial.printf("accx %f",currentAccelerationValues[0]);
-			//serial.printf("accy %f",currentAccelerationValues[1]);
-			//serial.printf("accz %f  ",currentAccelerationValues[2]);
-			//serial.printf("accx %f",currentOrientationValues[0]);
-			//serial.printf("accy %f",currentOrientationValues[1]);
-			//serial.printf("accz %f  ",currentOrientationValues[2]);
-			//serial.printf("\n");
-			//serial.printf("accx %f",accx);
-			//serial.printf("accy %f",accy);
-			//serial.printf("accz %f",accz);
-			//serial.printf("x,%f",x);
-			//serial.printf("vel %f",velocity);
-			//serial.printf("\n");
-			//serial.printf("deg %.4f",rtod(gyro.angle()));
-			//serial.printf("y %f",(gyro.accely()-initaccx));//*9.80665));
-			//serial.printf("accy %f",(gyro.accely()-initaccy));//*9.806655));
-			//serial.printf("accz %.4f",(gyro.accelz()));//*9.80665));
-			//serial.printf("x,%f,y,%f",x,y);
-			//serial.printf("accx %f",(gyro.accelx()/1000.0)*9.800);
-			//serial.printf("accy %f",(gyro.accely()/1000.0)*9.8000);
-			//serial.printf("accz %f",(gyro.accelz()/1000.0)*9.8000);
-			//serial.printf("accx %f",(gyro.accelx()));
-			//serial.printf("accy %f",(gyro.accely()));
-			//serial.printf("accz %f",(gyro.accelz()));
 			//serial.printf("ad0 %f,",a0.analogRead());
 			//serial.printf("ad1 %f,",a1.analogRead());
 			//serial.printf("ad2 %f,",a2.analogRead());
 			//serial.printf("ad3 %f,",a3.analogRead());
 			//serial.printf("ad4 %f  ",a4.analogRead());
-			//move.printAdValue();
+			move.printAdValue();
 			//serial.printf("x, %f, y, %f ,deg, %f  ",robot.getX(),robot.getY(),rtod(robot.getAngle()));
-			//serial.printf("\n");
+			//serial.printf("velo %f",robot.getVelocity());
+			serial.printf("\n");
 		}
 	}
 }
 
 #endif
 
-#if 1
+#if 0
 int main(void){
 	Led0 led0;
 	Sw0 sw0;sw0.setupDigitalIn();
@@ -553,6 +531,21 @@ int main(void)
 }
 #endif
 #if 0
+#define AD0		GPIOC,GPIO_Pin_0
+#define AD1		GPIOC,GPIO_Pin_1
+#define AD2		GPIOC,GPIO_Pin_2
+#define AD3		GPIOC,GPIO_Pin_3
+#define AD4		GPIOA,GPIO_Pin_0
+#define AD5		GPIOA,GPIO_Pin_1
+#define AD6		GPIOA,GPIO_Pin_2
+#define AD7		GPIOA,GPIO_Pin_3
+#define AD8		GPIOA,GPIO_Pin_4
+#define AD9		GPIOA,GPIO_Pin_5
+#define AD10		GPIOB,GPIO_Pin_1
+
+extern "C"{
+#include "layer_driver/board/stm32f4_config/config_encoder.h"
+}
 int main(void)
 {
 	Led0 led0;led0.setupDigitalOut();
@@ -562,22 +555,38 @@ int main(void)
 	Buzzer buzzer;buzzer.setupDigitalOut();
 	Sw0 sw0;sw0.setupDigitalIn();
 	Sw1 sw1;sw1.setupDigitalIn();
-	Sw2 sw2;sw2.setupDigitalIn();
-	Sw3 sw3;sw3.setupDigitalIn();
+	//Sw2 sw2;sw2.setupDigitalIn();
+	//Sw3 sw3;sw3.setupDigitalIn();
 
 	A0 a0;//a0.setupAnalogIn();
-	A1 a1;a1.setupAnalogIn();
+	A1 a1;//a1.setupAnalogIn();
 	A2 a2;//a2.setupAnalogIn();
 	A3 a3;//a3.setupAnalogIn();
-	A4 a4;a4.setupAnalogIn();
+	A4 a4;//a4.setupAnalogIn();
+	A5 a5;
+	A6 a6;
+	A7 a7;
+	A8 a8;
+	A9 a9;
+	A10 a10;
 
 	/*Init_ADC1(GPIOC,GPIO_Pin_1);
 	Init_ADC1(GPIOC,GPIO_Pin_2);//2
 	Init_ADC1(GPIOC,GPIO_Pin_3);
 	Init_ADC1(GPIOC,GPIO_Pin_4);//4
 	Init_ADC1(GPIOC,GPIO_Pin_5);*/
-
-	CW0 cw0;cw0.setupDigitalOut();
+	Init_ADC1(AD0);
+	Init_ADC1(AD1);
+	Init_ADC1(AD2);
+	Init_ADC1(AD3);
+	Init_ADC1(AD4);
+	Init_ADC1(AD5);
+	Init_ADC1(AD6);
+	Init_ADC1(AD7);
+	Init_ADC1(AD8);
+	Init_ADC1(AD9);
+	Init_ADC1(AD10);
+	/*CW0 cw0;cw0.setupDigitalOut();
 	CW1 cw1;cw1.setupDigitalOut();
 	CW2 cw2;cw2.setupDigitalOut();
 	CW3 cw3;cw3.setupDigitalOut();
@@ -588,73 +597,118 @@ int main(void)
 	CCW2 ccw2;ccw2.setupDigitalOut();
 	CCW3 ccw3;ccw3.setupDigitalOut();
 	CCW4 ccw4;ccw4.setupDigitalOut();
-	CCW5 ccw5;ccw5.setupDigitalOut();
-	Pwm0 pwm0;pwm0.setupPwmOut(10000,1);
-	Pwm1 pwm1;pwm1.setupPwmOut(10000,1);
-	Pwm2 pwm2;pwm2.setupPwmOut(10000,1);
+	CCW5 ccw5;ccw5.setupDigitalOut();*/
+	Pwm0 pwm0;//pwm0.setupPwmOut(10000,1);
+	Pwm1 pwm1;//pwm1.setupPwmOut(10000,1);
+	Servo servo(pwm0);
+	//servo.setup(20.0,dtor(180.0),1.5,2.4);
+	/*Pwm2 pwm2;pwm2.setupPwmOut(10000,1);
 	Pwm3 pwm3;pwm3.setupPwmOut(10000,1);
 	Pwm4 pwm4;pwm4.setupPwmOut(10000,1);
-	Pwm5 pwm5;pwm5.setupPwmOut(10000,1);
+	Pwm5 pwm5;pwm5.setupPwmOut(10000,1);*/
 	Enc0 enc0;enc0.setup();
 	Enc1 enc1;enc1.setup();
-	Enc2 enc2;enc2.setup();
+	//Enc2 enc2;enc2.setup();
 	Serial0 serial0;
 	serial0.setup(115200);
+	/*Serial1 serial1;
+	serial1.setup(115200);
+	Serial2 serial2;
+	serial2.setup(115200);
+	serial2.printf("start\n");*/
 	//Blink blink(cw0);blink.setup();
 	//blink.time(500);
-
+	I2c0 i2c;
+	Aqm0802 lcd(i2c);lcd.setup();
+	char data[20];
 	Blink blink0(led0);blink0.setup();blink0.time(150);
 	Blink blink1(led1);blink1.setup();blink1.time(300);
 	Blink blink2(led2);blink2.setup();blink2.time(450);
 	Blink blink3(led3);blink3.setup();blink3.time(600);
-	//Blink blink4(a4);blink4.setup();blink4.time(2000);
+	Blink blink4(buzzer);blink4.setup();blink4.time(2000);
 
 	float duty=0;
 	int flag=0;
 	int time=0;
 	int led=0;
-
+	int tim=0;
+	float deg=0;
 	while(1){
-		blink0.cycle();
-		blink1.cycle();
-		blink2.cycle();
+		//blink0.cycle();
+		//blink1.cycle();
+		//blink2.cycle();
 		blink3.cycle();
 		//blink4.cycle();
-		if(millis()-time>=60){
-			time=millis();
-			/*if(flag==0){
-				if(duty>=1){
-					flag=1;
+		i2c.cycle();
+		if(!sw0.digitalRead()){
+			//Reset_encoder_over_under_flow();
+			led0.digitalHigh();
+		}else{
+			led0.digitalLow();
+		}
+
+		/*if(millis()-tim>=50){
+			tim=millis();
+			if(serial0.charAvailable()){
+				flag=true;
+				char key=serial0.readChar();
+				serial0.printf("key %c\n",key);
+				if(key=='d'){
+					deg+=5.0;
+					deg=floatlimit(-135,deg,135);
+				}else if(key=='a'){
+					deg-=5.0;
+					deg=floatlimit(-135,deg,135);
+				}else if(key=='w'){
+					deg=0;
 				}
-				duty+=0.1;
-			}else{
-				if(duty<0){
-					flag=0;
-				}
-				duty-=0.1;
+				serial0.printf("deg %.2f",deg);
+				servo.setAngle(dtor(deg));
 			}
-			pwm0.pwmWrite(duty);
-			pwm1.pwmWrite(duty);
-			pwm2.pwmWrite(duty);
-			pwm3.pwmWrite(duty);
-			pwm4.pwmWrite(duty);
-			pwm5.pwmWrite(duty);*/
+		}
+		if(flag)servo.cycle();*/
+		if(millis()-time>=1000){
+			time=millis();
 
-			if(!sw0.digitalRead())	Reset_encoder_over_under_flow();
+			if(!flag){
+				flag=1;
+				sprintf(data,"Hello");
+				lcd.setCursor(0,0);
+				lcd.sendString(data);
+				lcd.setCursor(1,1);
+				sprintf(data,"World");
+				lcd.sendString(data);
+			}else{
+				flag=0;
+				lcd.clear();
+			}
 
+			/*if(!sw1.digitalRead()){
+				Reset_encoder_over_under_flow();
+			}*/
 			/*serial0.printf("a0:%d, ",a0.analogRead());
 			serial0.printf("a1:%d, ",a1.analogRead());
 			serial0.printf("a2:%d, ",a2.analogRead());
 			serial0.printf("a3:%d, ",a3.analogRead());
 			serial0.printf("a4:%d\n",a4.analogRead());*/
-			serial0.printf("a0:%.2f",get_ADC1_value(GPIOC,GPIO_Pin_5));
+			/*serial0.printf("a0:%.2f",get_ADC1_value(GPIOC,GPIO_Pin_5));
 			serial0.printf("a1:%.2f",get_ADC1_value(GPIOC,GPIO_Pin_1));
 			serial0.printf("a2:%.2f",get_ADC1_value(GPIOC,GPIO_Pin_2));
 			serial0.printf("a3:%.2f",get_ADC1_value(GPIOC,GPIO_Pin_3));
-			serial0.printf("a4:%.2f\n",get_ADC1_value(GPIOC,GPIO_Pin_4));
+			serial0.printf("a4:%.2f\n",get_ADC1_value(GPIOC,GPIO_Pin_4));*/
 			//serial0.printf("s0:%d, s1:%d, s2:%d, s3:%d ",sw0.digitalRead(),sw1.digitalRead(),sw2.digitalRead(),sw3.digitalRead());
-			//serial0.printf("e0:%d, e1:%d, e2:%d\n\r",enc0.count(),enc1.count(),enc2.count());
-
+			//serial0.printf("e0:%d, e1:%d,\n",enc0.count(),enc1.count());
+			/*serial0.printf("a0:%.2f, ",a0.analogRead());
+			serial0.printf("a1:%.2f, ",a1.analogRead());
+			serial0.printf("a2:%.2f, ",a2.analogRead());
+			serial0.printf("a3:%.2f, ",a3.analogRead());
+			serial0.printf("a4:%.2f, ",a4.analogRead());
+			serial0.printf("a5:%.2f, ",a5.analogRead());
+			serial0.printf("a6:%.2f, ",a6.analogRead());
+			serial0.printf("a7:%.2f, ",a7.analogRead());
+			serial0.printf("a8:%.2f, ",a8.analogRead());
+			serial0.printf("a9:%.2f, ",a9.analogRead());
+			serial0.printf("a10:%.2f\n",a10.analogRead());*/
 		}
 		/*if(millis()-led>=150){
 			led=millis();

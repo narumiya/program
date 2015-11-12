@@ -22,10 +22,12 @@ private:
 	float initValue;
 	float velocity;
 	float initAccx;
+	//float velocity;
 public:
 	roboCenter(Encoder &enc,R1350n &gyroPin,ButtonInfo &resetPin);
 	int setup();
 	float getAngle();
+	float getVelocity(){return velocity;};
 	float getX();
 	float getY();
 	void cycle();

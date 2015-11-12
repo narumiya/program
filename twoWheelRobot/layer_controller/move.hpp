@@ -9,7 +9,7 @@
 extern "C"{
 #include "my_else_calculation.h"
 }
-#define INITANGLE 20.0
+//#define INITANGLE -75.0
 
 class Move{
 private:
@@ -37,6 +37,7 @@ private:
 	float other;
 	float middle;
 	bool calibraFlag;
+	float initAngle;
 public:
 	Move(MiniMD &l,MiniMD &r,ButtonInfo &swPin);
 	Move(MiniMD &l,MiniMD &r,Analog &a0,Analog &a1,Analog &a2,Analog &a3,Analog &a4,ButtonInfo &swPin);

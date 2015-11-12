@@ -3,8 +3,8 @@
 
 #define		NO_CHANNEL		((uint8_t)(0xFF))
 
-static uint16_t g_ADC1_value[8] = {0};	//チャンネル数8個でとりあえず設定
-static int g_adc_port[8] = {0};
+static uint16_t g_ADC1_value[11] = {0};	//チャンネル数8個でとりあえず設定
+static int g_adc_port[11] = {0};
 
 
 /******************************************************************************
@@ -258,7 +258,7 @@ void Init_ADC1(GPIO_TypeDef *GPIOx, uint16_t pin){
 ******************************************************************************/
 float get_ADC1_value(GPIO_TypeDef *GPIOx, uint16_t pin){
 	int ch=0;
-	for(ch=0;ch<8;ch++){
+	for(ch=0;ch<11;ch++){
 		if(g_adc_port[ch] == Select_ADC_channel(GPIOx,pin)){
 			return ((float)g_ADC1_value[ch]);
 		}

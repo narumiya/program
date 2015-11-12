@@ -1,5 +1,6 @@
 
 #include "pin.hpp"
+#if 1
 extern "C" {
 #include <string.h>
 #include <stdio.h>
@@ -2087,4 +2088,4 @@ void I2c0::cycle(){
 extern "C" void I2C2_EV_IRQHandler(void){
 	I2c0_Interrupt();
 }
-
+#endif

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
    <processor signature="4.8.4 -mcpu=cortex-m4 -mthumb -g -Map=ichigoplus.map -O0 --gc-sections -lm -lgcc -lc -lstdc++ -LC:\CooCox\CoIDE\configuration\ProgramData\ichigoplus -TC:\CooCox\CoIDE\configuration\ProgramData\ichigoplus/link.ld -g">
-      <target file="ichigoplus.elf" lastModified="150dc4af93c">
+      <target file="ichigoplus.elf" lastModified="150f6519a30">
          <source file="..\obj\config_pwm.o" lastModified="150dbec1d2f"/>
          <source file="..\obj\usb_core.o" lastModified="150dbec1deb"/>
          <source file="..\obj\iwdg_software_reset.o" lastModified="150dbec1e68"/>
@@ -12,7 +12,7 @@
          <source file="..\obj\mini_md.o" lastModified="150dbec1ffe"/>
          <source file="..\obj\kondo_servo.o" lastModified="150dc45f273"/>
          <source file="..\obj\usbd_usr.o" lastModified="150dbec209a"/>
-         <source file="..\obj\ina226.o" lastModified="150dbf0e247"/>
+         <source file="..\obj\ina226.o" lastModified="150f6495995"/>
          <source file="..\obj\r1350n.o" lastModified="150dbec2175"/>
          <source file="..\obj\calculate.o" lastModified="150dbec21b4"/>
          <source file="..\obj\config_encoder.o" lastModified="150dbec2221"/>
@@ -29,34 +29,35 @@
          <source file="..\obj\startup_stm32f4xx.o" lastModified="150dbec2657"/>
          <source file="..\obj\stm32f4xx_crc.o" lastModified="150dbec26b5"/>
          <source file="..\obj\stm32f4xx_iwdg.o" lastModified="150dbec2703"/>
-         <source file="..\obj\s11059.o" lastModified="150dbf0e303"/>
+         <source file="..\obj\s11059.o" lastModified="150f6495a31"/>
          <source file="..\obj\usbd_core.o" lastModified="150dbec27ee"/>
-         <source file="..\obj\pin.o" lastModified="150dbf0e4d8"/>
-         <source file="..\obj\main.o" lastModified="150dc4af4e6"/>
+         <source file="..\obj\pin.o" lastModified="150f6495c64"/>
+         <source file="..\obj\main.o" lastModified="150f6495d5e"/>
+         <source file="..\obj\pin0.o" lastModified="150f6495d9c"/>
          <source file="..\obj\analog.o" lastModified="150dbec2aad"/>
          <source file="..\obj\stm32_ub_fatfs.o" lastModified="150dbec2b0a"/>
          <source file="..\obj\stm32f4xx_rcc.o" lastModified="150dbec2b88"/>
          <source file="..\obj\system.o" lastModified="150dbec2bd6"/>
-         <source file="..\obj\move.o" lastModified="150dc458d6f"/>
+         <source file="..\obj\move.o" lastModified="150f65195ac"/>
          <source file="..\obj\stm32f4xx_adc.o" lastModified="150dbec2cc0"/>
          <source file="..\obj\servo_controll.o" lastModified="150dc458dbd"/>
          <source file="..\obj\blink.o" lastModified="150dbec2d5c"/>
          <source file="..\obj\can.o" lastModified="150dbec2daa"/>
          <source file="..\obj\encoder.o" lastModified="150dbec2df9"/>
          <source file="..\obj\watchdog.o" lastModified="150dbec2e27"/>
-         <source file="..\obj\config_adc.o" lastModified="150dbec2e85"/>
+         <source file="..\obj\config_adc.o" lastModified="150f5dbcd68"/>
          <source file="..\obj\aqm0802.o" lastModified="150dbec2ee3"/>
          <source file="..\obj\config_iwdg.o" lastModified="150dbec2f31"/>
          <source file="..\obj\usbd_desc.o" lastModified="150dbec2f7f"/>
          <source file="..\obj\error.o" lastModified="150dbec2fed"/>
          <source file="..\obj\config_systick.o" lastModified="150dbec303b"/>
-         <source file="..\obj\servo.o" lastModified="150dc458e2a"/>
+         <source file="..\obj\servo.o" lastModified="150f6495e96"/>
          <source file="..\obj\stm32_ub_sdcard.o" lastModified="150dbec3173"/>
          <source file="..\obj\stm32f4xx_gpio.o" lastModified="150dbec31d1"/>
          <source file="..\obj\stm32_ub_usbdisk.o" lastModified="150dbec321f"/>
          <source file="..\obj\stm32f4xx_flash.o" lastModified="150dbec328c"/>
          <source file="..\obj\usbd_cdc_vcp.o" lastModified="150dbec32ea"/>
-         <source file="..\obj\robo_center.o" lastModified="150dbec3358"/>
+         <source file="..\obj\robo_center.o" lastModified="150f09166de"/>
          <source file="..\obj\system_stm32f4xx.o" lastModified="150dbec33a6"/>
          <source file="..\obj\syscalls.o" lastModified="150dbec33f4"/>
          <source file="..\obj\stm32f4xx_dma.o" lastModified="150dbec3452"/>
