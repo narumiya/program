@@ -643,6 +643,12 @@
          <include file="..\..\..\layer_driver\base\util.h"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
       </source>
+      <source file="..\..\..\layer_controller\move.cpp" lastModified="151150a6720">
+         <include file="..\..\..\layer_controller\move.hpp"/>
+         <include file="..\..\..\layer_driver\board\pin.hpp"/>
+         <include file="..\..\..\layer_driver\base\mcutime.h"/>
+         <include file="..\..\..\layer_controller\calculate.h"/>
+      </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_exti.c" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_exti.h"/>
       </source>
@@ -699,28 +705,6 @@
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_tim.c" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
-      </source>
-      <source file="..\..\..\main.cpp" lastModified="150f6485891">
-         <include file="..\..\..\layer_driver\board\stm32f4_config\config_adc.h"/>
-         <include file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.h"/>
-         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
-         <include file="..\..\..\layer_application\console.hpp"/>
-         <include file="..\..\..\layer_application\servo_controll.hpp"/>
-         <include file="..\..\..\layer_controller\blink.hpp"/>
-         <include file="..\..\..\layer_controller\move.hpp"/>
-         <include file="..\..\..\layer_controller\robo_center.hpp"/>
-         <include file="..\..\..\layer_driver\base\system.h"/>
-         <include file="..\..\..\layer_driver\base\mcutime.h"/>
-         <include file="..\..\..\layer_driver\board\pin.hpp"/>
-         <include file="..\..\..\layer_driver\circuit\mini_md_1.0\mini_md.hpp"/>
-         <include file="..\..\..\layer_driver\circuit\servo.hpp"/>
-         <include file="..\..\..\layer_driver\circuit\r1350n\r1350n.hpp"/>
-         <include file="..\..\..\layer_driver\circuit\button\button.hpp"/>
-         <include file="..\..\..\layer_driver\circuit\lcd\aqm0802.hpp"/>
-         <include file="..\..\..\layer_driver\circuit\s11059.hpp"/>
-         <include file="..\..\..\layer_driver\circuit\ina226.hpp"/>
-         <include file="..\..\..\layer_driver\circuit\kondo_servo.hpp"/>
-         <include file="..\..\..\layer_driver\board\stm32f4_config\config_encoder.h"/>
       </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\sd\fatfs\ff.h" lastModified="14eb18e6c90">
          <include file="..\..\..\layer_driver\board\stm32f4_config\sd\fatfs\integer.h"/>

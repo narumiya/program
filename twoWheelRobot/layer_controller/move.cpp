@@ -78,8 +78,8 @@ void Move::cycle(){
 		//if(!calibraFlag)calibraFlag=calibra();
 	}else	calibraFlag=true;
 	startSw->cycle();
-	//if(millis()-time>=1){
-		//time=millis();
+	if(millis()-time>=1){
+		time=millis();
 		if(!startFlag){
 			//if(calibraFlag){
 				if(startSw->readDownEdge()) startFlag=true;
@@ -101,18 +101,18 @@ void Move::cycle(){
 				static float output=dtor(initAngle);//servo->cvtPulse(dtor(INITANGLE));
 				//static float oldAngle=0;
 				//static int flag[2]={0};
-				pid_gain_t gain=set_pid_gain(0.0050,0.0,0.0160);//0.0018
-				//pid_gain_t gain=set_pid_gain(0.0018,0.0,0.00);//0.0018
+				//pid_gain_t gain=set_pid_gain(0.0050,0.0,0.0160);//0.0018
+				pid_gain_t gain=set_pid_gain(0.0033,0.0,0.0078);//0.0018
 				//pid_gain_t gain=set_pid_gain(0.00068,0.0,0.00);//0.0018
 				//pid_gain_t gain=set_pid_gain(0.00018,0.0,0.00020);//0.00018//‘O‚Éæ‚è•t‚¯
 
 				float angle=rotationOutput(gain);
 				output+=angle;
 
-				if(adData[0]<0.5){
-					output+=dtor(0.02);
-				}else if(adData[4]<0.5){
-					output-=dtor(0.02);
+				if(adData[4]<0.1){
+					output+=dtor(0.2);
+				}else if(adData[0]<0.1){
+					output-=dtor(0.2);
 				}
 
 				if(startSw->readValue()) output=dtor(initAngle);
@@ -123,7 +123,7 @@ void Move::cycle(){
 		}
 		countAverage=countWhile;
 		countWhile=0;
-	//}
+	}
 	if(!useServo){
 		for(int i=0;i<2;i++)
 			md[i]->cycle();
@@ -161,8 +161,8 @@ float Move::rotationOutput(pid_gain_t gain){
 	//float ad=((adData[1]+adData[3])-middle);///((other-white));
 	//ad=(((1.0-adData[1])-(1.0-adData[3])));//·•ª‚ğ0‚É‚·‚é‚æ‚¤‚É
 	//if(adData[3]<0.1&&adData[1]<0.1){
-		//ad=((adData[3]-adData[1]));//·•ª‚ğ0‚É‚·‚é‚æ‚¤‚É
-	ad=((adData[3]-adData[1]));//·•ª‚ğ0‚É‚·‚é‚æ‚¤‚É
+	//ad=((adData[3]-adData[1]));//·•ª‚ğ0‚É‚·‚é‚æ‚¤‚É
+	ad=((adData[1]-adData[3]));//·•ª‚ğ0‚É‚·‚é‚æ‚¤‚É
 		oldAd=ad;
 	//}else{
 	//	ad=oldAd;
