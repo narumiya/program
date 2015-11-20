@@ -156,7 +156,7 @@ int main(){
 }
 #endif
 
-#if 1
+#if 0
 #define AD0		GPIOC,GPIO_Pin_5
 #define AD1		GPIOC,GPIO_Pin_1
 #define AD2		GPIOC,GPIO_Pin_2
@@ -165,6 +165,7 @@ int main(){
 int main(){
 	Pwm0 pwm0;
 	//Servo servo(pwm0);
+
 	KondoServo servo(pwm0);
 	Sw0 sw;ButtonInfo startSW(sw);
 	Sw1 sw1;ButtonInfo resetSw(sw1);
@@ -205,7 +206,7 @@ int main(){
 		//move.TPR105Cycle();
 		blink.cycle();
 		//robot.cycle();
-		move.cycle();
+		//move.cycle();
 		//console.cycle();
 		//servoControll.cycle();
 		if(startSW.readValue()) gyro.reset();
@@ -253,16 +254,22 @@ int main(){
 
 #endif
 
-#if 0
+#if 1
 int main(void){
 	Led0 led0;
 	Sw0 sw0;sw0.setupDigitalIn();
 	Sw1 sw1;sw1.setupDigitalIn();
-	Sw2 sw2;sw2.setupDigitalIn();
+/*	Sw2 sw2;sw2.setupDigitalIn();
 	Sw3 sw3;sw3.setupDigitalIn();
-	Blink blink0(led0);blink0.setup();blink0.time(200);
+*/	Blink blink0(led0);blink0.setup();blink0.time(200);
 	Serial1 serial1;	serial1.setup(115200);
 	Serial0 serial0;
+	Pwm0 pwm0;
+	Pwm1 pwm1;
+	//Servo servo0(pwm0);
+	//Servo servo1(pwm1);
+	//servo0.setup(20.0,dtor(180.0),1.5,2.4);
+	//servo1.setup(15.0,dtor(140.0),1.5,2.4);
 	KondoServo servo(serial0);servo.setup();
 	int flag=0;
 	float deg=0.00;
@@ -282,12 +289,15 @@ int main(void){
 		if(millis()-time>=5){
 			time=millis();
 			servo.setAngle(id,dtor(deg));
-			serial1.printf("target,%.3f,",(deg));
+			//servo0.setAngle(dtor(deg));
+			//servo1.setAngle(dtor(deg));
+			//servo1.cycle();
+			//serial1.printf("target,%.3f,",(deg));
 			/*for(int j=0;j<3;j++){
 				serial1.printf("id%d,%.2f,",j,servo.getAngle(j));
 			}*/
-			serial1.printf("id%d,%.2f,",id,rtod(servo.getAngle(id)));
-			serial1.printf("\n");
+			//serial1.printf("id%d,%.2f,",id,rtod(servo.getAngle(id)));
+			//serial1.printf("\n");
 			//serial1.printf("%d\n",servo.readPara(1,3));
 			//serial1.printf("%d\n",servo.setId(0,1));
 		}
@@ -296,21 +306,22 @@ int main(void){
 			switch(flag){
 				case 0:
 					flag=1;
-					deg=135;break;
+					deg=60.0;break;
 				case 1:
 					flag=2;
-					deg=0;break;
+					deg=0.0;break;
 				case 2:
 					flag=3;
-					deg=135;break;
+					deg=60.0;break;
 				case 3:
 					flag=4;
-					deg=-135;break;
+					deg=-60.0;break;
 				case 4:
 					flag=0;
-					//id++;
+					id++;
 					if(id==3) id=0;break;
 				}
+
 			/*switch(flag){
 			case 0:
 				flag=1;
