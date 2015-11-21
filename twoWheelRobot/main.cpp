@@ -27,6 +27,29 @@ extern "C"{
 #include "layer_driver/circuit/s11059.hpp"
 #include "layer_driver/circuit/ina226.hpp"
 #include "layer_driver/circuit/kondo_servo.hpp"
+#include "layer_driver/circuit/fun.hpp"
+
+int main(void){
+	Serial0 serial;serial.setup(115200);
+	Led0 led0;
+	Blink blink(led0);blink.setup();blink.time(300);
+	Servo servo;
+	Console console(serial);console.setup(115200);
+	console.setNewLine(Console::NEWLINE_CR);
+	Pwm0 pwm;
+	Fun fun(pwm);
+	ServoControll servoControll(servo,fun,console);
+	servoControll.setup();
+	long long int time=millis();
+	while(1){
+		blink.cycle();
+		servoControll.cycle();
+		if(millis()-time>=100){
+			time=millis();
+			console.cycle();
+		}
+	}
+}
 #if 0
 #include <stdio.h>
 #include <string.h>
@@ -246,7 +269,7 @@ int main(){
 			//serial.printf("x, %f, y, %f ,deg, %f  ",robot.getX(),robot.getY(),rtod(robot.getAngle()));
 			//serial.printf("velo %f",robot.getVelocity());
 			//serial.printf("deg %.4f ,enc %d",rtod(gyro.angle()),enc.count());
-			serial.printf("deg,%.2fx,%.2f, y,%.2f,z,%2f",accx*90.0/9.8,accx,accy,accz);
+			serial.printf("xdeg,%.2f,ydeg %.2f,x,%.2f, y,%.2f,z,%2f",accx*90.0/9.8,accy*90.0/9.8,accx,accy,accz);
 			serial.printf("\n");
 		}
 	}
@@ -254,7 +277,7 @@ int main(){
 
 #endif
 
-#if 1
+#if 0
 int main(void){
 	Led0 led0;
 	Sw0 sw0;sw0.setupDigitalIn();

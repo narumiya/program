@@ -19,8 +19,8 @@ extern "C" {
 }
 
 
-#define LED0 GPIOD, GPIO_Pin_12
-//#define LED0		GPIOB,GPIO_Pin_12//GPIOB,GPIO_Pin_0
+//#define LED0 GPIOD, GPIO_Pin_12
+#define LED0		GPIOB,GPIO_Pin_12//GPIOB,GPIO_Pin_0
 #define LED1		GPIOE,GPIO_Pin_15//GPIOC,GPIO_Pin_0//input ‚Å‚«‚È‚¢
 #define LED2		GPIOB,GPIO_Pin_14//pwm‚Å‚«‚é//GPIOA,GPIO_Pin_5
 #define LED3		GPIOB,GPIO_Pin_15//pwm‚Å‚«‚éGPIOA,GPIO_Pin_4

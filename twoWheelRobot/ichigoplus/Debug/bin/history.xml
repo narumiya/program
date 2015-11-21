@@ -1,11 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
    <processor signature="4.8.4 -mcpu=cortex-m4 -mthumb -g -Map=ichigoplus.map -O0 --gc-sections -lm -lgcc -lc -lstdc++ -LC:\CooCox\CoIDE\configuration\ProgramData\ichigoplus -TC:\CooCox\CoIDE\configuration\ProgramData\ichigoplus/link.ld -g">
-      <target file="ichigoplus.elf" lastModified="1511f732d89">
+      <target file="ichigoplus.elf" lastModified="15127cbfcc1">
          <source file="..\obj\config_pwm.o" lastModified="150dbec1d2f"/>
          <source file="..\obj\usb_core.o" lastModified="150dbec1deb"/>
          <source file="..\obj\iwdg_software_reset.o" lastModified="150dbec1e68"/>
          <source file="..\obj\button_info.o" lastModified="150dbec1ec5"/>
+         <source file="..\obj\fun.o" lastModified="15127c99f77"/>
          <source file="..\obj\config_port.o" lastModified="150dbec1f13"/>
          <source file="..\obj\stm32f4xx_sdio.o" lastModified="150dbec1f81"/>
          <source file="..\obj\i2c.o" lastModified="150dbec1fb0"/>
@@ -31,8 +32,8 @@
          <source file="..\obj\stm32f4xx_iwdg.o" lastModified="150dbec2703"/>
          <source file="..\obj\s11059.o" lastModified="1511f654e32"/>
          <source file="..\obj\usbd_core.o" lastModified="150dbec27ee"/>
-         <source file="..\obj\pin.o" lastModified="1511f655093"/>
-         <source file="..\obj\main.o" lastModified="1511f7328ec"/>
+         <source file="..\obj\pin.o" lastModified="15127aa5520"/>
+         <source file="..\obj\main.o" lastModified="15127cbf75e"/>
          <source file="..\obj\pin0.o" lastModified="1511f65517e"/>
          <source file="..\obj\analog.o" lastModified="150dbec2aad"/>
          <source file="..\obj\stm32_ub_fatfs.o" lastModified="150dbec2b0a"/>
@@ -40,7 +41,7 @@
          <source file="..\obj\system.o" lastModified="150dbec2bd6"/>
          <source file="..\obj\move.o" lastModified="1511f6551fb"/>
          <source file="..\obj\stm32f4xx_adc.o" lastModified="150dbec2cc0"/>
-         <source file="..\obj\servo_controll.o" lastModified="150dc458dbd"/>
+         <source file="..\obj\servo_controll.o" lastModified="15127cbf7cb"/>
          <source file="..\obj\blink.o" lastModified="150dbec2d5c"/>
          <source file="..\obj\can.o" lastModified="150dbec2daa"/>
          <source file="..\obj\encoder.o" lastModified="150dbec2df9"/>
