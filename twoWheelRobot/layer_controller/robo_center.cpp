@@ -13,6 +13,7 @@ roboCenter::roboCenter(Encoder &enc,R1350n &gyroPin,ButtonInfo &resetPin){
 	angle=0.0;
 	oldValue=0.0;
 	velocity=0.0;
+	encToServo=0.0;
 }
 
 int roboCenter::setup(){
@@ -42,15 +43,15 @@ void roboCenter::cycle(){
 			x=0.0;y=0.0;
 		}
 		value=enc0->value()-initValue;
-		float def=value-oldValue;
+		float def=(value-oldValue)+160.0;
 		velocity=def/0.005;
 		//printf("%f\n",value);
 		//angle=gyro->angle()-initAngle;
-		/*angle=gyro->angle();
+		angle=gyro->angle();
 		angle*=(-1.0);
 		float theta=area(angle+radiusReverse(value-oldValue),-M_PI,M_PI);
 		x+=fabs(def)*cos(theta);
-		y+=fabs(def)*sin(theta);*/
+		y+=fabs(def)*sin(theta);
 		oldValue=value;
 	}
 }

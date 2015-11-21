@@ -23,6 +23,7 @@ private:
 	float velocity;
 	float initAccx;
 	//float velocity;
+	float encToServo;
 public:
 	roboCenter(Encoder &enc,R1350n &gyroPin,ButtonInfo &resetPin);
 	int setup();

@@ -2739,7 +2739,7 @@ Discarded input sections
  .ARM.exidx.text._ZN6R1350n6accelzEv
                 0x00000000        0x8 ..\obj\robo_center.o
  .text._ZN10roboCenterC2ER7EncoderR6R1350nR10ButtonInfo
-                0x00000000       0x64 ..\obj\robo_center.o
+                0x00000000       0x6c ..\obj\robo_center.o
  .ARM.extab.text._ZN10roboCenterC2ER7EncoderR6R1350nR10ButtonInfo
                 0x00000000        0x0 ..\obj\robo_center.o
  .ARM.exidx.text._ZN10roboCenterC2ER7EncoderR6R1350nR10ButtonInfo
@@ -2751,7 +2751,7 @@ Discarded input sections
  .ARM.exidx.text._ZN10roboCenter5setupEv
                 0x00000000        0x8 ..\obj\robo_center.o
  .text._ZN10roboCenter5cycleEv
-                0x00000000      0x118 ..\obj\robo_center.o
+                0x00000000      0x240 ..\obj\robo_center.o
  .ARM.extab.text._ZN10roboCenter5cycleEv
                 0x00000000        0xc ..\obj\robo_center.o
  .ARM.exidx.text._ZN10roboCenter5cycleEv
@@ -2780,17 +2780,17 @@ Discarded input sections
                 0x00000000        0xc ..\obj\robo_center.o
  .ARM.exidx.text._ZN10roboCenter8accCycleEv
                 0x00000000        0x8 ..\obj\robo_center.o
- .debug_info    0x00000000     0x100e ..\obj\robo_center.o
+ .debug_info    0x00000000     0x1028 ..\obj\robo_center.o
  .debug_abbrev  0x00000000      0x2bf ..\obj\robo_center.o
  .debug_aranges
                 0x00000000       0x78 ..\obj\robo_center.o
  .debug_ranges  0x00000000       0x68 ..\obj\robo_center.o
- .debug_line    0x00000000      0x2d5 ..\obj\robo_center.o
- .debug_str     0x00000000      0xbe8 ..\obj\robo_center.o
+ .debug_line    0x00000000      0x2f5 ..\obj\robo_center.o
+ .debug_str     0x00000000      0xbf3 ..\obj\robo_center.o
  .comment       0x00000000       0x47 ..\obj\robo_center.o
  .ARM.attributes
                 0x00000000       0x33 ..\obj\robo_center.o
- .debug_frame   0x00000000      0x180 ..\obj\robo_center.o
+ .debug_frame   0x00000000      0x188 ..\obj\robo_center.o
  .text          0x00000000        0x0 ..\obj\system_stm32f4xx.o
  .bss           0x00000000        0x0 ..\obj\system_stm32f4xx.o
  .text          0x00000000        0x0 ..\obj\syscalls.o

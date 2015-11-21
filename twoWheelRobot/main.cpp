@@ -14,10 +14,8 @@ extern "C"{
 //base
 #include "system.h"
 #include "mcutime.h"
-
 //board
 #include "pin.hpp"
-
 //circuit
 #include "layer_driver/circuit/mini_md_1.0/mini_md.hpp"
 #include "layer_driver/circuit/servo.hpp"
@@ -29,6 +27,7 @@ extern "C"{
 #include "layer_driver/circuit/kondo_servo.hpp"
 #include "layer_driver/circuit/fun.hpp"
 
+#if 1
 int main(void){
 	Serial0 serial;serial.setup(115200);
 	Led0 led0;
@@ -41,6 +40,7 @@ int main(void){
 	ServoControll servoControll(servo,fun,console);
 	servoControll.setup();
 	long long int time=millis();
+
 	while(1){
 		blink.cycle();
 		servoControll.cycle();
@@ -50,6 +50,8 @@ int main(void){
 		}
 	}
 }
+#endif
+
 #if 0
 #include <stdio.h>
 #include <string.h>
@@ -114,6 +116,7 @@ int main(){
 	}
 }
 #endif
+
 #if 0
 #define I2C2_SCL_PIN	GPIO_Pin_10
 #define I2C2_SDA_PIN	GPIO_Pin_11
