@@ -27,7 +27,7 @@ extern "C"{
 #include "layer_driver/circuit/kondo_servo.hpp"
 #include "layer_driver/circuit/fun.hpp"
 
-#if 1
+#if 0
 int main(void){
 	Serial0 serial;serial.setup(115200);
 	Led0 led0;
@@ -182,7 +182,7 @@ int main(){
 }
 #endif
 
-#if 0
+#if 1
 #define AD0		GPIOC,GPIO_Pin_5
 #define AD1		GPIOC,GPIO_Pin_1
 #define AD2		GPIOC,GPIO_Pin_2
@@ -190,9 +190,8 @@ int main(){
 #define AD4		GPIOC,GPIO_Pin_4
 int main(){
 	Pwm0 pwm0;
-	//Servo servo(pwm0);
-
-	KondoServo servo(pwm0);
+	Servo servo(pwm0);
+	//KondoServo servo(pwm0);
 	Sw0 sw;ButtonInfo startSW(sw);
 	Sw1 sw1;ButtonInfo resetSw(sw1);
 	startSW.setup(true,50);
@@ -212,7 +211,7 @@ int main(){
 	Move move(a0,a1,a2,a3,a4,startSW,servo);
 	move.setup();
 	//servo.setup(30,dtor(270.0),1.5,2.3);//‹ß“¡ƒT[ƒ{
-	//servo.setup(20.0,180.0,1.5,2.4);//rb956 rb955
+	//servo.setup(20.0,dtor(180.0),1.5,2.3);//rb956 rb955
 	//servo.setup();
 	/*int i=a0.setupAnalogIn();
 	i=a1.setupAnalogIn();
@@ -232,12 +231,12 @@ int main(){
 		//move.TPR105Cycle();
 		blink.cycle();
 		//robot.cycle();
-		//move.cycle();
+		move.cycle();
 		//console.cycle();
 		//servoControll.cycle();
 		if(startSW.readValue()) gyro.reset();
-
-		/*if(millis()-tim>=50){
+#if 0
+		if(millis()-tim>=5){
 			tim=millis();
 			if(serial.charAvailable()){
 				flag=true;
@@ -256,25 +255,28 @@ int main(){
 				servo.setAngle(dtor(deg));
 			}
 		}
-		if(flag)servo.cycle();*/
+		if(flag)servo.cycle();
+#endif
 
+#if 1
 		if(millis()-serialTime>=300){
 			serialTime=millis();
-			float accx=((gyro.accelx())/1000.0)*9.80;
-			float accy=(gyro.accely()/1000.0)*9.80;
-			float accz=(gyro.accelz()/1000.0)*9.80;
+			//float accx=((gyro.accelx())/1000.0)*9.80;
+			//float accy=(gyro.accely()/1000.0)*9.80;
+			//float accz=(gyro.accelz()/1000.0)*9.80;
 			//serial.printf("ad0 %f,",a0.analogRead());
 			//serial.printf("ad1 %f,",a1.analogRead());
 			//serial.printf("ad2 %f,",a2.analogRead());
 			//serial.printf("ad3 %f,",a3.analogRead());
 			//serial.printf("ad4 %f  ",a4.analogRead());
-			//move.printAdValue();
+			move.printAdValue();
 			//serial.printf("x, %f, y, %f ,deg, %f  ",robot.getX(),robot.getY(),rtod(robot.getAngle()));
 			//serial.printf("velo %f",robot.getVelocity());
 			//serial.printf("deg %.4f ,enc %d",rtod(gyro.angle()),enc.count());
-			serial.printf("xdeg,%.2f,ydeg %.2f,x,%.2f, y,%.2f,z,%2f",accx*90.0/9.8,accy*90.0/9.8,accx,accy,accz);
+			//serial.printf("xdeg,%.2f,ydeg %.2f,x,%.2f, y,%.2f,z,%2f",accx*90.0/9.8,accy*90.0/9.8,accx,accy,accz);
 			serial.printf("\n");
 		}
+#endif
 	}
 }
 
@@ -282,24 +284,30 @@ int main(){
 
 #if 0
 int main(void){
-	Led0 led0;
+	int err=0;
+	Led1 led0;
 	Sw0 sw0;sw0.setupDigitalIn();
 	Sw1 sw1;sw1.setupDigitalIn();
 /*	Sw2 sw2;sw2.setupDigitalIn();
 	Sw3 sw3;sw3.setupDigitalIn();
 */	Blink blink0(led0);blink0.setup();blink0.time(200);
 	Serial1 serial1;	serial1.setup(115200);
-	Serial0 serial0;
-	Pwm0 pwm0;
+	Serial0 serial;serial.setup(115200);
+	Pwm0 pwm0;pwm0.setupPwmOut(1.0/20.0/1000.0, 1.6/20.0);
 	Pwm1 pwm1;
-	//Servo servo0(pwm0);
-	//Servo servo1(pwm1);
-	//servo0.setup(20.0,dtor(180.0),1.5,2.4);
-	//servo1.setup(15.0,dtor(140.0),1.5,2.4);
-	KondoServo servo(serial0);servo.setup();
+	Servo servo0(pwm0);
+	Servo servo1(pwm1);
+	err=servo0.setup(20.0,dtor(270.0),1.5,2.3);
+	err+=servo1.setup(20.0,dtor(180.0),1.472,2.4);
+	Buzzer buzzer;buzzer.setupDigitalOut();
+	while(err){
+		buzzer.digitalHigh();
+	}
+	//KondoServo servo(serial0);servo.setup();
 	int flag=0;
 	float deg=0.00;
 	long long int time=0;
+	long long int tim=0;
 	long long int servotime=0;
 	int id=0;
 
@@ -310,15 +318,18 @@ int main(void){
 	while(1);*/
 
 	while(1){
+		//buzzer.digitalHigh();
 		blink0.cycle();
-		servo.cycle();
+		//servo0.cycle();
+		//servo1.cycle();
 		if(millis()-time>=5){
 			time=millis();
-			servo.setAngle(id,dtor(deg));
+			//servo.setAngle(id,dtor(deg));
 			//servo0.setAngle(dtor(deg));
+			//servo0.setDuty(1.5/20.0);
 			//servo1.setAngle(dtor(deg));
-			//servo1.cycle();
-			//serial1.printf("target,%.3f,",(deg));
+
+			serial1.printf("target,%.3f,\n",(deg));
 			/*for(int j=0;j<3;j++){
 				serial1.printf("id%d,%.2f,",j,servo.getAngle(j));
 			}*/
@@ -327,7 +338,7 @@ int main(void){
 			//serial1.printf("%d\n",servo.readPara(1,3));
 			//serial1.printf("%d\n",servo.setId(0,1));
 		}
-		if(millis()-servotime>=1000){
+		/*if(millis()-servotime>=1000){
 			servotime=millis();
 			switch(flag){
 				case 0:
@@ -346,17 +357,28 @@ int main(void){
 					flag=0;
 					id++;
 					if(id==3) id=0;break;
+			}
+		}*/
+		if(millis()-tim>=50){
+			tim=millis();
+			if(serial.charAvailable()){
+				flag=true;
+				char key=serial.readChar();
+				serial.printf("key %c\n",key);
+				if(key=='d'){
+					deg+=5.0;
+					deg=floatlimit(-135,deg,135);
+				}else if(key=='a'){
+					deg-=5.0;
+					deg=floatlimit(-135,deg,135);
+				}else if(key=='w'){
+					deg=0;
 				}
-
-			/*switch(flag){
-			case 0:
-				flag=1;
-				deg=130;break;
-			case 1:
-				flag=0;
-				deg=-130;break;
-			}*/
+				serial.printf("deg %.2f",deg);
+				servo0.setAngle(dtor(deg));
+			}
 		}
+		if(flag)servo0.cycle();
 	}
 }
 #endif

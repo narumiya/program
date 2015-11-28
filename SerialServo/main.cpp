@@ -19,7 +19,7 @@ extern "C"{
 #include "layer_driver/circuit/ta7291.hpp"
 #include "layer_driver/circuit/servo.hpp"
 
-#if 1
+#if 0
 int main(void){
 	Led0 led0;
 	Sw0 sw0;sw0.setupDigitalIn();
@@ -235,40 +235,60 @@ int main(void){
 	}
 }
 #endif
-#if 0
+#if 1
+#include "pin0.hpp"
 int main(void)
 {
-	Led0 led0;
+	Led3 led0;
 	Sw0 sw0;sw0.setupDigitalIn();
 	Blink blink0(led0);blink0.setup();blink0.time(200);
 	Pwm0 pwm0;
-	Servo servo(pwm0);servo.setup(30,270,1.5,2.3);
-	Serial0 serial0;
-	serial0.setup(115200);
+	Servo servo(pwm0);servo.setup(20,270,1.5,2.3);
+	Serial0 serial;
+	serial.setup(115200);
 	float deg=0;
 	float duty=0;
 	int flag=0;
 	long long int time=0;
-	Set_duty(SERVO_TIM_CH,0);
+	long long int tim=0;
+	//Set_duty(SERVO_TIM_CH,0);
 	wait(500);
 	while(1){
 		blink0.cycle();
-		for(deg=-135;deg<135;deg+=10){
+		for(deg=-25;deg<115;deg+=10){
 			servo.duty(deg);
-			if(!sw0.digitalRead())
+			servo.cycle();
+			led0.digitalToggle();
+			//serial0.printf("%f\n",deg);
+			wait(25);
+		}
+		for(deg=115;deg>-25;deg-=10){
+			servo.duty(deg);
 				servo.cycle();
 			led0.digitalToggle();
-			serial0.printf("%f\n",deg);
-			wait(500);
+		//	serial0.printf("%f\n",deg);
+			wait(25);
 		}
-		for(deg=135;deg>-135;deg-=10){
-			servo.duty(deg);
-			if(!sw0.digitalRead())
-				servo.cycle();
-			led0.digitalToggle();
-			serial0.printf("%f\n",deg);
-			wait(500);
+		/*if(millis()-tim>=10){
+			tim=millis();
+			if(serial.charAvailable()){
+				flag=true;
+				char key=serial.readChar();
+				serial.printf("key %c\n",key);
+				if(key=='d'){
+					deg+=5.0;
+					deg=floatlimit(-25,deg,115);
+				}else if(key=='a'){
+					deg-=5.0;
+					deg=floatlimit(-25,deg,115);
+				}else if(key=='w'){
+					deg=0;
+				}
+				serial.printf("deg %.2f",deg);
+				servo.duty(deg);
+			}
 		}
+		if(flag)servo.cycle();*/
 		/*if(millis()-time>=500){
 			time=millis();
 			if(!sw0.digitalRead()){

@@ -15,7 +15,7 @@ extern "C" {
 #include "config_port.h"
 #include "layer_driver/board/stm32f4_config/config_adc.h"
 #include "config_can.h"
-#include "config_i2c.h"
+//#include "config_i2c.h"
 }
 
 
@@ -58,7 +58,6 @@ extern "C" {
 
 
 #define SERIAL0TxRx		GPIOB,GPIO_Pin_6,GPIOB,GPIO_Pin_7
-//#define SERIAL0TxRx		GPIOA,GPIO_Pin_9,GPIOA,GPIO_Pin_10
 #define SERIAL0CH 		USART1
 #define SERIAL1TxRx 	GPIOD,GPIO_Pin_5,GPIOD,GPIO_Pin_6
 #define SERIAL1CH 		USART2
@@ -989,7 +988,7 @@ void Buzzer::_pwmWrite(float duty){
 float Buzzer::_pwmWrite(){
 	return Read_duty(BUZZERTIMCH);
 }
-
+/*
 SerialInterface *Serial0::interface;
 
 int Serial0::_setup(int baudrate, SerialInterface &interfaceArg, int parity, int wordLength){
@@ -1056,18 +1055,19 @@ void Serial2::transmit(char value){
 	while(USART_GetFlagStatus(SERIAL2CH, USART_FLAG_TXE) == RESET);
 	USART_SendData(SERIAL2CH, value);
 }
-
+*/
 void std_char_out(char value){
 	while(USART_GetFlagStatus(SERIAL0CH, USART_FLAG_TXE) == RESET);
 	USART_SendData(SERIAL0CH, value);
 }
 
 int std_char_out_setup(){
-	Serial0::interface=new SerialInterface();
+	//Serial0::interface=new SerialInterface();
 	Init_USART(SERIAL0CH,9600,SERIAL0TxRx,0,8);
 	return 0;
 }
 
+/*
 extern "C" void USART1_IRQHandler(void){
 	serial0_interrupt();
 }
@@ -1079,7 +1079,7 @@ extern "C" void USART2_IRQHandler(void){
 extern "C" void USART5_IRQHandler(void){
 	serial2_interrupt();
 }
-
+*/
 CanInterface *Can0::canInterface[30];
 int Can0::canInterfaceCursor=0;
 
@@ -1173,7 +1173,7 @@ void Can0_Interrupt(){
 extern "C" void CAN1_RX0_IRQHandler(void){
 	Can0_Interrupt();
 }
-
+/*
 int I2c0::directionFlag;
 int I2c0::rxSlaveAddress;
 int I2c0::txSlaveAddress;
@@ -1329,5 +1329,5 @@ void I2c0::cycle(){
 
 extern "C" void I2C2_EV_IRQHandler(void){
 	I2c0_Interrupt();
-}
+}*/
 #endif

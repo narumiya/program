@@ -15,7 +15,7 @@ int Servo::setup(float setPeriod, float setRangeRad, float setNeutral, float set
 	rangeRad = setRangeRad;
 	neutPulse = setNeutral;
 	maxPulse = setMaxPulse;
-	pwm->setupPwmOut(1/(period/1000),0);
+	pwm->setupPwmOut((1.0/(period/1000.0)),1.5/period);
 	delay_ms(500);
 	return 0;
 }
@@ -24,30 +24,39 @@ void Servo::setAngle(float rad){
 	static float old=0.0;
 	float duty=0.0;
 
-	if(!((-rangeRad/2.0)<=rad && rad <=(rangeRad/2.0)))
-		request=old;
-	else{
+	duty=cvtPulse(rad);
+	request= duty;
+	/*if((-rangeRad/2.0)<=rad && rad <=(rangeRad/2.0)){
 		duty=cvtPulse(rad);
 		request= duty;
 		old=duty;
-	}
+	}else{
+		request=old;
+	}*/
 }
 
 void Servo::setDuty(float pos){
 	static float old=0.0;
-	float duty;
-	if((neutPulse-fabs(maxPulse-neutPulse))/period<=pos && pos<=maxPulse/period){
-		duty=pos;
-		request=duty;
-		old=duty;
+	request=pos;
+/*	if((neutPulse-fabs(maxPulse-neutPulse))/period<=pos && pos<=maxPulse/period){
+		request=pos;
+		old=request;
 	}else{
 		request=old;
-	}
+	}*/
 }
 
 float Servo::cvtPulse(float rad){
-	return  (fabs(maxPulse-neutPulse)) / (period * fabs(rangeRad/2.0)) *rad + neutPulse/period;
+	float pulseWidth=0.0;
+	pulseWidth=(fabs(maxPulse-neutPulse)/fabs(rangeRad/2.0))*rad+neutPulse;
+	return (pulseWidth/period);
 }
+/*
+float Servo::cvtPulse(float rad){
+	//return (fabs(MaxPulse-NeutPulse)) / (Period * fabs(RangeDeg/2.0)) * deg + NeutPulse/Period;
+	return  (fabs(maxPulse-neutPulse)) / (period * (rangeRad/2.0)) *rad + neutPulse/period;
+}
+*/
 void Servo::cycle(){
 	pwm->pwmWrite(request);
 }

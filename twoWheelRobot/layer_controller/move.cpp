@@ -56,14 +56,14 @@ int Move::setup(){
 	led1.setupDigitalOut();
 	led2.setupDigitalOut();
 	led3.setupDigitalOut();
-	initAngle=-75.0;
+	initAngle=5.0;
 	if(mode==USESENSOR){
 		/*for(int i=0;i<5;i++){
 			an[i]->setupAnalogIn();
 		}*/
 	}
 	if(useServo){
-		servo->setup(30,dtor(270),1.5,2.3);
+		servo->setup(20.0,dtor(180.0),1.5,2.3);//rb995
 	}else{
 		for(int i=0;i<2;i++){
 			md[i]->setup();
@@ -101,8 +101,8 @@ void Move::cycle(){
 				static float output=dtor(initAngle);//servo->cvtPulse(dtor(INITANGLE));
 				//static float oldAngle=0;
 				//static int flag[2]={0};
-				//pid_gain_t gain=set_pid_gain(0.0050,0.0,0.0160);//0.0018
-				pid_gain_t gain=set_pid_gain(0.0033,0.0,0.0078);//0.0018
+				//pid_gain_t gain=set_pid_gain(0.0046,0.0,0.0160);//0.0018
+				pid_gain_t gain=set_pid_gain(0.0055,0.0,0.0168);//0.0018
 				//pid_gain_t gain=set_pid_gain(0.00068,0.0,0.00);//0.0018
 				//pid_gain_t gain=set_pid_gain(0.00018,0.0,0.00020);//0.00018//前に取り付け
 
@@ -116,7 +116,7 @@ void Move::cycle(){
 				}
 
 				if(startSw->readValue()) output=dtor(initAngle);
-				output=floatlimit(dtor(-70.0+initAngle),output,dtor(70.0+initAngle));
+				output=floatlimit(dtor(-45.0+initAngle),output,dtor(45.0+initAngle));
 				servo->setAngle(output);
 				//printf("output,%.2f\n",output);
 			}
@@ -147,7 +147,7 @@ void Move::TPR105Cycle(){
 
 float Move::rotationOutput(pid_gain_t gain){
 	static pid_data_t data={0};
-	static float oldAd=0;
+	//static float oldAd=0;
 	//const pid_gain_t gain=set_pid_gain(0.65,0.0,1.2);//p0.3直進の出力なし
 	float ad=0;
 
@@ -163,7 +163,7 @@ float Move::rotationOutput(pid_gain_t gain){
 	//if(adData[3]<0.1&&adData[1]<0.1){
 	//ad=((adData[3]-adData[1]));//差分を0にするように
 	ad=((adData[1]-adData[3]));//差分を0にするように
-		oldAd=ad;
+	//	oldAd=ad;
 	//}else{
 	//	ad=oldAd;
 //	}

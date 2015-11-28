@@ -11,7 +11,7 @@ extern "C" {
 #include "config_adc.h"
 #include "config_can.h"
 }
-
+#if 1
 #include "pin.hpp"
 
 #define LED0		GPIOB,GPIO_Pin_12//GPIOB,GPIO_Pin_0
@@ -31,8 +31,8 @@ extern "C" {
 #define AD3		GPIOC,GPIO_Pin_3
 #define AD4		GPIOC,GPIO_Pin_4
 
-
-#define PWM0		GPIOE,GPIO_Pin_11//GPIOE,GPIO_Pin_9
+#define PWM0				GPIOA,GPIO_Pin_9
+//#define PWM0		GPIOE,GPIO_Pin_11//GPIOE,GPIO_Pin_9
 #define CWIO0		GPIOA,GPIO_Pin_4//GPIOE,GPIO_Pin_10
 #define CCWIO0	GPIOC,GPIO_Pin_0//GPIOE,GPIO_Pin_7
 
@@ -1563,10 +1563,12 @@ int Enc2::count()
 	else return Select_encoder_count(ENC2TIM);
 }
 
-
+#define PWM0SET			TIM1,PWM0
+#define PWM0TIMCH		TIM1,2
+/*
 #define PWM0SET			TIM1,GPIOE,GPIO_Pin_11
 #define PWM0TIMCH		TIM1,2
-
+*/
 #define PWM1SET			TIM9,GPIOE,GPIO_Pin_6
 #define PWM1TIMCH		TIM9,2
 
@@ -1943,3 +1945,4 @@ extern "C" void CAN1_RX0_IRQHandler(void)
 {
 	Can0_Interrupt();
 }
+#endif

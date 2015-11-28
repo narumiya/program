@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
    <processor signature="4.8.4 -mcpu=cortex-m4 -mthumb -g -Map=ichigoplus.map -O0 --gc-sections -lm -lgcc -lc -lstdc++ -LC:\CooCox\CoIDE\configuration\ProgramData\ichigoplus -TC:\CooCox\CoIDE\configuration\ProgramData\ichigoplus/link.ld -g">
-      <target file="ichigoplus.elf" lastModified="150dc179a17">
+      <target file="ichigoplus.elf" lastModified="1514ba0ed07">
          <source file="..\obj\config_pwm.o" lastModified="14f4eb0f6a5"/>
          <source file="..\obj\usb_core.o" lastModified="14f4eb0f751"/>
          <source file="..\obj\iwdg_software_reset.o" lastModified="14f4eb0f79f"/>
@@ -23,8 +23,9 @@
          <source file="..\obj\stm32f4xx_crc.o" lastModified="14f4eb0fef2"/>
          <source file="..\obj\stm32f4xx_iwdg.o" lastModified="14f4eb0ff40"/>
          <source file="..\obj\usbd_core.o" lastModified="14f4eb0ffae"/>
-         <source file="..\obj\pin.o" lastModified="150dc17961f"/>
-         <source file="..\obj\main.o" lastModified="150dbded01d"/>
+         <source file="..\obj\pin.o" lastModified="1514ba0e835"/>
+         <source file="..\obj\main.o" lastModified="15148be7241"/>
+         <source file="..\obj\pin0.o" lastModified="151487239aa"/>
          <source file="..\obj\analog.o" lastModified="14f4eb1029c"/>
          <source file="..\obj\stm32_ub_fatfs.o" lastModified="14f4eb10309"/>
          <source file="..\obj\stm32f4xx_rcc.o" lastModified="14f4eb10377"/>
@@ -39,7 +40,7 @@
          <source file="..\obj\usbd_desc.o" lastModified="14f4eb10626"/>
          <source file="..\obj\error.o" lastModified="14f4eb10684"/>
          <source file="..\obj\config_systick.o" lastModified="14f4eb106e2"/>
-         <source file="..\obj\servo.o" lastModified="150dbded0c9"/>
+         <source file="..\obj\servo.o" lastModified="15148723a56"/>
          <source file="..\obj\stm32_ub_sdcard.o" lastModified="14f4eb10868"/>
          <source file="..\obj\stm32f4xx_gpio.o" lastModified="14f4eb108c6"/>
          <source file="..\obj\stm32_ub_usbdisk.o" lastModified="14f4eb10953"/>
