@@ -204,11 +204,11 @@ int main(){
 	ServoControll servoControll(servo,console);*/
 	Enc1 enc;enc.setup();
 	Serial1 gyroPin;R1350n gyro(gyroPin);gyro.setup();
-	roboCenter robot(enc,gyro,resetSw);
-	//robot.setup();
+	RoboCenter robot(enc,gyro,resetSw);
+	robot.setup();
 	A0 a0;A1 a1;A2 a2;A3 a3;A4 a4;
 	//Move move(left,right,a0,a1,a2,a3,a4,startSW);
-	Move move(a0,a1,a2,a3,a4,startSW,servo);
+	Move move(a0,a1,a2,a3,a4,startSW,servo,robot);
 	move.setup();
 	//servo.setup(30,dtor(270.0),1.5,2.3);//ãﬂì°ÉTÅ[É{
 	//servo.setup(20.0,dtor(180.0),1.5,2.3);//rb956 rb955
@@ -230,11 +230,23 @@ int main(){
 		//startSW.cycle();
 		//move.TPR105Cycle();
 		blink.cycle();
-		//robot.cycle();
+		robot.cycle();
 		move.cycle();
 		//console.cycle();
 		//servoControll.cycle();
 		if(startSW.readValue()) gyro.reset();
+#if 0
+		for(deg=-65;deg<50;deg+=10){
+			servo.setAngle(dtor(deg));
+			servo.cycle();
+			wait(37);
+		}
+		for(deg=50;deg>-65;deg-=10){
+			servo.setAngle(dtor(deg));
+			servo.cycle();
+			wait(37);
+		}
+#endif
 #if 0
 		if(millis()-tim>=5){
 			tim=millis();
@@ -261,20 +273,32 @@ int main(){
 #if 1
 		if(millis()-serialTime>=300){
 			serialTime=millis();
-			//float accx=((gyro.accelx())/1000.0)*9.80;
-			//float accy=(gyro.accely()/1000.0)*9.80;
-			//float accz=(gyro.accelz()/1000.0)*9.80;
 			//serial.printf("ad0 %f,",a0.analogRead());
 			//serial.printf("ad1 %f,",a1.analogRead());
 			//serial.printf("ad2 %f,",a2.analogRead());
 			//serial.printf("ad3 %f,",a3.analogRead());
 			//serial.printf("ad4 %f  ",a4.analogRead());
-			move.printAdValue();
+			//move.printAdValue();
+			move.printRoboInfo();
+			//serial.printf("cnt %d, slopev%.2f",robot.getSlopeCount(),robot.getSlope());
 			//serial.printf("x, %f, y, %f ,deg, %f  ",robot.getX(),robot.getY(),rtod(robot.getAngle()));
 			//serial.printf("velo %f",robot.getVelocity());
 			//serial.printf("deg %.4f ,enc %d",rtod(gyro.angle()),enc.count());
-			//serial.printf("xdeg,%.2f,ydeg %.2f,x,%.2f, y,%.2f,z,%2f",accx*90.0/9.8,accy*90.0/9.8,accx,accy,accz);
-			serial.printf("\n");
+			/*float accx=((gyro.accelx())/1000.0)*9.80;
+			float accy=(gyro.accely()/1000.0)*9.80;
+			float accz=(gyro.accelz()/1000.0)*9.80;
+			float xdeg=accx*90.0/9.8;
+			float ydeg=accy*90.0/9.8;
+			float zdeg=accz*90.0/9.8;
+			float value=accy/sqrt(accx*accx+accz*accz);
+			float deg=0;
+			if(-1<value&&value<1){
+				deg=rtod(asin(value));
+			}else{
+				deg=0;
+			}
+			serial.printf("xdeg,%.2f,ydeg,%.2f,zdeg,%.2f,x,%.2f, y,%.2f,z,%.2f, all,%.2f",xdeg,ydeg,zdeg,accx,accy,accz,deg);
+			*/serial.printf("\n");
 		}
 #endif
 	}

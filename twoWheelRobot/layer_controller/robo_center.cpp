@@ -5,7 +5,7 @@ extern "C"{
 #include "calculate.h"
 #include "util.h"
 }
-roboCenter::roboCenter(Encoder &enc,R1350n &gyroPin,ButtonInfo &resetPin){
+RoboCenter::RoboCenter(Encoder &enc,R1350n &gyroPin,ButtonInfo &resetPin){
 	enc0=&enc;
 	gyro=&gyroPin;
 	resetSw=&resetPin;
@@ -13,16 +13,17 @@ roboCenter::roboCenter(Encoder &enc,R1350n &gyroPin,ButtonInfo &resetPin){
 	angle=0.0;
 	oldValue=0.0;
 	velocity=0.0;
-	encToServo=0.0;
+	encToServo=82.209;
+	def=0.0;
 }
 
-int roboCenter::setup(){
+int RoboCenter::setup(){
 	int i=enc0->setup();
 	//i+=gyro->setup();
 	resetSw->setup(true,50);
 	time=millis();
-	enc0->mlt(33.2);
-	enc0->rev(false);
+	enc0->mlt(32.5);
+	enc0->rev(true);
 	enc0->cpr(1000.0);
 	initValue=enc0->value();
 	initAngle=gyro->angle();
@@ -32,9 +33,9 @@ int roboCenter::setup(){
 	return i;
 }
 
-void roboCenter::cycle(){
+void RoboCenter::cycle(){
 	resetSw->cycle();
-	if(millis()-time>=5){
+	if(millis()-time>=1){
 		time=millis();
 		if(resetSw->readValue()){
 			initValue=enc0->value();
@@ -43,27 +44,28 @@ void roboCenter::cycle(){
 			x=0.0;y=0.0;
 		}
 		value=enc0->value()-initValue;
-		float def=(value-oldValue)+160.0;
+		def=(value-oldValue);
 		velocity=def/0.005;
 		//printf("%f\n",value);
 		//angle=gyro->angle()-initAngle;
 		angle=gyro->angle();
 		angle*=(-1.0);
+		angle=area(angle,-M_PI,M_PI);
 		float theta=area(angle+radiusReverse(value-oldValue),-M_PI,M_PI);
 		x+=fabs(def)*cos(theta);
 		y+=fabs(def)*sin(theta);
 		oldValue=value;
 	}
 }
-float roboCenter::getX(){
+float RoboCenter::getX(){
 	return x;
-}float roboCenter::getY(){
+}float RoboCenter::getY(){
 	return y;
 }
-float roboCenter::getAngle(){
+float RoboCenter::getAngle(){
 	return angle;
 }
-void roboCenter::accCycle(){
+void RoboCenter::accCycle(){
 	const float alfa=0.1;
 	//const float threshold=4.0;
 	static float currentOrientationValuesOld[3]={0};
@@ -135,3 +137,22 @@ void roboCenter::accCycle(){
 	}
 }
 
+float RoboCenter::getSlope(){
+	float accy=(gyro->accely()/1000.0)*9.80;
+	return accy*90.0/9.8;
+}
+
+int RoboCenter::getSlopeCount(){
+	static int cnt=0;
+	static bool flag=false;
+	float slope=getSlope();
+
+	if(slope>=15.0){
+		if(!flag){
+			cnt++;flag=true;
+		}
+	}else{
+		flag=false;
+	}
+	return cnt;
+}

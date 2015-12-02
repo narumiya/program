@@ -1,62 +1,49 @@
 #include "move.hpp"
 #include <stdio.h>
-
+#include <math.h>
 #include "pin.hpp"
 extern "C"{
 #include "mcutime.h"
 #include "calculate.h"
-
 }
 
-Move::Move(MiniMD &l,MiniMD &r,ButtonInfo &swPin){
-	md[0]=&l;md[1]=&r;
-	startSw=&swPin;
-	mode=NONSENSOR;
-	countWhile=0;
-	countAverage=500;
-	time=millis();
-	startFlag=false;
-}
-
-Move::Move(MiniMD &l,MiniMD &r,Analog &a0,Analog &a1,Analog &a2,Analog &a3,Analog &a4,ButtonInfo &swPin){
-	mode=USESENSOR;
-	startSw=&swPin;
-	an[0]=&a0;an[1]=&a1;
-	an[2]=&a2;an[3]=&a3;
-	an[4]=&a4;
-	for(int i=0;i<5;i++){
-		adData[i]=0.0;
-	}
-	countWhile=0;
-	countAverage=500;
-	time=millis();
-	startFlag=false;
-	calibraFlag=false;
-	useServo=false;
-}
-Move::Move(Analog &a0,Analog &a1,Analog &a2,Analog &a3,Analog &a4,ButtonInfo &swPin,Servo &servoPin){
+Move::Move(Analog &a0,Analog &a1,Analog &a2,Analog &a3,Analog &a4,ButtonInfo &swPin,Servo &servoPin,RoboCenter &robo){
 	mode=USESENSOR;
 	startSw=&swPin;
 	servo=&servoPin;
+	this->robo=&robo;
 	an[0]=&a0;an[1]=&a1;
 	an[2]=&a2;an[3]=&a3;
 	an[4]=&a4;
 	for(int i=0;i<5;i++){
 		adData[i]=0.0;
 	}
+	for(int i=0;i<15;i++){
+		coord[0][i]=0.0;
+		coord[1][i]=0.0;
+	}
+	task=0;
+	targetAngle=0;
+	distance=0;
+	servoAngle=0.0;
+	servoX=0.0;
+	servoY=0.0;
 	countWhile=0;
 	countAverage=500;
 	time=millis();
 	startFlag=false;
 	calibraFlag=false;
 	useServo=true;
+	startX=0.0;startY=0.0;
 }
+
 int Move::setup(){
 	startSw->setup(true,25);
 	led1.setupDigitalOut();
 	led2.setupDigitalOut();
 	led3.setupDigitalOut();
-	initAngle=5.0;
+	initAngle=35.0;
+	setCoord();
 	if(mode==USESENSOR){
 		/*for(int i=0;i<5;i++){
 			an[i]->setupAnalogIn();
@@ -72,6 +59,27 @@ int Move::setup(){
 	return 0;
 }
 
+void Move::setCoord(){
+	coord[CX][0]=1295.0;coord[CY][0]=10.0;//slope1
+	coord[CX][1]=2358.0;coord[CY][1]=295.0;//hill1
+	coord[CX][2]=3445.0;coord[CY][2]=922.0;//slope2
+	coord[CX][3]=4223.0;coord[CY][3]=1700.0;//hill2
+	coord[CX][4]=5310.0;coord[CY][4]=2328.0;//slope3
+	coord[CX][5]=6376.0;coord[CY][5]=2698.0;//hill3
+	coord[CX][6]=6750.0;coord[CY][6]=1497.0;//river 前
+
+	/*coord[CX][0]=500.0;coord[CY][0]=0.0;//slope1
+	coord[CX][1]=1000;coord[CY][1]=1850;//hill1
+	coord[CX][2]=2000;coord[CY][2]=1850;//slope2
+	coord[CX][3]=2500;coord[CY][3]=0.0;//hill2
+	coord[CX][4]=3500;coord[CY][4]=0.0;//hill2*/
+}
+
+#define LINE 0
+#define COORD 1
+#define MODE COORD
+
+#if MODE==LINE//ライントレース
 void Move::cycle(){
 	if(mode==USESENSOR){
 		TPR105Cycle();
@@ -132,7 +140,58 @@ void Move::cycle(){
 			servo->cycle();
 	}
 }
+#else
+void Move::cycle(){
+	static float output=dtor(initAngle);
+	pid_gain_t gain=set_pid_gain(0.03,0.0,0.05);
+	startSw->cycle();
+	if(millis()-time>=1){
+		time=millis();
+		if(!startFlag){
+			if(startSw->readDownEdge()) startFlag=true;
+		}else if(startFlag){
+			float angle=rotationOutput(gain);
+			output-=angle;
+			output=floatlimit(dtor(-10.0),output,dtor(75.0));
+			servoAngle=(output-dtor(initAngle))*(-1.0)+robo->getAngle();//右回転が+だから-1かけてる
+			//float theta=area(servoAngle+radiusReverse(robo->getEncCnt()),-M_PI,M_PI);
+			//servoX+=fabs(robo->getEncCnt())*cos(theta);
+			//servoY+=	fabs(robo->getEncCnt())*sin(theta);
+			distance=getDistance();
+			if(task==5){
+				if(distance<=260){
+					task++;
+				}
+			}else{
+				if(distance<=180){
+					task++;
+				}
+			}
+			servo->setAngle(output);
+			/*for(float deg=-10;deg<75;deg+=10){
+				servo->setAngle(dtor(deg));
+				servo->cycle();
+				wait(37);
+			}
+			for(float deg=75;deg>-10;deg-=10){
+				servo->setAngle(dtor(deg));
+				servo->cycle();
+				wait(37);
+			}*/
+		}
+		if(startSw->readValue()){
+			output=dtor(initAngle);
+			robo->setX(0.0);
+			robo->setY(0.0);
+			servoX=0;
+			servoY=0.0;
+			task=0;
+		}
+		servo->cycle();
+	}
+}
 
+#endif
 void Move::setDuty(float straight,float rotat){
 	md[0]->duty(straight-rotat);
 	md[1]->duty(straight+rotat);
@@ -146,6 +205,7 @@ void Move::TPR105Cycle(){
 }
 
 float Move::rotationOutput(pid_gain_t gain){
+#if MODE ==LINE
 	static pid_data_t data={0};
 	//static float oldAd=0;
 	//const pid_gain_t gain=set_pid_gain(0.65,0.0,1.2);//p0.3直進の出力なし
@@ -173,6 +233,13 @@ float Move::rotationOutput(pid_gain_t gain){
 
 	return  output;
 	//return calc_pid(&data,ad,gain);
+#else
+	static pid_data_t data={0};
+	float targetAngle=getTargetAngle();
+	float output=calc_pid(&data,targetAngle-servoAngle,gain);
+
+	return output;
+#endif
 }
 
 
@@ -182,12 +249,48 @@ void Move::printAdValue(){
 	printf("ad%d,%.4f ",2,adData[2]);
 	printf("ad%d,%.4f ",3,adData[3]);
 	printf("ad%d,%.4f ",4,adData[4]);
-	//printf("\n");
 }
 
+void Move::printRoboInfo(){
+	printf("x,%.2f,",robo->getX());
+	printf("y,%.2f,",robo->getY());
+	printf("deg,%.2f,",rtod(robo->getAngle()));
+	//printf("sx,%.2f,",servoX);
+	//printf("sy,%.2f,",servoY);
+	printf("sd,%.2f,",rtod(servoAngle));
+	printf("td,%.2f,",rtod(targetAngle));
+	printf("dis,%.2f,",distance);
+	printf("task,%d,",task);
+	//printf("enc %.2f,",robo->getEncCnt());
+}
+float Move::getTargetAngle(){
+	float targetX=coord[CX][task];
+	float targetY=coord[CY][task];
+	float nowX=robo->getX();
+	float nowY=robo->getY();
+//	float nowX=servoX;
+//	float nowY=servoY;
+	targetAngle=getTargetRadian(targetX,targetY,nowX,nowY);
+	targetAngle=area(targetAngle,-M_PI,M_PI);
+
+	return (targetAngle);
+}
+
+float Move::getDistance(){
+	float targetX=coord[CX][task];
+	float targetY=coord[CY][task];
+	float nowX=robo->getX();
+	float nowY=robo->getY();
+//	float nowX=servoX;
+//	float nowY=servoY;
+	float value=get_distance(targetX,targetY,nowX,nowY);
+
+	return value;
+}
 
 int Move::calibra(){
 	static int flag=0;
+
 	switch(flag){
 	case 0:
 		if(!startSw->readDownEdge())	white=adData[1]+adData[3];
