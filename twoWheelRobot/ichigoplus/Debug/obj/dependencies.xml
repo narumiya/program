@@ -235,11 +235,7 @@
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\core\usbd_ioreq.h"/>
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_conf\usbd_desc.h"/>
       </source>
-      <source file="..\..\..\layer_driver\circuit\okmtmd\okmtmd.hpp" lastModified="14fd0699a32">
-         <include file="..\..\..\layer_driver\base\digital.hpp"/>
-         <include file="..\..\..\layer_driver\base\pwm.hpp"/>
-      </source>
-      <source file="..\..\..\layer_controller\move.hpp" lastModified="1515d1ab382">
+      <source file="..\..\..\layer_controller\move.hpp" lastModified="15167450a04">
          <include file="..\..\..\layer_driver\circuit\mini_md_1.0\mini_md.hpp"/>
          <include file="..\..\..\layer_driver\circuit\servo.hpp"/>
          <include file="..\..\..\layer_driver\base\analog.hpp"/>
@@ -247,6 +243,10 @@
          <include file="..\..\..\layer_controller\robo_center.hpp"/>
          <include file="..\..\..\layer_driver\board\pin.hpp"/>
          <include file="..\..\..\layer_controller\my_else_calculation.h"/>
+      </source>
+      <source file="..\..\..\layer_driver\circuit\okmtmd\okmtmd.hpp" lastModified="14fd0699a32">
+         <include file="..\..\..\layer_driver\base\digital.hpp"/>
+         <include file="..\..\..\layer_driver\base\pwm.hpp"/>
       </source>
       <source file="..\..\..\layer_driver\circuit\lcd\aqm0802.hpp" lastModified="150d20c1cc6">
          <include file="..\..\..\layer_driver\base\i2c.hpp"/>
@@ -652,6 +652,12 @@
          <include file="..\..\..\layer_driver\circuit\okmtmd\okmtmd.hpp"/>
          <include file="..\..\..\layer_driver\base\util.h"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
+      </source>
+      <source file="..\..\..\layer_controller\move.cpp" lastModified="15167449b5e">
+         <include file="..\..\..\layer_controller\move.hpp"/>
+         <include file="..\..\..\layer_driver\board\pin.hpp"/>
+         <include file="..\..\..\layer_driver\base\mcutime.h"/>
+         <include file="..\..\..\layer_controller\calculate.h"/>
       </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_exti.c" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_exti.h"/>

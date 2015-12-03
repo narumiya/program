@@ -67,7 +67,10 @@ void Move::setCoord(){
 	coord[CX][4]=5310.0;coord[CY][4]=2328.0;//slope3
 	coord[CX][5]=6376.0;coord[CY][5]=2698.0;//hill3
 	coord[CX][6]=6750.0;coord[CY][6]=1497.0;//river ëO
-
+	coord[CX][7]=7228.0;coord[CY][7]=1019.0;//river 1
+	coord[CX][8]=6874.0;coord[CY][8]=665.0;//river 2
+	coord[CX][9]=7228.0;coord[CY][9]=312.0;//river 3
+	coord[CX][10]=6874.0;coord[CY][10]=41.0;//river 4
 	/*coord[CX][0]=500.0;coord[CY][0]=0.0;//slope1
 	coord[CX][1]=1000;coord[CY][1]=1850;//hill1
 	coord[CX][2]=2000;coord[CY][2]=1850;//slope2
@@ -205,7 +208,7 @@ void Move::TPR105Cycle(){
 }
 
 float Move::rotationOutput(pid_gain_t gain){
-#if MODE ==LINE
+#if MODE==LINE
 	static pid_data_t data={0};
 	//static float oldAd=0;
 	//const pid_gain_t gain=set_pid_gain(0.65,0.0,1.2);//p0.3íºêiÇÃèoóÕÇ»Çµ
