@@ -60,7 +60,7 @@ int Move::setup(){
 }
 
 void Move::setCoord(){
-	coord[CX][0]=1295.0;coord[CY][0]=10.0;//slope1
+	coord[CX][0]=1295.0;coord[CY][0]=0.0;//slope1
 	coord[CX][1]=2358.0;coord[CY][1]=295.0;//hill1
 	coord[CX][2]=3445.0;coord[CY][2]=922.0;//slope2
 	coord[CX][3]=4223.0;coord[CY][3]=1700.0;//hill2
@@ -146,7 +146,7 @@ void Move::cycle(){
 #else
 void Move::cycle(){
 	static float output=dtor(initAngle);
-	pid_gain_t gain=set_pid_gain(0.03,0.0,0.05);
+	pid_gain_t gain=set_pid_gain(0.10,0.0,0.13);
 	startSw->cycle();
 	if(millis()-time>=1){
 		time=millis();
@@ -161,7 +161,12 @@ void Move::cycle(){
 			//servoX+=fabs(robo->getEncCnt())*cos(theta);
 			//servoY+=	fabs(robo->getEncCnt())*sin(theta);
 			distance=getDistance();
+
 			if(task==5){
+				if(distance<=260){
+					task++;
+				}
+			}else if(task>=7){
 				if(distance<=260){
 					task++;
 				}
@@ -186,7 +191,9 @@ void Move::cycle(){
 			output=dtor(initAngle);
 			robo->setX(0.0);
 			robo->setY(0.0);
-			servoX=0;
+			output=dtor(initAngle);
+			servoAngle=output*(-1.0);
+			servoX=0.0;
 			servoY=0.0;
 			task=0;
 		}
