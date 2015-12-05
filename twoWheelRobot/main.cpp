@@ -237,7 +237,7 @@ int main(){
 		//move.TPR105Cycle();
 		blink.cycle();
 		robot.cycle();
-		//move.cycle();
+		move.cycle();
 		//console.cycle();
 		//servoControll.cycle();
 		if(startSW.readValue()) gyro.reset();
@@ -270,7 +270,7 @@ int main(){
 			wait(37);
 		}
 #endif
-#if 1
+#if 0
 		if(millis()-tim>=5){
 			tim=millis();
 			if(serial.charAvailable()){
@@ -293,7 +293,7 @@ int main(){
 		if(flag)servo.cycle();
 #endif
 
-#if 0
+#if 1
 		if(millis()-serialTime>=300){
 			serialTime=millis();
 			//serial.printf("ad0 %f,",a0.analogRead());
@@ -302,7 +302,7 @@ int main(){
 			//serial.printf("ad3 %f,",a3.analogRead());
 			//serial.printf("ad4 %f  ",a4.analogRead());
 			//move.printAdValue();
-			//move.printRoboInfo();
+			move.printRoboInfo();
 			//serial.printf("slopev%.2f",robot.getSlope());
 			//serial.printf("cnt %d, old %d",cnt,oldCnt);
 			//serial.printf("x, %f, y, %f ,deg, %f  ",robot.getX(),robot.getY(),rtod(robot.getAngle()));

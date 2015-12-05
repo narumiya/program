@@ -60,17 +60,25 @@ int Move::setup(){
 }
 
 void Move::setCoord(){
-	coord[CX][0]=1295.0;coord[CY][0]=0.0;//slope1
-	coord[CX][1]=2358.0;coord[CY][1]=295.0;//hill1
-	coord[CX][2]=3445.0;coord[CY][2]=922.0;//slope2
-	coord[CX][3]=4223.0;coord[CY][3]=1700.0;//hill2
-	coord[CX][4]=5310.0;coord[CY][4]=2328.0;//slope3
-	coord[CX][5]=6376.0;coord[CY][5]=2698.0;//hill3
-	coord[CX][6]=6750.0;coord[CY][6]=1497.0;//river 前
-	coord[CX][7]=7228.0;coord[CY][7]=1019.0;//river 1
-	coord[CX][8]=6874.0;coord[CY][8]=665.0;//river 2
-	coord[CX][9]=7228.0;coord[CY][9]=312.0;//river 3
-	coord[CX][10]=6874.0;coord[CY][10]=41.0;//river 4
+	coord[CX][0]=1295.0;													coord[CY][0]=0.0;//slope1前
+	coord[CX][1]=coord[CX][0]+1063.0*cos(dtor(10.3));coord[CY][1]=295.0;//hill1前
+	coord[CX][2]=coord[CX][1]+1087.0;							coord[CY][2]=922.0;//slope2前
+	coord[CX][3]=coord[CX][2]+777.0*cos(dtor(10.3));	coord[CY][3]=1700.0;//hill2前
+	coord[CX][4]=coord[CX][3]+1087.0;							coord[CY][4]=2328.0;//slope3前
+	//coord[CX][5]=6376.0;coord[CY][5]=2698.0;//hill3前
+	coord[CX][5]=coord[CX][4]+1062.0*cos(dtor(10.3));coord[CY][5]=2612.0;//hill3前
+	coord[CX][6]=coord[CX][5]+377.0;								coord[CY][6]=1497.0;//river 前
+	coord[CX][7]=coord[CX][6]+477.0;								coord[CY][7]=1019.0;//river 1
+	coord[CX][8]=coord[CX][7]-353.0;								coord[CY][8]=665.0;//river 2
+	coord[CX][9]=coord[CX][8]+353.0;								coord[CY][9]=312.0;//river 3
+	coord[CX][10]=coord[CX][9]-353.0;							coord[CY][10]=-41.0;//river 4
+	coord[CX][11]=coord[CX][10]+565.0;							coord[CY][11]=-606.0;//river 終わり
+	coord[CX][12]=coord[CX][11]+636.0;							coord[CY][12]=-1243.0;//down hill 始まり
+	coord[CX][13]=coord[CX][12]+sqrtf(879.0*879.0+126.0*126.0);	coord[CY][13]=-1831.0;//down hill 1カーブ
+	coord[CX][14]=coord[CX][13]+sqrtf(1521.0*1521.0+218.0*218.0);coord[CY][14]=-823.0;//down hill 2カーブ
+	coord[CX][15]=coord[CX][14]+sqrtf(907.0*907.0+130.0*130.0);	coord[CY][15]=-1614.0;//down hill 3カーブ
+	coord[CX][16]=coord[CX][15]+sqrtf(861.0*861.0+123.0*123.0);	coord[CY][16]=-1831.0;//down hill  最後
+	coord[CX][17]=coord[CX][16]+1155.0;						coord[CY][17]=-1831.0;//最後
 	/*coord[CX][0]=500.0;coord[CY][0]=0.0;//slope1
 	coord[CX][1]=1000;coord[CY][1]=1850;//hill1
 	coord[CX][2]=2000;coord[CY][2]=1850;//slope2
@@ -146,7 +154,7 @@ void Move::cycle(){
 #else
 void Move::cycle(){
 	static float output=dtor(initAngle);
-	pid_gain_t gain=set_pid_gain(0.10,0.0,0.13);
+	pid_gain_t gain=set_pid_gain(0.90,0.0,0.0);
 	startSw->cycle();
 	if(millis()-time>=1){
 		time=millis();
@@ -155,7 +163,7 @@ void Move::cycle(){
 		}else if(startFlag){
 			float angle=rotationOutput(gain);
 			output-=angle;
-			output=floatlimit(dtor(-10.0),output,dtor(75.0));
+			output=floatlimit(dtor(10.0),output,dtor(70.0));
 			servoAngle=(output-dtor(initAngle))*(-1.0)+robo->getAngle();//右回転が+だから-1かけてる
 			//float theta=area(servoAngle+radiusReverse(robo->getEncCnt()),-M_PI,M_PI);
 			//servoX+=fabs(robo->getEncCnt())*cos(theta);
@@ -163,15 +171,15 @@ void Move::cycle(){
 			distance=getDistance();
 
 			if(task==5){
-				if(distance<=260){
+				if(distance<=340){
 					task++;
 				}
 			}else if(task>=7){
-				if(distance<=260){
+				if(distance<=430){
 					task++;
 				}
 			}else{
-				if(distance<=180){
+				if(distance<=220){
 					task++;
 				}
 			}
@@ -188,7 +196,6 @@ void Move::cycle(){
 			}*/
 		}
 		if(startSw->readValue()){
-			output=dtor(initAngle);
 			robo->setX(0.0);
 			robo->setY(0.0);
 			output=dtor(initAngle);
@@ -281,6 +288,7 @@ float Move::getTargetAngle(){
 //	float nowX=servoX;
 //	float nowY=servoY;
 	targetAngle=getTargetRadian(targetX,targetY,nowX,nowY);
+	//targetAngle=0;
 	targetAngle=area(targetAngle,-M_PI,M_PI);
 
 	return (targetAngle);

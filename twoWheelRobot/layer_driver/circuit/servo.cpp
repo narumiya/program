@@ -15,7 +15,7 @@ int Servo::setup(float setPeriod, float setRangeRad, float setNeutral, float set
 	rangeRad = setRangeRad;
 	neutPulse = setNeutral;
 	maxPulse = setMaxPulse;
-	pwm->setupPwmOut((1.0/(period/1000.0)),1.5/period);
+	pwm->setupPwmOut((1.0/(period/1000.0)),1);
 	delay_ms(500);
 	return 0;
 }

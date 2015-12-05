@@ -38,7 +38,7 @@ private:
 	bool useServo;
 	float adData[5];
 	float roboAngle;
-	float coord[2][15];
+	float coord[2][20];
 	float startX;
 	float startY;
 	float servoAngle;
