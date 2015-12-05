@@ -10,7 +10,7 @@
       <source file="..\..\..\layer_driver\base\i2c.cpp" lastModified="150b3072d8c">
          <include file="..\..\..\layer_driver\base\i2c.hpp"/>
       </source>
-      <source file="..\..\..\layer_controller\robo_center.hpp" lastModified="1515d197b8c">
+      <source file="..\..\..\layer_controller\robo_center.hpp" lastModified="15171b06a2d">
          <include file="..\..\..\layer_driver\base\encoder.hpp"/>
          <include file="..\..\..\layer_driver\circuit\button_info.hpp"/>
          <include file="..\..\..\layer_driver\circuit\r1350n\r1350n.hpp"/>
@@ -212,6 +212,11 @@
       <source file="..\..\..\layer_driver\board\stm32f4_config\sd\fatfs\lo_level_ub\stm32_ub_sdcard.c" lastModified="14eb18e6c90">
          <include file="..\..\..\layer_driver\board\stm32f4_config\sd\fatfs\lo_level_ub\stm32_ub_sdcard.h"/>
       </source>
+      <source file="..\..\..\layer_application\chai_yo.hpp" lastModified="15171e5a91c">
+         <include file="..\..\..\layer_controller\robo_center.hpp"/>
+         <include file="..\..\..\layer_controller\move.hpp"/>
+         <include file="..\..\..\layer_driver\base\mcutime.h"/>
+      </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\core\usbd_ioreq.c" lastModified="14eb18e6c90">
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\core\usbd_ioreq.h"/>
       </source>
@@ -239,12 +244,11 @@
          <include file="..\..\..\layer_driver\base\digital.hpp"/>
          <include file="..\..\..\layer_driver\base\pwm.hpp"/>
       </source>
-      <source file="..\..\..\layer_controller\move.hpp" lastModified="1516feba1dd">
-         <include file="..\..\..\layer_driver\circuit\mini_md_1.0\mini_md.hpp"/>
+      <source file="..\..\..\layer_controller\move.hpp" lastModified="15171c28f9b">
          <include file="..\..\..\layer_driver\circuit\servo.hpp"/>
-         <include file="..\..\..\layer_driver\base\analog.hpp"/>
          <include file="..\..\..\layer_driver\circuit\button_info.hpp"/>
          <include file="..\..\..\layer_controller\robo_center.hpp"/>
+         <include file="..\..\..\layer_driver\circuit\line_sensor.hpp"/>
          <include file="..\..\..\layer_driver\board\pin.hpp"/>
          <include file="..\..\..\layer_controller\my_else_calculation.h"/>
       </source>
@@ -299,6 +303,9 @@
       </source>
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_can.h" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+      </source>
+      <source file="..\..\..\layer_driver\circuit\line_sensor.hpp" lastModified="1517172076f">
+         <include file="..\..\..\layer_driver\base\analog.hpp"/>
       </source>
       <source file="..\..\..\layer_driver\circuit\mini_md_1.0\mini_md.hpp" lastModified="14f5f3af78a">
          <include file="..\..\..\layer_driver\base\digital.hpp"/>
@@ -435,7 +442,7 @@
       </source>
       <source file="..\..\..\cmsis\core_cmInstr.h" lastModified="14eb18e7460">
       </source>
-      <source file="..\..\..\layer_controller\robo_center.cpp" lastModified="1516c6f4815">
+      <source file="..\..\..\layer_controller\robo_center.cpp" lastModified="15171b09619">
          <include file="..\..\..\layer_controller\robo_center.hpp"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
          <include file="..\..\..\layer_controller\calculate.h"/>
@@ -625,6 +632,9 @@
       <source file="..\..\..\layer_driver\base\utilplus.cpp" lastModified="14fd0699e16">
          <include file="..\..\..\layer_driver\base\util.hpp"/>
       </source>
+      <source file="..\..\..\layer_application\chai_yo.cpp" lastModified="15171e51cf7">
+         <include file="..\..\..\layer_application\chai_yo.hpp"/>
+      </source>
       <source file="..\..\..\cmsis_boot\system_stm32f4xx.h" lastModified="14eb18e7078">
       </source>
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h" lastModified="14eb18e6c90">
@@ -652,6 +662,12 @@
          <include file="..\..\..\layer_driver\circuit\okmtmd\okmtmd.hpp"/>
          <include file="..\..\..\layer_driver\base\util.h"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
+      </source>
+      <source file="..\..\..\layer_controller\move.cpp" lastModified="15171bb3fd8">
+         <include file="..\..\..\layer_controller\move.hpp"/>
+         <include file="..\..\..\layer_driver\board\pin.hpp"/>
+         <include file="..\..\..\layer_driver\base\mcutime.h"/>
+         <include file="..\..\..\layer_controller\calculate.h"/>
       </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_exti.c" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_exti.h"/>
@@ -699,6 +715,9 @@
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_conf\usbd_conf.h"/>
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\otg\usb_regs.h"/>
       </source>
+      <source file="..\..\..\layer_driver\circuit\line_sensor.cpp" lastModified="1517173de92">
+         <include file="..\..\..\layer_driver\circuit\line_sensor.hpp"/>
+      </source>
       <source file="..\..\..\layer_driver\circuit\mini_md_1.0\mini_md.cpp" lastModified="14f5f3af789">
          <include file="..\..\..\layer_driver\circuit\mini_md_1.0\mini_md.hpp"/>
          <include file="..\..\..\layer_driver\base\util.h"/>
@@ -710,7 +729,7 @@
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
-      <source file="..\..\..\main.cpp" lastModified="1516fee530a">
+      <source file="..\..\..\main.cpp" lastModified="15171b8bf13">
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_adc.h"/>
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.h"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
@@ -731,6 +750,7 @@
          <include file="..\..\..\layer_driver\circuit\ina226.hpp"/>
          <include file="..\..\..\layer_driver\circuit\kondo_servo.hpp"/>
          <include file="..\..\..\layer_driver\circuit\fun.hpp"/>
+         <include file="..\..\..\layer_driver\circuit\line_sensor.hpp"/>
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_encoder.h"/>
       </source>
       <source file="..\..\..\layer_driver\board\stm32f4_config\sd\fatfs\ff.h" lastModified="14eb18e6c90">
@@ -763,13 +783,13 @@
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rtc.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
-      <source file="..\..\..\layer_controller\calculate.h" lastModified="1515cb637b0">
+      <source file="..\..\..\layer_controller\calculate.h" lastModified="151715b03d7">
       </source>
       <source file="..\..\..\layer_driver\circuit\kondo_servo.hpp" lastModified="150dc45bfb2">
          <include file="..\..\..\layer_driver\circuit\servo.hpp"/>
          <include file="..\..\..\layer_driver\base\serial.hpp"/>
       </source>
-      <source file="..\..\..\layer_controller\calculate.c" lastModified="1515d1159ff">
+      <source file="..\..\..\layer_controller\calculate.c" lastModified="151715b07de">
          <include file="..\..\..\layer_controller\calculate.h"/>
          <include file="..\..\..\layer_driver\base\util.h"/>
       </source>

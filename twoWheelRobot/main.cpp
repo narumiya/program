@@ -26,6 +26,7 @@ extern "C"{
 #include "layer_driver/circuit/ina226.hpp"
 #include "layer_driver/circuit/kondo_servo.hpp"
 #include "layer_driver/circuit/fun.hpp"
+#include "layer_driver/circuit/line_sensor.hpp"
 
 #if 0
 int main(void){
@@ -188,6 +189,7 @@ int main(){
 #define AD2		GPIOC,GPIO_Pin_2
 #define AD3		GPIOC,GPIO_Pin_3
 #define AD4		GPIOC,GPIO_Pin_4
+
 int main(){
 	Pwm0 pwm0;
 	Servo servo(pwm0);
@@ -204,12 +206,12 @@ int main(){
 	console.setNewLine(Console::NEWLINE_CR);
 	ServoControll servoControll(servo,console);*/
 	Enc1 enc;enc.setup();
-	Serial1 gyroPin;R1350n gyro(gyroPin);gyro.setup();
+	Serial1 gyroPin;R1350n gyro(gyroPin);//gyro.setup();
 	RoboCenter robot(enc,gyro,resetSw);
 	robot.setup();
 	A0 a0;A1 a1;A2 a2;A3 a3;A4 a4;
-	//Move move(left,right,a0,a1,a2,a3,a4,startSW);
-	Move move(a0,a1,a2,a3,a4,startSW,servo,robot);
+	LineSensor line(a0,a1,a2,a3,a4);
+	Move move(line,startSW,servo,robot);
 	move.setup();
 	//servo.setup(30,dtor(270.0),1.5,2.3);//ãﬂì°ÉTÅ[É{
 	//servo.setup(20.0,dtor(180.0),1.5,2.3);//rb956 rb955
@@ -219,11 +221,13 @@ int main(){
 	i=a2.setupAnalogIn();
 	i=a3.setupAnalogIn();
 	i=a4.setupAnalogIn();*/
-	Init_ADC1(AD0);
+	/*Init_ADC1(AD0);
 	Init_ADC1(AD1);
 	Init_ADC1(AD2);
 	Init_ADC1(AD3);
-	Init_ADC1(AD4);
+	Init_ADC1(AD4);*/
+	for(unsigned int i=0;i<100000;i++)	buzz.digitalHigh();
+	buzz.digitalLow();
 	bool flag=false;float deg=0;
 	unsigned int serialTime=millis();
 	unsigned int tim=millis();
@@ -232,6 +236,7 @@ int main(){
 	unsigned int cntTime=0;
 	int oldCnt=0;
 	int cnt=0;
+
 	while(1){
 		//startSW.cycle();
 		//move.TPR105Cycle();
@@ -240,7 +245,7 @@ int main(){
 		move.cycle();
 		//console.cycle();
 		//servoControll.cycle();
-		if(startSW.readValue()) gyro.reset();
+		//if(startSW.readValue()) gyro.reset();
 		if(millis()-buzzTime>=10){
 			buzzTime=millis();
 			cnt=robot.getSlopeCount();

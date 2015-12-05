@@ -19,7 +19,7 @@ RoboCenter::RoboCenter(Encoder &enc,R1350n &gyroPin,ButtonInfo &resetPin){
 
 int RoboCenter::setup(){
 	int i=enc0->setup();
-	//i+=gyro->setup();
+	i+=gyro->setup();
 	resetSw->setup(true,50);
 	time=millis();
 	enc0->mlt(32.5);
@@ -27,22 +27,19 @@ int RoboCenter::setup(){
 	enc0->cpr(1000.0);
 	initValue=enc0->value();
 	initAngle=gyro->angle();
-	/*while((millis()-initTime<=4000)){
-		initaccx=gyro.accelx();// *9806.65/4095;
-	}*/
 	return i;
 }
 
 void RoboCenter::cycle(){
 	resetSw->cycle();
-	if(millis()-time>=1){
+	if(millis()-time>=5){
 		time=millis();
-		if(resetSw->readValue()){
+		/*if(resetSw->readValue()){
 			initValue=enc0->value();
 			oldValue=enc0->value()-initValue;
 			//gyro->reset();
 			x=0.0;y=0.0;
-		}
+		}*/
 		value=enc0->value()-initValue;
 		def=(value-oldValue);
 		velocity=def/0.005;
@@ -56,6 +53,13 @@ void RoboCenter::cycle(){
 		y+=fabs(def)*sin(theta);
 		oldValue=value;
 	}
+}
+
+void RoboCenter::reset(){
+	gyro->reset();
+	initValue=enc0->value();
+	oldValue=enc0->value()-initValue;
+	x=0.0;y=0.0;
 }
 float RoboCenter::getX(){
 	return x;

@@ -40,6 +40,7 @@ public:
 	int getSlopeCount();
 	void cycle();
 	void accCycle();
+	void reset();
 };
 
 #endif
