@@ -197,6 +197,7 @@ int main(){
 	startSW.setup(true,50);
 	resetSw.setup(true,50);
 	Led1 led;Blink blink(led);blink.setup();
+	Buzzer buzz;buzz.setupDigitalOut();
 	blink.time(200);
 	Serial0 serial;serial.setup(115200);
 	/*Console console(serial);console.setup(115200);
@@ -226,15 +227,37 @@ int main(){
 	bool flag=false;float deg=0;
 	unsigned int serialTime=millis();
 	unsigned int tim=millis();
+	unsigned int buzzTime=millis();
+	bool buzzFlag=false;
+	unsigned int cntTime=0;
+	int oldCnt=0;
+	int cnt=0;
 	while(1){
 		//startSW.cycle();
 		//move.TPR105Cycle();
 		blink.cycle();
 		robot.cycle();
-		move.cycle();
+		//move.cycle();
 		//console.cycle();
 		//servoControll.cycle();
 		if(startSW.readValue()) gyro.reset();
+		if(millis()-buzzTime>=10){
+			buzzTime=millis();
+			cnt=robot.getSlopeCount();
+			if(oldCnt!=cnt){
+				buzzFlag=true;
+			}
+			oldCnt=cnt;
+			if(buzzFlag){
+				cntTime+=10;
+				buzz.digitalHigh();
+				if(cntTime>=300){
+					buzzFlag=false;
+					cntTime=0;
+					buzz.digitalLow();
+				}
+			}
+		}
 #if 0
 		for(deg=-65;deg<50;deg+=10){
 			servo.setAngle(dtor(deg));
@@ -247,7 +270,7 @@ int main(){
 			wait(37);
 		}
 #endif
-#if 0
+#if 1
 		if(millis()-tim>=5){
 			tim=millis();
 			if(serial.charAvailable()){
@@ -270,7 +293,7 @@ int main(){
 		if(flag)servo.cycle();
 #endif
 
-#if 1
+#if 0
 		if(millis()-serialTime>=300){
 			serialTime=millis();
 			//serial.printf("ad0 %f,",a0.analogRead());
@@ -279,8 +302,9 @@ int main(){
 			//serial.printf("ad3 %f,",a3.analogRead());
 			//serial.printf("ad4 %f  ",a4.analogRead());
 			//move.printAdValue();
-			move.printRoboInfo();
-			//serial.printf("cnt %d, slopev%.2f",robot.getSlopeCount(),robot.getSlope());
+			//move.printRoboInfo();
+			//serial.printf("slopev%.2f",robot.getSlope());
+			//serial.printf("cnt %d, old %d",cnt,oldCnt);
 			//serial.printf("x, %f, y, %f ,deg, %f  ",robot.getX(),robot.getY(),rtod(robot.getAngle()));
 			//serial.printf("velo %f",robot.getVelocity());
 			//serial.printf("deg %.4f ,enc %d",rtod(gyro.angle()),enc.count());
@@ -297,8 +321,9 @@ int main(){
 			}else{
 				deg=0;
 			}
-			serial.printf("xdeg,%.2f,ydeg,%.2f,zdeg,%.2f,x,%.2f, y,%.2f,z,%.2f, all,%.2f",xdeg,ydeg,zdeg,accx,accy,accz,deg);
-			*/serial.printf("\n");
+			serial.printf("xdeg,%.2f,ydeg,%.2f,zdeg,%.2f,x,%.2f, y,%.2f,z,%.2f, all,%.2f",xdeg,ydeg,zdeg,accx,accy,accz,(90.0/9.8)*accz+90.0);
+			*/
+			serial.printf("\n");
 		}
 #endif
 	}

@@ -138,21 +138,29 @@ void RoboCenter::accCycle(){
 }
 
 float RoboCenter::getSlope(){
-	float accy=(gyro->accely()/1000.0)*9.80;
-	return accy*90.0/9.8;
+	float accz=((gyro->accelz())/1000.0)*9.80;
+	static float init=accz;
+	return (90.0/9.8)*(accz-init);
 }
 
 int RoboCenter::getSlopeCount(){
 	static int cnt=0;
+	static int valueCut=0;
 	static bool flag=false;
 	float slope=getSlope();
 
-	if(slope>=15.0){
-		if(!flag){
-			cnt++;flag=true;
+	if(slope>1.2){
+		valueCut+=10;
+		if(valueCut>=150){
+			if(!flag){
+				cnt++;flag=true;
+			}
 		}
-	}else{
+	}else if(slope<0.5){
 		flag=false;
+		valueCut=0;
+	}else{
+		valueCut=0;
 	}
 	return cnt;
 }
