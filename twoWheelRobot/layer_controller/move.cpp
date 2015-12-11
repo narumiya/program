@@ -45,11 +45,14 @@ int Move::setup(){
 	startY=0.0;
 	startAngle=0.0;
 	robo->setAngle(startAngle);
-	/*startX=coord[CX][11];
-	startY=coord[CY][11];
-	startAngle=getTargetRadian(coord[CX][12],coord[CY][12],startX,startY)*(-1.0);//ジャイロの角度反対のため反転
-	robo->setAngle(startAngle);*/
 	startTask=SLOPE1;
+
+/*	startX=coord[CX][DOWNHILL];
+	startY=coord[CY][DOWNHILL];
+	startAngle=getTargetRadian(coord[CX][DOWNHILL1],coord[CY][DOWNHILL1],startX,startY)*(-1.0);//ジャイロの角度反対のため反転
+	robo->setAngle(startAngle);
+	startTask=DOWNHILL1;
+*/
 	if(mode==USESENSOR){
 		line->setup();
 	}
@@ -57,7 +60,7 @@ int Move::setup(){
 
 	return 0;
 }
-
+/*
 void Move::setCoord(){
 	coord[CX][SLOPE1]=1295.0;																coord[CY][SLOPE1]=0.0;//slope1前
 	coord[CX][HILL1]=coord[CX][HILL1-1]+1063.0*cos(dtor(10.3));	coord[CY][HILL1]=295.0;//hill1前
@@ -73,7 +76,30 @@ void Move::setCoord(){
 	coord[CX][RIVER3]=coord[CX][RIVER3-1]+353.0;							coord[CY][RIVER3]=312.0;//river 3
 	coord[CX][RIVER4]=coord[CX][RIVER4-1]-353.0;							coord[CY][RIVER4]=-41.0;//river 4
 	//coord[CX][RIVERFIN]=coord[CX][RIVERFIN-1]+565.0;					coord[CY][RIVERFIN]=-606.0;//river 終わり
-	coord[CX][DOWNHILL]=coord[CX][DOWNHILL-1]+636.0;				coord[CY][DOWNHILL]=-1243.0;//down hill 始まり
+	coord[CX][DOWNHILL]=coord[CX][DOWNHILL-1]+1202.0;				coord[CY][DOWNHILL]=-1243.0;//down hill 始まり
+	coord[CX][DOWNHILL1]=coord[CX][DOWNHILL1-1]+sqrtf(879.0*879.0+126.0*126.0);	coord[CY][DOWNHILL1]=-1831.0;//down hill 1カーブ
+	coord[CX][DOWNHILL2]=coord[CX][DOWNHILL2-1]+sqrtf(1521.0*1521.0+218.0*218.0);coord[CY][DOWNHILL2]=-823.0;//down hill 2カーブ
+	coord[CX][DOWNHILL3]=coord[CX][DOWNHILL3-1]+sqrtf(907.0*907.0+130.0*130.0);	coord[CY][DOWNHILL3]=-1614.0;//down hill 3カーブ
+	coord[CX][DOWNHILLFIN]=coord[CX][DOWNHILLFIN-1]+sqrtf(861.0*861.0+123.0*123.0);	coord[CY][DOWNHILLFIN]=-1831.0;//down hill  最後
+	coord[CX][FIN]=coord[CX][FIN-1]+1155.0;										coord[CY][FIN]=-1831.0;//最後
+}
+*/
+void Move::setCoord(){
+	coord[CX][SLOPE1]=1295.0;																coord[CY][SLOPE1]=0.0;//slope1前
+	coord[CX][HILL1]=coord[CX][HILL1-1]+1063.0*cos(dtor(10.3));	coord[CY][HILL1]=295.0;//hill1前
+	coord[CX][SLOPE2]=coord[CX][SLOPE2-1]+1087.0;						coord[CY][SLOPE2]=922.0;//slope2前
+	coord[CX][HILL2]=coord[CX][HILL2-1]+777.0*cos(dtor(10.3));	coord[CY][HILL2]=1700.0;//hill2前
+	coord[CX][SLOPE3]=coord[CX][SLOPE3-1]+1087.0;						coord[CY][SLOPE3]=2328.0;//slope3前
+	//coord[CX][5]=6376.0;coord[CY][5]=2698.0;//hill3前
+	coord[CX][HILL3]=coord[CX][HILL3-1]+1062.0*cos(dtor(10.3));	coord[CY][HILL3]=2612.0;//hill3前
+	coord[CX][HILL4]=coord[CX][HILL4-1]+377.0;								coord[CY][HILL4]=coord[CY][HILL4-1]-560.0;
+	coord[CX][RIVER]=coord[CX][RIVER-1];											coord[CY][RIVER]=1497.0;//river 前
+	coord[CX][RIVER1]=coord[CX][RIVER1-1]+336.0;							coord[CY][RIVER1]=coord[CY][RIVER1-1]-407.0;//river 1
+	coord[CX][RIVER2]=coord[CX][RIVER2-1]-70.0;							coord[CY][RIVER2]=coord[CY][RIVER2-1]-353.0;//river 2
+	coord[CX][RIVER3]=coord[CX][RIVER3-1]+69.0;							coord[CY][RIVER3]=coord[CY][RIVER3-1]-354.0;//river 3
+	coord[CX][RIVER4]=coord[CX][RIVER4-1]-69.0;							coord[CY][RIVER4]=coord[CY][RIVER4-1]-352.0;//river 4
+	//coord[CX][RIVERFIN]=coord[CX][RIVERFIN-1]+565.0;					coord[CY][RIVERFIN]=-606.0;//river 終わり
+	coord[CX][DOWNHILL]=coord[CX][DOWNHILL-1]+1131.0;				coord[CY][DOWNHILL]=-1243.0;//down hill 始まり
 	coord[CX][DOWNHILL1]=coord[CX][DOWNHILL1-1]+sqrtf(879.0*879.0+126.0*126.0);	coord[CY][DOWNHILL1]=-1831.0;//down hill 1カーブ
 	coord[CX][DOWNHILL2]=coord[CX][DOWNHILL2-1]+sqrtf(1521.0*1521.0+218.0*218.0);coord[CY][DOWNHILL2]=-823.0;//down hill 2カーブ
 	coord[CX][DOWNHILL3]=coord[CX][DOWNHILL3-1]+sqrtf(907.0*907.0+130.0*130.0);	coord[CY][DOWNHILL3]=-1614.0;//down hill 3カーブ
@@ -155,7 +181,7 @@ void Move::cycle(){
 			task=startTask;
 			robo->reset(startX,startY);
 			output=dtor(initAngle);
-			servoAngle=output*(-1.0);
+			servoAngle=(output-dtor(initAngle))*(-1.0);
 			servoAngle=area(servoAngle,-M_PI,M_PI);
 		}else if(startFlag){
 			float angle=rotationOutput(gain);
@@ -164,10 +190,11 @@ void Move::cycle(){
 			servoAngle=(output-dtor(initAngle))*(-1.0)+robo->getAngle();//右回転が+だから-1かけてる
 			servoAngle=area(servoAngle,-M_PI,M_PI);
 			velocity=robo->getVelocity();
-			//distance=getVerticalDistance();
-			distance=getDistance();
+			distance=getVerticalDistance();
+			//distance=getDistance();
+
 			if(task>=DOWNHILL2){
-				if(distance<=350.0){
+				if(distance<=80.0){
 					task++;
 				}
 			}else if(task>=DOWNHILL){
@@ -175,7 +202,7 @@ void Move::cycle(){
 					task++;
 				}
 			}else if(task>=RIVER1){
-				if(distance<=300.0){
+				if(distance<=80.0){//450
 					task++;
 				}
 			}else{
@@ -195,7 +222,6 @@ void Move::cycle(){
 		servo->cycle();
 	}
 }
-
 #endif
 
 void Move::LineCycle(){
@@ -274,7 +300,7 @@ float Move::getVerticalDistance(){
 	float targetY=coord[CY][task];
 	float nowX=robo->getX();
 	float nowY=robo->getY();
-	float nowAngle=robo->getAngle();
+	float nowAngle=servoAngle;//robo->getAngle();
 	float value=get_vertical_distance_position(targetX,targetY,nowX,nowY,nowAngle);
 
 	return value;

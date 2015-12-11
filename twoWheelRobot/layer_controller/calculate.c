@@ -79,21 +79,21 @@ float get_horizontal_distance(float distance, float gapRadian){
 }
 
 float get_vertical_distance(float distance, float gapRadian){
-	int limit_over = 0;
-	if(gapRadian > M_PI/2.0){
-		gapRadian = M_PI - gapRadian;
-		limit_over = 1;
+	int limit_over=0;
+	if(gapRadian>M_PI/2.0){
+		gapRadian=M_PI - gapRadian;
+		limit_over=1;
 	}
-	if(gapRadian < -M_PI/2.0){
-		gapRadian = -gapRadian - M_PI;
-		limit_over = 1;
+	if(gapRadian<-M_PI/2.0){
+		gapRadian=-gapRadian - M_PI;
+		limit_over=1;
 	}
 
-	if(limit_over == 0){
-		return (distance * sin(((M_PI/2.0) - fabs(gapRadian))));
-	}else{
-		return ((-1)*distance * sin(((M_PI/2.0) - fabs(gapRadian))));//Ô‘Ì‚ÌŒü‚«‚É‘Î‚µ‚Ä‚’¼•ûŒü‚ªŒã•û
+	if(limit_over==0){
+		return (distance * cos(gapRadian));
 	}
+
+	return ((-1)*distance * cos(gapRadian));
 }
 
 float get_horizontal_distance_position(float target_x, float target_y, float x_now, float y_now, float nowRadian){

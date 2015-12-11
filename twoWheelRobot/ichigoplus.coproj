@@ -152,9 +152,9 @@
     <File name="cmsis_lib/source/stm32f4xx_dma.c" path="cmsis_lib/source/stm32f4xx_dma.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_can.c" path="cmsis_lib/source/stm32f4xx_can.c" type="1"/>
     <File name="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/mkfs.html" path="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/mkfs.html" type="1"/>
-    <File name="layer_driver/circuit/ina226.cpp" path="layer_driver/circuit/ina226.cpp" type="1"/>
     <File name="cmsis_boot" path="" type="2"/>
     <File name="layer_driver/circuit/s11059.cpp" path="layer_driver/circuit/s11059.cpp" type="1"/>
+    <File name="layer_driver/circuit/ina226.cpp" path="layer_driver/circuit/ina226.cpp" type="1"/>
     <File name="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/chdir.html" path="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/chdir.html" type="1"/>
     <File name="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/getcwd.html" path="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/getcwd.html" type="1"/>
     <File name="layer_driver/board/stm32f4_config/sd/fatfs/doc" path="" type="2"/>
@@ -177,9 +177,9 @@
     <File name="layer_driver/board/stm32f4_config/usb/usb_lib/cdc/usbd_cdc_core.h" path="layer_driver/board/stm32f4_config/usb/usb_lib/cdc/usbd_cdc_core.h" type="1"/>
     <File name="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/puts.html" path="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/puts.html" type="1"/>
     <File name="layer_driver/base/encoder.cpp" path="layer_driver/base/encoder.cpp" type="1"/>
-    <File name="layer_controller/my_else_calculation.c" path="layer_controller/my_else_calculation.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_iwdg.h" path="cmsis_lib/include/stm32f4xx_iwdg.h" type="1"/>
     <File name="layer_driver/board/stm32f4_config/usb/config_usb.h" path="layer_driver/board/stm32f4_config/usb/config_usb.h" type="1"/>
+    <File name="layer_controller/my_else_calculation.c" path="layer_controller/my_else_calculation.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_sdio.c" path="cmsis_lib/source/stm32f4xx_sdio.c" type="1"/>
     <File name="layer_driver/board/stm32f4_config/sd/fatfs/doc/img/f3.png" path="layer_driver/board/stm32f4_config/sd/fatfs/doc/img/f3.png" type="1"/>
     <File name="layer_application" path="" type="2"/>
@@ -294,9 +294,9 @@
     <File name="cmsis_lib/source/stm32f4xx_flash.c" path="cmsis_lib/source/stm32f4xx_flash.c" type="1"/>
     <File name="layer_driver/base/mcutime.c" path="layer_driver/base/mcutime.c" type="1"/>
     <File name="layer_controller/calculate.c" path="layer_controller/calculate.c" type="1"/>
-    <File name="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/setlabel.html" path="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/setlabel.html" type="1"/>
     <File name="cmsis/core_cm4.h" path="cmsis/core_cm4.h" type="1"/>
     <File name="layer_driver/board/stm32f4_config/config_pwm.h" path="layer_driver/board/stm32f4_config/config_pwm.h" type="1"/>
+    <File name="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/setlabel.html" path="layer_driver/board/stm32f4_config/sd/fatfs/doc/en/setlabel.html" type="1"/>
     <File name="layer_driver/board/stm32f4_config/config_iwdg.c" path="layer_driver/board/stm32f4_config/config_iwdg.c" type="1"/>
     <File name="layer_driver/board/pin0.hpp" path="layer_driver/board/pin0.hpp" type="1"/>
     <File name="layer_controller/robo_center.cpp" path="layer_controller/robo_center.cpp" type="1"/>

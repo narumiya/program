@@ -783,7 +783,7 @@
          <include file="..\..\..\layer_driver\circuit\servo.hpp"/>
          <include file="..\..\..\layer_driver\base\serial.hpp"/>
       </source>
-      <source file="..\..\..\layer_controller\calculate.c" lastModified="1518afa6cba">
+      <source file="..\..\..\layer_controller\calculate.c" lastModified="1518f783f61">
          <include file="..\..\..\layer_controller\calculate.h"/>
          <include file="..\..\..\layer_driver\base\util.h"/>
       </source>
