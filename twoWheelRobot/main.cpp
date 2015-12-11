@@ -206,7 +206,7 @@ int main(){
 	console.setNewLine(Console::NEWLINE_CR);
 	ServoControll servoControll(servo,console);*/
 	Enc1 enc;enc.setup();
-	Serial1 gyroPin;R1350n gyro(gyroPin);//gyro.setup();
+	Serial1 gyroPin;R1350n gyro(gyroPin);
 	RoboCenter robot(enc,gyro,resetSw);
 	robot.setup();
 	A0 a0;A1 a1;A2 a2;A3 a3;A4 a4;
@@ -239,7 +239,7 @@ int main(){
 
 	while(1){
 		//startSW.cycle();
-		//move.TPR105Cycle();
+		//move.LineCycle();
 		blink.cycle();
 		robot.cycle();
 		move.cycle();

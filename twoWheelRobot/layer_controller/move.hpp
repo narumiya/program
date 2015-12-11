@@ -9,7 +9,6 @@
 extern "C"{
 #include "my_else_calculation.h"
 }
-//#define INITANGLE -75.0
 
 class Move{
 private:
@@ -20,6 +19,27 @@ private:
 	enum{
 		CX,//座標x
 		CY//座標y
+	};
+	enum{
+		SLOPE1=0,				//slope1直前
+		HILL1,					//hill1直前
+		SLOPE2,				//slope2直前
+		HILL2,					//hill2直前
+		SLOPE3,				//slope3直前
+		HILL3,					//hill3直前
+		HILL4,					//hill3の途中
+		RIVER,					//river直前
+		RIVER1,				//river1回目曲がる直前
+		RIVER2,				//river2回目曲がる直前
+		RIVER3,				//river3回目曲がる直前
+		RIVER4,				//river4回目曲がる直前
+	//	RIVERFIN,			//river終わり直前
+		DOWNHILL,		//down hill 開始直前
+		DOWNHILL1,		//down hill 1回目曲がる直前
+		DOWNHILL2,		//down hill 2回目曲がる直前
+		DOWNHILL3,		//down hill 3回目曲がる直前
+		DOWNHILLFIN,	//down hill 最後
+		FIN					//最後
 	};
 
 	Servo *servo;
@@ -38,11 +58,12 @@ private:
 	float coord[2][20];
 	float startX;
 	float startY;
+	float startAngle;
+	float startTask;
 	float servoAngle;
-	float servoX;
-	float servoY;
 	float targetAngle;
 	float distance;
+	float velocity;
 	unsigned int time;
 	unsigned int countWhile;
 	unsigned int countAverage;
@@ -54,7 +75,7 @@ public:
 	void setCoord();
 	void setAngle(float angle){roboAngle=angle;}
 	void setDuty(float straight,float rotat);
-	void TPR105Cycle();
+	void LineCycle();
 	void printAdValue();
 	void printRoboInfo();
 	float getTargetAngle();

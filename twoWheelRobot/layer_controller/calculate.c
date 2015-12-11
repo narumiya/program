@@ -10,7 +10,6 @@ float radiusReverse(float radius){
 
 Ans_t crameRequation(float mat[2][3]){
 	float delta=mat[0][0]*mat[1][1]-mat[0][1]*mat[1][0];
-
 	Ans_t ans;
 
 	ans.x=mat[0][2]*mat[1][1]-mat[0][1]*mat[1][2];
@@ -41,6 +40,7 @@ float get_Average(int number_scope, int box, float add){
 float getTargetRadian(float targetX, float targetY, float nowX, float nowY){
 	static float targetRadOld = 0.0;
 	float targetRad = 0.0;
+
 	if((targetX - nowX != 0.0) || (targetY - nowY != 0.0)){
 		targetRad = atan2(targetY - nowY, targetX - nowX);
 		targetRadOld = targetRad;
@@ -63,7 +63,6 @@ float get_gap_radian(float target_radian, float now_radian){
 	return (gap_radian);
 }
 
-
 float get_horizontal_distance(float distance, float gapRadian){
 	if(gapRadian > M_PI/2.0){
 		gapRadian = M_PI - gapRadian;
@@ -78,6 +77,7 @@ float get_horizontal_distance(float distance, float gapRadian){
 		return (distance * cos(((M_PI/2.0)-fabs(gapRadian))));
 	}
 }
+
 float get_vertical_distance(float distance, float gapRadian){
 	int limit_over = 0;
 	if(gapRadian > M_PI/2.0){
@@ -103,6 +103,3 @@ float get_horizontal_distance_position(float target_x, float target_y, float x_n
 float get_vertical_distance_position(float target_x, float target_y, float x_now, float y_now, float nowRadian){
 	return (get_vertical_distance(get_distance(target_x,target_y,x_now,y_now),get_gap_radian(getTargetRadian(target_x,target_y,x_now,y_now),nowRadian)));
 }
-
-
-

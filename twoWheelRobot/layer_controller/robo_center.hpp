@@ -12,11 +12,14 @@ private:
 	R1350n *gyro;
 	ButtonInfo *resetSw;
 	unsigned int time;
+	float cx;
+	float cy;
 	float x;
 	float y;
 	float z;
 	float def;
 	float angle;
+	float startAngle;
 	float initAngle;
 	float value;
 	float oldValue;
@@ -32,15 +35,16 @@ public:
 	float getVelocity(){return velocity;};
 	float getX();
 	float getY();
-	void setAngle(float value){angle=value;};
-	void setX(float value){x=value;};
-	void setY(float value){y=value;};
+	void setAngle(float value){startAngle=value;};
+	void setX(float value){cx=value;};
+	void setY(float value){cy=value;};
 	float getEncCnt(){return def;};
 	float getSlope();
 	int getSlopeCount();
 	void cycle();
 	void accCycle();
 	void reset();
+	void reset(float x, float y);
 };
 
 #endif
