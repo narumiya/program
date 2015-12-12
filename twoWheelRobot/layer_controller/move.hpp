@@ -34,12 +34,19 @@ private:
 		RIVER3,				//river3回目曲がる直前
 		RIVER4,				//river4回目曲がる直前
 	//	RIVERFIN,			//river終わり直前
-		DOWNHILL,		//down hill 開始直前
-		DOWNHILL1,		//down hill 1回目曲がる直前
+		DOWNHILL,			//down hill 開始直前
+		DOWNHILL1_0,	//down hill 1回目カーブ開始
+		DOWNHILL1_1,	//down hill 1回目カーブ終わり
+		DOWNHILL2_0,	//down hill 2回目のカーブ開始
+		DOWNHILL2_1,	//down hill 2回目のカーブ終わり
+		DOWNHILL3_0,	//down hill 3回目のカーブ開始
+		DOWNHILL3_1,	//down hill 3回目のカーブ終わり
+		DOWNHILL3_2,	//down hill 3回目のカーブ後の直進
+		/*DOWNHILL1,		//down hill 1回目曲がる直前
 		DOWNHILL2,		//down hill 2回目曲がる直前
 		DOWNHILL3,		//down hill 3回目曲がる直前
-		DOWNHILLFIN,	//down hill 最後
-		FIN					//最後
+		DOWNHILLFIN,	//down hill 最後*/
+		FIN						//最後
 	};
 
 	Servo *servo;
@@ -55,7 +62,7 @@ private:
 	int task;
 	float adData[5];
 	float roboAngle;
-	float coord[2][20];
+	float coord[2][30];
 	float startX;
 	float startY;
 	float startAngle;
@@ -82,6 +89,8 @@ public:
 	float getDistance();
 	float getVerticalDistance();
 	float rotationOutput(pid_gain_t gain);
+	float getTargetX();
+	float getTargetY();
 };
 
 #endif

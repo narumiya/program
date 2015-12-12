@@ -244,7 +244,7 @@
          <include file="..\..\..\layer_driver\base\digital.hpp"/>
          <include file="..\..\..\layer_driver\base\pwm.hpp"/>
       </source>
-      <source file="..\..\..\layer_controller\move.hpp" lastModified="1518ba76527">
+      <source file="..\..\..\layer_controller\move.hpp" lastModified="15194a8ceae">
          <include file="..\..\..\layer_driver\circuit\servo.hpp"/>
          <include file="..\..\..\layer_driver\circuit\button_info.hpp"/>
          <include file="..\..\..\layer_controller\robo_center.hpp"/>
