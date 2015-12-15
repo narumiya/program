@@ -31,7 +31,7 @@ extern "C" {
 #define AD3		GPIOC,GPIO_Pin_3
 #define AD4		GPIOC,GPIO_Pin_4
 
-#define PWM0				GPIOA,GPIO_Pin_9
+#define PWM0				GPIOE,GPIO_Pin_11
 //#define PWM0		GPIOE,GPIO_Pin_11//GPIOE,GPIO_Pin_9
 #define CWIO0		GPIOA,GPIO_Pin_4//GPIOE,GPIO_Pin_10
 #define CCWIO0	GPIOC,GPIO_Pin_0//GPIOE,GPIO_Pin_7

@@ -258,14 +258,14 @@ int main(void)
 		for(deg=-25;deg<115;deg+=10){
 			servo.duty(deg);
 			servo.cycle();
-			led0.digitalToggle();
+			//led0.digitalToggle();
 			//serial0.printf("%f\n",deg);
 			wait(25);
 		}
 		for(deg=115;deg>-25;deg-=10){
 			servo.duty(deg);
 				servo.cycle();
-			led0.digitalToggle();
+			//led0.digitalToggle();
 		//	serial0.printf("%f\n",deg);
 			wait(25);
 		}
