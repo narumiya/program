@@ -23,6 +23,9 @@ Move::Move(LineSensor &line,ButtonInfo &swPin,Servo &servoPin,RoboCenter &robo){
 	for(int i=0;i<3;i++){
 		circleCenter[0][i]=0.0;
 		circleCenter[1][i]=0.0;
+		initCurveAngle[i]=0.0;//downhill “Ë“üŽž‰ŠúŠp“x
+		curveRadius[i]=0.0;//down hill ”¼Œa
+		centralAngle[i]=0.0;//down hill ’†SŠp
 	}
 	task=0;
 	targetAngle=0.0;
@@ -42,7 +45,7 @@ int Move::setup(){
 	led1.setupDigitalOut();
 	led2.setupDigitalOut();
 	led3.setupDigitalOut();
-	initAngle=45.0;
+	initAngle=45.0-2.0;
 	setCoord();
 /*
 	startX=-495.0+72.0;
@@ -53,10 +56,10 @@ int Move::setup(){
 */
 	startX=coord[CX][DOWNHILL];
 	startY=coord[CY][DOWNHILL];
-	startAngle=getTargetRadian(coord[CX][DOWNHILL1_0],coord[CY][DOWNHILL1_0],startX,startY)*(-1.0);//ƒWƒƒƒCƒ‚ÌŠp“x”½‘Î‚Ì‚½‚ß”½“]
+	startAngle=getTargetRadian(coord[CX][DOWNHILL+1],coord[CY][DOWNHILL+1],startX,startY)*(-1.0);//ƒWƒƒƒCƒ‚ÌŠp“x”½‘Î‚Ì‚½‚ß”½“]
 	robo->setAngle(startAngle);
-	startTask=DOWNHILL1_0;
-
+	startTask=DOWNHILL+1;
+	output=dtor(initAngle);
 	if(mode==USESENSOR){
 		line->setup();
 	}
@@ -196,8 +199,7 @@ void Move::cycle(){
 }
 #else
 void Move::cycle(){
-	static float output=dtor(initAngle);
-	pid_gain_t gain=set_pid_gain(0.2,0.0,0.0);
+	pid_gain_t gain=set_pid_gain(0.2,0.0,0.25);
 	startSw->cycle();
 	if(millis()-time>=5){
 		time=millis();
@@ -222,7 +224,6 @@ void Move::cycle(){
 			if(distance<=50.0){//150
 				task++;
 			}
-
 			servo->setAngle(output);
 		}
 		if(startSw->readValue()){
@@ -232,8 +233,8 @@ void Move::cycle(){
 			servoAngle=output*(-1.0);
 			servoAngle=area(servoAngle,-M_PI,M_PI);
 		}
-		servo->cycle();
 	}
+	servo->cycle();
 }
 #endif
 
@@ -275,9 +276,15 @@ float Move::rotationOutput(pid_gain_t gain){
 	//return calc_pid(&data,ad,gain);
 #else
 	static pid_data_t data={0};
+	pid_gain_t g=gain;
 	float targetAngle=getTargetAngle();
-	float output=calc_pid(&data,area(targetAngle-servoAngle,-M_PI,M_PI),gain);
-
+	float output=0;
+	if(task==DOWNHILL2_1){
+		//g=set_pid_gain(0.85,0.0,0.1);
+		output=calc_pid(&data,area(targetAngle-servoAngle,-M_PI,M_PI),gain);
+	}else{
+		output=calc_pid(&data,area(targetAngle-servoAngle,-M_PI,M_PI),gain);
+	}
 	return output;
 #endif
 }
@@ -288,41 +295,70 @@ float Move::getTargetAngle(){
 	float nowX=robo->getX();
 	float nowY=robo->getY();
 	float dis=0.0;
+	static int oldTask=task;
 	static int flag=0;
+	static float cnt=1.0;
+	float n=8.0;
+
+	if(task!=oldTask){
+		cnt=1;
+	}
+	oldTask=task;
 
 	if(task==DOWNHILL1_1){
 		if(flag==0){
-			targetX=circleCenter[CX][0]+curveRadius[0]*cos(area(initCurveAngle[0]+centralAngle[0]/2.0,-M_PI,M_PI));
-			targetY=circleCenter[CY][0]+curveRadius[0]*sin(area(initCurveAngle[0]+centralAngle[0]/2.0,-M_PI,M_PI));
+			n=10.0;
+			targetX=circleCenter[CX][0]+curveRadius[0]*cos(area(initCurveAngle[0]+((centralAngle[0]*cnt)/n),-M_PI,M_PI));
+			targetY=circleCenter[CY][0]+curveRadius[0]*sin(area(initCurveAngle[0]+((centralAngle[0]*cnt)/n),-M_PI,M_PI));
 			dis=get_vertical_distance_position(targetX,targetY,nowX,nowY,servoAngle);
-			if(dis<=80.0){
-				flag=1;
+			if(dis<=100.0){
+				cnt++;
+				if(cnt>=n){
+					flag=1;
+					cnt=1;
+				}
 			}
 		}
 	}else if(task==DOWNHILL2_1){
+		n=8;
 		if(flag==1){
-			targetX=circleCenter[CX][1]+curveRadius[1]*cos(initCurveAngle[1]+centralAngle[1]/2.0);
-			targetY=circleCenter[CY][1]+curveRadius[1]*sin(initCurveAngle[1]+centralAngle[1]/2.0);
+			targetX=circleCenter[CX][1]+curveRadius[1]*cos(area(initCurveAngle[1]-((centralAngle[1]*cnt)/n),-M_PI,M_PI));
+			targetY=circleCenter[CY][1]+curveRadius[1]*sin(area(initCurveAngle[1]-((centralAngle[1]*cnt)/n),-M_PI,M_PI));
 			dis=get_vertical_distance_position(targetX,targetY,nowX,nowY,servoAngle);
-			if(dis<=80.0){
-				flag=2;
+			if(dis<=100.0){
+				cnt++;
+				if(cnt>=n){
+					flag=2;
+					cnt=1;
+				}
 			}
 		}
 	}else if(task==DOWNHILL3_1){
+		n=5;
 		if(flag==2){
-			targetX=circleCenter[CX][2]+curveRadius[2]*cos(initCurveAngle[2]+centralAngle[2]/2.0);
-			targetY=circleCenter[CY][2]+curveRadius[2]*sin(initCurveAngle[2]+centralAngle[2]/2.0);
+			targetX=circleCenter[CX][2]+curveRadius[2]*cos(area(initCurveAngle[2]+((centralAngle[2]*cnt)/n),-M_PI,M_PI));
+			targetY=circleCenter[CY][2]+curveRadius[2]*sin(area(initCurveAngle[2]+((centralAngle[2]*cnt)/n),-M_PI,M_PI));
 			dis=get_vertical_distance_position(targetX,targetY,nowX,nowY,servoAngle);
-			if(dis<=80.0){
-				flag=3;
+			if(dis<=100.0){
+				cnt++;
+				if(cnt>=n){
+					flag=3;
+					cnt=1;
+				}
 			}
 		}
 	}
-
+	if(startSw->readValue()){
+		flag=0;cnt=1;
+	}
 	targetAngle=getTargetRadian(targetX,targetY,nowX,nowY);
 	targetAngle=area(targetAngle,-M_PI,M_PI);
 
 	return (targetAngle);
+}
+
+float Move::getTargetAngle(float targetX,float targetY,float nowX,float nowY){
+	return getTargetRadian(targetX,targetY,nowX,nowY);
 }
 
 float Move::getDistance(){
@@ -336,6 +372,11 @@ float Move::getDistance(){
 	return value;
 }
 
+float Move::getDistance(float targetX, float targetY,float nowX,float nowY){
+	return get_distance(targetX,targetY,nowX,nowY);
+}
+
+
 float Move::getVerticalDistance(){
 	float targetX=coord[CX][task];
 	float targetY=coord[CY][task];
@@ -347,16 +388,34 @@ float Move::getVerticalDistance(){
 	return value;
 }
 
+float Move::getServoAngle(){
+	float angle=(output-dtor(initAngle))*(-1.0)+robo->getAngle();//‰E‰ñ“]‚ª+‚¾‚©‚ç-1‚©‚¯‚Ä‚é
+	angle=area(angle,-M_PI,M_PI);
+	return angle;
+}
+
 float Move::getSteeringAngle(float servoAngle){
-	return -0.0039*servoAngle*servoAngle+1.1319*servoAngle-0.4349;
+	float value=-0.0039*servoAngle*servoAngle+1.1319*servoAngle-0.4349;
+	value=dtor(value);
+	return value;
 }
 
-float Move::getTargetX(){
-	return 0;
+float Move::getTargetTurningRadius(){
+	const float tread=30.0;
+	const float length=150.0;
+	float steer=getSteeringAngle(servoAngle);
+	float otherSteer=atan((tread*tan(steer))/(tread*tan(steer)+length));
+	float turningRadius=(length/2.0)*((1.0/sin(steer))+(1.0/sin(otherSteer)));
+	return turningRadius;
 }
 
-float Move::getTargetY(){
-	return 0;
+void Move::requestAngle(float targetX,float targetY,float nowX,float nowY){
+	static pid_data_t data={0};
+	pid_gain_t gain=set_pid_gain(pGain,iGain,dGain);
+	float targetAngle=getTargetAngle(targetX,targetY,nowX,nowY);
+	output-=calc_pid(&data,area(targetAngle-servoAngle,-M_PI,M_PI),gain);
+	output=floatlimit(dtor(-45.0+initAngle),output,dtor(45.0+initAngle));
+	servo->setAngle(output);
 }
 
 void Move::printAdValue(){

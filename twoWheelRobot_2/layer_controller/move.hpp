@@ -62,7 +62,7 @@ private:
 	float adData[5];
 	float roboAngle;
 	float coord[2][30];
-	float circleCenter[2][3];		//down hill îŒ^‚Ì’†SÀ•W
+	float circleCenter[2][3];	//down hill îŒ^‚Ì’†SÀ•W
 	float initCurveAngle[3];//downhill “Ë“ü‰ŠúŠp“x
 	float curveRadius[3];//down hill ”¼Œa
 	float centralAngle[3];//down hill ’†SŠp
@@ -74,6 +74,10 @@ private:
 	float targetAngle;
 	float distance;
 	float velocity;
+	float pGain;
+	float iGain;
+	float dGain;
+	float output;
 	unsigned int time;
 	unsigned int countWhile;
 	unsigned int countAverage;
@@ -85,18 +89,21 @@ public:
 	void setCoord();
 	void setAngle(float angle){roboAngle=angle;}
 	void setDuty(float straight,float rotat);
+	void setPid(float p, float i, float d){pGain=p;iGain=i;dGain=d;}
 	void LineCycle();
 	void printAdValue();
 	void printRoboInfo();
 	float rotationOutput(pid_gain_t gain);
 	float getTargetAngle();
+	float getTargetAngle(float targetX,float targetY,float nowX,float nowY);
 	float getDistance();
+	float getDistance(float targetX, float targetY,float nowX,float nowY);
 	float getVerticalDistance();
 	float getSteeringAngle(float servoAngle);
 	float getTurningRadius();
 	float getTargetTurningRadius();
-	float getTargetX();
-	float getTargetY();
+	float getServoAngle();
+	void requestAngle(float targetX,float targetY,float nowX,float nowY);
 };
 
 #endif

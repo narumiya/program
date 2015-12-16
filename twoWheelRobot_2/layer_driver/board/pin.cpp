@@ -1,6 +1,6 @@
 
 #include "pin.hpp"
-#if 1
+#if 0
 extern "C" {
 #include <string.h>
 #include <stdio.h>

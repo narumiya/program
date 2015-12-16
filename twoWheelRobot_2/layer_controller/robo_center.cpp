@@ -26,7 +26,7 @@ int RoboCenter::setup(){
 	resetSw->setup(true,50);
 	time=millis();
 	enc0->mlt(32.5);
-	enc0->rev(true);
+	enc0->rev(false);
 	enc0->cpr(1000.0);
 	initValue=enc0->value();
 	initAngle=gyro->angle();

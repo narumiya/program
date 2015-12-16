@@ -194,8 +194,8 @@ int main(){
 	Pwm0 pwm0;
 	Servo servo(pwm0);
 	//KondoServo servo(pwm0);
-	Sw0 sw;ButtonInfo startSW(sw);
-	Sw1 sw1;ButtonInfo resetSw(sw1);
+	Sw1 sw;ButtonInfo startSW(sw);
+	Sw0 sw1;ButtonInfo resetSw(sw1);
 	startSW.setup(true,50);
 	resetSw.setup(true,50);
 	Led1 led;Blink blink(led);blink.setup();

@@ -58,7 +58,7 @@ float Servo::cvtPulse(float rad){
 }
 */
 void Servo::cycle(){
-	pwm->pwmWrite(request);
+	pwm->pwmWrite(1.0-request);
 }
 
 #if 0
