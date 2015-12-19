@@ -18,6 +18,7 @@ public:
 	void cpr(int cprArg);
 	int cpr();
 	float radian();
+	float getMltData(){return mltData;};
 	float value();
 };
 

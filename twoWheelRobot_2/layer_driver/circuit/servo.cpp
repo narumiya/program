@@ -21,29 +21,14 @@ int Servo::setup(float setPeriod, float setRangeRad, float setNeutral, float set
 }
 
 void Servo::setAngle(float rad){
-	static float old=0.0;
 	float duty=0.0;
 
 	duty=cvtPulse(rad);
 	request= duty;
-	/*if((-rangeRad/2.0)<=rad && rad <=(rangeRad/2.0)){
-		duty=cvtPulse(rad);
-		request= duty;
-		old=duty;
-	}else{
-		request=old;
-	}*/
 }
 
 void Servo::setDuty(float pos){
-	static float old=0.0;
 	request=pos;
-/*	if((neutPulse-fabs(maxPulse-neutPulse))/period<=pos && pos<=maxPulse/period){
-		request=pos;
-		old=request;
-	}else{
-		request=old;
-	}*/
 }
 
 float Servo::cvtPulse(float rad){
@@ -51,14 +36,24 @@ float Servo::cvtPulse(float rad){
 	pulseWidth=(fabs(maxPulse-neutPulse)/fabs(rangeRad/2.0))*rad+neutPulse;
 	return (pulseWidth/period);
 }
-/*
-float Servo::cvtPulse(float rad){
-	//return (fabs(MaxPulse-NeutPulse)) / (Period * fabs(RangeDeg/2.0)) * deg + NeutPulse/Period;
-	return  (fabs(maxPulse-neutPulse)) / (period * (rangeRad/2.0)) *rad + neutPulse/period;
+float Servo::getVelocity(){
+	const float rad=dtor(60.0);
+	const float time=0.15;
+	return (time/rad);
 }
-*/
 void Servo::cycle(){
-	pwm->pwmWrite(1.0-request);
+	if(fabs(oldRequest-request)>=cvtPulse(dtor(10.0))){
+		if((oldRequest-request)<0){
+			pwm->pwmWrite(fabs(1.0-(request-oldRequest)/2.0));
+			oldRequest=(request-oldRequest)/2.0;
+		}else{
+			pwm->pwmWrite(fabs(1.0-(oldRequest-request)/2.0));
+			oldRequest=(oldRequest-request)/2.0;
+		}
+	}else{
+		pwm->pwmWrite(fabs(1.0-request));
+		oldRequest=request;
+	}
 }
 
 #if 0

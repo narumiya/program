@@ -17,7 +17,7 @@ int Encoder::cpr(){
 }
 
 float Encoder::radian(){
-	return M_PI*count()/cprData;
+	return 2.0*M_PI*count()/cprData;
 }
 
 float Encoder::value(){

@@ -11,6 +11,7 @@ protected:
 	float rangeRad;	//サーボ動作角度
 	float maxPulse;	//ms 最大角度時のパルス
 	float request;
+	float oldRequest;
 public:
 	Servo(){};
 	Servo(Pwm &pwmPin);
@@ -19,6 +20,8 @@ public:
 	void setAngle(float rad);
 	void setDuty(float pos);
 	float cvtPulse(float rad);
+
+	float getVelocity();// rad/s 1度曲げるのにかかる速度
 };
 
 #if 0

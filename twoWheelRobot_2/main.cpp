@@ -1,5 +1,6 @@
 //libraries
 extern "C"{
+#include <stdint.h>
 #include "layer_driver/board/stm32f4_config/config_adc.h"
 #include "layer_driver/board/stm32f4_config/config_i2c.h"
 #include "stm32f4xx.h"
@@ -8,6 +9,7 @@ extern "C"{
 #include "layer_application/console.hpp"
 #include "layer_application/servo_controll.hpp"
 //controller
+#include "layer_controller/advanced_encoder.hpp"
 #include "layer_controller/blink.hpp"
 #include "layer_controller/move.hpp"
 #include "layer_controller/robo_center.hpp"
@@ -194,7 +196,9 @@ int main(){
 	Pwm0 pwm0;
 	Servo servo(pwm0);
 	//KondoServo servo(pwm0);
-	Sw1 sw;ButtonInfo startSW(sw);
+	A0 a0;A1 a1;A2 a2;A3 a3;A4 a4;
+	Sw1 sw0;ButtonInfo startSW(sw0);
+	//ButtonInfo startSW(a0);
 	Sw0 sw1;ButtonInfo resetSw(sw1);
 	startSW.setup(true,50);
 	resetSw.setup(true,50);
@@ -205,11 +209,12 @@ int main(){
 	/*Console console(serial);console.setup(115200);
 	console.setNewLine(Console::NEWLINE_CR);
 	ServoControll servoControll(servo,console);*/
-	Enc1 enc;enc.setup();
+	Enc1 enc;
+	AdvancedEncoder adenc(enc,1000);
 	Serial1 gyroPin;R1350n gyro(gyroPin);
-	RoboCenter robot(enc,gyro,resetSw);
+	RoboCenter robot(adenc,gyro,resetSw);
 	robot.setup();
-	A0 a0;A1 a1;A2 a2;A3 a3;A4 a4;
+
 	LineSensor line(a0,a1,a2,a3,a4);
 	Move move(line,startSW,servo,robot);
 	move.setup();
@@ -230,16 +235,14 @@ int main(){
 	buzz.digitalLow();
 	bool flag=false;float deg=0;
 	unsigned int serialTime=millis();
-	unsigned int tim=millis();
-	unsigned int buzzTime=millis();
+	int64_t tim=millis();
+	int64_t buzzTime=millis();
 	bool buzzFlag=false;
 	unsigned int cntTime=0;
 	int oldCnt=0;
 	int cnt=0;
 
 	while(1){
-		//startSW.cycle();
-		//move.LineCycle();
 		blink.cycle();
 		robot.cycle();
 		move.cycle();
@@ -299,7 +302,7 @@ int main(){
 #endif
 
 #if 1
-		if(millis()-serialTime>=300){
+		if(millis()-serialTime>=500){
 			serialTime=millis();
 			//serial.printf("ad0 %f,",a0.analogRead());
 			//serial.printf("ad1 %f,",a1.analogRead());

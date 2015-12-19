@@ -7,7 +7,7 @@ extern "C"{
 #include "util.h"
 }
 
-RoboCenter::RoboCenter(Encoder &enc,R1350n &gyroPin,ButtonInfo &resetPin){
+RoboCenter::RoboCenter(AdvancedEncoder &enc,R1350n &gyroPin,ButtonInfo &resetPin){
 	enc0=&enc;
 	gyro=&gyroPin;
 	resetSw=&resetPin;
@@ -16,7 +16,11 @@ RoboCenter::RoboCenter(Encoder &enc,R1350n &gyroPin,ButtonInfo &resetPin){
 	startAngle=0;
 	oldValue=0.0;
 	velocity=0.0;
+	radian=0.0;
+	oldRadian=0.0;
+	initRadian=0.0;
 	encToServo=0.0;
+	encToAxis=0.0;
 	def=0.0;
 }
 
@@ -25,19 +29,21 @@ int RoboCenter::setup(){
 	i+=gyro->setup();
 	resetSw->setup(true,50);
 	time=millis();
-	enc0->mlt(32.5);
+	enc0->mlt(32.5/2.0);//”¼Œa
 	enc0->rev(false);
 	enc0->cpr(1000.0);
 	initValue=enc0->value();
+	initRadian=enc0->radian();
 	initAngle=gyro->angle();
 	encToServo=150.954;
-	//encToServo=138.32;
+	encToAxis=-48.33;
 	return i;
 }
 
 void RoboCenter::cycle(){
 	resetSw->cycle();
-	if(millis()-time>=5){
+	enc0->cycle();
+	if(millis()-time>=1){
 		time=millis();
 		/*if(resetSw->readValue()){
 			initValue=enc0->value();
@@ -45,18 +51,21 @@ void RoboCenter::cycle(){
 			//gyro->reset();
 			x=0.0;y=0.0;
 		}*/
-		value=enc0->value()-initValue;
+		value=(enc0->value()-initValue);
 		def=(value-oldValue);
-		velocity=def/0.005;
-		//angle=gyro->angle()-initAngle;
+		velocity=def/0.001;
+		//velocity=enc0->getMltData()*enc0->rps();
 		angle=gyro->angle()+startAngle;
 		angle*=(-1.0);
 		angle=area(angle,-M_PI,M_PI);
 		float theta=area(angle+radiusReverse(value-oldValue),-M_PI,M_PI);
 		cx+=fabs(def)*cos(theta);
 		cy+=fabs(def)*sin(theta);
-		x=cx+encToServo*cos(angle);
-		y=cy+encToServo*sin(angle);
+		servoX=cx+fabs(encToServo)*cos(theta);
+		servoY=cy+fabs(encToServo)*sin(theta);
+		theta=area(angle+radiusReverse(encToAxis),-M_PI,M_PI);
+		x=cx+fabs(encToAxis)*cos(theta);
+		y=cy+fabs(encToAxis)*sin(theta);
 		oldValue=value;
 	}
 }
