@@ -2,7 +2,7 @@
 #define SERVO_HPP
 
 #include "Pwm.hpp"
-
+#include <stdint.h>
 class Servo{
 protected:
 	Pwm *pwm;
@@ -12,6 +12,7 @@ protected:
 	float maxPulse;	//ms 最大角度時のパルス
 	float request;
 	float oldRequest;
+	int64_t time;
 public:
 	Servo(){};
 	Servo(Pwm &pwmPin);
@@ -20,7 +21,7 @@ public:
 	void setAngle(float rad);
 	void setDuty(float pos);
 	float cvtPulse(float rad);
-
+	float cvtRad(float duty);
 	float getVelocity();// rad/s 1度曲げるのにかかる速度
 };
 

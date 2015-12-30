@@ -12,6 +12,14 @@ RoboCenter::RoboCenter(AdvancedEncoder &enc,R1350n &gyroPin,ButtonInfo &resetPin
 	gyro=&gyroPin;
 	resetSw=&resetPin;
 	x=0.0;y=0.0;z=0.0;
+	encX=0.0;
+	encY=0.0;
+	frontRTireX=0.0;
+	frontRTireY=0.0;
+	frontLTireX=0.0;
+	frontLTireY=0.0;
+	backRTireX=0.0;
+	backRTireY=0.0;
 	angle=0.0;
 	startAngle=0;
 	oldValue=0.0;
@@ -21,6 +29,7 @@ RoboCenter::RoboCenter(AdvancedEncoder &enc,R1350n &gyroPin,ButtonInfo &resetPin
 	initRadian=0.0;
 	encToServo=0.0;
 	encToAxis=0.0;
+	axisToTire=0.0;
 	def=0.0;
 }
 
@@ -37,20 +46,19 @@ int RoboCenter::setup(){
 	initAngle=gyro->angle();
 	encToServo=150.954;
 	encToAxis=-48.33;
+	tread=165.0;
+	wheelBase=190.0;
+	axisToRbTire=175.0/2.0;
+	axisToTire=sqrtf(wheelBase*wheelBase+(tread/2.0)*(tread/2.0));
 	return i;
 }
 
 void RoboCenter::cycle(){
+	float theta=0.0;
 	resetSw->cycle();
 	enc0->cycle();
 	if(millis()-time>=1){
 		time=millis();
-		/*if(resetSw->readValue()){
-			initValue=enc0->value();
-			oldValue=enc0->value()-initValue;
-			//gyro->reset();
-			x=0.0;y=0.0;
-		}*/
 		value=(enc0->value()-initValue);
 		def=(value-oldValue);
 		velocity=def/0.001;
@@ -58,14 +66,26 @@ void RoboCenter::cycle(){
 		angle=gyro->angle()+startAngle;
 		angle*=(-1.0);
 		angle=area(angle,-M_PI,M_PI);
-		float theta=area(angle+radiusReverse(value-oldValue),-M_PI,M_PI);
-		cx+=fabs(def)*cos(theta);
-		cy+=fabs(def)*sin(theta);
-		servoX=cx+fabs(encToServo)*cos(theta);
-		servoY=cy+fabs(encToServo)*sin(theta);
+
+		theta=area(angle+radiusReverse(value-oldValue),-M_PI,M_PI);
+		encX+=fabs(def)*cos(theta);
+		encY+=fabs(def)*sin(theta);
+		theta=area(angle+radiusReverse(encToServo),-M_PI,M_PI);
+		servoX=encX+fabs(encToServo)*cos(theta);
+		servoY=encY+fabs(encToServo)*sin(theta);
 		theta=area(angle+radiusReverse(encToAxis),-M_PI,M_PI);
-		x=cx+fabs(encToAxis)*cos(theta);
-		y=cy+fabs(encToAxis)*sin(theta);
+		x=encX+fabs(encToAxis)*cos(theta);
+		y=encY+fabs(encToAxis)*sin(theta);
+
+		theta=area(atan(tread/(2.0*wheelBase))*(-1.0)+angle+radiusReverse(axisToTire),-M_PI,M_PI);
+		frontRTireX=x+fabs(axisToTire)*cos(theta);
+		frontRTireY=y+fabs(axisToTire)*sin(theta);
+		theta=area(atan(tread/(2.0*wheelBase))+angle+radiusReverse(axisToTire),-M_PI,M_PI);
+		frontLTireX=x+fabs(axisToTire)*cos(theta);
+		frontLTireY=y+fabs(axisToTire)*sin(theta);
+		theta=area(angle+radiusReverse(axisToRbTire)-(M_PI/2.0),-M_PI,M_PI);
+		backRTireX=x+fabs(axisToRbTire)*cos(theta);
+		backRTireY=y+fabs(axisToRbTire)*sin(theta);
 		oldValue=value;
 	}
 }
@@ -74,26 +94,14 @@ void RoboCenter::reset(){
 	gyro->reset();
 	initValue=enc0->value();
 	oldValue=enc0->value()-initValue;
-	cx=0.0;cy=0.0;
+	encX=0.0;encY=0.0;
 }
 
 void RoboCenter::reset(float x, float y){
 	gyro->reset();
 	initValue=enc0->value();
 	oldValue=enc0->value()-initValue;
-	cx=x;cy=y;
-}
-
-float RoboCenter::getX(){
-	return x;
-}
-
-float RoboCenter::getY(){
-	return y;
-}
-
-float RoboCenter::getAngle(){
-	return angle;
+	encX=x;encY=y;
 }
 
 void RoboCenter::accCycle(){

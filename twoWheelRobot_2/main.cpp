@@ -216,7 +216,7 @@ int main(){
 	robot.setup();
 
 	LineSensor line(a0,a1,a2,a3,a4);
-	Move move(line,startSW,servo,robot);
+	Move move(line,buzz,startSW,servo,robot);
 	move.setup();
 	//servo.setup(30,dtor(270.0),1.5,2.3);//‹ß“¡ƒT[ƒ{
 	//servo.setup(20.0,dtor(180.0),1.5,2.3);//rb956 rb955
@@ -249,7 +249,9 @@ int main(){
 		//console.cycle();
 		//servoControll.cycle();
 		//if(startSW.readValue()) gyro.reset();
-		if(millis()-buzzTime>=10){
+
+	/*	if(millis()-buzzTime>=500){
+			buzzTime=millis();
 			buzzTime=millis();
 			cnt=robot.getSlopeCount();
 			if(oldCnt!=cnt){
@@ -265,7 +267,7 @@ int main(){
 					buzz.digitalLow();
 				}
 			}
-		}
+		}*/
 #if 0
 		for(deg=-65;deg<50;deg+=10){
 			servo.setAngle(dtor(deg));
@@ -311,6 +313,7 @@ int main(){
 			//serial.printf("ad4 %f  ",a4.analogRead());
 			//move.printAdValue();
 			move.printRoboInfo();
+			//printf("enc%d",enc.count());
 			//serial.printf("slopev%.2f",robot.getSlope());
 			//serial.printf("cnt %d, old %d",cnt,oldCnt);
 			//serial.printf("x, %f, y, %f ,deg, %f  ",robot.getX(),robot.getY(),rtod(robot.getAngle()));

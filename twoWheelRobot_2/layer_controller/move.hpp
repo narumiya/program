@@ -32,8 +32,8 @@ private:
 	RIVER,					//river直前
 	RIVER1,				//river1回目曲がる直前
 	RIVER2,				//river2回目曲がる直前
-	RIVER3=10,				//river3回目曲がる直前
-	RIVER4,				//river4回目曲がる直前
+	//RIVER3=10,				//river3回目曲がる直前//river 直進後の座標
+	//RIVER4,				//river4回目曲がる直前
 //	RIVERFIN,			//river終わり直前
 	DOWNHILL,			//down hill 開始直前
 	DOWNHILL1_0,	//down hill 1回目カーブ開始
@@ -53,6 +53,7 @@ private:
 	LineSensor *line;
 	ButtonInfo *startSw;
 	RoboCenter *robo;
+	Digital *buzz;
 	Led1 led1;
 	Led2 led2;
 	Led3 led3;
@@ -60,6 +61,7 @@ private:
 	bool startFlag;
 	int mode;
 	int task;
+	int cycleTime;
 	float adData[5];
 	float roboAngle;
 	float coord[2][30];
@@ -85,8 +87,10 @@ private:
 	float initAngle;
 	float timeLeft;
 	float angleTime;
+	float radius;//旋回半径
+	float radiusServo;
 public:
-	Move(LineSensor &line,ButtonInfo &swPin,Servo &servo,RoboCenter &robo);
+	Move(LineSensor &line,Digital &digital,ButtonInfo &swPin,Servo &servoPin,RoboCenter &robo);
 	int setup();
 	void cycle();
 	void setCoord();
@@ -106,7 +110,11 @@ public:
 	float getSteeringInnerRingAngle(float angle);
 	float getTurningRadius(float angle);//現在のサーボ角度から現在の旋回半径を出す
 	float getTargetTurningRadius();//目標の半径を返す
-	float getTargeRadiusAngle(float radius,float output);//半径からサーボを傾ける角度を出す
+	//float getTargetTurningRadius(float distance,float radian);//目標の半径を返す
+	float getTargetTurningRadius(float targetX,float targetY);//目標の旋回半径を返す
+	float getTargeRadiusAngle(float radius);//半径からサーボを傾ける角度を出す
+	float getServoAngle(float targetX,float targetY);//目標座標からサーボの角度返す
+	float radiusToServo(float radius);//最小旋回半径からサーボの角度
 	float getServoAngle();
 	float getTimeLeft(float distance);//目標座標に到達するまでの時間(ms)
 	float getAngleTime(float targetRad,float nowRad);//目標角度に到達するまでの時間(ms)
