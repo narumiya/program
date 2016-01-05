@@ -195,10 +195,8 @@ int main(){
 int main(){
 	Pwm0 pwm0;
 	Servo servo(pwm0);
-	//KondoServo servo(pwm0);
 	A0 a0;A1 a1;A2 a2;A3 a3;A4 a4;
 	Sw1 sw0;ButtonInfo startSW(sw0);
-	//ButtonInfo startSW(a0);
 	Sw0 sw1;ButtonInfo resetSw(sw1);
 	startSW.setup(true,50);
 	resetSw.setup(true,50);
@@ -304,7 +302,7 @@ int main(){
 #endif
 
 #if 1
-		if(millis()-serialTime>=500){
+		if(millis()-serialTime>=70){
 			serialTime=millis();
 			//serial.printf("ad0 %f,",a0.analogRead());
 			//serial.printf("ad1 %f,",a1.analogRead());

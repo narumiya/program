@@ -119,6 +119,7 @@ public:
 	float getTimeLeft(float distance);//目標座標に到達するまでの時間(ms)
 	float getAngleTime(float targetRad,float nowRad);//目標角度に到達するまでの時間(ms)
 	void requestAngle(float targetX,float targetY,float nowX,float nowY);
+	void DecisionRestartTesk();
 };
 
 #endif

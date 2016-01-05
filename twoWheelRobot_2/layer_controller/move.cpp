@@ -226,8 +226,12 @@ void Move::setCoord(){
 }
 #endif
 void Move::setCoord(){
-	coord[CX][0]=500.0;	coord[CY][0]=500.0;
-	coord[CX][1]=1000.0;	coord[CY][1]=0.0;
+	coord[CX][0]=440.0;	coord[CY][0]=0.0;
+	coord[CX][1]=600.0;	coord[CY][1]=200.0;
+	coord[CX][2]=600.0;	coord[CY][2]=1000.0;
+	coord[CX][3]=600.0;	coord[CY][3]=10000.0;
+	/*coord[CX][0]=500.0;	coord[CY][0]=500.0;
+	coord[CX][1]=1000.0;	coord[CY][1]=0.0;*/
 }
 #define LINE 0
 #define COORD 1
@@ -467,8 +471,8 @@ float Move::getTargetAngle(){
 	float targetY=coord[CY][task];
 	float nextX=coord[CX][task+1];
 	float nextY=coord[CY][task+1];
-	float nowX=robo->getX();
-	float nowY=robo->getY();
+	float nowX=robo->getServoX();//robo->getX();
+	float nowY=robo->getServoY();//robo->getY();
 
 	//distance=get_vertical_distance_position(targetX,targetY,nowX,nowY,servoAngle);
 	distance=getDistance(targetX,targetY,nowX,nowY);

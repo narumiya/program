@@ -6,6 +6,7 @@
 #include "circuit/r1350n/r1350n.hpp"
 #include "util.hpp"
 #include "advanced_encoder.hpp"
+
 class RoboCenter:public Coord{
 private:
 	AdvancedEncoder *enc0;
