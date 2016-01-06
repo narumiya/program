@@ -41,13 +41,14 @@ int main(){
 	Servo servo(pwm0);
 	A0 a0;A1 a1;A2 a2;A3 a3;A4 a4;
 	LineSensor line(a0,a1,a2,a3,a4);
-	Sw1 sw0;ButtonInfo button0(sw0);
-	Sw0 sw1;ButtonInfo button1(sw1);
+
+	Sw0 sw0;ButtonInfo button0(sw0);
+	Sw1 sw1;ButtonInfo button1(sw1);
 	button0.setup(true,50);
 	button1.setup(true,50);
 	Led0 led;Blink blink(led);blink.setup();
 	Buzzer buzz;buzz.setupDigitalOut();
-	blink.time(200);
+	blink.time(800);
 	Serial0 serial;serial.setup(115200);
 	/*Console console(serial);console.setup(115200);
 	console.setNewLine(Console::NEWLINE_CR);
@@ -67,7 +68,13 @@ int main(){
 	int64_t tim=millis();
 
 	while(1){
-		blink.cycle();
+		if(move.getStart()){
+			blink.time(200);
+			blink.cycle();
+		}else{
+			blink.cycle();
+		}
+
 		robot.cycle();
 		move.cycle();
 		//console.cycle();

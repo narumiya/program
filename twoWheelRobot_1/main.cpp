@@ -183,7 +183,7 @@ int main(){
 }
 #endif
 
-#if 1
+#if 0
 #define AD0		GPIOC,GPIO_Pin_5
 #define AD1		GPIOC,GPIO_Pin_1
 #define AD2		GPIOC,GPIO_Pin_2
@@ -647,7 +647,7 @@ int main(void)
 	}
 }
 #endif
-#if 0
+#if 1
 #define AD0		GPIOC,GPIO_Pin_0
 #define AD1		GPIOC,GPIO_Pin_1
 #define AD2		GPIOC,GPIO_Pin_2
@@ -668,7 +668,7 @@ int main(void)
 	Led0 led0;led0.setupDigitalOut();
 	Led1 led1;led1.setupDigitalOut();
 	Led2 led2;led2.setupDigitalOut();
-	Led3 led3;led3.setupDigitalOut();
+Led3 led3;led3.setupDigitalOut();
 	Buzzer buzzer;buzzer.setupDigitalOut();
 	Sw0 sw0;sw0.setupDigitalIn();
 	Sw1 sw1;sw1.setupDigitalIn();
@@ -751,17 +751,27 @@ int main(void)
 	int tim=0;
 	float deg=0;
 	while(1){
-		//blink0.cycle();
-		//blink1.cycle();
-		//blink2.cycle();
+		blink0.cycle();
+		blink1.cycle();
+		blink2.cycle();
 		blink3.cycle();
-		//blink4.cycle();
-		i2c.cycle();
+		blink4.cycle();
+		//i2c.cycle();
 		if(!sw0.digitalRead()){
 			//Reset_encoder_over_under_flow();
-			led0.digitalHigh();
+		//	led0.digitalHigh();
 		}else{
-			led0.digitalLow();
+			//led0.digitalLow();
+		}
+		for(deg=-44.51;deg<44.51;deg+=0.1){
+			servo.setAngle(dtor(deg));
+			servo.cycle();
+			wait(1);
+		}
+		for(deg=44.51;deg>-44.51;deg-=0.1){
+			servo.setAngle(dtor(deg));
+			servo.cycle();
+			wait(1);
 		}
 
 		/*if(millis()-tim>=50){
@@ -787,7 +797,7 @@ int main(void)
 		if(millis()-time>=1000){
 			time=millis();
 
-			if(!flag){
+/*			if(!flag){
 				flag=1;
 				sprintf(data,"Hello");
 				lcd.setCursor(0,0);
@@ -799,7 +809,7 @@ int main(void)
 				flag=0;
 				lcd.clear();
 			}
-
+*/
 			/*if(!sw1.digitalRead()){
 				Reset_encoder_over_under_flow();
 			}*/

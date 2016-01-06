@@ -7,10 +7,10 @@ extern "C"{
 #include "calculate.h"
 }
 
-Move::Move(LineSensor &line,Digital &digital,ButtonInfo &swPin,ButtonInfo &sw0Pin,Servo &servoPin,RoboCenter &robo){
+Move::Move(LineSensor &line,Digital &digital,ButtonInfo &sw0Pin,ButtonInfo &sw1Pin,Servo &servoPin,RoboCenter &robo){
 	mode=NONSENSOR;
-	startSw=&swPin;
-	taskChage=&swPin;
+	button0=&sw0Pin;
+	button1=&sw1Pin;
 	servo=&servoPin;
 	buzz=&digital;
 	this->robo=&robo;
@@ -48,8 +48,8 @@ Move::Move(LineSensor &line,Digital &digital,ButtonInfo &swPin,ButtonInfo &sw0Pi
 
 int Move::setup(){
 	if(mode==USESENSOR)	line->setup();
-	startSw->setup(true,50);
-	taskChage->setup(true,50);
+	button0->setup(true,25);
+	button1->setup(true,25);
 	led1.setupDigitalOut();
 	led2.setupDigitalOut();
 	led3.setupDigitalOut();
@@ -87,8 +87,6 @@ void Move::setCoord(){
 	coord[CX][RIVER]=coord[CX][RIVER-1];												coord[CY][RIVER]=coord[CY][RIVER-1]-649.435;//river 前
 	coord[CX][RIVER1]=coord[CX][RIVER1-1]+194.975;							coord[CY][RIVER1]=coord[CY][RIVER1-1]-194.975;//river 1
 	coord[CX][RIVER2]=coord[CX][RIVER2-1]+47.151;							coord[CY][RIVER2]=coord[CY][RIVER2-1]-518.535;//river 2
-	//coord[CX][RIVER2]=coord[CX][RIVER2-1]+242.126;							coord[CY][RIVER2]=coord[CY][RIVER2-1]-713.509;//river 2
-
 	coord[CX][RIVER3]=coord[CX][RIVER3-1]+94.271;							coord[CY][RIVER3]=coord[CY][RIVER3-1]-1037.1;//river 2
 	coord[CX][HIGHLAND]=coord[CX][HIGHLAND-1]+353.553;				coord[CY][HIGHLAND]=coord[CY][HIGHLAND-1]-353.553;
 	coord[CX][DOWNHILL]=coord[CX][DOWNHILL-1]+636.41;				coord[CY][DOWNHILL]=coord[CY][DOWNHILL-1]-636.396;//down hill 始まり
@@ -133,22 +131,28 @@ void Move::setCoord(){
 }
 #endif
 
+void Move::setStartCoord(){
+	startCoord[CX][0]=0.0;startCoord[CY][0]=0.0;
+	startCoord[CX][1]=coord[CX][HILL1];startCoord[CY][1]=coord[CY][HILL1];
+	startCoord[CX][2]=coord[CX][HILL2];startCoord[CY][2]=coord[CY][HILL2];
+	startCoord[CX][3]=coord[CX][RIVER];startCoord[CY][3]=coord[CY][RIVER];
+	startCoord[CX][4]=coord[CX][HIGHLAND];startCoord[CY][4]=coord[CY][HIGHLAND];
+}
 void Move::cycle(){
-	pid_gain_t gain=set_pid_gain(0.4,0.0,0.0);
-	startSw->cycle();
-	taskChage->cycle();
+	button0->cycle();
+	button1->cycle();
+	decisionRestartTesk();
 	if(millis()-time>=5){
 		time=millis();
 		if(!startFlag){
-			decisionRestartTesk();
-			if(startSw->readDownEdge()) startFlag=true;
+			if(button1->readDownEdge()) startFlag=true;
 			task=startTask;
 			robo->reset(startX,startY);
 			output=dtor(initAngle);
 			servoAngle=startAngle*(-1.0);
 			servoAngle=area(servoAngle,-M_PI,M_PI);
 		}else if(startFlag){
-			if(startSw->readValue()){
+			if(button1->readValue()){
 				task=startTask;
 				robo->reset(startX,startY);
 				output=dtor(initAngle);
@@ -156,20 +160,9 @@ void Move::cycle(){
 				servoAngle=area(servoAngle,-M_PI,M_PI);
 			}else{
 				float targetRad=getTargetAngle();
-				//float nowRadius=getTurningRadius(servoAngle);
-				//float targetRadius=getTargetTurningRadius();
 				float angle=0.0;
 
-			/*	if(task==DOWNHILL1_1||task==DOWNHILL2_1||task==DOWNHILL3_1){
-					//gain=set_pid_gain(0.2,0.0,0.25);
-					angle=getTargeRadiusAngle(0);
-					//angle=rotationOutput(targetRadius-nowRadius,gain);
-					output=angle;
-				}else{*/
-					//angle=rotationOutput(targetRad-servoAngle,gain);
-					//output-=angle;
-					output=targetRad*(-1.0)+dtor(initAngle);//サーボ右方向が+なので-1かけてる
-				//}
+				output=targetRad*(-1.0)+dtor(initAngle);//サーボ右方向が+なので-1かけてる
 				output=floatlimit(dtor(-36.0+initAngle),output,dtor(36.0+initAngle));
 				servoAngle=(output-dtor(initAngle))*(-1.0)+robo->getAngle();//右回転が+だから-1かけてる
 				servoAngle=area(servoAngle,-M_PI,M_PI);
@@ -233,7 +226,6 @@ float Move::getTargetAngle(){
 			}
 		}
 	}
-
 	return (targetAngle);
 }
 
@@ -474,46 +466,58 @@ void Move::requestAngle(float targetX,float targetY,float nowX,float nowY){
 
 void Move::decisionRestartTesk(){
 	static int task=0;
+	int value=0;
+	static int oldValue=0;
+	static long int time=millis();
 	int setTask=0;
 
-	if(taskChage->readDownEdge()==1){
-		task++;
-	}
+	if(millis()-time>=50){
+		time=millis();
+		if(!startFlag){
+			value=button0->readValue();
+	        if(oldValue==0&&value==1){
+	            oldValue=value;
+	            task++;
+	        }else{
+	            oldValue=value;
+	        }
+		}
 
-	if(task>4)	task=0;
+		if(task>4)	task=0;
 
-	switch(task){
-	case 0:
-		led1.digitalLow();
-		led2.digitalLow();
-		led3.digitalLow();
-		setTask=0;
-	break;
-	case 1:
-		led1.digitalHigh();
-		led2.digitalLow();
-		led3.digitalLow();
-		setTask=HILL1;
-	break;
-	case 2:
-		led1.digitalLow();
-		led2.digitalHigh();
-		led3.digitalLow();
-		setTask=HILL2;
-	break;
-	case 3:
-		led1.digitalHigh();
-		led2.digitalHigh();
-		led3.digitalLow();
-		setTask=HILL3;
-	break;
-	case 4:
-		led1.digitalLow();
-		led2.digitalLow();
-		led3.digitalHigh();
-		setTask=HIGHLAND;
-	break;
-	default: break;
+		switch(task){
+		case 0:
+			led1.digitalLow();
+			led2.digitalLow();
+			led3.digitalLow();
+			setTask=0;
+		break;
+		case 1:
+			led1.digitalHigh();
+			led2.digitalLow();
+			led3.digitalLow();
+			setTask=HILL1;
+		break;
+		case 2:
+			led1.digitalLow();
+			led2.digitalHigh();
+			led3.digitalLow();
+			setTask=HILL2;
+		break;
+		case 3:
+			led1.digitalHigh();
+			led2.digitalHigh();
+			led3.digitalLow();
+			setTask=HILL3;
+		break;
+		case 4:
+			led1.digitalLow();
+			led2.digitalLow();
+			led3.digitalHigh();
+			setTask=HIGHLAND;
+		break;
+		default: break;
+		}
 	}
 	//this->startTask=task;
 }
@@ -525,6 +529,38 @@ void Move::getStartCoord(int task){
 		startAngle=0.0;
 		robo->setAngle(startAngle);
 		startTask=0;
+	}else if(task==HILL1){
+		startX=startCoord[CX][1];
+		startY=startCoord[CY][1];
+		startAngle=area(getTargetRadian(coord[CX][task+1],coord[CY][task+1],startX,startY),-M_PI,M_PI)*(-1.0);//ジャイロの角度反対のため反転
+		robo->setAngle(startAngle);
+		startX+=fabs(robo->getEncToBehind())*cos(startAngle);
+		startY+=fabs(robo->getEncToBehind())*sin(startAngle);
+		startTask=task+1;
+	}else if(task==HILL2){
+		startX=startCoord[CX][2];
+		startY=startCoord[CY][2];
+		startAngle=area(getTargetRadian(coord[CX][task+1],coord[CY][task+1],startX,startY),-M_PI,M_PI)*(-1.0);//ジャイロの角度反対のため反転
+		robo->setAngle(startAngle);
+		startX+=fabs(robo->getEncToBehind())*cos(startAngle);
+		startY+=fabs(robo->getEncToBehind())*sin(startAngle);
+		startTask=task+1;
+	}else if(task==HILL3){
+		startX=startCoord[CX][3];
+		startY=startCoord[CY][3];
+		startAngle=area(getTargetRadian(coord[CX][task+1],coord[CY][task+1],startX,startY),-M_PI,M_PI)*(-1.0);//ジャイロの角度反対のため反転
+		robo->setAngle(startAngle);
+		startX+=fabs(robo->getEncToBehind())*cos(startAngle);
+		startY+=fabs(robo->getEncToBehind())*sin(startAngle);
+		startTask=task+1;
+	}else if(task==HIGHLAND){
+		startX=startCoord[CX][4];
+		startY=startCoord[CY][4];
+		startAngle=area(getTargetRadian(coord[CX][task+1],coord[CY][task+1],startX,startY),-M_PI,M_PI)*(-1.0);//ジャイロの角度反対のため反転
+		robo->setAngle(startAngle);
+		startX+=fabs(robo->getEncToBehind())*cos(startAngle);
+		startY+=fabs(robo->getEncToBehind())*sin(startAngle);
+		startTask=task+1;
 	}else{
 		startX=coord[CX][task];
 		startY=coord[CY][task];

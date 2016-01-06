@@ -13,7 +13,7 @@
 #define ECO 3
 #define USE_BOARD NEW
 
-#if 1
+#if 0
 /**********IO****************************/
 class Led0:public Digital{
 private:

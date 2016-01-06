@@ -45,7 +45,7 @@ int RoboCenter::setup(){
 	initAngle=gyro->angle();
 	encToServo=150.954;
 	encToAxis=-48.33;
-	encToBehind=0.0;
+	encToBehind=encToAxis+30.0;
 	tread=165.0;
 	wheelBase=190.0;
 	axisToRbTire=175.0/2.0;

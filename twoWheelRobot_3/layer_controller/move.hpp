@@ -52,8 +52,8 @@ private:
 };
 	Servo *servo;
 	LineSensor *line;
-	ButtonInfo *startSw;
-	ButtonInfo *taskChage;
+	ButtonInfo *button0;
+	ButtonInfo *button1;
 	RoboCenter *robo;
 	Digital *buzz;
 	Led1 led1;
@@ -67,6 +67,7 @@ private:
 	float adData[5];
 	float roboAngle;
 	float coord[2][30];
+	float startCoord[2][5];
 	float circleCenter[2][3];	//down hill îŒ^‚Ì’†SÀ•W
 	float initCurveAngle[3];//downhill “Ë“ü‰ŠúŠp“x
 	float curveRadius[3];//down hill ”¼Œa
@@ -92,10 +93,11 @@ private:
 	float radius;//ù‰ñ”¼Œa
 	float radiusServo;
 public:
-	Move(LineSensor &line,Digital &digital,ButtonInfo &swPin,ButtonInfo &sw0Pin,Servo &servoPin,RoboCenter &robo);
+	Move(LineSensor &line,Digital &digital,ButtonInfo &sw0Pin,ButtonInfo &sw1Pin,Servo &servoPin,RoboCenter &robo);
 	int setup();
 	void cycle();
 	void setCoord();
+	void setStartCoord();
 	void setAngle(float angle){roboAngle=angle;}
 	void setDuty(float straight,float rotat);
 	void setPid(float p, float i, float d){pGain=p;iGain=i;dGain=d;}
@@ -119,6 +121,7 @@ public:
 	void requestAngle(float targetX,float targetY,float nowX,float nowY);
 	void decisionRestartTesk();
 	void getStartCoord(int task);
+	bool getStart(){return startFlag;};
 };
 
 #endif
