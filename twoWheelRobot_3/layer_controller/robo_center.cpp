@@ -45,7 +45,7 @@ int RoboCenter::setup(){
 	initAngle=gyro->angle();
 	encToServo=150.954;
 	encToAxis=-48.33;
-	encToBehind=encToAxis+30.0;
+	encToBehind=fabs(encToAxis)+30.0;
 	tread=165.0;
 	wheelBase=190.0;
 	axisToRbTire=175.0/2.0;
@@ -56,11 +56,11 @@ int RoboCenter::setup(){
 void RoboCenter::cycle(){
 	float theta=0.0;
 	enc0->cycle();
-	if(millis()-time>=1){
+	if(millis()-time>=5){
 		time=millis();
 		value=(enc0->value()-initValue);
 		def=(value-oldValue);
-		velocity=def/0.001;
+		velocity=def/0.005;
 		//velocity=enc0->getMltData()*enc0->rps();
 		angle=gyro->angle()+startAngle;
 		angle*=(-1.0);

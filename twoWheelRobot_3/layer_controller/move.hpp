@@ -40,7 +40,7 @@ private:
 	DOWNHILL1_0,	//down hill 1回目カーブ開始
 	DOWNHILL1_1,	//down hill 1回目カーブ終わり
 	DOWNHILL2_0,	//down hill 2回目のカーブ開始
-	DOWNHILL2_1,	//down hill 2回目のカーブ終わり
+	//DOWNHILL2_1,	//down hill 2回目のカーブ終わり
 	DOWNHILL3_0,	//down hill 3回目のカーブ開始
 	DOWNHILL3_1,	//down hill 3回目のカーブ終わり
 	DOWNHILL3_2,	//down hill 3回目のカーブ後の直進
@@ -92,6 +92,8 @@ private:
 	float angleTime;
 	float radius;//旋回半径
 	float radiusServo;
+	float radiusR;
+	float radiusL;
 public:
 	Move(LineSensor &line,Digital &digital,ButtonInfo &sw0Pin,ButtonInfo &sw1Pin,Servo &servoPin,RoboCenter &robo);
 	int setup();

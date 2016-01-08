@@ -44,6 +44,8 @@ Move::Move(LineSensor &line,Digital &digital,ButtonInfo &sw0Pin,ButtonInfo &sw1P
 	radius=0.0;
 	radiusServo=0.0;
 	timeLeft=9999.0;
+	radiusR=0;
+	radiusL=0;
 }
 
 int Move::setup(){
@@ -54,24 +56,27 @@ int Move::setup(){
 	led2.setupDigitalOut();
 	led3.setupDigitalOut();
 	setCoord();
+	setStartCoord();
 	servo->setup(20.0,dtor(180.0),1.5,2.3);//rb995
 	cycleTime=5;
 	initAngle=30.0;
 	output=dtor(initAngle);
 
+	/*
 	startX=-495.0+73.0;
 	//startX=0.0;
 	startY=0.0;
 	startAngle=0.0;
 	robo->setAngle(startAngle);
 	startTask=SLOPE1;
+*/
 
-/*	startX=coord[CX][DOWNHILL];
+	startX=coord[CX][DOWNHILL];
 	startY=coord[CY][DOWNHILL];
 	startAngle=getTargetRadian(coord[CX][DOWNHILL+1],coord[CY][DOWNHILL+1],startX,startY)*(-1.0);//ƒWƒƒƒCƒ‚ÌŠp“x”½‘Î‚Ì‚½‚ß”½“]
 	robo->setAngle(startAngle);
 	startTask=DOWNHILL+1;
-*/
+
 	return 0;
 }
 
@@ -106,8 +111,11 @@ void Move::setCoord(){
 	circleCenter[CX][1]=coord[CX][DOWNHILL2_0]-curveRadius[1]*cos(dtor(37.6+97.911));
 	circleCenter[CY][1]=coord[CY][DOWNHILL2_0]-curveRadius[1]*sin(dtor(37.6+97.911));
 	initCurveAngle[1]=dtor(37.6+97.911);
-	coord[CX][DOWNHILL2_1]=circleCenter[CX][1]+curveRadius[1]*cos(dtor(37.599));coord[CY][DOWNHILL2_1]=circleCenter[CY][1]+curveRadius[1]*sin(dtor(37.599));
-	coord[CX][DOWNHILL3_0]=coord[CX][DOWNHILL2_1]+555.924*cos(dtor(-51.83));coord[CY][DOWNHILL3_0]=coord[CY][DOWNHILL2_1]+555.924*sin(dtor(-51.83));
+	//coord[CX][DOWNHILL2_1]=circleCenter[CX][1]+curveRadius[1]*cos(dtor(37.599));coord[CY][DOWNHILL2_1]=circleCenter[CY][1]+curveRadius[1]*sin(dtor(37.599));
+	//coord[CX][DOWNHILL3_0]=coord[CX][DOWNHILL2_1]+555.924*cos(dtor(-51.83));coord[CY][DOWNHILL3_0]=coord[CY][DOWNHILL2_1]+555.924*sin(dtor(-51.83));
+
+	coord[CX][DOWNHILL3_0]=circleCenter[CX][1]+curveRadius[1]*cos(dtor(37.599))+555.924*cos(dtor(-51.83));coord[CY][DOWNHILL3_0]=circleCenter[CY][1]+curveRadius[1]*sin(dtor(37.599))+555.924*sin(dtor(-51.83));
+
 	//down hill 3‰ñ–Ú ‰~‚Ì’†SÀ•W
 	curveRadius[2]=852.293;
 	centralAngle[2]=dtor(97.911);
@@ -117,7 +125,7 @@ void Move::setCoord(){
 	coord[CX][DOWNHILL3_1]=circleCenter[CX][2]+curveRadius[2]*cos(dtor(90.041-180.0));coord[CY][DOWNHILL3_1]=circleCenter[CY][2]+curveRadius[2]*sin(dtor(90.041-180.0));
 	coord[CX][DOWNHILL3_2]=coord[CX][DOWNHILL3_2-1]+303.090;coord[CY][DOWNHILL3_2]=coord[CY][DOWNHILL3_2-1];
 
-	coord[CX][FIN]=coord[CX][FIN-1]+5000.0;										coord[CY][FIN]=coord[CY][DOWNHILL3_2-1];//ÅŒã
+	coord[CX][FIN]=coord[CX][FIN-1]+500.0;										coord[CY][FIN]=coord[CY][DOWNHILL3_2-1];//ÅŒã
 }
 #endif
 #if 0
@@ -145,7 +153,7 @@ void Move::cycle(){
 	if(millis()-time>=5){
 		time=millis();
 		if(!startFlag){
-			if(button1->readDownEdge()) startFlag=true;
+			if(button1->readValue()) startFlag=true;
 			task=startTask;
 			robo->reset(startX,startY);
 			output=dtor(initAngle);
@@ -171,7 +179,6 @@ void Move::cycle(){
 		}
 		servo->cycle();
 	}
-
 }
 
 void Move::LineCycle(){
@@ -190,42 +197,60 @@ float Move::rotationOutput(float diff,pid_gain_t gain){
 }
 
 float Move::getTargetAngle(){
+	static int oldTask=task;
+	static int buzzFlag=0;
+	static uint64_t time=millis();
 	float targetX=coord[CX][task];
 	float targetY=coord[CY][task];
-	float nextX=coord[CX][task+1];
-	float nextY=coord[CY][task+1];
 	float nowX=robo->getServoX();//robo->getX();
 	float nowY=robo->getServoY();//robo->getY();
 
-	//distance=get_vertical_distance_position(targetX,targetY,nowX,nowY,servoAngle);
-	distance=getDistance(targetX,targetY,nowX,nowY);
-	timeLeft=getTimeLeft(distance);
-	angleTime=getAngleTime(area(getTargetRadian(nextX,nextY,nowX,nowY),-M_PI,M_PI),servoAngle);
-	targetAngle=area(getTargetRadian(targetX,targetY,nowX,nowY),-M_PI,M_PI);
+	distance=get_vertical_distance_position(targetX,targetY,nowX,nowY,servoAngle);
+	//distance=getDistance(targetX,targetY,nowX,nowY);
+	//timeLeft=getTimeLeft(distance);
+	//angleTime=getAngleTime(area(getTargetRadian(nextX,nextY,nowX,nowY),-M_PI,M_PI),servoAngle);
+	//targetAngle=area(getTargetRadian(targetX,targetY,nowX,nowY),-M_PI,M_PI);
 
 	targetAngle=getServoAngle(targetX,targetY);
 	this->radiusServo=targetAngle;
 
 	if(task!=FIN){
-		if(task==HILL3||task==RIVER1||task==RIVER2||task==DOWNHILL1_1||task==DOWNHILL2_1||task==DOWNHILL3_1){
+		if(task==HILL3||task==RIVER1||task==RIVER2||task==DOWNHILL1_1||/*task==DOWNHILL2_1||*/task==DOWNHILL3_1){
 			//distance=	get_vertical_distance_position(targetX,targetY,robo->getServoX(),robo->getServoY(),servoAngle);
 			//distance=getDistance(targetX,targetY,nowX,nowY);
-			if(distance<=60.0){
+			if(distance<=130.0){//120//60
 				task++;
 			}
 		}else{
 			if(task==DOWNHILL1_0||task==DOWNHILL2_0||task==DOWNHILL3_0){
 				//distance=getDistance(targetX,targetY,robo->getX(),robo->getY());
-				if(distance<=60.0){
+				if(distance<=130.0){//60
 					task++;
 				}
 			}else{
-				if(distance<=100.0){
+				if(distance<=130.0){//60//100.0
 					task++;
 				}
 			}
 		}
 	}
+	if(oldTask!=task){
+		buzzFlag=1;
+	}
+	if(buzzFlag==1){
+		if(millis()-time<=300){
+			buzz->digitalHigh();
+			led3.digitalHigh();
+		}else{
+			buzzFlag=0;
+		}
+	}else{
+		time=millis();
+		led3.digitalLow();
+		buzz->digitalLow();
+	}
+
+	oldTask=task;
 	return (targetAngle);
 }
 
@@ -252,7 +277,7 @@ float Move::getVerticalDistance(){
 	float targetY=coord[CY][task];
 	float nowX=robo->getX();
 	float nowY=robo->getY();
-	float nowAngle=servoAngle;
+	float nowAngle=robo->getAngle();
 	float value=get_vertical_distance_position(targetX,targetY,nowX,nowY,nowAngle);
 
 	return value;
@@ -417,6 +442,8 @@ float Move::getServoAngle(float targetX,float targetY){
         resultAngle=dtor(radiusToServo(radius))*(-1.0);
     }
     this->radius=radius;
+    this->radiusR=radiusR;
+    this->radiusL=radiusL;
 	return (resultAngle);
 }
 
@@ -425,8 +452,8 @@ float Move::getTargeRadiusAngle(float radius){
 
 	if(task==DOWNHILL1_1){
 		angle=dtor(initAngle-15.0);//10.0
-	}else if(task==DOWNHILL2_1){
-		angle=dtor(initAngle+18.0);
+	//}else if(task==DOWNHILL2_1){
+	//	angle=dtor(initAngle+18.0);
 	}else if(task==DOWNHILL3_1){
 		angle=dtor(initAngle-10.0);
 	}
@@ -471,9 +498,9 @@ void Move::decisionRestartTesk(){
 	static long int time=millis();
 	int setTask=0;
 
-	if(millis()-time>=50){
-		time=millis();
-		if(!startFlag){
+	if(!startFlag){
+		if(millis()-time>=50){
+			time=millis();
 			value=button0->readValue();
 	        if(oldValue==0&&value==1){
 	            oldValue=value;
@@ -518,13 +545,14 @@ void Move::decisionRestartTesk(){
 		break;
 		default: break;
 		}
+		//getStartCoord(setTask);
 	}
-	//this->startTask=task;
 }
 
 void Move::getStartCoord(int task){
 	if(task==0){
-		startX=0.0;
+		startX=-495.0+73.0;
+		//startX=0.0;
 		startY=0.0;
 		startAngle=0.0;
 		robo->setAngle(startAngle);
@@ -581,18 +609,20 @@ void Move::printAdValue(){
 }
 
 void Move::printRoboInfo(){
-	printf("x,%.2f,",robo->getX());
-	printf("y,%.2f,",robo->getY());
+	printf("x,%.2f,",robo->getServoX());
+	printf("y,%.2f,",robo->getServoY());
 	printf("deg,%.2f,",rtod(robo->getAngle()));
-	printf("sd,%.2f,",rtod(servoAngle));
+	//printf("sd,%.2f,",rtod(servoAngle));
 	printf("tx,%.2f,",coord[CX][task]);
 	printf("ty,%.2f,",coord[CY][task]);
-	printf("td,%.2f,",rtod(targetAngle));
-	printf("vel,%.2f,",robo->getVelocity());
+	//printf("td,%.2f,",rtod(targetAngle));
+	//printf("vel,%.2f,",robo->getVelocity());
 	printf("dis,%.2f,",distance);
 	printf("task,%d,",task);
-	printf("out,%f,",rtod(output)-initAngle);
-	printf("radius,%f,",radius);
+	//printf("out,%f,",rtod(output)-initAngle);
+	//printf("radius,%f,",radius);
+	printf("radiusR,%f,",radiusR);
+	printf("radiusL,%f,",radiusL);
 	printf("servo,%f,",rtod(radiusServo));
 /*	printf("radius,%f,",radius);
 	printf("servo,%f,",rtod(radiusServo));

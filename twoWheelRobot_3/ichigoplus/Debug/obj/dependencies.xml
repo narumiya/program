@@ -244,7 +244,7 @@
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\core\usbd_ioreq.h"/>
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_conf\usbd_desc.h"/>
       </source>
-      <source file="..\..\..\layer_controller\move.hpp" lastModified="15215863a8b">
+      <source file="..\..\..\layer_controller\move.hpp" lastModified="15220d57615">
          <include file="..\..\..\layer_driver\circuit\servo.hpp"/>
          <include file="..\..\..\layer_driver\circuit\button_info.hpp"/>
          <include file="..\..\..\layer_controller\robo_center.hpp"/>
@@ -446,7 +446,7 @@
       </source>
       <source file="..\..\..\cmsis\core_cmInstr.h" lastModified="14eb18e7460">
       </source>
-      <source file="..\..\..\layer_controller\robo_center.cpp" lastModified="1521779ef5d">
+      <source file="..\..\..\layer_controller\robo_center.cpp" lastModified="1521fc7f5b7">
          <include file="..\..\..\layer_controller\robo_center.hpp"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
          <include file="..\..\..\layer_controller\calculate.h"/>
@@ -671,6 +671,12 @@
          <include file="..\..\..\layer_driver\circuit\okmtmd\okmtmd.hpp"/>
          <include file="..\..\..\layer_driver\base\util.h"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
+      </source>
+      <source file="..\..\..\layer_controller\move.cpp" lastModified="15220d579de">
+         <include file="..\..\..\layer_controller\move.hpp"/>
+         <include file="..\..\..\layer_driver\board\pin.hpp"/>
+         <include file="..\..\..\layer_driver\base\mcutime.h"/>
+         <include file="..\..\..\layer_controller\calculate.h"/>
       </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_exti.c" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_exti.h"/>
