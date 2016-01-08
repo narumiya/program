@@ -545,7 +545,7 @@ void Move::decisionRestartTesk(){
 		break;
 		default: break;
 		}
-		//getStartCoord(setTask);
+		getStartCoord(setTask);
 	}
 }
 
@@ -560,40 +560,40 @@ void Move::getStartCoord(int task){
 	}else if(task==HILL1){
 		startX=startCoord[CX][1];
 		startY=startCoord[CY][1];
-		startAngle=area(getTargetRadian(coord[CX][task+1],coord[CY][task+1],startX,startY),-M_PI,M_PI)*(-1.0);//ƒWƒƒƒCƒ‚ÌŠp“x”½‘Î‚Ì‚½‚ß”½“]
-		robo->setAngle(startAngle);
+		startAngle=area(getTargetRadian(coord[CX][task+1],coord[CY][task+1],startX,startY),-M_PI,M_PI);
+		robo->setAngle(startAngle*(-1.0));//ƒWƒƒƒCƒ‚ÌŠp“x”½‘Î‚Ì‚½‚ß”½“]
 		startX+=fabs(robo->getEncToBehind())*cos(startAngle);
 		startY+=fabs(robo->getEncToBehind())*sin(startAngle);
 		startTask=task+1;
 	}else if(task==HILL2){
 		startX=startCoord[CX][2];
 		startY=startCoord[CY][2];
-		startAngle=area(getTargetRadian(coord[CX][task+1],coord[CY][task+1],startX,startY),-M_PI,M_PI)*(-1.0);//ƒWƒƒƒCƒ‚ÌŠp“x”½‘Î‚Ì‚½‚ß”½“]
-		robo->setAngle(startAngle);
+		startAngle=area(getTargetRadian(coord[CX][task+1],coord[CY][task+1],startX,startY),-M_PI,M_PI);
+		robo->setAngle(startAngle*(-1.0));//ƒWƒƒƒCƒ‚ÌŠp“x”½‘Î‚Ì‚½‚ß”½“]
 		startX+=fabs(robo->getEncToBehind())*cos(startAngle);
 		startY+=fabs(robo->getEncToBehind())*sin(startAngle);
 		startTask=task+1;
 	}else if(task==HILL3){
 		startX=startCoord[CX][3];
 		startY=startCoord[CY][3];
-		startAngle=area(getTargetRadian(coord[CX][task+1],coord[CY][task+1],startX,startY),-M_PI,M_PI)*(-1.0);//ƒWƒƒƒCƒ‚ÌŠp“x”½‘Î‚Ì‚½‚ß”½“]
-		robo->setAngle(startAngle);
+		startAngle=area(getTargetRadian(coord[CX][task+1],coord[CY][task+1],startX,startY),-M_PI,M_PI);
+		robo->setAngle(startAngle*(-1.0));//ƒWƒƒƒCƒ‚ÌŠp“x”½‘Î‚Ì‚½‚ß”½“]
 		startX+=fabs(robo->getEncToBehind())*cos(startAngle);
 		startY+=fabs(robo->getEncToBehind())*sin(startAngle);
 		startTask=task+1;
 	}else if(task==HIGHLAND){
 		startX=startCoord[CX][4];
 		startY=startCoord[CY][4];
-		startAngle=area(getTargetRadian(coord[CX][task+1],coord[CY][task+1],startX,startY),-M_PI,M_PI)*(-1.0);//ƒWƒƒƒCƒ‚ÌŠp“x”½‘Î‚Ì‚½‚ß”½“]
-		robo->setAngle(startAngle);
+		startAngle=area(getTargetRadian(coord[CX][task+1],coord[CY][task+1],startX,startY),-M_PI,M_PI);
+		robo->setAngle(startAngle*(-1.0));//ƒWƒƒƒCƒ‚ÌŠp“x”½‘Î‚Ì‚½‚ß”½“]
 		startX+=fabs(robo->getEncToBehind())*cos(startAngle);
 		startY+=fabs(robo->getEncToBehind())*sin(startAngle);
 		startTask=task+1;
 	}else{
 		startX=coord[CX][task];
 		startY=coord[CY][task];
-		startAngle=area(getTargetRadian(coord[CX][task+1],coord[CY][task+1],startX,startY),-M_PI,M_PI)*(-1.0);//ƒWƒƒƒCƒ‚ÌŠp“x”½‘Î‚Ì‚½‚ß”½“]
-		robo->setAngle(startAngle);
+		startAngle=area(getTargetRadian(coord[CX][task+1],coord[CY][task+1],startX,startY),-M_PI,M_PI);
+		robo->setAngle(startAngle*(-1.0));//ƒWƒƒƒCƒ‚ÌŠp“x”½‘Î‚Ì‚½‚ß”½“]
 		startX=coord[CX][task]+fabs(robo->getEncToBehind())*cos(startAngle);
 		startY=coord[CY][task]+fabs(robo->getEncToBehind())*sin(startAngle);
 		startTask=task+1;
@@ -609,8 +609,8 @@ void Move::printAdValue(){
 }
 
 void Move::printRoboInfo(){
-	printf("x,%.2f,",robo->getServoX());
-	printf("y,%.2f,",robo->getServoY());
+	printf("x,%.2f,",robo->getX());
+	printf("y,%.2f,",robo->getY());
 	printf("deg,%.2f,",rtod(robo->getAngle()));
 	//printf("sd,%.2f,",rtod(servoAngle));
 	printf("tx,%.2f,",coord[CX][task]);

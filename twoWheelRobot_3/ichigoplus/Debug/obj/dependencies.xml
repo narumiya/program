@@ -672,12 +672,6 @@
          <include file="..\..\..\layer_driver\base\util.h"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
       </source>
-      <source file="..\..\..\layer_controller\move.cpp" lastModified="15220d579de">
-         <include file="..\..\..\layer_controller\move.hpp"/>
-         <include file="..\..\..\layer_driver\board\pin.hpp"/>
-         <include file="..\..\..\layer_driver\base\mcutime.h"/>
-         <include file="..\..\..\layer_controller\calculate.h"/>
-      </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_exti.c" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_exti.h"/>
       </source>
