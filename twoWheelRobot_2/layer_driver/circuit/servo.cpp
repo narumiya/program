@@ -45,17 +45,7 @@ float Servo::getVelocity(){
 }
 
 void Servo::cycle(){
-	const float value=fabs(cvtPulse(dtor(5.0))-cvtPulse(0.0));
-	static float oldValue=1.0;
-
-	if(fabs(request-oldRequest)>value){
-		oldValue=(request+oldRequest)/2.0;
-		oldRequest=oldValue;
-	}else{
-		oldValue=request;
-		oldRequest=oldValue;
-	}
-	pwm->pwmWrite(fabs(1.0-oldValue));
+	pwm->pwmWrite(fabs(1.0-request));
 }
 
 #if 0

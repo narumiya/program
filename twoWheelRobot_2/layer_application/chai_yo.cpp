@@ -1,12 +1,12 @@
 #include "chai_yo.hpp"
 
-ChaiYo::ChaiYo(Move &move,RoboCenter &eco,Buzzer &buzz,Led1 &l1,Led2 &l2,Led3 &l3,ButtonInfo &b0,ButtonInfo &b1){
+ChaiYo::ChaiYo(Move &move,RoboCenter &eco,Buzzer &buzz,Led1 &l1,ButtonInfo &b0,ButtonInfo &b1){
 	this->move=&move;
 	this->eco=&eco;
 	this->buzz=&buzz;
 	this->led1=&l1;
-	this->led2=&l2;
-	this->led3=&l3;
+	//this->led2=&l2;
+	//this->led3=&l3;
 	this->b0=&b0;
 	this->b1=&b1;
 	time=millis();
@@ -19,8 +19,8 @@ int ChaiYo::setup(){
 	int i=eco->setup();
 	i+=move->setup();
 	i+=led1->setupDigitalOut();
-	i+=led2->setupDigitalOut();
-	i+=led3->setupDigitalOut();
+//	i+=led2->setupDigitalOut();
+	//i+=led3->setupDigitalOut();
 	i+=b0->setup(true,25);
 	i+=b1->setup(true,25);
 	controlPeriod=5;

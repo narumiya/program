@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
    <processor signature="4.8.4 -mcpu=cortex-m4 -mthumb -g -Map=ichigoplus.map -O0 --gc-sections -lm -lgcc -lc -lstdc++ -LC:\CooCox\CoIDE\configuration\ProgramData\ichigoplus -TC:\CooCox\CoIDE\configuration\ProgramData\ichigoplus/link.ld -g">
-      <target file="ichigoplus.elf" lastModified="15214302859">
+      <target file="ichigoplus.elf" lastModified="152252e0a86">
          <source file="..\obj\config_pwm.o" lastModified="151af33ffc0"/>
          <source file="..\obj\line_sensor.o" lastModified="151af33fffe"/>
          <source file="..\obj\usb_core.o" lastModified="151af3400da"/>
@@ -14,7 +14,7 @@
          <source file="..\obj\mini_md.o" lastModified="151af34031c"/>
          <source file="..\obj\kondo_servo.o" lastModified="151b8bec4e7"/>
          <source file="..\obj\usbd_usr.o" lastModified="151af340425"/>
-         <source file="..\obj\ina226.o" lastModified="151b8e23f22"/>
+         <source file="..\obj\ina226.o" lastModified="152250a3e11"/>
          <source file="..\obj\r1350n.o" lastModified="151af34051f"/>
          <source file="..\obj\calculate.o" lastModified="151af34056e"/>
          <source file="..\obj\config_encoder.o" lastModified="151af3405eb"/>
@@ -31,16 +31,17 @@
          <source file="..\obj\startup_stm32f4xx.o" lastModified="151af340acd"/>
          <source file="..\obj\stm32f4xx_crc.o" lastModified="151af340b2a"/>
          <source file="..\obj\stm32f4xx_iwdg.o" lastModified="151af340b88"/>
-         <source file="..\obj\s11059.o" lastModified="151b8e23fbf"/>
+         <source file="..\obj\s11059.o" lastModified="152250a3eae"/>
          <source file="..\obj\usbd_core.o" lastModified="151af340c82"/>
-         <source file="..\obj\pin.o" lastModified="151b8e2c231"/>
-         <source file="..\obj\main.o" lastModified="1521430206a"/>
-         <source file="..\obj\pin0.o" lastModified="151b8e24339"/>
+         <source file="..\obj\pin.o" lastModified="152250a3f0c"/>
+         <source file="..\obj\main.o" lastModified="152252e0609"/>
+         <source file="..\obj\pin0.o" lastModified="1522507f456"/>
          <source file="..\obj\analog.o" lastModified="151af340f9f"/>
          <source file="..\obj\stm32_ub_fatfs.o" lastModified="151af34101c"/>
          <source file="..\obj\stm32f4xx_rcc.o" lastModified="151af3410a9"/>
+         <source file="..\obj\pin1.o" lastModified="152252b0552"/>
          <source file="..\obj\system.o" lastModified="151af3410e7"/>
-         <source file="..\obj\move.o" lastModified="15214302210"/>
+         <source file="..\obj\move.o" lastModified="152250f962b"/>
          <source file="..\obj\stm32f4xx_adc.o" lastModified="151af34122f"/>
          <source file="..\obj\servo_controll.o" lastModified="151b8bec796"/>
          <source file="..\obj\blink.o" lastModified="151af3412eb"/>
@@ -53,7 +54,7 @@
          <source file="..\obj\usbd_desc.o" lastModified="151af34152d"/>
          <source file="..\obj\error.o" lastModified="151af34158b"/>
          <source file="..\obj\config_systick.o" lastModified="151af3415d9"/>
-         <source file="..\obj\servo.o" lastModified="151c4e17b1e"/>
+         <source file="..\obj\servo.o" lastModified="152252b05bf"/>
          <source file="..\obj\stm32_ub_sdcard.o" lastModified="151af34177f"/>
          <source file="..\obj\stm32f4xx_gpio.o" lastModified="151af3417dd"/>
          <source file="..\obj\stm32_ub_usbdisk.o" lastModified="151af34183b"/>
@@ -82,7 +83,7 @@
          <source file="..\obj\serial.o" lastModified="151af3423a5"/>
          <source file="..\obj\config_i2c.o" lastModified="151af342412"/>
          <source file="..\obj\console.o" lastModified="151af3424ae"/>
-         <source file="..\obj\chai_yo.o" lastModified="1521430228d"/>
+         <source file="..\obj\chai_yo.o" lastModified="152251032f5"/>
          <source file="..\obj\can_encoder.o" lastModified="151af342599"/>
          <source file="..\obj\stm32f4xx_rtc.o" lastModified="151af342645"/>
          <source file="..\obj\usbd_ioreq.o" lastModified="151af3426b2"/>

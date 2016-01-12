@@ -244,7 +244,7 @@
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_lib\core\usbd_ioreq.h"/>
          <include file="..\..\..\layer_driver\board\stm32f4_config\usb\usb_conf\usbd_desc.h"/>
       </source>
-      <source file="..\..\..\layer_controller\move.hpp" lastModified="15220d57615">
+      <source file="..\..\..\layer_controller\move.hpp" lastModified="152260a2a07">
          <include file="..\..\..\layer_driver\circuit\servo.hpp"/>
          <include file="..\..\..\layer_driver\circuit\button_info.hpp"/>
          <include file="..\..\..\layer_controller\robo_center.hpp"/>
@@ -446,7 +446,7 @@
       </source>
       <source file="..\..\..\cmsis\core_cmInstr.h" lastModified="14eb18e7460">
       </source>
-      <source file="..\..\..\layer_controller\robo_center.cpp" lastModified="1521fc7f5b7">
+      <source file="..\..\..\layer_controller\robo_center.cpp" lastModified="15234eaca94">
          <include file="..\..\..\layer_controller\robo_center.hpp"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
          <include file="..\..\..\layer_controller\calculate.h"/>
@@ -672,6 +672,12 @@
          <include file="..\..\..\layer_driver\base\util.h"/>
          <include file="..\..\..\layer_driver\base\mcutime.h"/>
       </source>
+      <source file="..\..\..\layer_controller\move.cpp" lastModified="152362996d7">
+         <include file="..\..\..\layer_controller\move.hpp"/>
+         <include file="..\..\..\layer_driver\board\pin.hpp"/>
+         <include file="..\..\..\layer_driver\base\mcutime.h"/>
+         <include file="..\..\..\layer_controller\calculate.h"/>
+      </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_exti.c" lastModified="14eb18e6c90">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_exti.h"/>
       </source>
@@ -692,7 +698,7 @@
          <include file="..\..\..\layer_application\console.hpp"/>
          <include file="..\..\..\layer_driver\base\logging.h"/>
       </source>
-      <source file="..\..\..\layer_driver\circuit\r1350n\r1350n.hpp" lastModified="150d76d8819">
+      <source file="..\..\..\layer_driver\circuit\r1350n\r1350n.hpp" lastModified="152358103bb">
          <include file="..\..\..\layer_driver\base\serial.hpp"/>
       </source>
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_iwdg.h" lastModified="14eb18e6c90">
@@ -732,7 +738,7 @@
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
-      <source file="..\..\..\main.cpp" lastModified="15215863a4d">
+      <source file="..\..\..\main.cpp" lastModified="1522616e311">
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_adc.h"/>
          <include file="..\..\..\layer_driver\board\stm32f4_config\config_i2c.h"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>

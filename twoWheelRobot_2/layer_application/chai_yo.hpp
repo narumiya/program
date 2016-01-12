@@ -37,8 +37,8 @@ private:
 	RoboCenter *eco;
 	Buzzer *buzz;
 	Led1 *led1;
-	Led2 *led2;
-	Led3 *led3;
+	//Led2 *led2;
+	//Led3 *led3;
 	ButtonInfo *b0;
 	ButtonInfo *b1;
 	int64_t time;
@@ -57,7 +57,7 @@ private:
 	float curveRadius[3];//down hill îºåa
 	float centralAngle[3];//down hill íÜêSäp
 public:
-	ChaiYo(Move &move,RoboCenter &eco,Buzzer &buzz,Led1 &l1,Led2 &l2,Led3 &l3,ButtonInfo &b0,ButtonInfo &b1);
+	ChaiYo(Move &move,RoboCenter &eco,Buzzer &buzz,Led1 &l1,ButtonInfo &b0,ButtonInfo &b1);
 	int setup();
 	void setCoord();
 	void cycle();

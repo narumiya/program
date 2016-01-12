@@ -116,9 +116,10 @@ int main(){
 #endif
 
 #if 1
-		if(millis()-serialTime>=100){
+		if(millis()-serialTime>=150){
 			serialTime=millis();
 			move.printRoboInfo();
+			printf(",enc ,%d,",adenc.count());
 			serial.printf("\n");
 		}
 #endif

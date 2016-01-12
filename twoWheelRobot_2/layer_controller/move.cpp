@@ -49,8 +49,8 @@ int Move::setup(){
 	if(mode==USESENSOR)	line->setup();
 	startSw->setup(true,25);
 	led1.setupDigitalOut();
-	led2.setupDigitalOut();
-	led3.setupDigitalOut();
+//	led2.setupDigitalOut();
+	//led3.setupDigitalOut();
 	setCoord();
 	servo->setup(20.0,dtor(180.0),1.5,2.3);//rb995
 	cycleTime=5;

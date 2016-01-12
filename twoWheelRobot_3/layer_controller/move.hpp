@@ -32,7 +32,7 @@ private:
 	RIVER,					//river直前
 	RIVER1,				//river1回目曲がる直前
 	RIVER2,				//river2回目曲がる直前
-	RIVER3,				//riiver 直進後の座標
+	//RIVER3,				//riiver 直進後の座標
 	//RIVER4,				//river4回目曲がる直前
 //	RIVERFIN,			//river終わり直前
 	HIGHLAND,			//HIGHLAND始まり

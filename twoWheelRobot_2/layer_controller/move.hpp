@@ -55,8 +55,8 @@ private:
 	RoboCenter *robo;
 	Digital *buzz;
 	Led1 led1;
-	Led2 led2;
-	Led3 led3;
+	//Led2 led2;
+	//Led3 led3;
 
 	bool startFlag;
 	int mode;

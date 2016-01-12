@@ -185,7 +185,7 @@ int main(){
 }
 #endif
 
-#if 1
+#if 0
 #define AD0		GPIOC,GPIO_Pin_5
 #define AD1		GPIOC,GPIO_Pin_1
 #define AD2		GPIOC,GPIO_Pin_2
@@ -651,7 +651,7 @@ int main(void)
 	}
 }
 #endif
-#if 0
+#if 1
 #define AD0		GPIOC,GPIO_Pin_0
 #define AD1		GPIOC,GPIO_Pin_1
 #define AD2		GPIOC,GPIO_Pin_2
@@ -671,8 +671,8 @@ int main(void)
 {
 	Led0 led0;led0.setupDigitalOut();
 	Led1 led1;led1.setupDigitalOut();
-	Led2 led2;led2.setupDigitalOut();
-	Led3 led3;led3.setupDigitalOut();
+	//Led2 led2;led2.setupDigitalOut();
+	//Led3 led3;led3.setupDigitalOut();
 	Buzzer buzzer;buzzer.setupDigitalOut();
 	Sw0 sw0;sw0.setupDigitalIn();
 	Sw1 sw1;sw1.setupDigitalIn();
@@ -691,11 +691,7 @@ int main(void)
 	A9 a9;
 	A10 a10;
 
-	/*Init_ADC1(GPIOC,GPIO_Pin_1);
-	Init_ADC1(GPIOC,GPIO_Pin_2);//2
-	Init_ADC1(GPIOC,GPIO_Pin_3);
-	Init_ADC1(GPIOC,GPIO_Pin_4);//4
-	Init_ADC1(GPIOC,GPIO_Pin_5);*/
+
 	Init_ADC1(AD0);
 	Init_ADC1(AD1);
 	Init_ADC1(AD2);
@@ -707,45 +703,27 @@ int main(void)
 	Init_ADC1(AD8);
 	Init_ADC1(AD9);
 	Init_ADC1(AD10);
-	/*CW0 cw0;cw0.setupDigitalOut();
-	CW1 cw1;cw1.setupDigitalOut();
-	CW2 cw2;cw2.setupDigitalOut();
-	CW3 cw3;cw3.setupDigitalOut();
-	CW4 cw4;cw4.setupDigitalOut();
-	CW5 cw5;cw5.setupDigitalOut();
-	CCW0 ccw0;ccw0.setupDigitalOut();
-	CCW1 ccw1;ccw1.setupDigitalOut();
-	CCW2 ccw2;ccw2.setupDigitalOut();
-	CCW3 ccw3;ccw3.setupDigitalOut();
-	CCW4 ccw4;ccw4.setupDigitalOut();
-	CCW5 ccw5;ccw5.setupDigitalOut();*/
+
 	Pwm0 pwm0;//pwm0.setupPwmOut(10000,1);
 	Pwm1 pwm1;//pwm1.setupPwmOut(10000,1);
-	Servo servo(pwm0);
-	//servo.setup(20.0,dtor(180.0),1.5,2.4);
-	/*Pwm2 pwm2;pwm2.setupPwmOut(10000,1);
-	Pwm3 pwm3;pwm3.setupPwmOut(10000,1);
-	Pwm4 pwm4;pwm4.setupPwmOut(10000,1);
-	Pwm5 pwm5;pwm5.setupPwmOut(10000,1);*/
+	Servo servo(pwm1);
+	servo.setup(20.0,dtor(180.0),1.5,2.3);//rb995
+
 	Enc0 enc0;enc0.setup();
-	Enc1 enc1;enc1.setup();
-	//Enc2 enc2;enc2.setup();
+
 	Serial0 serial0;
 	serial0.setup(115200);
-	/*Serial1 serial1;
+	Serial1 serial1;
 	serial1.setup(115200);
 	Serial2 serial2;
 	serial2.setup(115200);
-	serial2.printf("start\n");*/
 	//Blink blink(cw0);blink.setup();
 	//blink.time(500);
-	I2c0 i2c;
-	Aqm0802 lcd(i2c);lcd.setup();
-	char data[20];
-	Blink blink0(led0);blink0.setup();blink0.time(150);
-	Blink blink1(led1);blink1.setup();blink1.time(300);
-	Blink blink2(led2);blink2.setup();blink2.time(450);
-	Blink blink3(led3);blink3.setup();blink3.time(600);
+//	I2c0 i2c;
+	//Aqm0802 lcd(i2c);lcd.setup();
+	//char data[20];
+	Blink blink0(led0);blink0.setup();blink0.time(200);
+	Blink blink1(led1);blink1.setup();blink1.time(500);
 	Blink blink4(buzzer);blink4.setup();blink4.time(2000);
 
 	float duty=0;
@@ -756,19 +734,28 @@ int main(void)
 	float deg=0;
 	while(1){
 		//blink0.cycle();
-		//blink1.cycle();
+		blink1.cycle();
 		//blink2.cycle();
-		blink3.cycle();
-		//blink4.cycle();
-		i2c.cycle();
-		if(!sw0.digitalRead()){
+		blink4.cycle();
+		//i2c.cycle();
+		if(!sw1.digitalRead()){
 			//Reset_encoder_over_under_flow();
 			led0.digitalHigh();
 		}else{
 			led0.digitalLow();
 		}
+		for(deg=-30;deg<60;deg+=10){
+			servo.setAngle(dtor(deg));
+			servo.cycle();
+			wait(37);
+		}
+		for(deg=60;deg>-30;deg-=10){
+			servo.setAngle(dtor(deg));
+			servo.cycle();
+			wait(37);
+		}
 
-		/*if(millis()-tim>=50){
+		if(millis()-tim>=50){
 			tim=millis();
 			if(serial0.charAvailable()){
 				flag=true;
@@ -787,11 +774,11 @@ int main(void)
 				servo.setAngle(dtor(deg));
 			}
 		}
-		if(flag)servo.cycle();*/
-		if(millis()-time>=1000){
+		if(flag)servo.cycle();
+		if(millis()-time>=70){
 			time=millis();
 
-			if(!flag){
+			/*if(!flag){
 				flag=1;
 				sprintf(data,"Hello");
 				lcd.setCursor(0,0);
@@ -802,7 +789,7 @@ int main(void)
 			}else{
 				flag=0;
 				lcd.clear();
-			}
+			}*/
 
 			/*if(!sw1.digitalRead()){
 				Reset_encoder_over_under_flow();
@@ -818,7 +805,9 @@ int main(void)
 			serial0.printf("a3:%.2f",get_ADC1_value(GPIOC,GPIO_Pin_3));
 			serial0.printf("a4:%.2f\n",get_ADC1_value(GPIOC,GPIO_Pin_4));*/
 			//serial0.printf("s0:%d, s1:%d, s2:%d, s3:%d ",sw0.digitalRead(),sw1.digitalRead(),sw2.digitalRead(),sw3.digitalRead());
-			//serial0.printf("e0:%d, e1:%d,\n",enc0.count(),enc1.count());
+			serial1.printf("Hello\n");
+			serial2.printf("world\n");
+			//serial0.printf("e0:%d,\n",enc0.count());
 			/*serial0.printf("a0:%.2f, ",a0.analogRead());
 			serial0.printf("a1:%.2f, ",a1.analogRead());
 			serial0.printf("a2:%.2f, ",a2.analogRead());

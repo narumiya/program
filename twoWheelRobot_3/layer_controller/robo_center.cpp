@@ -56,17 +56,17 @@ int RoboCenter::setup(){
 void RoboCenter::cycle(){
 	float theta=0.0;
 	enc0->cycle();
-	if(millis()-time>=5){
+	if(millis()-time>=1){
 		time=millis();
 		value=(enc0->value()-initValue);
 		def=(value-oldValue);
-		velocity=def/0.005;
+		velocity=def/0.001;
 		//velocity=enc0->getMltData()*enc0->rps();
 		angle=gyro->angle()+startAngle;
 		angle*=(-1.0);
 		angle=area(angle,-M_PI,M_PI);
 
-		theta=area(angle+radiusReverse(value-oldValue),-M_PI,M_PI);
+		theta=area(angle+radiusReverse(def),-M_PI,M_PI);
 		encX+=fabs(def)*cos(theta);
 		encY+=fabs(def)*sin(theta);
 		theta=area(angle+radiusReverse(encToServo),-M_PI,M_PI);

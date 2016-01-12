@@ -62,25 +62,26 @@ int Move::setup(){
 	initAngle=30.0;
 	output=dtor(initAngle);
 
-	/*
-	startX=-495.0+73.0;
-	//startX=0.0;
+
+	//startX=-495.0+73.0;
+	startX=0.0;
 	startY=0.0;
 	startAngle=0.0;
 	robo->setAngle(startAngle);
 	startTask=SLOPE1;
-*/
 
+/*
 	startX=coord[CX][DOWNHILL];
 	startY=coord[CY][DOWNHILL];
 	startAngle=getTargetRadian(coord[CX][DOWNHILL+1],coord[CY][DOWNHILL+1],startX,startY)*(-1.0);//ジャイロの角度反対のため反転
 	robo->setAngle(startAngle);
 	startTask=DOWNHILL+1;
-
+*/
 	return 0;
 }
 
 #if 1
+/*
 void Move::setCoord(){
 	coord[CX][SLOPE1]=1295.0;																	coord[CY][SLOPE1]=0.0;//slope1前
 	coord[CX][HILL1]=coord[CX][HILL1-1]+1062.518*cos(dtor(10.3));	coord[CY][HILL1]=294.923;//hill1前
@@ -88,12 +89,18 @@ void Move::setCoord(){
 	coord[CX][HILL2]=coord[CX][HILL2-1]+777.817*cos(dtor(10.3));	coord[CY][HILL2]=coord[CY][HILL2-1]+777.817;//hill2前
 	coord[CX][SLOPE3]=coord[CX][SLOPE3-1]+1087.114;						coord[CY][SLOPE3]=coord[CY][SLOPE3-1]+627.646;//slope3前
 	coord[CX][HILL3]=coord[CX][HILL3-1]+1062.0*cos(dtor(10.3));		coord[CY][HILL3]=coord[CY][HILL3-1]+284.701;//hill3前
+
 	coord[CX][HILL4]=coord[CX][HILL4-1]+377.646;								coord[CY][HILL4]=coord[CY][HILL4-1]-466.078;
 	coord[CX][RIVER]=coord[CX][RIVER-1];												coord[CY][RIVER]=coord[CY][RIVER-1]-649.435;//river 前
-	coord[CX][RIVER1]=coord[CX][RIVER1-1]+194.975;							coord[CY][RIVER1]=coord[CY][RIVER1-1]-194.975;//river 1
-	coord[CX][RIVER2]=coord[CX][RIVER2-1]+47.151;							coord[CY][RIVER2]=coord[CY][RIVER2-1]-518.535;//river 2
-	coord[CX][RIVER3]=coord[CX][RIVER3-1]+94.271;							coord[CY][RIVER3]=coord[CY][RIVER3-1]-1037.1;//river 2
-	coord[CX][HIGHLAND]=coord[CX][HIGHLAND-1]+353.553;				coord[CY][HIGHLAND]=coord[CY][HIGHLAND-1]-353.553;
+
+	//coord[CX][RIVER1]=coord[CX][RIVER1-1]+194.975;							coord[CY][RIVER1]=coord[CY][RIVER1-1]-194.975;//river 1
+	//coord[CX][RIVER2]=coord[CX][RIVER2-1]+47.151;							coord[CY][RIVER2]=coord[CY][RIVER2-1]-518.535;//river 2
+	//coord[CX][RIVER3]=coord[CX][RIVER3-1]+94.271;							coord[CY][RIVER3]=coord[CY][RIVER3-1]-1037.1;//river 2
+
+	coord[CX][RIVER1]=coord[CX][RIVER1-1]+124.264;							coord[CY][RIVER1]=coord[CY][RIVER1-1]-831.372;//river 1
+	coord[CX][RIVER2]=coord[CX][RIVER2-1]+106.066;							coord[CY][RIVER2]=coord[CY][RIVER2-1]-813.173;//river 2
+
+	coord[CX][HIGHLAND]=coord[CX][HIGHLAND-1]+459.619;				coord[CY][HIGHLAND]=coord[CY][HIGHLAND-1]-459.619;
 	coord[CX][DOWNHILL]=coord[CX][DOWNHILL-1]+636.41;				coord[CY][DOWNHILL]=coord[CY][DOWNHILL-1]-636.396;//down hill 始まり
 
 	coord[CX][DOWNHILL1_0]=coord[CX][DOWNHILL1_0-1]+544.893*cos(dtor(-44.96));coord[CY][DOWNHILL1_0]=coord[CY][DOWNHILL1_0-1]+544.893*sin(dtor(-44.96));
@@ -127,6 +134,63 @@ void Move::setCoord(){
 
 	coord[CX][FIN]=coord[CX][FIN-1]+500.0;										coord[CY][FIN]=coord[CY][DOWNHILL3_2-1];//最後
 }
+*/
+void Move::setCoord(){
+	coord[CX][SLOPE1]=1295.518;																coord[CY][SLOPE1]=0.0;//slope1前
+	coord[CX][HILL1]=coord[CX][HILL1-1]+1118.016*cos(dtor(15.0));	coord[CY][HILL1]=1118.016*sin(dtor(15.0))+10.699;//hill1前
+	coord[CX][SLOPE2]=coord[CX][SLOPE2-1]+1087.114;						coord[CY][SLOPE2]=coord[CY][SLOPE2-1]+627.646;//slope2前
+	coord[CX][HILL2]=coord[CX][HILL2-1]+1118.034*cos(dtor(45.0));	coord[CY][HILL2]=coord[CY][HILL2-1]+1118.034*sin(dtor(45.0));//hill2前
+	coord[CX][SLOPE3]=coord[CX][SLOPE3-1]+1087.114;						coord[CY][SLOPE3]=coord[CY][SLOPE3-1]+627.646;//slope3前
+	coord[CX][HILL3]=coord[CX][HILL3-1]+1118.034*cos(dtor(15.0));	coord[CY][HILL3]=coord[CY][HILL3-1]+1118.034*sin(dtor(15.0));//hill3前
+
+	coord[CX][HILL4]=coord[CX][HILL4-1]+377.646;								coord[CY][HILL4]=coord[CY][HILL4-1]-466.078;
+	coord[CX][RIVER]=coord[CX][RIVER-1]+194.945;								coord[CY][RIVER]=coord[CY][RIVER-1]-844.41;//river 前
+	//coord[CX][HILL4]=coord[CX][HILL4-1]+360.646;								coord[CY][HILL4]=coord[CY][HILL4-1]-484.778;
+	//coord[CX][RIVER]=coord[CX][RIVER-1]+17.0;									coord[CY][RIVER]=coord[CY][RIVER-1]-630.736;//river 前
+
+	coord[CX][RIVER1]=coord[CX][RIVER1-1]+70.711;							coord[CY][RIVER1]=coord[CY][RIVER1-1]-494.975;//river 1
+	coord[CX][RIVER2]=coord[CX][RIVER2-1]+106.066;							coord[CY][RIVER2]=coord[CY][RIVER2-1]-1096.016;//river 2
+
+	//coord[CX][RIVER2]=coord[CX][RIVER2-1]+47.151;							coord[CY][RIVER2]=coord[CY][RIVER2-1]-518.535;//river 2
+	//coord[CX][RIVER3]=coord[CX][RIVER3-1]+94.271;							coord[CY][RIVER3]=coord[CY][RIVER3-1]-1037.1;//river 2
+
+	//coord[CX][RIVER1]=coord[CX][RIVER1-1]+124.264;							coord[CY][RIVER1]=coord[CY][RIVER1-1]-831.372;//river 1
+	//coord[CX][RIVER2]=coord[CX][RIVER2-1]+106.066;							coord[CY][RIVER2]=coord[CY][RIVER2-1]-813.173;//river 2
+
+	coord[CX][HIGHLAND]=coord[CX][HIGHLAND-1]+318.198;				coord[CY][HIGHLAND]=coord[CY][HIGHLAND-1]-318.198;
+	coord[CX][DOWNHILL]=coord[CX][DOWNHILL-1]+636.41;				coord[CY][DOWNHILL]=coord[CY][DOWNHILL-1]-636.396;//down hill 始まり
+
+	coord[CX][DOWNHILL1_0]=coord[CX][DOWNHILL1_0-1]+544.893*cos(dtor(-44.96));coord[CY][DOWNHILL1_0]=coord[CY][DOWNHILL1_0-1]+544.893*sin(dtor(-44.96));
+	//down hill 1回目 円の中心座標
+	curveRadius[0]=713.385;
+	centralAngle[0]=dtor(90.763);
+	circleCenter[CX][0]=coord[CX][DOWNHILL1_0]-curveRadius[0]*cos(dtor(44.74-180.0));
+	circleCenter[CY][0]=coord[CY][DOWNHILL1_0]-curveRadius[0]*sin(dtor(44.74-180.0));
+	initCurveAngle[0]=dtor(44.74-180.0);
+	coord[CX][DOWNHILL1_1]=circleCenter[CX][0]+curveRadius[0]*cos(dtor(135.503-180.0));coord[CY][DOWNHILL1_1]=circleCenter[CY][0]+713.385*sin(dtor(135.503-180.0));
+	coord[CX][DOWNHILL2_0]=coord[CX][DOWNHILL1_1]+863.105*cos(dtor(45.22));coord[CY][DOWNHILL2_0]=coord[CY][DOWNHILL1_1]+863.105*sin(dtor(45.22));
+	//down hill 2回目 円の中心座標
+	curveRadius[1]=600.123;
+	centralAngle[1]=dtor(97.911);
+	circleCenter[CX][1]=coord[CX][DOWNHILL2_0]-curveRadius[1]*cos(dtor(37.6+97.911));
+	circleCenter[CY][1]=coord[CY][DOWNHILL2_0]-curveRadius[1]*sin(dtor(37.6+97.911));
+	initCurveAngle[1]=dtor(37.6+97.911);
+	//coord[CX][DOWNHILL2_1]=circleCenter[CX][1]+curveRadius[1]*cos(dtor(37.599));coord[CY][DOWNHILL2_1]=circleCenter[CY][1]+curveRadius[1]*sin(dtor(37.599));
+	//coord[CX][DOWNHILL3_0]=coord[CX][DOWNHILL2_1]+555.924*cos(dtor(-51.83));coord[CY][DOWNHILL3_0]=coord[CY][DOWNHILL2_1]+555.924*sin(dtor(-51.83));
+
+	coord[CX][DOWNHILL3_0]=circleCenter[CX][1]+curveRadius[1]*cos(dtor(37.599))+555.924*cos(dtor(-51.83));coord[CY][DOWNHILL3_0]=circleCenter[CY][1]+curveRadius[1]*sin(dtor(37.599))+555.924*sin(dtor(-51.83));
+
+	//down hill 3回目 円の中心座標
+	curveRadius[2]=852.293;
+	centralAngle[2]=dtor(97.911);
+	circleCenter[CX][2]=coord[CX][DOWNHILL3_0]-curveRadius[2]*cos(dtor(37.6-180.0));
+	circleCenter[CY][2]=coord[CY][DOWNHILL3_0]-curveRadius[2]*sin(dtor(37.6-180.0));
+	initCurveAngle[2]=dtor(37.6-180.0);
+	coord[CX][DOWNHILL3_1]=circleCenter[CX][2]+curveRadius[2]*cos(dtor(90.041-180.0));coord[CY][DOWNHILL3_1]=circleCenter[CY][2]+curveRadius[2]*sin(dtor(90.041-180.0));
+	coord[CX][DOWNHILL3_2]=coord[CX][DOWNHILL3_2-1]+303.090;coord[CY][DOWNHILL3_2]=coord[CY][DOWNHILL3_2-1];
+
+	coord[CX][FIN]=coord[CX][FIN-1]+800.0;										coord[CY][FIN]=coord[CY][DOWNHILL3_2-1];//最後
+}
 #endif
 #if 0
 void Move::setCoord(){
@@ -140,7 +204,7 @@ void Move::setCoord(){
 #endif
 
 void Move::setStartCoord(){
-	startCoord[CX][0]=0.0;startCoord[CY][0]=0.0;
+	startCoord[CX][0]=0.0;						startCoord[CY][0]=0.0;
 	startCoord[CX][1]=coord[CX][HILL1];startCoord[CY][1]=coord[CY][HILL1];
 	startCoord[CX][2]=coord[CX][HILL2];startCoord[CY][2]=coord[CY][HILL2];
 	startCoord[CX][3]=coord[CX][RIVER];startCoord[CY][3]=coord[CY][RIVER];
@@ -150,7 +214,7 @@ void Move::cycle(){
 	button0->cycle();
 	button1->cycle();
 	decisionRestartTesk();
-	if(millis()-time>=5){
+	if(millis()-time>=1){
 		time=millis();
 		if(!startFlag){
 			if(button1->readValue()) startFlag=true;
@@ -168,7 +232,6 @@ void Move::cycle(){
 				servoAngle=area(servoAngle,-M_PI,M_PI);
 			}else{
 				float targetRad=getTargetAngle();
-				float angle=0.0;
 
 				output=targetRad*(-1.0)+dtor(initAngle);//サーボ右方向が+なので-1かけてる
 				output=floatlimit(dtor(-36.0+initAngle),output,dtor(36.0+initAngle));
@@ -197,6 +260,7 @@ float Move::rotationOutput(float diff,pid_gain_t gain){
 }
 
 float Move::getTargetAngle(){
+	static bool flag=false;
 	static int oldTask=task;
 	static int buzzFlag=0;
 	static uint64_t time=millis();
@@ -205,8 +269,8 @@ float Move::getTargetAngle(){
 	float nowX=robo->getServoX();//robo->getX();
 	float nowY=robo->getServoY();//robo->getY();
 
-	distance=get_vertical_distance_position(targetX,targetY,nowX,nowY,servoAngle);
-	//distance=getDistance(targetX,targetY,nowX,nowY);
+	//distance=get_vertical_distance_position(targetX,targetY,nowX,nowY,robo->getAngle());
+	distance=getDistance(targetX,targetY,nowX,nowY);
 	//timeLeft=getTimeLeft(distance);
 	//angleTime=getAngleTime(area(getTargetRadian(nextX,nextY,nowX,nowY),-M_PI,M_PI),servoAngle);
 	//targetAngle=area(getTargetRadian(targetX,targetY,nowX,nowY),-M_PI,M_PI);
@@ -214,24 +278,20 @@ float Move::getTargetAngle(){
 	targetAngle=getServoAngle(targetX,targetY);
 	this->radiusServo=targetAngle;
 
+	if(task==HILL1||task==HILL2||task==HILL3||task==HIGHLAND){
+		if(flag==false){
+			float angle=robo->getAngle();
+			robo->setX(robo->getX()+100.0*cos(angle));
+			robo->setY(robo->getY()+100.0*sin(angle));
+			flag=true;
+		}
+	}else{
+		flag=false;
+	}
+
 	if(task!=FIN){
-		if(task==HILL3||task==RIVER1||task==RIVER2||task==DOWNHILL1_1||/*task==DOWNHILL2_1||*/task==DOWNHILL3_1){
-			//distance=	get_vertical_distance_position(targetX,targetY,robo->getServoX(),robo->getServoY(),servoAngle);
-			//distance=getDistance(targetX,targetY,nowX,nowY);
-			if(distance<=130.0){//120//60
-				task++;
-			}
-		}else{
-			if(task==DOWNHILL1_0||task==DOWNHILL2_0||task==DOWNHILL3_0){
-				//distance=getDistance(targetX,targetY,robo->getX(),robo->getY());
-				if(distance<=130.0){//60
-					task++;
-				}
-			}else{
-				if(distance<=130.0){//60//100.0
-					task++;
-				}
-			}
+		if(distance<=130.0){//120//60
+			task++;
 		}
 	}
 	if(oldTask!=task){
@@ -545,17 +605,20 @@ void Move::decisionRestartTesk(){
 		break;
 		default: break;
 		}
+
 		getStartCoord(setTask);
 	}
 }
 
 void Move::getStartCoord(int task){
 	if(task==0){
-		startX=-495.0+73.0;
-		//startX=0.0;
+		//startX=-495.0+73.0;
+		startX=218.0;
 		startY=0.0;
 		startAngle=0.0;
 		robo->setAngle(startAngle);
+		startX+=fabs(robo->getEncToBehind())*cos(startAngle);
+		startY+=fabs(robo->getEncToBehind())*sin(startAngle);
 		startTask=0;
 	}else if(task==HILL1){
 		startX=startCoord[CX][1];
@@ -611,19 +674,21 @@ void Move::printAdValue(){
 void Move::printRoboInfo(){
 	printf("x,%.2f,",robo->getX());
 	printf("y,%.2f,",robo->getY());
+	printf("sx,%.2f,",robo->getServoX());
+	printf("sy,%.2f,",robo->getServoY());
 	printf("deg,%.2f,",rtod(robo->getAngle()));
 	//printf("sd,%.2f,",rtod(servoAngle));
 	printf("tx,%.2f,",coord[CX][task]);
 	printf("ty,%.2f,",coord[CY][task]);
 	//printf("td,%.2f,",rtod(targetAngle));
-	//printf("vel,%.2f,",robo->getVelocity());
+	printf("vel,%.2f,",robo->getVelocity());
 	printf("dis,%.2f,",distance);
 	printf("task,%d,",task);
 	//printf("out,%f,",rtod(output)-initAngle);
 	//printf("radius,%f,",radius);
-	printf("radiusR,%f,",radiusR);
-	printf("radiusL,%f,",radiusL);
-	printf("servo,%f,",rtod(radiusServo));
+	printf("rR,%.2f,",radiusR);
+	printf("rL,%.2f,",radiusL);
+	printf("servo,%.2f,",rtod(radiusServo));
 /*	printf("radius,%f,",radius);
 	printf("servo,%f,",rtod(radiusServo));
 	printf("servoX,%.2f,servoY,%.2f,",robo->getServoX(),robo->getServoY());

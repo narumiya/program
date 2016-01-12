@@ -1,6 +1,6 @@
 
-#include "pin0.hpp"
-#if 0
+#include "pin1.hpp"
+#if 1
 extern "C" {
 #include <string.h>
 #include <stdio.h>
@@ -20,9 +20,8 @@ extern "C" {
 
 
 #define LED0 		GPIOD, GPIO_Pin_12
-#define LED1		GPIOD,GPIO_Pin_14
-#define LED2		GPIOD,GPIO_Pin_13
-#define LED3		GPIOD,GPIO_Pin_15
+#define LED1		GPIOD,GPIO_Pin_13
+
 #define SW0		GPIOE,GPIO_Pin_7
 #define SW1		GPIOE,GPIO_Pin_13
 #define BUZZER	GPIOA,GPIO_Pin_6
@@ -41,20 +40,19 @@ extern "C" {
 #define AD10		GPIOB,GPIO_Pin_1
 
 
-#define PWM0				GPIOA,GPIO_Pin_9
+#define PWM0				GPIOA,GPIO_Pin_8
 #define PWM0SET			TIM1,PWM0
-#define PWM0TIMCH		TIM1,2
-#define PWM1				GPIOA,GPIO_Pin_8
+#define PWM0TIMCH		TIM1,1
+#define PWM1				GPIOA,GPIO_Pin_9
 #define PWM1SET			TIM1,PWM1
-#define PWM1TIMCH		TIM1,1
+#define PWM1TIMCH		TIM1,2
+
 #define BUZZERSET		TIM13,BUZZER
 #define BUZZERTIMCH	TIM13,1
 
 
-#define ENC0TIM			TIM8
-#define ENC0					GPIOC,GPIO_Pin_8 | GPIO_Pin_9
-#define ENC1TIM			TIM3
-#define ENC1					GPIOC,GPIO_Pin_6 | GPIO_Pin_7
+#define ENC0TIM			TIM3
+#define ENC0					GPIOC,GPIO_Pin_6 | GPIO_Pin_7
 
 
 #define SERIAL0TxRx		GPIOB,GPIO_Pin_6,GPIOB,GPIO_Pin_7
@@ -149,77 +147,6 @@ int Led1::_setupDigitalInPullDown(){
 	return 0;
 }
 
-int Led2:: _digitalWrite(){
-	return GPIO_ReadOutputDataBit(LED2);
-}
-
-void Led2::_digitalWrite(int value){
-	if(value==0){
-		GPIO_ResetBits(LED2);
-	}else{
-		GPIO_SetBits(LED2);
-	}
-}
-
-int Led2::_digitalRead(){
-	return GPIO_ReadInputDataBit(LED2);
-}
-
-int Led2::_setupDigitalIn(){
-	Init_port(GPIO_Mode_IN, LED2, GPIO_PuPd_NOPULL, GPIO_OType_PP);
-	return 0;
-}
-
-int Led2::_setupDigitalOut(){
-	Init_port(GPIO_Mode_OUT, LED2, GPIO_PuPd_NOPULL, GPIO_OType_PP);
-	return 0;
-}
-
-int Led2::_setupDigitalInPullUp(){
-	Init_port(GPIO_Mode_IN, LED2, GPIO_PuPd_UP, GPIO_OType_PP);
-	return 0;
-}
-
-int Led2::_setupDigitalInPullDown(){
-	Init_port(GPIO_Mode_IN, LED2, GPIO_PuPd_DOWN, GPIO_OType_PP);
-	return 0;
-}
-
-int Led3:: _digitalWrite(){
-	return GPIO_ReadOutputDataBit(LED3);
-}
-
-void Led3::_digitalWrite(int value){
-	if(value==0){
-		GPIO_ResetBits(LED3);
-	}else{
-		GPIO_SetBits(LED3);
-	}
-}
-
-int Led3::_digitalRead(){
-	return GPIO_ReadInputDataBit(LED3);
-}
-
-int Led3::_setupDigitalIn(){
-	Init_port(GPIO_Mode_IN, LED3, GPIO_PuPd_NOPULL, GPIO_OType_PP);
-	return 0;
-}
-
-int Led3::_setupDigitalOut(){
-	Init_port(GPIO_Mode_OUT, LED3, GPIO_PuPd_NOPULL, GPIO_OType_PP);
-	return 0;
-}
-
-int Led3::_setupDigitalInPullUp(){
-	Init_port(GPIO_Mode_IN, LED3, GPIO_PuPd_UP, GPIO_OType_PP);
-	return 0;
-}
-
-int Led3::_setupDigitalInPullDown(){
-	Init_port(GPIO_Mode_IN, LED3, GPIO_PuPd_DOWN, GPIO_OType_PP);
-	return 0;
-}
 
 int Sw0:: _digitalWrite(){
 	return GPIO_ReadOutputDataBit(SW0);
@@ -931,15 +858,7 @@ int Enc0::count(){
 	else return Select_encoder_count(ENC0TIM);
 }
 
-int Enc1::setup(){
-	Init_encoder(ENC1TIM,ENC1);
-	return 0;
-}
 
-int Enc1::count(){
-	if(revFlag) return -Select_encoder_count(ENC1TIM);
-	else return Select_encoder_count(ENC1TIM);
-}
 
 int Pwm0::_setupPwmOut(float frequency, float duty){
 	int i;

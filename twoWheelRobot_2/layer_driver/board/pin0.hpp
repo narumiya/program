@@ -1,7 +1,7 @@
 #ifndef PIN0_H_INCLUDED
 #define PIN0_H_INCLUDED
 
-#if 1
+#if 0
 #include "serial.hpp"
 #include "digital.hpp"
 #include "Analog.hpp"
